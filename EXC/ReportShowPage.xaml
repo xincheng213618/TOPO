@@ -1,0 +1,249 @@
+﻿<Page x:Class="EXC.ReportShowPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EXC"
+      xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="ReportShowPage" Initialized="Page_Initialized" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="145*" />
+            <RowDefinition Height="814*" />
+            <RowDefinition Height="65*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25*" />
+                <RowDefinition Height="382*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="192*"/>
+                    <RowDefinition Height="125*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--<Border  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Background="White"/>-->
+                <Image Source="images/Report_Background.png" Grid.ColumnSpan="3" Margin="35,-46,40,75" Grid.RowSpan="3"/>
+
+                <Image Grid.Column="1" Source="images/您可以打印以下信息报告.png"  Margin="7,40,121,35" Grid.ColumnSpan="2"/>
+
+                <Border x:Name="ReportGrid" Grid.Row="1" Grid.Column="1" Visibility="Visible" Background="White">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="36"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--标题-->
+                        <Border Grid.Row="0" Background="#fefce4"  Visibility="Visible">
+                            <Grid Margin="0,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="390*"/>
+                                    <ColumnDefinition Width="350*"/>
+                                    <ColumnDefinition Width="194*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  Content="序号" Height="34" />
+                                <Label Grid.Column="2" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  Content="法人名称" Height="34" />
+                                <Label Grid.Column="3" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  Content="社会统一信用代码" Height="34"  />
+                                <Label Grid.Column="4" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  Content="法定代表人" Height="34" />
+                                <CheckBox  Grid.Column="0" Margin="14,10,20,10"  Checked="CheckBox_Checked" RenderTransformOrigin="0.5,0.5" IsChecked="True"/>
+                            </Grid>
+                        </Border>
+                        <!--list-->
+                        <ListView Grid.Row="3" x:Name="ReportListView"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" >
+                            <ListView.ItemContainerStyle >
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Height" Value="50" />
+                                    <Setter Property="FontSize" Value="20" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <!--<Setter Property="BorderBrush" Value="#F1F1F1" />
+                                    <Setter Property="BorderThickness" Value="0,1,1,0" />-->
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View >
+                                <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}" >
+                                    <GridViewColumn Width="50" Header="打印">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked ="{Binding IsCheck}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="50"  Header="序号">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=xh}"  />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="390"  Header="公司名称">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=ComPanyName}" HorizontalAlignment="Left" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn  Width="350" Header="社会统一信用代码">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=USCCode}"  />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="194" Header="法定代表人">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Applicant}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <!--无数据时-->
+                        <Border x:Name="RefereeMsg" Grid.Row="1" Visibility="Hidden">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*"/>
+                                    <ColumnDefinition Width="107*"/>
+                                    <ColumnDefinition Width="503*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="暂无报告信息" Style="{StaticResource Label_Centered_25}" BorderBrush="#f5f6f7" HorizontalAlignment="Stretch" BorderThickness="0 0 0 3" Grid.ColumnSpan="3" Margin="0,2"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Button Style="{StaticResource hiddenButton}" Grid.Column="1" Margin="132,30,642,161" Grid.Row="2"   Click="PrintAll_Click">
+                    <Image Source="images/打印.png"/>
+
+                </Button>
+                <Button Style="{StaticResource hiddenButton}" Grid.Column="1" Margin="644,30,117,161" Grid.Row="2"  Click="Home_Click">
+                    <!--<Image Source="images/rertur.png"/>-->
+                </Button>
+            </Grid>
+
+        </Grid>
+
+        <Grid x:Name="EnhanceGrid" Grid.Row="1"  Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="195*"/>
+                <RowDefinition Height="360*"/>
+                <RowDefinition Height="259*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="166*"/>
+                <ColumnDefinition Width="299*"/>
+                <ColumnDefinition Width="175*"/>
+            </Grid.ColumnDefinitions>
+            <!--<Image Source="images/EnhanceGrid.png" Grid.ColumnSpan="3" Margin="286,33,310,17" Grid.Row="1"/>-->
+            <Border Grid.Row="1" CornerRadius="10,10,10,10" Background="Transparent" Grid.ColumnSpan="2" Margin="330,5,2,20" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="8*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="51*"/>
+                        <ColumnDefinition Width="206*"/>
+                        <ColumnDefinition Width="228*"/>
+                        <ColumnDefinition Width="216*"/>
+                        <ColumnDefinition Width="57*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="3" Grid.ColumnSpan="2" Margin="108,50,18,0" >
+                        <Button Style="{StaticResource hiddenButton}" Click="Leve_0_Click">
+                            <Image  Source="images/返回键.png"  Stretch="Uniform" Height="67" Width="77"  />
+                        </Button>
+                    </Border>
+                    <Label Content="请选择报告版本" Margin="100,75,133,147" FontSize="35" Grid.ColumnSpan="3" FontStyle="Normal" Foreground="Red" HorizontalContentAlignment="Left" RenderTransformOrigin="0.614,0.231" Grid.RowSpan="2" Grid.Column="1"/>
+                    <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource hiddenButton}" Margin="30" Click="Level_Click" Tag="1">
+                        <Label Content="精简版"  Style="{StaticResource Label_Centered_30}" Background="#e67222" Foreground="White"/>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource hiddenButton}" Margin="30" Click="Level_Click" Tag="2" >
+                        <Label Content="基本版"  Style="{StaticResource Label_Centered_30}" Background="#e67222" Foreground="White"/>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource hiddenButton}" Margin="30"  Click="Level_Click" Tag="3">
+                        <Label Content="完整版" Style="{StaticResource Label_Centered_30}" Background="#e67222" Foreground="White"/>
+                    </Button>
+                </Grid>
+            </Border>
+
+
+        </Grid>
+
+        <Border x:Name="PopBorder" Grid.Row="1"  Background="White" CornerRadius="20" Margin="465,277,515,277" BorderBrush="#c5c5c5" BorderThickness="2" Visibility="Hidden">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="193*" />
+                    <RowDefinition Height="57*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2">
+                    <Button  Background="White" Style="{StaticResource hiddenButton}" >
+                        <myLib:CirclePointRingLoading   Width="90" Height="90" IsActive="True" IsLarge="False" Foreground="#007ACC"/>
+                    </Button>
+                </Border>
+
+                <Label x:Name="PopLabel" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="#3668d3"  Content="正在打印"  Grid.Row="1" Margin="12,13,16,5" Width="268" Height="40" />
+            </Grid>
+
+        </Border>
+
+        <Border x:Name="PrintOver" Grid.Row="1" Visibility="Hidden" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="59*"/>
+                    <ColumnDefinition Width="186*"/>
+                    <ColumnDefinition Width="75*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="158*"/>
+                    <RowDefinition Height="450*"/>
+                    <RowDefinition Height="199*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="1" Grid.Row="1" Source="images/PrintOver_Background.png"/>
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="138*"/>
+                        <ColumnDefinition Width="176*"/>
+                        <ColumnDefinition Width="149*"/>
+                        <ColumnDefinition Width="171*"/>
+                        <ColumnDefinition Width="110*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="262*"/>
+                        <RowDefinition Height="77*"/>
+                        <RowDefinition Height="111*"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="PrintAllNumLabel" Content="1" Grid.Column="1" Margin="173,150,127,69" FontSize="25" Grid.ColumnSpan="2"/>
+                    <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource hiddenButton}" Click="Return_Click"/>
+                    <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource hiddenButton}" Click="Home_Click"/>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!--打印-->
+        <WindowsFormsHost x:Name="formsHost" Visibility="Hidden"/>
+
+    </Grid>
+</Page>

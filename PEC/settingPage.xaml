@@ -1,0 +1,57 @@
+﻿<Page x:Class="PEC.settingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PEC"
+      mc:Ignorable="d" 
+  d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="settingPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="93*" />
+            <RowDefinition Height="389*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="1" Grid.Column="0" Name="test" Visibility="Hidden">
+            <Border BorderBrush="Red"   Background="Transparent">
+                <Grid>
+                    <Border CornerRadius="0,2000,2000,2000" Background="#FFF3A352"   Name="TestQiye" BorderThickness="5" Margin="636,385,361,282" MouseDown="Border_MouseDown">
+                        <Label Content="测试企业" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="30"></Label>
+                    </Border>
+                    <Border CornerRadius="0,2000,2000,2000"     BorderThickness="5" Margin="607,370,612,367" MouseDown="Border_MouseDown">
+                    </Border>
+                    <Border CornerRadius="2000,0,2000,2000" Background="#FFF3A352"  Name="TestZireanren" BorderThickness="5" Margin="434,385,634,302"  MouseDown="Border_MouseDown">
+                        <Label Content="测试个人" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="20" Height="38" Margin="54,25,54,18" Width="94"></Label>
+                    </Border>
+                    <Border CornerRadius="2000,2000,2000, 0" Background="#FFF3A352"   Name="Close" BorderThickness="5" Margin="636,279,423,383" MouseDown="Border_MouseDown">
+                        <Label Content="关闭程序" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="25"></Label>
+                    </Border>
+                    <Border Margin="357,243,639,388" Name="Back" MouseDown="Border_MouseDown" Background="#FFF3A352" CornerRadius="2000,2000, 0,2000">
+                        <Label Content="返回" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="40"></Label>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Name="password" Background="Transparent" Grid.Column="0" Visibility="Visible">
+            <Border BorderBrush="Red"   Background="Transparent">
+                <Grid>
+                    <Border  Margin="324,233,326,205"  BorderThickness="20" Background="#FFF3A352" CornerRadius="50" BorderBrush="#FFF38415" >
+                        <Grid >
+                            <Label FontSize="40" HorizontalAlignment="Center"   Foreground="White" Background="Transparent"  Width="336" Margin="127,0,127,242">请输入管理员密码</Label>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="138,107,122,132"  >
+                                <TextBox  Name="textpassword" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="textpassword_TextChanged" FontSize="30" Margin="0,0,0,11"/>
+                            </Border>
+                            <Button Click="Button_Click"   Content="确          定" Background="Transparent" FontSize="30"  HorizontalAlignment="Left" Width="218" Margin="80,201,0,23"></Button>
+                            <Button Click="Button_Click"   Content="返          回" Background="Transparent" FontSize="30" Margin="299,202,77,23"  ></Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+
+        </Grid>
+
+
+    </Grid>
+</Page>

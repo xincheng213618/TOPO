@@ -1,0 +1,93 @@
+﻿<Window x:Class="SingleVerification.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:winf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        MouseLeftButtonDown="Window_MouseDrag"
+        Title="江苏同袍人脸识别" Background="Transparent" AllowsTransparency="False"   Width="1024" MinWidth="1024" MaxWidth="1920" Height="768" MinHeight="768" MaxHeight="1080" WindowStyle="None" ResizeMode="NoResize" Loaded="MainWindow_Loaded"  Initialized="Window_Initialized" >
+    <Border Background="White"  BorderBrush="#c5c5c5"  BorderThickness="1"> 
+        <Grid>
+
+            <Border Height="50" VerticalAlignment="Top" BorderBrush="#e4e8eb" BorderThickness="0,0,0,2">
+                <Grid>
+                    <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Close_Click" ToolTip="关闭" Margin="0,0,2,0">
+                        <Image Source="Images/close.png" Height="20"/>
+                    </Button>
+                    <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Min_Click" ToolTip="最小化" Margin="0,1,30,0">
+                        <Image Source="Images/min.png" Height="18"/>
+                    </Button>
+                    <Image Source="Images\RealEstate-Logo.png" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" Height="36" Width="36" Margin="5"/>
+                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Content="同袍综窗服务系统" FontSize="20" Margin="50,6,0,0" ToolTip="{Binding Quotes,Mode=OneWay}"/>
+                </Grid>
+            </Border>
+
+            <Grid  Height="320"  Width="300" Margin="34,80,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBox Text="姓名" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" FontSize="15" Foreground="Black"  />
+                <TextBox x:Name="TextName" VerticalAlignment="Top"  Text="{Binding Name,Mode=OneWay}" InputMethod.IsInputMethodEnabled="False" IsReadOnly="True" FontSize="20" MaxLength="10" Height="30" Margin="0,25,0,0" BorderBrush="#00d7fe"  BorderThickness="2" >
+                    <TextBox.Effect >
+                        <DropShadowEffect  Direction="0" BlurRadius="4" ShadowDepth="0"/>
+                    </TextBox.Effect>
+                </TextBox>
+                <TextBox Text="身份证号" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0"  FontSize="15" Foreground="Black" Margin="0,65" />
+
+                <TextBox x:Name="TextIDCardNo" VerticalAlignment="Top" Text="{Binding IDcardNo ,Mode=OneWay}"  InputMethod.IsInputMethodEnabled="False" IsReadOnly="True"   FontSize="20" MaxLength="18" Height="30" Margin="0,90,0,0" BorderBrush="#00d7fe"  BorderThickness="2" >
+                    <TextBox.Effect >
+                        <DropShadowEffect  Direction="0" BlurRadius="4" ShadowDepth="0"/>
+                    </TextBox.Effect>
+                </TextBox>
+
+                <Border x:Name="OneButtonBorder" Height="30"  Width="100" CornerRadius="10" Background="#1473e6" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="0,150,0,0" >
+                    <Button   Template="{StaticResource hiddenButtonTemplate}" ToolTip="读一次"  Content="人证核验" Foreground="White" FontSize="15" Click="Button_Click" Tag="One"  />
+                </Border>
+
+                <Border x:Name="AllButtonBorder"  Height="30"  Width="120" CornerRadius="10" Background="#1473e6" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0,150,0,0">
+                    <Button  Template="{StaticResource hiddenButtonTemplate}"  ToolTip="自动运行"  Content="人证核验自动" Foreground="White" FontSize="15" Click="Button_Click" Tag="Auto"/>
+                </Border>
+
+                <!--<Border  Height="30"  Width="100" CornerRadius="15" Background="{Binding AutoColour1,Mode=OneWay}" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="0,210,0,0">
+                    <Button  Template="{StaticResource hiddenButtonTemplate}"   ToolTip="身份证读一次"  Content="仅身份证" Foreground="White" FontSize="15" Click="Button_Click"  Tag="IDCardOne" />
+                </Border>-->
+
+                <!--<Border  Height="30"  Width="120" CornerRadius="15" Background="{Binding AutoColour2,Mode=OneWay}" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0,210,0,0">
+                    <Button   Template="{StaticResource hiddenButtonTemplate}"   ToolTip="自动运行"  Content="身份证自动" Foreground="White" FontSize="15" Click="Button_Click" Tag="IDCardAuto" />
+                </Border>-->
+
+                <Border  Height="30"  Width="140" CornerRadius="10" Background="#1473e6" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="0,220,0,0">
+                    <Button  Template="{StaticResource hiddenButtonTemplate}" ToolTip="身份证读一次"  Content="打开数据库" Foreground="White"  FontSize="15" Click="Database_Click" Tag="Database" />
+                </Border>
+                <Border x:Name="PrintBorder"  Height="30"  Width="140" CornerRadius="10" Background="Gray" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="0,270,0,0">
+                    <Button  Template="{StaticResource hiddenButtonTemplate}" ToolTip="打印"  Content="打印" Foreground="White" FontSize="15" Click="Print_Click" Tag="Print" />
+                </Border>
+            </Grid>
+
+            <WindowsFormsHost x:Name="formhost" Grid.Row="0" Width="500" Height="400" Background="Black"  VerticalAlignment="Top"  HorizontalAlignment="Right"  Margin="0,80,60,0" >
+                <winf:PictureBox x:Name="picturebox" SizeMode="StretchImage"  Dock="Fill" Click="Camer_Click"  />
+            </WindowsFormsHost>
+            <Label Content="双击即可打开或者关闭摄像头" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Margin="200,260" IsEnabled="False" />
+
+            <Border VerticalAlignment="Bottom" Height="210" Margin="40,0,50,40" BorderBrush="#e4e8eb" BorderThickness="2" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                <Grid>
+                    <TextBox x:Name="LogText" Text="{Binding Log ,Mode=OneWay}" AllowDrop="True" VerticalScrollBarVisibility="Auto"  TextWrapping="WrapWithOverflow" BorderThickness="0" Margin="5,3,5,7"  IsReadOnly="True" MouseDoubleClick="LogText_MouseDoubleClick" />
+                    <Button Content="清空" HorizontalAlignment="Right" VerticalAlignment="Bottom" Template="{StaticResource hiddenButtonTemplate}" Margin="0,0,30,5" Click="Log_Click" Tag="Log"/>
+                    <!--消息弹出框-->
+                    <Border x:Name="PopBorder"  Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0" Height="150" Width="150"  Background="White" CornerRadius ="2" >
+                        <Grid>
+                            <Image x:Name="ErrorShow" Source="images/Error1.png" Visibility="Visible" VerticalAlignment="Top" Stretch="None" />
+                            <Image x:Name="RightShow" Source="images/Right1.png" Visibility="Hidden" VerticalAlignment="Top" Stretch="None" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Grid Height="30" VerticalAlignment="Bottom" Background="#f8f9fb">
+                <Label Content="{Binding NumLabel,Mode=OneWay}" Margin="10,0,0,0"/>
+                <Label  Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="CopyRight © 2015-2020 TOPO All Rigths Reserved" FontSize="11" Margin="0,0,10,0" IsEnabled="False" />
+            </Grid>
+            <Label  Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{Binding Date,Mode=OneWay}" FontSize="11" Margin="0,0,100,0" IsEnabled="False"/>
+            <WindowsFormsHost x:Name="formsHost1" Visibility="Hidden" />
+
+        </Grid>
+    </Border>
+</Window>

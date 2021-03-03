@@ -1,0 +1,83 @@
+﻿<Page x:Class="XinHua.CameraPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:XinHua" xmlns:winf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="CameraPage" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="869*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" Background="Transparent" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--上部-->
+                <Border Grid.Row="0" Background="#b6c2eb"  CornerRadius="40" Margin="50"  Opacity="0.4" />
+                <Border Grid.Row="0" Background="Transparent"  BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Visibility="Visible">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="32*"/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="8*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--定时器-->
+                        <!--<Label HorizontalAlignment="Left" Width="60" Height="60" Content="{Binding Countdown, Mode=OneWay}" Style="{StaticResource Label_Centered_30}" Foreground="#3269ba" FontWeight="Bold"/>-->
+                        <Label Grid.Column="0" FontSize="20" VerticalAlignment="Top" Foreground="White" Margin="9,12,51,0" Grid.ColumnSpan="2">
+                            <Label.Content>
+                                <TextBlock Text="{Binding Countdown,StringFormat=剩余操作时间：{0}s}"/>
+                            </Label.Content>
+                        </Label>
+                        <!--<Button Grid.Column="0" Margin="1068,0,68,0" Template="{StaticResource imageButtonTemplate}" Click="Return_Click" >
+                            <Image Stretch="None" Source="Images/return.png" />
+                        </Button>-->
+                        <Button x:Name="CameraButton" Grid.Column="4" Style="{StaticResource hiddenButton}" Background="#f5f6f7" BorderBrush="#f5f6f7" BorderThickness="3,0,0,0" Visibility="Hidden" Click="Return_Click">
+                            <Image Source="images/Return_Round.png" Height="53"/>
+                        </Button>
+
+                        <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Foreground="#f07106" Content="请直视摄像头" Height="42" Margin="240,9" Width="160"     />
+
+                        <!--<Button x:Name="button_Copy" Content="对比" HorizontalAlignment="Left" Margin="350,20,0,0" VerticalAlignment="Top" Width="74" Click="duibi"/>
+                        <Button x:Name="button" Content="拍照" HorizontalAlignment="Left" Margin="514,20,0,0" VerticalAlignment="Top" Width="74" Click="photos"/>-->
+                    </Grid>
+
+                </Border>
+
+                <!--中部-->
+                <Border x:Name="camera" Grid.Row="1" Grid.RowSpan="2" Visibility="Visible" Background="#f5f6f7" Margin="80">
+                    <Grid>
+
+                        <Label Grid.Row="1" Grid.Column="1"  Content="拍摄现场照片" Style="{StaticResource titleLabel}"/>
+                        <WindowsFormsHost x:Name="formhost" Width="900" Height="675" Background="Transparent" >
+                            <winf:PictureBox x:Name="picturebox"   SizeMode="StretchImage"  Dock="Fill"></winf:PictureBox>
+                        </WindowsFormsHost>
+
+                        <!--<Image Source="images/CameraHide.png" Width="900" Margin="190,62,190,458"/>-->
+
+                    </Grid>
+
+                </Border>
+
+                <Border x:Name="success" Grid.Row="1" Grid.Column="0"  Width="400" Height="160" CornerRadius="30" Background="White" VerticalAlignment="Center" Visibility="Hidden" >
+                    <Image Grid.Row="2" Grid.Column="1" Width="320" Height="100" Source="Images/succeeToHouseRecord.png" />
+                </Border>
+
+                <Border x:Name="unsuccess"  Grid.Row="1"  Width="400" Height="160" CornerRadius="30" Background="White" VerticalAlignment="Center" Visibility="Hidden" >
+                    <Image Grid.Row="2" Grid.Column="1" Width="320" Height="100" Source="Images/unsuccessful.png" />
+                </Border>
+
+            </Grid>
+
+        </Border>
+    </Grid>
+</Page>

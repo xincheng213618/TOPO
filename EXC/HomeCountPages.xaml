@@ -1,0 +1,189 @@
+﻿<Page x:Class="EXC.HomeCountPages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="HomeCountPages" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="869*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <!--内容-->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="97*" />
+                <RowDefinition Height="772*" />
+            </Grid.RowDefinitions>
+            <!--上部-->
+            <Border Grid.Row="0" Background="#f5f6f7">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="117*"/>
+                        <ColumnDefinition Width="648*"/>
+
+                        <ColumnDefinition Width="163*"/>
+                        <ColumnDefinition Width="163*"/>
+                        <ColumnDefinition Width="189*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <!--定时器-->
+                    <ProgressBar x:Name="time_process"  HorizontalAlignment="Left" Width="60" Height="60" Value="{Binding Countdown, Mode=OneWay}"  Visibility="Visible"  >
+                        <ProgressBar.Template>
+                            <ControlTemplate TargetType="{x:Type ProgressBar}">
+                                <Border Background="{TemplateBinding Value, ConverterParameter=90, Converter={StaticResource ValueToProcessConverter}}"/>
+                            </ControlTemplate>
+                        </ProgressBar.Template>
+                    </ProgressBar>
+
+
+                    <Button Grid.Column="4"  Template="{StaticResource imageButtonTemplate}" Click="Home_Click">
+                        <Image Stretch="None" Source="Images/home.png"/>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <!--中部-->
+            <Grid Background="#f5f6f7" Margin="0,95,0,2" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="359*"/>
+                    <RowDefinition Height="27*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="223*"/>
+                    <ColumnDefinition Width="807*"/>
+                    <ColumnDefinition Width="250*"/>
+                </Grid.ColumnDefinitions>
+                <!--内容-->
+                <Border Grid.Column="1" Grid.Row="1" CornerRadius="20" Background="Transparent" BorderBrush="#c5c5c5" BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="107*"/>
+                            <RowDefinition Height="474*"/>
+                            <RowDefinition Height="126*"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Background="#3668d3" BorderBrush="#f5f6f7" CornerRadius="20,20,0,0" BorderThickness="0,0,0,3">
+                            <Label x:Name="HomeCountLabel" Content="住房套数证明"  Style="{StaticResource Label_Centered_30}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+                        </Border>
+                        <!--权属列表-->
+                        <Border x:Name="HomeCountGrid" Grid.Row="1"  Visibility="Visible">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36"/>
+                                    <RowDefinition Height="*" />
+
+                                </Grid.RowDefinitions>
+                                <!--标题-->
+                                <Border Grid.Row="0" Background="#ade7f6" BorderBrush="#f5f6f7" BorderThickness="0 1 0 1" Visibility="Visible" Grid.ColumnSpan="2">
+                                    <Grid Margin="0,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="106"/>
+                                            <ColumnDefinition Width="700"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号" FontWeight="Bold" Height="34" />
+                                        <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="坐落" FontWeight="Bold" Height="34" />
+                                    </Grid>
+                                </Border>
+                                <!--list-->
+                                <ListView  Grid.Row="1" x:Name="HomeCountListView"  AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="White" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="HomeCountListView_SelectionChanged" Grid.ColumnSpan="2">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="Height" Value="auto" />
+                                            <Setter Property="FontSize" Value="19" />
+                                            <Setter Property="Background" Value="White" />
+                                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="BorderBrush" Value="#F1F1F1" />
+                                            <Setter Property="BorderThickness" Value="0,1,1,0" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                            <GridViewColumn Width="106"  Header="序号">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=ListNo}" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                            <GridViewColumn  Width="700"  Header="坐落">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Label Content="{Binding Path=Location}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+
+                                <!--无数据时-->
+                                <Border x:Name="HomeCountMsg" Grid.Row="1" Visibility="Hidden" Grid.ColumnSpan="2" Background="White">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="暂无房屋信息" Style="{StaticResource Label_Centered_25}" BorderBrush="#f5f6f7" HorizontalAlignment="Stretch" BorderThickness="0 0 0 3"/>
+                                    </Grid>
+                                </Border>
+
+                            </Grid>
+                        </Border>
+
+                        <!--打印按钮-->
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="17*"/>
+                                <RowDefinition Height="39*"/>
+                                <RowDefinition Height="12*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="9*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="PrintButton" Grid.Column="1" Grid.Row="1"  Background="#3668d3" BorderBrush="#c5c5c5" BorderThickness="1" CornerRadius="10" Visibility="Hidden">
+                                <Button  Style="{StaticResource  hiddenButton}"   Click="Print_Click" >
+                                    <Label x:Name="FunctionLabel" Style="{StaticResource Label_Centered_30}" Foreground="White" Content="打印住房套数证明"/>
+                                </Button>
+                            </Border>
+                        </Grid>
+
+                    </Grid>
+                </Border>
+            </Grid>
+            <Border  x:Name="PopBorder" Grid.Row="1" Height="300" Width="300"  Background="White" CornerRadius="20" Margin="0,0,50,0" BorderBrush="#c5c5c5" BorderThickness="2" Visibility="Hidden">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="193*" />
+                        <RowDefinition Height="57*" />
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2">
+                        <Button  Background="White" Style="{StaticResource hiddenButton}" >
+                            <myLib:CirclePointRingLoading   Width="90" Height="90" IsActive="True" IsLarge="False" Foreground="#007ACC"/>
+                        </Button>
+                    </Border>
+
+                    <Label x:Name="PopLabel" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="#3668d3"  Content="正在打印"  Grid.Row="1" Margin="12,13,16,12" Width="268" />
+                </Grid>
+
+            </Border>
+
+            <!--打印-->
+            <WindowsFormsHost x:Name="formsHost" Visibility="Hidden" />
+        </Grid>
+    </Grid>
+</Page>

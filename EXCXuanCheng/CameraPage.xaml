@@ -1,0 +1,56 @@
+﻿<Page x:Class="EXCXuanCheng.CameraPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EXCXuanCheng" xmlns:winf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="CameraPage" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="869*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" Background="Transparent" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="799*" />
+                </Grid.RowDefinitions>
+                <!--上部-->
+                <Border Grid.Row="0" Background="#f5f6f7"  BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Visibility="Visible">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="32*"/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="8*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Foreground="#f07106" Content="请直视摄像头" Height="42" Margin="240,9" Width="160"     />
+                    </Grid>
+
+                </Border>
+
+                <!--中部-->
+                <Border x:Name="camera" Grid.Row="1" Grid.RowSpan="2" Visibility="Visible" Background="#f5f6f7">
+                    <Grid>
+                        <Label Grid.Row="1" Grid.Column="1"  Content="拍摄现场照片" Style="{StaticResource titleLabel}"/>
+                        <WindowsFormsHost x:Name="formhost" Width="900" Height="675" Background="Transparent" >
+                            <winf:PictureBox x:Name="picturebox"   SizeMode="StretchImage"  Dock="Fill"></winf:PictureBox>
+                        </WindowsFormsHost>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+        </Border>
+        <!--<Label x:Name="timerLabel" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Content="1"/>-->
+
+        <!--<MediaElement x:Name="media" Visibility="Hidden" LoadedBehavior="Manual" />-->
+
+    </Grid>
+</Page>

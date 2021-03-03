@@ -1,0 +1,1036 @@
+﻿<Page x:Class="XinHua.XinHuaCompanyDetailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:XinHua"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="XinHuaCompanyDetailPage" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Border Background="#c5c5c5" Opacity="0.05"/>
+            <Border Grid.Row="1" Background="#b6c2eb"  CornerRadius="40" Margin="30,50,30,10"  Opacity="0.4" />
+        </Grid>
+        <Grid x:Name="TOP" Grid.Row="1">
+            <Label Grid.Row="1"  Foreground="White" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,5" >
+                <TextBlock Text="{Binding Countdown,StringFormat=剩余操作时间：{0}s}"/>
+            </Label>
+
+            <Button Template="{StaticResource imageButtonTemplate}"   HorizontalAlignment="Right" VerticalAlignment="Top"  Height="50" Margin="100,0" Click="Button_Click"  Tag="Home" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="Images/首页.png" Stretch="Uniform" Height="30" Margin="0,5,0,0"/>
+                    <Label Grid.Column="1" Content="主页"  FontSize="25" Foreground="#ff8160" />
+                </Grid>
+            </Button>
+
+            <Button  Template="{StaticResource imageButtonTemplate}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="200,0" Height="50" Click="Button_Click" Tag="Return" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="Images/返回.png" Stretch="Uniform" Height="30" Margin="0,5,0,0"/>
+                    <Label Grid.Column="1" Content="返回"  FontSize="25" Foreground="#ff8160" />
+                </Grid>
+            </Button>
+
+            <Button  Template="{StaticResource imageButtonTemplate}"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="300,0" Height="50"  Click="Button_Click" Tag="Print">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="Images/打印.png" Stretch="Uniform" HorizontalAlignment="Right" Height="30"/>
+                    <Label Grid.Column="1" Content="打印" VerticalAlignment="Center" FontSize="25" Foreground="#ff8160" />
+                </Grid>
+            </Button>
+
+        </Grid>
+
+
+        <Grid Grid.Row="1" Margin="30,50,30,10">
+            <Border Background="Black" VerticalAlignment="Top" Height="60" CornerRadius="40,40,0,0" Opacity="0.1"/>
+            <Label  x:Name="InFoTitle"  Style="{StaticResource Label_Centered_30}"  Content="" FontSize="40" VerticalAlignment="Top"   Foreground="#ff8d62"/>
+            <Label x:Name="comanpyStatusLabel" Grid.Row="0" Style="{StaticResource Label_Right_24}" VerticalAlignment="Top"  FontSize="12" BorderBrush="#35c46d"  BorderThickness="1,1,1,1" Padding="5,2,5,2"  Content="存续" Foreground="#35c46d"  Margin="50,25,50,10" />
+
+            <Grid Grid.Row="1" Margin="0,57,0,3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--目录-->
+                <Grid Grid.Column="0" Margin="30,10,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="FontWeightBoldLabel" FontWeight="Bold" Visibility="Hidden"/>
+                    <Label x:Name="FontWeightNormalLabel" FontWeight="Normal" Visibility="Hidden"/>
+                    <Border x:Name="basicBorder" Grid.Row="0"  Background="#bedffc"  CornerRadius="10" Margin="0,3,10,20">
+                        <Button x:Name="basicButton"  Style="{StaticResource hiddenButton}"   Content="基本信息" FontSize="26" FontWeight="Bold" Foreground="#ff8160"  Click="PageChange_Click" Tag="Basic"/>
+                    </Border>
+                    <Border x:Name="EquityBorder" Grid.Row="1"  Background="#eeeeef"   CornerRadius="10" Margin="0,3,10,20">
+                        <Button x:Name="EquityButton" Style="{StaticResource hiddenButton}" Content="股权信息" FontSize="25"   Click="PageChange_Click" Tag="Equity"/>
+                    </Border>
+                    <Border x:Name="PropertyBorder" Grid.Row="2"  Background="#eeeeef"   CornerRadius="10" Margin="0,3,10,20">
+                        <Button x:Name="PropertyButton" Style="{StaticResource hiddenButton}" Content="知识产权" FontSize="25"  Click="PageChange_Click" Tag="Property"/>
+                    </Border>
+                    <Border x:Name="JudicialBorder" Grid.Row="3"  Background="#eeeeef"   CornerRadius="10" Margin="0,3,10,20">
+                        <Button x:Name="JudicialButton" Style="{StaticResource hiddenButton}" Content="司法信息" FontSize="25" Click="PageChange_Click" Tag ="Judicial"/>
+                    </Border>
+                    <Border x:Name="TrademarkBorder" Grid.Row="4"  Background="#eeeeef"   CornerRadius="10" Margin="0,3,10,20">
+                        <Button x:Name="TrademarkButton" Style="{StaticResource hiddenButton}" Content="商标信息" FontSize="25"  Click="PageChange_Click" Tag ="Trademark"/>
+                    </Border>
+                </Grid>
+                <!--页面-->
+                <Grid  Grid.Column="1" Margin="0,10,20,20">
+                    <Border Grid.Column="1"  Background="White" CornerRadius="5,5,30,20"/>
+
+                    <!--基本信息-->
+                    <Grid x:Name="BasicInfoShow" Background="White" Margin="15,15,15,15" Panel.ZIndex="1">
+                        <Grid  Margin="150,10,40,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="12*" />
+                            </Grid.RowDefinitions>
+                            <Label x:Name="labelCreditCode" Grid.Row="0"  Style="{StaticResource CompanyBasicInfoLabel}"  Content="社会统一信用代码：" />
+                            <Label x:Name="labelfrName" Grid.Row="1" Style="{StaticResource CompanyBasicInfoLabel}" Content="法定代表人："   />
+                            <Label x:Name="labelstartDate" Grid.Row="2"  Style="{StaticResource CompanyBasicInfoLabel}" Content="成立时间："   />
+                            <Label x:Name="labelindustry" Grid.Row="3"   Style="{StaticResource CompanyBasicInfoLabel}" Content="行业："  />
+                            <Label x:Name="labelphoneNumber" Grid.Row="4"   Style="{StaticResource CompanyBasicInfoLabel}" Content="联系方式："  />
+                            <Label x:Name="entType" Grid.Row="5"  Style="{StaticResource CompanyBasicInfoLabel}" Content="企业类型：" />
+                            <Label x:Name="labeladdress" Grid.Row="6" Style="{StaticResource CompanyBasicInfoLabel}" Content="地址：" />
+                            <Label  Grid.Row="7" VerticalAlignment="Top"  Style="{StaticResource CompanyBasicInfoLabel}" Content="经营范围：" />
+                            <TextBox x:Name="labelscpoe" Grid.Row="8" Style="{StaticResource Text_Centered_20}" IsReadOnly="True"  TextWrapping="Wrap" FontSize="15" Text="" FontFamily="宋体" VerticalAlignment="Top" BorderBrush="White"  Margin="100,10,0,0"  AllowDrop="False" />
+
+                        </Grid>
+                    </Grid>
+
+                    <!--股权信息-->
+                    <Grid x:Name="EquityInfoShow" Background="White" Margin="15,15,15,15" Panel.ZIndex="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <!--上部-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="PartnersButton" Grid.Column="0" Content="股权分配" FontSize="20" FontWeight="Bold" Foreground="#ff8160"   BorderThickness="0" Background="#e6f1fb" Margin="0,0,10,3"  Click="Button_Equity_Click" Tag="Partners"/>
+                                <Button x:Name="InvestmentButton" Grid.Column="1" Content="投资信息" FontSize="20" FontWeight="Bold"  BorderThickness="0"  Background="White"  Margin="10,0,10,3"   Click="Button_Equity_Click" Tag="Investment"/>
+                                <Button x:Name="BranchButton" Grid.Column="2" Content="分支机构" FontSize="20" FontWeight="Bold" BorderThickness="0"  Background="White" Margin="10,0,10,3"   Click="Button_Equity_Click" Tag="Branch" />
+                            </Grid>
+
+                            <!--股权分配-->
+                            <Grid x:Name="PartnersGrid" Grid.Row="1" Background="White" Panel.ZIndex="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36"/>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="48"/>
+                                </Grid.RowDefinitions>
+                                <!--标题-->
+                                <Grid Grid.Row="0" Background="#ade7f6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="54*"/>
+                                        <ColumnDefinition Width="205*"/>
+                                        <ColumnDefinition Width="305*"/>
+                                        <ColumnDefinition Width="305*"/>
+                                        <ColumnDefinition Width="172*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号" Height="34" />
+                                    <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="股东名称" Height="34" />
+                                    <Label Grid.Column="2" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="股份比例" Height="34"/>
+                                    <Label Grid.Column="3" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="出资金额(万元)" Height="34" />
+                                    <Label Grid.Column="4" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 0 0"  Content="出资日期" Height="34" />
+                                </Grid>
+
+                                <!--list-->
+                                <ListView  Grid.Row="1" x:Name="PartnersListView"  AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="RefereeListView_SelectionChanged" Grid.ColumnSpan="2">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="Height" Value="45" />
+                                            <Setter Property="FontSize" Value="15" />
+                                            <Setter Property="Background" Value="{Binding Path=Background}"/>
+                                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="BorderBrush" Value="#F1F1F1" />
+                                            <Setter Property="BorderThickness" Value="0,1,1,0" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                            <GridViewColumn Width="40"  Header="序号">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=xh}" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                            <GridViewColumn  Width="190"  Header="股东名称">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Label Content="{Binding Path=stockName}" FontSize="15" HorizontalContentAlignment="Center"  HorizontalAlignment="Center"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                            <GridViewColumn  Width="260" Header="股份比例">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=stockPercent}"  />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn  Width="310" Header="出资金额">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=shouldMoey}"   />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn  Width="120"  Header="出资日期">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=shouldDate}"  />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+
+                                <!--无数据时-->
+                                <Border x:Name="PartnersMsg"  Visibility="Hidden"  Grid.Row="1" Height="50" VerticalAlignment="Top" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Margin="30,0" >
+                                    <Label  Content="暂无股权分配信息" Style="{StaticResource Label_Centered_25}" FontSize="23"  BorderBrush="#f5f6f7"  />
+                                </Border>
+
+                                <!--下一页-->
+                                <Border x:Name="PartnersNextPageBorder" Grid.Row="2" Grid.Column="0" Visibility="Visible" Background="White" BorderBrush="#c5c5c5" BorderThickness="0,2,0,0"  >
+                                    <Grid>
+                                        <Border Width="250" CornerRadius="10" Background="#ff8d62" Margin="0,3,0,3">
+                                            <Button Template="{StaticResource imageButtonTemplate}" Click="NextPage_Click" Tag="Partners">
+                                                <Label  Content="加载更多"  FontSize="25" Foreground="White"/>
+                                            </Button>
+                                        </Border>
+
+                                   </Grid>
+                                </Border>
+                                <Label x:Name="PartnersNowTotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource NowTotalLabel}" />
+                                <Label x:Name="PartnerstotalLabel"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="9" Style="{StaticResource TotalLabel}" />
+
+                            </Grid>
+
+                            <!--投资信息-->
+                            <Grid x:Name="InvestmentGrid"  Grid.Row="1" Background="White" Panel.ZIndex="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36"/>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="48"/>
+                                </Grid.RowDefinitions>
+                                <!--标题-->
+                                <Grid Grid.Row="0" Background="#ade7f6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="54*"/>
+                                        <ColumnDefinition Width="320*"/>
+                                        <ColumnDefinition Width="135*"/>
+                                        <ColumnDefinition Width="230*"/>
+                                        <ColumnDefinition Width="302*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号" />
+                                    <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="被投资企业名称"  />
+                                    <Label Grid.Column="2" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="出资比例" />
+                                    <Label Grid.Column="3" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="出资金额" />
+                                    <Label Grid.Column="4" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 0 0"  Content="统一社会信息用代码" />
+                                </Grid>
+
+                                <!--list-->
+                                <ListView  Grid.Row="1" x:Name="InvestmentListView"  AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="InvestmentListView_SelectionChanged" Grid.ColumnSpan="2">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="Height" Value="45" />
+                                            <Setter Property="FontSize" Value="15" />
+                                            <Setter Property="Background" Value="{Binding Path=Background}"/>
+                                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="BorderBrush" Value="#F1F1F1" />
+                                            <Setter Property="BorderThickness" Value="0,1,1,0" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                            <GridViewColumn Width="54"  Header="序号">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=xh}" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                            <GridViewColumn  Width="320"  Header="被投资企业名称">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Label Content="{Binding Path=investedCompany}" FontSize="15" HorizontalContentAlignment="Center"  HorizontalAlignment="Center"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+
+                                            <GridViewColumn  Width="80" Header="出资比例">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=fundedRatio}"  />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn  Width="220" Header="出资金额">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=regMoney}"   />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn  Width="302"  Header="统一社会信用代码">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=creditCode}"  />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+
+                                <!--无数据时-->
+                                <Border   x:Name="InvestmentMsg"  Visibility="Hidden" Grid.Row="1" Height="50" VerticalAlignment="Top" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Margin="30,0">
+                                    <Label  Content="暂无对外投资信息" Style="{StaticResource Label_Centered_25}" FontSize="23"  BorderBrush="#f5f6f7"  />
+                                </Border>
+                                <!--下一页-->
+                                <Border x:Name="InvestmentNextPageBorder" Grid.Row="2" Grid.Column="0" Visibility="Visible" Background="White" BorderBrush="#c5c5c5" BorderThickness="0,2,0,0" Grid.ColumnSpan="2"  >
+                                    <Grid>
+                                        <Border Width="250" CornerRadius="10" Background="#ff8d62" Margin="0,3,0,3">
+                                            <Button Template="{StaticResource imageButtonTemplate}" Click="NextPage_Click" Tag="Investment" >
+                                                <Label  Content="加载更多"  FontSize="25" Foreground="White"/>
+                                            </Button>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+
+
+                                <!--弹出用户-->
+                                <Label x:Name="InvestmentNowTotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource NowTotalLabel}" />
+                                <Label x:Name="InvestmenttotalLabel"  Grid.Row="2" Grid.Column="1" Style="{StaticResource TotalLabel}" />
+                            </Grid>
+
+                            <!--分支机构-->
+                            <Grid x:Name="BranchGrid" Grid.Row="1" Background="White" Panel.ZIndex="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36"/>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="48"/>
+                                </Grid.RowDefinitions>
+                                <!--标题-->
+                                <Grid Grid.Row="0" Background="#ade7f6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="154*"/>
+                                        <ColumnDefinition Width="887*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号" Height="34" />
+                                    <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="分支公司" Height="34" />
+                                </Grid>
+                                <!--list-->
+                                <ListView  Grid.Row="1" x:Name="BranchListView"  AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="BranchListView_SelectionChanged" Grid.ColumnSpan="2">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="Height" Value="45" />
+                                            <Setter Property="FontSize" Value="15" />
+                                            <Setter Property="Background" Value="{Binding Path=Background}" />
+                                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="BorderBrush" Value="#F1F1F1" />
+                                            <Setter Property="BorderThickness" Value="0,1,1,0" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                            <GridViewColumn Width="100"  Header="序号">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=xh}" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn  Width="887"  Header="分支公司">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Label Content="{Binding Path=branchesAme}" FontSize="15" HorizontalContentAlignment="Center"  HorizontalAlignment="Center"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+
+                                <Border x:Name="BranchMsg"  Visibility="Hidden" Grid.Row="1" Height="50" VerticalAlignment="Top" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Margin="30,0" >
+                                    <Label   Content="暂无信息" Style="{StaticResource Label_Centered_25}" FontSize="23"  BorderBrush="#f5f6f7"  />
+                                </Border>
+                                <!--无数据时-->
+
+                                <!--下一页-->
+                                <Border x:Name="BranchNextPageBorder" Grid.Row="2" Grid.Column="0" Visibility="Visible" Background="White" BorderBrush="#c5c5c5" BorderThickness="0,2,0,0" Grid.ColumnSpan="2"  >
+                                    <Grid>
+                                        <Border Width="250" CornerRadius="10" Background="#ff8d62" Margin="0,3,0,3">
+                                            <Button Template="{StaticResource imageButtonTemplate}" Click="NextPage_Click" Tag="Branch" >
+                                                <Label  Content="加载更多"  FontSize="25" Foreground="White"/>
+                                            </Button>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <!--弹出用户-->
+                                <Label x:Name="BranchtotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource TotalLabel}"   />
+                                <Label  x:Name="BranchNowTotalLabel"  Grid.Row="3" Grid.Column="0" Style="{StaticResource NowTotalLabel}"    />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    
+                    <!--知识产权-->
+                    <Grid x:Name="PropertyInfoShow" Background="White" Margin="15,15,15,15" Panel.ZIndex="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--上部-->
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="PatentButton" Grid.Column="0" Content="专利" FontSize="20" FontWeight="Bold" Foreground="#ff8160"   BorderThickness="0" Background="#e6f1fb" Margin="0,0,10,3"  Click="Button_PropertyInfo_Click" Tag="Patent"/>
+                            <Button x:Name="CopyrightButton" Grid.Column="1" Content="软件著作权" FontSize="20" FontWeight="Bold"  BorderThickness="0"  Background="White"  Margin="10,0,10,3"   Click="Button_PropertyInfo_Click" Tag="Copyright"/>
+                        </Grid>
+
+                        <!--专利信息-->
+                        <Grid x:Name="PatentGrid" Grid.Row="1" Background="White"  Panel.ZIndex="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="48"/>
+                            </Grid.RowDefinitions>
+                            <!--标题-->
+                            <Border Grid.Row="0" Background="#ade7f6" BorderBrush="#f5f6f7" BorderThickness="0 1 0 1" Visibility="Visible" Grid.ColumnSpan="3">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="86*"/>
+                                        <ColumnDefinition Width="375*"/>
+                                        <ColumnDefinition Width="198*"/>
+                                        <ColumnDefinition Width="210*"/>
+                                        <ColumnDefinition Width="153*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号"     />
+                                    <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="专利名称"  />
+                                    <Label Grid.Column="2" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="公示号"    />
+                                    <Label Grid.Column="3" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0"  Content="专利类型"   />
+                                    <Label Grid.Column="4" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 0 0" Content="公开日期" />
+                                </Grid>
+                            </Border>
+
+                            <!--list-->
+                            <ListView  Grid.Row="1" x:Name="patentListView" AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="patentListView_SelectionChanged" Grid.ColumnSpan="3" >
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListBoxItem}">
+                                        <Setter Property="Height" Value="60" />
+                                        <Setter Property="Background" Value="{Binding Path=Background}"/>
+                                        <Setter Property="FontSize" Value="14" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="BorderBrush" Value="#f5f6f7" />
+                                        <Setter Property="BorderThickness" Value="0,1,0,1" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.View>
+                                    <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                        <GridViewColumn Width="86" Header="序号">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=xh}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="350" Header="专利名称">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=title}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="170" Header="公示号">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=publicNumber}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="180" Header="专利类型">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=kindCodeCesc}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="153" Header="公开日期">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=publicDate}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <!--无数据时-->
+                            <Border x:Name="patentMsg"  Visibility="Hidden"  Grid.Row="1" Height="50" VerticalAlignment="Top" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Margin="30,0" >
+                                <Label  Content="暂无专利信息" Style="{StaticResource Label_Centered_25}" FontSize="23"  BorderBrush="#f5f6f7"  />
+                            </Border>
+
+
+                            <Border x:Name="PatentNextPageBorder" Grid.Row="2" Grid.Column="0" Visibility="Visible" Background="White" BorderBrush="#c5c5c5" BorderThickness="0,2,0,0" Grid.ColumnSpan="3"  >
+                                <Grid>
+                                    <Border Width="250" CornerRadius="10" Background="#ff8d62" Margin="0,3,0,3">
+                                        <Button Template="{StaticResource imageButtonTemplate}" Click="NextPage_Click" Tag="Patent"  >
+                                            <Label  Content="加载更多"  FontSize="25" Foreground="White"/>
+                                        </Button>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <!--弹出用户-->
+                            <Border x:Name="PopPatentBorder" Grid.Row="1" Background="AliceBlue" BorderBrush="#c5c5c5" BorderThickness="5" CornerRadius="5" Margin="50" Visibility="Hidden" Grid.ColumnSpan="2" Grid.Column="1">
+                                <Grid Width="860" Height="480">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="41*"/>
+                                        <RowDefinition Height="199*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="专利详细内容" Style="{StaticResource Label_Centered_30}"/>
+                                    <TextBox x:Name="PatentDescriptionText" Grid.Row="1" Text="" FontSize="20" AllowDrop="True" IsReadOnly="True" TextWrapping="Wrap"  Height="400" Width="820" Background="AliceBlue" BorderThickness="0" />
+                                    <Button Style="{StaticResource hiddenButton}" Click="PopClose_Click" Grid.ColumnSpan="9" Grid.RowSpan="9"/>
+                                </Grid>
+                            </Border>
+                            <Label x:Name="PatentNowTotalLabel"  Grid.Row="2" Style="{StaticResource NowTotalLabel}" Margin="0,11" />
+                            <Label x:Name="PatenttotalLabel"  Grid.Row="2"  Style="{StaticResource TotalLabel}" Margin="0,11" />
+                        </Grid>
+
+                        <!--软件著作权信息-->
+                        <Grid  x:Name="copyrightGrid" Grid.Row="1" Background="White"  Panel.ZIndex="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="48"/>
+                            </Grid.RowDefinitions>
+                            <!--标题-->
+                            <Border Grid.Row="0" Background="#ade7f6" BorderBrush="#f5f6f7" BorderThickness="0 1 0 1" Visibility="Visible">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70*"/>
+                                        <ColumnDefinition Width="300*"/>
+                                        <ColumnDefinition Width="150*"/>
+                                        <ColumnDefinition Width="150*"/>
+                                        <ColumnDefinition Width="141*"/>
+                                        <ColumnDefinition Width="132*"/>
+                                        <ColumnDefinition Width="120*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号" />
+                                    <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="名称"  />
+                                    <Label Grid.Column="2" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="登记号" />
+                                    <Label Grid.Column="3" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="著作权人" />
+                                    <Label Grid.Column="4" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="登记日期" />
+                                    <Label Grid.Column="5" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="作品类型"  />
+                                    <Label Grid.Column="6" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 0 0" Content="公布日期"/>
+                                </Grid>
+                            </Border>
+
+                            <!--list-->
+                            <ListView x:Name="CopyrightListView" Grid.Row="1" AllowDrop="False"  ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="copyrightListView_SelectionChanged">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListBoxItem}">
+                                        <Setter Property="Height" Value="60" />
+                                        <Setter Property="Background" Value="{Binding Path=Background}" />
+                                        <Setter Property="FontSize" Value="14" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="BorderBrush" Value="#F1F1F1" />
+                                        <Setter Property="BorderThickness" Value="0,1,0,0" />
+                                        <Setter Property="Focusable" Value="False" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.View>
+                                    <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                        <GridViewColumn x:Name="column0copyrightHeader" Width="50" Header="序号" DisplayMemberBinding="{Binding Path=xh}"/>
+                                        <GridViewColumn x:Name="column1copyrightHeader" Width="338" Header="名称">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=name}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="column2copyrightHeader" Width="168" Header="登记号">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=regNum}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="column3copyrightHeader" Width="0" Header="著作权人">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=owner}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="column4copyrightHeader" Width="141" Header="登记日期">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=regDate}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="column5copyrightHeader" Width="122" Header="作品类型">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=category}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn x:Name="column6copyrightHeader" Width="153" Header="公布日期">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=publishDate}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <!--无数据时-->
+                            <Border x:Name="copyrightMsg"  Visibility="Hidden"  Grid.Row="1" Height="50" VerticalAlignment="Top" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Margin="30,0" >
+                                <Label  Content="暂无软件著作权信息" Style="{StaticResource Label_Centered_25}" FontSize="23"  BorderBrush="#f5f6f7"  />
+                            </Border>
+
+
+                            <Border x:Name="CopyrightNextPageBorder" Grid.Row="2" Grid.Column="0" Visibility="Visible" Background="White" BorderBrush="#c5c5c5" BorderThickness="0,2,0,0"  >
+                                <Grid>
+                                    <Border Width="250" CornerRadius="10" Background="#ff8d62" Margin="0,3,0,3">
+                                        <Button Template="{StaticResource imageButtonTemplate}" Click="NextPage_Click" Tag="Copyright" >
+                                            <Label  Content="加载更多"  FontSize="25" Foreground="White"/>
+                                        </Button>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <Label x:Name="CopyrightNowTotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource NowTotalLabel}" />
+                            <Label x:Name="CopyrighttotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource TotalLabel}" />
+
+                        </Grid>
+
+                    </Grid>
+
+
+                    <!--司法信息-->
+                    <Grid x:Name="JudicialInfoShow" Background="White" Margin="15,15,15,15" Panel.ZIndex="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--上部-->
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="RefereeButton" Grid.Column="0" Content="裁判文书" FontSize="20" FontWeight="Bold" Foreground="#ff8160"  BorderThickness="0" Background="#e6f1fb" Margin="0,0,10,3"  Click="Button_Judicial_Click" Tag="Referee"/>
+                            <Button x:Name="AnnouncementButton" Grid.Column="1" Content="法律公告" FontSize="20" FontWeight="Bold"  BorderThickness="0"  Background="White"  Margin="10,0,10,3"   Click="Button_Judicial_Click" Tag="Announcement"/>
+                            <Button x:Name="BusinessAbnormalionButton" Grid.Column="2" Content="分支机构" FontSize="20" FontWeight="Bold" BorderThickness="0"  Background="White" Margin="10,0,10,3"   Click="Button_Judicial_Click" Tag="BusinessAbnormalion"  Visibility="Hidden"/>
+                        </Grid>
+                        
+                        <!--裁判文书-->
+                        <Grid x:Name="RefereeGrid" Grid.Row="1"  Background="White"  Panel.ZIndex="1">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="48"/>
+                            </Grid.RowDefinitions>
+                            <!--标题-->
+                            <Grid Grid.Row="0" Background="#ade7f6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="54*"/>
+                                    <ColumnDefinition Width="250*"/>
+                                    <ColumnDefinition Width="545*"/>
+                                    <ColumnDefinition Width="85*"/>
+                                    <ColumnDefinition Width="107*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号" Height="34" />
+                                <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="文书编号" Height="34" />
+                                <Label Grid.Column="2" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="标题" Height="34"/>
+                                <Label Grid.Column="3" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="类型" Height="34" />
+                                <Label Grid.Column="4" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 0 0"  Content="执行法院" Height="34" />
+                            </Grid>
+
+                            <!--list-->
+                            <ListView  Grid.Row="1" x:Name="RefereeListView"  AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="RefereeListView_SelectionChanged" Grid.ColumnSpan="2">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListBoxItem}">
+                                        <Setter Property="Height" Value="45" />
+                                        <Setter Property="FontSize" Value="15" />
+                                        <Setter Property="Background" Value="{Binding Path=Background}" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="BorderBrush" Value="#F1F1F1" />
+                                        <Setter Property="BorderThickness" Value="0,1,1,0" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.View>
+                                    <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                        <GridViewColumn Width="30"  Header="序号">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=xh}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn  Width="250"  Header="文书编号">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Label Content="{Binding Path=caseNo}" FontSize="15" HorizontalContentAlignment="Center"  HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn  Width="485" Header="标题">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=caseName}"  />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn  Width="87" Header="类型">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=caseType}"   />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn  Width="107"  Header="执行法院">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=court}"  />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                            <!--无数据时-->
+
+                            <Border x:Name="RefereeMsg"  Grid.Row="1" Height="50" VerticalAlignment="Top" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Margin="30,0" Visibility="Hidden">
+                                <Label  Content="暂无裁判文书信息" Style="{StaticResource Label_Centered_25}" FontSize="23"  BorderBrush="#f5f6f7"  />
+                            </Border>
+
+                            <!--下一页-->
+                            <Border x:Name="RefereeNextPageBorder" Grid.Row="2" Grid.Column="0" Visibility="Visible" Background="White" BorderBrush="#c5c5c5" BorderThickness="0,2,0,0" Grid.ColumnSpan="2"  >
+                                <Grid>
+                                    <Border Width="250" CornerRadius="10" Background="#ff8d62" Margin="0,3,0,3">
+                                        <Button Template="{StaticResource imageButtonTemplate}" Click="NextPage_Click" Tag="Referee">
+                                            <Label  Content="加载更多"  FontSize="25" Foreground="White"/>
+                                        </Button>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <!--弹出用户-->
+                            <Border x:Name="PopRefereeBorder" Grid.Row="1" Background="White" BorderBrush="#c5c5c5" BorderThickness="5" CornerRadius="5" Margin="60" Visibility="Hidden">
+                                <Button Style="{StaticResource hiddenButton}" Click="PopClose_Click">
+                                    <Grid Width="860" Height="480">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="41*"/>
+                                            <RowDefinition Height="199*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="专利详细内容" Style="{StaticResource Label_Centered_30}"/>
+                                        <TextBox x:Name="RefereeDescriptionText" Grid.Row="1" Text="" FontSize="20" AllowDrop="True" IsReadOnly="True" TextWrapping="Wrap"  Height="400" Width="820" BorderThickness="0" />
+                                    </Grid>
+                                </Button>
+                            </Border>
+                            <Label x:Name="RefereeNowTotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource NowTotalLabel}" />
+                            <Label x:Name="RefereetotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource TotalLabel}" />
+                        </Grid>
+
+
+                        <!--法院公告信息-->
+                        <Grid  x:Name="AnnouncementGrid" Background="White"  Grid.Row="1"  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="48"/>
+                            </Grid.RowDefinitions>
+                            <!--标题-->
+                            <Border Grid.Row="0" Background="#ade7f6" BorderBrush="#f5f6f7" BorderThickness="0 1 0 1" Visibility="Visible">
+                                <Grid Margin="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="86*"/>
+                                        <ColumnDefinition Width="150*"/>
+                                        <ColumnDefinition Width="220*"/>
+                                        <ColumnDefinition Width="210*"/>
+                                        <ColumnDefinition Width="153*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号"/>
+                                    <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="公示时间"/>
+                                    <Label Grid.Column="2" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="分类" />
+                                    <Label Grid.Column="3" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="当事人"/>
+                                    <Label Grid.Column="4" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 0 0"  Content="公示内容"/>
+                                </Grid>
+                            </Border>
+                            <!--list-->
+                            <ListView Grid.Row="1" x:Name="AnnouncementListView" AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListBoxItem}">
+                                        <Setter Property="Height" Value="auto" />
+                                        <Setter Property="FontSize" Value="14" />
+                                        <Setter Property="Background" Value="{Binding Path=Background}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="BorderBrush" Value="#F1F1F1" />
+                                        <Setter Property="BorderThickness" Value="0,1,1,0" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.View>
+                                    <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                        <GridViewColumn  Width="80"  Header="序号">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=xh}"  />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn  Width="180"  Header="公示时间">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=publishedDate}"  />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn Width="280" Header="分类">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=category}"  />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn  Width="240" Header="当事人">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=party}"   />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn  Width="153"  Header="公示内容">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=content}"  />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                            <!--无数据时-->
+
+                            <Border x:Name="AnnouncementMsg"  Grid.Row="1" Height="50" VerticalAlignment="Top" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Margin="30,0" Visibility="Hidden">
+                                <Label  Content="暂无法律公告信息" Style="{StaticResource Label_Centered_25}" FontSize="23"  BorderBrush="#f5f6f7"  />
+                            </Border>
+                            
+                            <!--下一页-->
+                            <Border x:Name="AnnouncementNextPageBorder" Grid.Row="2" Grid.Column="0" Visibility="Visible" Background="White" BorderBrush="#c5c5c5" BorderThickness="0,2,0,0" Grid.ColumnSpan="2"  >
+                                <Grid>
+                                    <Border Width="250" CornerRadius="10" Background="#ff8d62" Margin="0,3,0,3">
+                                        <Button Template="{StaticResource imageButtonTemplate}" Click="NextPage_Click" Tag="Announcement" >
+                                            <Label  Content="加载更多"  FontSize="25" Foreground="White"/>
+                                        </Button>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <Label x:Name="AnnouncementNowTotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource NowTotalLabel}" />
+                            <Label x:Name="AnnouncementtotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource TotalLabel}" />
+                        </Grid>
+                    </Grid>
+
+
+                    <!--商标-->
+                    <Grid x:Name="TrademarkShow" Background="White" Margin="15,15,15,15" Panel.ZIndex="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="36"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="48"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Background="#ade7f6" BorderBrush="#f5f6f7" BorderThickness="0 1 0 1" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="86*"/>
+                                    <ColumnDefinition Width="121*"/>
+                                    <ColumnDefinition Width="119*"/>
+                                    <ColumnDefinition Width="178*"/>
+                                    <ColumnDefinition Width="105*"/>
+                                    <ColumnDefinition Width="200*"/>
+                                    <ColumnDefinition Width="99*"/>
+                                    <ColumnDefinition Width="115*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="0 0 1 0" Content="序号" />
+                                <Label Grid.Column="1" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="商标名称" />
+                                <Label Grid.Column="2" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="商标图案" />
+                                <Label Grid.Column="3" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="申请/注册号" />
+                                <Label Grid.Column="4" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="申请日期" />
+                                <Label Grid.Column="5" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="申请人名称" />
+                                <Label Grid.Column="6" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 1 0" Content="商标类型" />
+                                <Label Grid.Column="7" Style="{StaticResource Label_Centered_20}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" BorderBrush="#f5f6f7" BorderThickness="1 0 0 0" Content="商标状态"  />
+                            </Grid>
+                        </Border>
+
+                        <ListView x:Name="TradeListView" Grid.Row="1"  AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="TradeListView_SelectionChanged" Grid.ColumnSpan="2">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Height" Value="Auto" />
+                                    <Setter Property="Background" Value="{Binding Path=Background}"/>
+                                    <Setter Property="FontSize" Value="14" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="BorderBrush" Value="#F1F1F1" />
+                                    <Setter Property="BorderThickness" Value="0,1,0,0" />
+                                    <Setter Property="Focusable" Value="False" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                    <GridViewColumn x:Name="column0brandHeader" Width="50" Header="序号">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=xh}"  />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="column1brandHeader" Width="121" Header="商标名称">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=trademarkName}"  />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="column2brandHeader" Width="119" Header="商标图案">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid MinWidth="{Binding ElementName=column2}">
+                                                    <Image Stretch="Uniform" Source="{Binding Path=imageUrl}" Height="100" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="column3brandHeader" Width="178" Header="申请/注册号">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=regNo}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="column4brandHeader" Width="105" Header="申请日期">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=appDate}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="column5brandHeader" Width="200" Header="申请人名称">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=appCn}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="column6brandHeader" Width="80" Header="商标类型">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=intCls}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="column7brandHeader" Width="120" Header="商标状态">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=flowStatus}" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Border x:Name="TrademarkMsg"  Grid.Row="1" Height="50" VerticalAlignment="Top" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2" Margin="30,0" Visibility="Hidden">
+                            <Label  Content="暂无商标信息" Style="{StaticResource Label_Centered_25}" FontSize="23"  BorderBrush="#f5f6f7"  />
+                        </Border>
+
+                        <Border x:Name="TradeMarkNextPageBorder" Grid.Row="2" Grid.Column="0" Visibility="Visible" Background="White" BorderBrush="#c5c5c5" BorderThickness="0,2,0,0" Grid.ColumnSpan="2"  >
+                            <Grid>
+                                <Border Width="250" CornerRadius="10" Background="#ff8d62" Margin="0,3,0,3">
+                                    <Button Template="{StaticResource imageButtonTemplate}" Click="NextPage_Click" Tag="TradeMark" >
+                                        <Label  Content="加载更多"  FontSize="25" Foreground="White"/>
+                                    </Button>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <Label x:Name="TradeMarkNowTotalLabel"  Grid.Row="2" Grid.Column="0" Style="{StaticResource NowTotalLabel}" Margin="0,11" />
+                        <Label x:Name="TradeMarktotalLabel"  Grid.Row="2" Grid.Column="1" Style="{StaticResource TotalLabel}" Margin="0,11" />
+                    </Grid>
+
+                </Grid>
+
+
+
+            </Grid>
+
+        </Grid>
+
+
+
+    </Grid>
+</Page>

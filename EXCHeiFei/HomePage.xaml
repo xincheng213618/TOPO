@@ -1,0 +1,123 @@
+﻿<Page x:Class="EXC.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="HomePage" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="869*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="HeFei" Grid.Row="1"  Visibility="Visible"  Grid.RowSpan="1">
+            <Border Height="250" Width="250" Margin="0,0,800,550"  >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="TestButton_Click" Tag="ReportHeFei">
+                    <Image Source="images/HeiFei/企业信用报告法人打印.png" Stretch="Uniform" />
+                </Button>
+            </Border>
+            <Border Height="250" Width="250" Margin="0,0,0,550" >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="TestButton_Click" Tag="ReportHeFei1">
+                    <Image Source="images/HeiFei/企业信用报告申请打印.png" Stretch="Uniform" />
+                </Button>
+            </Border>
+            <Border Height="250" Width="250" Margin="800,0,0,550">
+                <Button Template="{StaticResource imageButtonTemplate}" Click="TestButton_Click" Tag="ReportGRHeFei" >
+                    <Grid>
+                        <Image Source="images/HeiFei/个人信用报告打印.png" Stretch="Uniform" />
+                    </Grid>
+                </Button>
+            </Border>
+            <Border Height="190" Width="190" Margin="0,100,800,0"  >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="HeiFeiRed">
+                    <Grid>
+                        <Image Source="images/Button/red1.png" Stretch="Uniform" />
+                        <Label Content="信用红名单" FontSize="30" FontWeight="Bold"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </Border>
+
+            <Border Height="190" Width="190" Margin="0,100,0,0"  >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="HeiFeiBlack">
+                    <Grid>
+                        <Image Source="images/Button/blue1.png" Stretch="Uniform" />
+                        <Label Content="信用黑名单" FontSize="30"  FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </Border>
+
+            <Border Height="190" Width="190" Margin="0,550,800,0"  >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="HeiFeiXK">
+                    <Grid>
+                        <Image Source="images/Button/Red1.png" Stretch="Uniform" />
+                        <Label Content="行政许可" FontSize="30" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </Border>
+
+            <Border Height="190" Width="190" Margin="0,550,0,0"  >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="HeiFeiCF">
+                    <Grid>
+                        <Image Source="images/Button/blue1.png" Stretch="Uniform" />
+                        <Label Content="行政处罚" FontSize="30"  FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </Border>
+
+            <Border Height="190" Width="190" Margin="800,100,0,0"  >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="HeiFeiImportantPerson">
+                    <Grid>
+                        <Image Source="images/Button/indigo1.png" Stretch="Uniform" />
+                        <Label Content="重点人群" FontSize="30"  FontWeight="Bold" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </Border>
+            <Border Height="190" Width="190" Margin="800,550,0,0"  >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="HeiFeiEnterprise">
+                    <Grid>
+                        <Image Source="images/Button/indigo1.png" Stretch="Uniform" />
+                        <Label Content="企业信息" FontSize="30"  FontWeight="Bold" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </Border>
+        </Grid>
+
+
+        <Grid x:Name="TongLing" Grid.Row="1"  Visibility="Hidden"  Grid.RowSpan="1">
+            <Border Height="250" Width="250" Margin="0,0,700,0"  >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportHeFei">
+                    <Image Source="images/HeiFei/企业信用报告法人打印.png" Stretch="Uniform" />
+                </Button>
+            </Border>
+            <Border Height="250" Width="250" Margin="0,0,0,0" >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportHeFei1">
+                    <Image Source="images/HeiFei/企业信用报告申请打印.png" Stretch="Uniform" />
+                </Button>
+            </Border>
+            <Border Height="250" Width="250" Margin="700,0,0,0" >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportGRHeFei">
+                    <Image Source="images/HeiFei/个人信用报告打印.png" Stretch="Uniform" />
+                </Button>
+            </Border>
+        </Grid>
+
+        <!--消息弹出框-->
+        <Grid x:Name="POP" Grid.Row="1" Visibility="Hidden">
+            <Border  Background="Black"    Opacity="0.13"/>
+            <Border Height="300" Width="500"  Background="White" CornerRadius="20" BorderBrush="#dee1e4" BorderThickness="5">
+                <Grid>
+                    <Button   Style="{StaticResource hiddenButton}"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Click="POP_Button">
+                        <Image Source="images/Error_X.png" Stretch="Uniform" Width="50"/>
+                    </Button>
+                    <Label HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="25" Foreground="Black" Margin="20" >
+                        <TextBlock  x:Name="PopTips" Text="" TextWrapping="WrapWithOverflow"/>
+                    </Label>
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Grid>
+</Page>

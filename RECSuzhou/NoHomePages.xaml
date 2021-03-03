@@ -1,0 +1,118 @@
+﻿<Page x:Class="RECSuzhou.NoHomePages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="NoHomePages" Initialized="Page_Initialized" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" /> 
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1" Margin="100,20,100,150" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
+        <Grid Grid.Row="1" Margin="100,20,100,150">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="120"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderBrush="White" BorderThickness="0,0,0,7">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" Opacity="0.3"></DropShadowEffect>
+                </Border.Effect>
+                <Label x:Name="TotalLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="各区房屋查询结果" Foreground="#ffb72c" FontSize="45" FontWeight="Bold" />
+            </Border>
+
+
+            <Grid Grid.Row="1"  Margin="50,30,50,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175*"/>
+                    <ColumnDefinition Width="175*"/>
+                    <ColumnDefinition Width="175*"/>
+                    <ColumnDefinition Width="175*"/>
+                    <ColumnDefinition Width="175*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="0" Grid.Column="1" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="0" Grid.Column="2" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="0" Grid.Column="3" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="0" Grid.Column="4" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="1" Grid.Column="0" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="1" Grid.Column="1" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="1" Grid.Column="2" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="1" Grid.Column="3" Source="Images/background_nohome.png"/>
+                <Image Grid.Row="1" Grid.Column="4" Source="Images/background_nohome.png"/>
+                <Label x:Name="resLabel0" Grid.Row="0" Grid.Column="0" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold" />
+                <Label x:Name="resLabel1" Grid.Row="0" Grid.Column="1" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+                <Label x:Name="resLabel2" Grid.Row="0" Grid.Column="2" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+                <Label x:Name="resLabel3" Grid.Row="0" Grid.Column="3" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+                <Label x:Name="resLabel4" Grid.Row="0" Grid.Column="4" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+                <Label x:Name="resLabel5" Grid.Row="1" Grid.Column="0" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+                <Label x:Name="resLabel6" Grid.Row="1" Grid.Column="1" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+                <Label x:Name="resLabel7" Grid.Row="1" Grid.Column="2" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+                <Label x:Name="resLabel8" Grid.Row="1" Grid.Column="3" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+                <Label x:Name="resLabel9" Grid.Row="1" Grid.Column="4" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
+            </Grid>
+            <Border x:Name="PrintButton" Grid.Row="2"  Width="500" Height="80" Background="#00a2e9" BorderThickness="0" CornerRadius="20" >
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="3" Opacity="0.3"></DropShadowEffect>
+                </Border.Effect>
+                <Button Style="{StaticResource  hiddenButton}"   Click="Print_Click" >
+                    <Label x:Name="FunctionLabel" Style="{StaticResource Label_Centered_30}" Foreground="White" Content="打印无房证明" FontSize="45" FontWeight="Bold"/>
+                </Button>
+            </Border>
+        </Grid>
+        
+        <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click"  Margin="20">
+                    <Image Source="Images/return.png" Stretch="Uniform"/>
+                </Button>
+
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"/>
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="16"  Click="Home_Click" >
+                    <Image Source="Images/home.png"></Image>
+                </Button>
+                <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
+                    <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
+                </Label>
+
+            </Grid>
+
+
+        </Grid>
+
+
+        <Grid x:Name="WaitShow" Grid.Row="1" Visibility="Hidden">
+            <Grid Background="#7c7c7c" Opacity="0.2"/>
+            <Grid Grid.Row="1" >
+                <Border  Background="Black" Opacity="0.13"/>
+                <Border Height="350" Width="400"  Background="White"  BorderBrush="AliceBlue" CornerRadius="30" BorderThickness="8">
+                    <Grid >
+                        <myLib:CirclePointRingLoading Width="120" Height="100"  IsActive="True" Foreground="#007ACC" Margin="0,0,0,70"/>
+                        <Label HorizontalAlignment="Center"  VerticalAlignment="Center"   FontSize="30" Foreground="Black" Margin="20,220,20,0" >
+                            <TextBlock  x:Name="PopTips" Text="正在查询"  TextWrapping="WrapWithOverflow"/>
+                        </Label>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!--打印-->
+        <WindowsFormsHost x:Name="formsHost" Visibility="Hidden" />
+    </Grid>
+</Page>

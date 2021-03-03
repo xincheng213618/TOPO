@@ -1,0 +1,37 @@
+﻿<Page x:Class="EXCXuanCheng.PrintTips"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EXCXuanCheng"
+      mc:Ignorable="d" 
+        d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="PrintTips" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" Background="White" Margin="100" CornerRadius="50" BorderBrush="#f5f5f5" BorderThickness="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="8*"/>
+                </Grid.RowDefinitions>
+                <Label Content="提示" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50"/>
+                <Label Grid.Row="1"   Margin="100,10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock TextWrapping="WrapWithOverflow" Text="请在报告出口拿取您打印的文件，检查完整后，您可以继续选择打印，如有疑问请咨询工作人员。" FontSize="30"/>
+                </Label>
+                <Border  Grid.Row="2" Height="80" Width="300"  Background="#3668d3" BorderBrush="#c5c5c5" BorderThickness="1" CornerRadius="10" Visibility="Visible">
+                    <Button  Style="{StaticResource  hiddenButton}"   Click="Home_Clcik" >
+                        <Label  Style="{StaticResource Label_Centered_30}" FontWeight="Bold" Foreground="White" Content="返回主页"/>
+                    </Button>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+</Page>

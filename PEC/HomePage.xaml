@@ -1,0 +1,67 @@
+﻿<Page x:Class="PEC.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PEC"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="HomePage" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="93*" />
+            <RowDefinition Height="389*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="929*" />
+                <ColumnDefinition Width="351*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Margin="30,80,50,0">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Template="{StaticResource imageButtonTemplate}"  Click="PageChange_Click" Tag="Provincial"  >
+                    <Image Stretch="Uniform" Source="Images/Button/Button1.png"/>
+                </Button>
+                <Button Grid.Row="1" Template="{StaticResource imageButtonTemplate}"  Click="PageChange_Click" Tag="ProvincialPeople" >
+                    <Image Stretch="Uniform" Source="Images/Button/Button2.png"  />
+                </Button>
+                <Button Grid.Row="2" Template="{StaticResource imageButtonTemplate}"  Click="PageChange_Click" Tag="QRCode" >
+                    <Image Stretch="Uniform" Source="Images/Button/Button3.png" />
+                </Button>
+            </Grid>
+
+            <Border Grid.Row="0"  Background="White" Margin="40,40,40,160">
+                <Grid Margin="20">
+                    <Image x:Name="imageLogout1" Stretch="Uniform" Source="Images/Show/1-核心价值观.jpg" Visibility="Visible" />
+                    <Image x:Name="imageLogout2" Stretch="Uniform" Source="Images/Show/2-珍爱信用记录.jpg"  Visibility="Visible" />
+                    <Image x:Name="imageLogout3" Stretch="Uniform" Source="Images/Show/3-信用是市场经济的基石.jpg" Visibility="Visible" />
+                </Grid>
+
+            </Border>
+
+        </Grid>
+        <Image Grid.Row="1"  Source="images/Tips.png" VerticalAlignment="Bottom" Margin="80,0,320,20" />
+
+
+        <Grid x:Name="POP" Grid.Row="1" Visibility="Hidden">
+            <Border  Background="Black"    Opacity="0.13"/>
+            <Border Height="300" Width="500"  Background="White" CornerRadius="20" BorderBrush="#dee1e4" BorderThickness="5">
+                <Grid>
+                    <Button   Style="{StaticResource hiddenButton}"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Click="POP_Button">
+                        <Image Source="images/Error_X.png" Stretch="Uniform" Width="50"/>
+                    </Button>
+                    <Label HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="25" Foreground="Black" Margin="20" >
+                        <TextBlock  x:Name="PopTips" Text="" TextWrapping="WrapWithOverflow"/>
+                    </Label>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

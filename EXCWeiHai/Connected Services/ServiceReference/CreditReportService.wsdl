@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://provider.portal.webservice.credit.lnlic.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CreditReportService" targetNamespace="http://provider.portal.webservice.credit.lnlic.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://provider.portal.webservice.credit.lnlic.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="exportlegalpersonalpdf" type="tns:exportlegalpersonalpdf" />
+      <xs:element name="exportlegalpersonalpdfResponse" type="tns:exportlegalpersonalpdfResponse" />
+      <xs:element name="exportpersonalpdf" type="tns:exportpersonalpdf" />
+      <xs:element name="exportpersonalpdfResponse" type="tns:exportpersonalpdfResponse" />
+      <xs:element name="getLegalPersonPage" type="tns:getLegalPersonPage" />
+      <xs:element name="getLegalPersonPageResponse" type="tns:getLegalPersonPageResponse" />
+      <xs:element name="getpersoninfo" type="tns:getpersoninfo" />
+      <xs:element name="getpersoninfoResponse" type="tns:getpersoninfoResponse" />
+      <xs:element name="getreporttemplate" type="tns:getreporttemplate" />
+      <xs:element name="getreporttemplateResponse" type="tns:getreporttemplateResponse" />
+      <xs:complexType name="exportlegalpersonalpdf">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:jxCommonRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="jxCommonRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:webserviceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="jsonStringParams" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="webserviceRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:serialize">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="ciphertext" type="xs:base64Binary" />
+              <xs:element minOccurs="0" name="clientType" type="xs:string" />
+              <xs:element minOccurs="0" name="deviceCode" type="xs:string" />
+              <xs:element minOccurs="0" name="modulepassword" type="xs:string" />
+              <xs:element minOccurs="0" name="moduleusername" type="xs:string" />
+              <xs:element minOccurs="0" name="publicKey" type="xs:string" />
+              <xs:element minOccurs="0" name="requestMethod" type="xs:string" />
+              <xs:element minOccurs="0" name="requestUrl" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="serialize">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="exportlegalpersonalpdfResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:jxCommonResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="jxCommonResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:webserviceResponse">
+            <xs:sequence>
+              <xs:element name="detail">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" name="key" type="xs:string" />
+                          <xs:element minOccurs="0" name="value" type="xs:anyType" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="webserviceResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:serialize">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="developerMessage" type="xs:string" />
+              <xs:element minOccurs="0" name="message" type="xs:string" />
+              <xs:element minOccurs="0" name="messageCode" type="xs:string" />
+              <xs:element minOccurs="0" name="publicKey" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="json" abstract="true">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="jsonObject">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:json">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="exportpersonalpdf">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:jxCommonRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportpersonalpdfResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:jxCommonResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLegalPersonPage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:jxCommonRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLegalPersonPageResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:jxCommonResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getpersoninfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:jxCommonRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getpersoninfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:jxCommonResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getreporttemplate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:jxCommonRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getreporttemplateResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:jxCommonResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Exception" type="tns:Exception" />
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="exportlegalpersonalpdfResponse">
+    <wsdl:part name="parameters" element="tns:exportlegalpersonalpdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLegalPersonPageResponse">
+    <wsdl:part name="parameters" element="tns:getLegalPersonPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportlegalpersonalpdf">
+    <wsdl:part name="parameters" element="tns:exportlegalpersonalpdf" />
+  </wsdl:message>
+  <wsdl:message name="exportpersonalpdfResponse">
+    <wsdl:part name="parameters" element="tns:exportpersonalpdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="getpersoninfo">
+    <wsdl:part name="parameters" element="tns:getpersoninfo" />
+  </wsdl:message>
+  <wsdl:message name="getpersoninfoResponse">
+    <wsdl:part name="parameters" element="tns:getpersoninfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getreporttemplateResponse">
+    <wsdl:part name="parameters" element="tns:getreporttemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part name="Exception" element="tns:Exception" />
+  </wsdl:message>
+  <wsdl:message name="exportpersonalpdf">
+    <wsdl:part name="parameters" element="tns:exportpersonalpdf" />
+  </wsdl:message>
+  <wsdl:message name="getLegalPersonPage">
+    <wsdl:part name="parameters" element="tns:getLegalPersonPage" />
+  </wsdl:message>
+  <wsdl:message name="getreporttemplate">
+    <wsdl:part name="parameters" element="tns:getreporttemplate" />
+  </wsdl:message>
+  <wsdl:portType name="CreditReport">
+    <wsdl:operation name="exportlegalpersonalpdf">
+      <wsdl:input name="exportlegalpersonalpdf" message="tns:exportlegalpersonalpdf" />
+      <wsdl:output name="exportlegalpersonalpdfResponse" message="tns:exportlegalpersonalpdfResponse" />
+      <wsdl:fault name="Exception" message="tns:Exception" />
+    </wsdl:operation>
+    <wsdl:operation name="exportpersonalpdf">
+      <wsdl:input name="exportpersonalpdf" message="tns:exportpersonalpdf" />
+      <wsdl:output name="exportpersonalpdfResponse" message="tns:exportpersonalpdfResponse" />
+      <wsdl:fault name="Exception" message="tns:Exception" />
+    </wsdl:operation>
+    <wsdl:operation name="getLegalPersonPage">
+      <wsdl:input name="getLegalPersonPage" message="tns:getLegalPersonPage" />
+      <wsdl:output name="getLegalPersonPageResponse" message="tns:getLegalPersonPageResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getpersoninfo">
+      <wsdl:input name="getpersoninfo" message="tns:getpersoninfo" />
+      <wsdl:output name="getpersoninfoResponse" message="tns:getpersoninfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getreporttemplate">
+      <wsdl:input name="getreporttemplate" message="tns:getreporttemplate" />
+      <wsdl:output name="getreporttemplateResponse" message="tns:getreporttemplateResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CreditReportServiceSoapBinding" type="tns:CreditReport">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="exportlegalpersonalpdf">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportlegalpersonalpdf">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportlegalpersonalpdfResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap12:fault use="literal" name="Exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportpersonalpdf">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportpersonalpdf">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportpersonalpdfResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap12:fault use="literal" name="Exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLegalPersonPage">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getLegalPersonPage">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getLegalPersonPageResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getpersoninfo">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getpersoninfo">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getpersoninfoResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getreporttemplate">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getreporttemplate">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getreporttemplateResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CreditReportService">
+    <wsdl:port name="CreditReportPort" binding="tns:CreditReportServiceSoapBinding">
+      <soap12:address location="http://60.212.191.48:8704/credit-webservice-portal/webservice/creditreport" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

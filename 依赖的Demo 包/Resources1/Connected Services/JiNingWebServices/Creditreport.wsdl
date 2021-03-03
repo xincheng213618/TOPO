@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://creditws.topo360.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Creditreport" targetNamespace="http://creditws.topo360.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types />
+  <message name="updatereportstatus">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Reportid" type="xsd:string" />
+    <part name="CapturedImg" type="xsd:string" />
+    <part name="Type" type="xsd:string" />
+  </message>
+  <message name="updatereportstatusResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="checkQyztbsByQymc">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Qymc" type="xsd:string" />
+  </message>
+  <message name="checkQyztbsByQymcResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getBusinessUndertaking">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Reportid" type="xsd:string" />
+  </message>
+  <message name="getBusinessUndertakingResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getBusinessUndertakingList">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="CardId" type="xsd:string" />
+  </message>
+  <message name="getBusinessUndertakingListResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getAllopatricReport">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="reportId" type="xsd:string" />
+    <part name="type" type="xsd:string" />
+  </message>
+  <message name="getAllopatricReportResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getAllopatricReportList">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Sfzjhm" type="xsd:string" />
+    <part name="Type" type="xsd:string" />
+  </message>
+  <message name="getAllopatricReportListResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getreport">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Reportid" type="xsd:string" />
+    <part name="Tyshxydm" type="xsd:string" />
+    <part name="Type" type="xsd:string" />
+  </message>
+  <message name="getreportResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getImportQyxybg">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="XmlStr" type="xsd:string" />
+    <part name="fyjBase64Str" type="xsd:string" />
+    <part name="type" type="xsd:string" />
+  </message>
+  <message name="getImportQyxybgResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getQyxyxx">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="qymc" type="xsd:string" />
+    <part name="Type" type="xsd:string" />
+  </message>
+  <message name="getQyxyxxResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getQyjbxx">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="qyid" type="xsd:string" />
+    <part name="Type" type="xsd:string" />
+  </message>
+  <message name="getQyjbxxResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getreportlist">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Sfzjhm" type="xsd:string" />
+    <part name="Type" type="xsd:string" />
+  </message>
+  <message name="getreportlistResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getZrrxyxx">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Grid" type="xsd:string" />
+    <part name="Type" type="xsd:string" />
+  </message>
+  <message name="getZrrxyxxResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="sendTextMessage">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="content" type="xsd:string" />
+    <part name="phoneNumber" type="xsd:string" />
+  </message>
+  <message name="sendTextMessageResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getZrrxyxxList">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Xm" type="xsd:string" />
+    <part name="Sfzjhm" type="xsd:string" />
+    <part name="Type" type="xsd:string" />
+  </message>
+  <message name="getZrrxyxxListResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="sendMail">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="content" type="xsd:string" />
+    <part name="toAddress" type="xsd:string" />
+    <part name="type" type="xsd:string" />
+  </message>
+  <message name="sendMailResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="checkTheReport">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="reportId" type="xsd:string" />
+    <part name="type" type="xsd:string" />
+    <part name="comfrom" type="xsd:string" />
+  </message>
+  <message name="checkTheReportResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="syncReport">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Data" type="xsd:string" />
+  </message>
+  <message name="syncReportResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="getReportGetTime">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="strXml" type="xsd:string" />
+    <part name="type" type="xsd:string" />
+  </message>
+  <message name="getReportGetTimeResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <message name="checkXybgByYzm">
+    <part name="RequestUser" type="xsd:string" />
+    <part name="RequestPwd" type="xsd:string" />
+    <part name="Yzm" type="xsd:string" />
+    <part name="type" type="xsd:string" />
+  </message>
+  <message name="checkXybgByYzmResponse">
+    <part name="return" type="xsd:string" />
+  </message>
+  <portType name="CreditreportDelegate">
+    <operation name="updatereportstatus" parameterOrder="RequestUser RequestPwd Reportid CapturedImg Type">
+      <input message="tns:updatereportstatus" />
+      <output message="tns:updatereportstatusResponse" />
+    </operation>
+    <operation name="checkQyztbsByQymc" parameterOrder="RequestUser RequestPwd Qymc">
+      <input message="tns:checkQyztbsByQymc" />
+      <output message="tns:checkQyztbsByQymcResponse" />
+    </operation>
+    <operation name="getBusinessUndertaking" parameterOrder="RequestUser RequestPwd Reportid">
+      <input message="tns:getBusinessUndertaking" />
+      <output message="tns:getBusinessUndertakingResponse" />
+    </operation>
+    <operation name="getBusinessUndertakingList" parameterOrder="RequestUser RequestPwd CardId">
+      <input message="tns:getBusinessUndertakingList" />
+      <output message="tns:getBusinessUndertakingListResponse" />
+    </operation>
+    <operation name="getAllopatricReport" parameterOrder="RequestUser RequestPwd reportId type">
+      <input message="tns:getAllopatricReport" />
+      <output message="tns:getAllopatricReportResponse" />
+    </operation>
+    <operation name="getAllopatricReportList" parameterOrder="RequestUser RequestPwd Sfzjhm Type">
+      <input message="tns:getAllopatricReportList" />
+      <output message="tns:getAllopatricReportListResponse" />
+    </operation>
+    <operation name="getreport" parameterOrder="RequestUser RequestPwd Reportid Tyshxydm Type">
+      <input message="tns:getreport" />
+      <output message="tns:getreportResponse" />
+    </operation>
+    <operation name="getImportQyxybg" parameterOrder="RequestUser RequestPwd XmlStr fyjBase64Str type">
+      <input message="tns:getImportQyxybg" />
+      <output message="tns:getImportQyxybgResponse" />
+    </operation>
+    <operation name="getQyxyxx" parameterOrder="RequestUser RequestPwd qymc Type">
+      <input message="tns:getQyxyxx" />
+      <output message="tns:getQyxyxxResponse" />
+    </operation>
+    <operation name="getQyjbxx" parameterOrder="RequestUser RequestPwd qyid Type">
+      <input message="tns:getQyjbxx" />
+      <output message="tns:getQyjbxxResponse" />
+    </operation>
+    <operation name="getreportlist" parameterOrder="RequestUser RequestPwd Sfzjhm Type">
+      <input message="tns:getreportlist" />
+      <output message="tns:getreportlistResponse" />
+    </operation>
+    <operation name="getZrrxyxx" parameterOrder="RequestUser RequestPwd Grid Type">
+      <input message="tns:getZrrxyxx" />
+      <output message="tns:getZrrxyxxResponse" />
+    </operation>
+    <operation name="sendTextMessage" parameterOrder="RequestUser RequestPwd content phoneNumber">
+      <input message="tns:sendTextMessage" />
+      <output message="tns:sendTextMessageResponse" />
+    </operation>
+    <operation name="getZrrxyxxList" parameterOrder="RequestUser RequestPwd Xm Sfzjhm Type">
+      <input message="tns:getZrrxyxxList" />
+      <output message="tns:getZrrxyxxListResponse" />
+    </operation>
+    <operation name="sendMail" parameterOrder="RequestUser RequestPwd content toAddress type">
+      <input message="tns:sendMail" />
+      <output message="tns:sendMailResponse" />
+    </operation>
+    <operation name="checkTheReport" parameterOrder="RequestUser RequestPwd reportId type comfrom">
+      <input message="tns:checkTheReport" />
+      <output message="tns:checkTheReportResponse" />
+    </operation>
+    <operation name="syncReport" parameterOrder="RequestUser RequestPwd Data">
+      <input message="tns:syncReport" />
+      <output message="tns:syncReportResponse" />
+    </operation>
+    <operation name="getReportGetTime" parameterOrder="RequestUser RequestPwd strXml type">
+      <input message="tns:getReportGetTime" />
+      <output message="tns:getReportGetTimeResponse" />
+    </operation>
+    <operation name="checkXybgByYzm" parameterOrder="RequestUser RequestPwd Yzm type">
+      <input message="tns:checkXybgByYzm" />
+      <output message="tns:checkXybgByYzmResponse" />
+    </operation>
+  </portType>
+  <binding name="creditreportBinding" type="tns:CreditreportDelegate">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="updatereportstatus">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="checkQyztbsByQymc">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getBusinessUndertaking">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getBusinessUndertakingList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getAllopatricReport">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getAllopatricReportList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getreport">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getImportQyxybg">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getQyxyxx">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getQyjbxx">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getreportlist">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getZrrxyxx">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="sendTextMessage">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getZrrxyxxList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="sendMail">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="checkTheReport">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="syncReport">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="getReportGetTime">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+    <operation name="checkXybgByYzm">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://creditws.topo360.com/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Creditreport">
+    <port name="creditreport" binding="tns:creditreportBinding">
+      <soap:address location="http://120.224.81.30:10012/WinHall-JiNing/services/creditreport" />
+    </port>
+  </service>
+</definitions>

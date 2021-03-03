@@ -1,0 +1,101 @@
+﻿<Page x:Class="EXCYiXing.AForgePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:AForgeControls="clr-namespace:AForge.Controls;assembly=AForge.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="AForge" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" Background="#f5f6f7">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="813*" />
+                </Grid.RowDefinitions>
+                <!--上部-->
+
+                <WindowsFormsHost   Grid.Row="0" >
+                    <ElementHost>
+                        <Border Grid.Row="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="89*"/>
+                                    <ColumnDefinition Width="66*"/>
+                                    <ColumnDefinition Width="63*"/>
+                                    <ColumnDefinition Width="38*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="3" Margin="0,11,20,11" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#378afc" CornerRadius="10" Width="135" Height="48" >
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="2"/>
+                                    </Border.Effect>
+                                    <Button  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="Home">
+                                        <Label Content="首页" Style="{StaticResource Label_Centered_30}" Foreground="White"  />
+                                    </Button>
+                                </Border>
+
+                                <Border Grid.Column="2"   HorizontalAlignment="Left" VerticalAlignment="Center" Background="#378afc" CornerRadius="10" Width="100" Height="48" Margin="0,11" >
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="2"/>
+                                    </Border.Effect>
+                                    <Button  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="Connect" Margin="0,0,-5,0">
+                                        <Label Content="连接" Style="{StaticResource Label_Centered_30}" Foreground="White"  />
+                                    </Button>
+                                </Border>
+
+                                <Border Grid.Column="2"   HorizontalAlignment="Center" VerticalAlignment="Center" Background="#378afc" CornerRadius="10" Width="100" Height="48" Margin="107,11,108,11"  >
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="2"/>
+                                    </Border.Effect>
+                                    <Button  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="DisConnect">
+                                        <Label Content="关闭" Style="{StaticResource Label_Centered_30}" Foreground="White"  />
+                                    </Button>
+                                </Border>
+
+                                <Border Grid.Column="2"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#378afc" CornerRadius="10" Width="100" Height="48" Margin="0,11"  >
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="2"/>
+                                    </Border.Effect>
+                                    <Button  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="Shoot">
+                                        <Label Content="拍照" Style="{StaticResource Label_Centered_30}" Foreground="White"  />
+                                    </Button>
+                                </Border>
+
+                                <ComboBox x:Name="cboVideo" Grid.Column="0"  SelectionChanged ="cboVideo_SelectionChanged" Margin="15,15,10,15" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                <ComboBox x:Name="cboResolution"  Grid.Column="1" Margin="5,15,10,15" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                            </Grid>
+                        </Border>
+                    </ElementHost>
+                </WindowsFormsHost>
+
+
+                <!--中间的转跳页面-->
+                <Border Grid.Row="1" Background="White"  >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="987*"/>
+                            <ColumnDefinition Width="293*"/>
+                        </Grid.ColumnDefinitions>
+                        <WindowsFormsHost x:Name="formhost" Width="900" Height="675" Background="Transparent" Margin="14,70,73.328,70"  >
+                            <AForgeControls:VideoSourcePlayer x:Name="vispShoot" />
+                        </WindowsFormsHost>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+
+
+        </Border>
+        <!--<Frame Grid.Row="1" x:Name="VideoFrame" NavigationUIVisibility="Hidden"/>-->
+
+    </Grid>
+</Page>

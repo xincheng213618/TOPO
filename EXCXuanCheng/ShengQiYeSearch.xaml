@@ -1,0 +1,75 @@
+﻿<Page x:Class="EXCXuanCheng.ShengQiYeSearch"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EXCXuanCheng"
+        xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf" 
+      xmlns:cef="clr-namespace:CefSharp;assembly=CefSharp.Core"
+      xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="ShengQiYeSearch" Initialized="Page_Initialized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="869*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" >
+                    <Grid>
+                        <ProgressBar   HorizontalAlignment="Left" VerticalAlignment="Center"  Value="{Binding Countdown, Mode=OneWay}" Width="60" Height="60"  >
+                            <ProgressBar.Template>
+                                <ControlTemplate TargetType="ProgressBar">
+                                    <Border Background="{TemplateBinding Value, Converter={StaticResource ValueToProcessConverter}, ConverterParameter=90}"/>
+                                </ControlTemplate>
+                            </ProgressBar.Template>
+                        </ProgressBar>
+                        <Border  Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#378afc" CornerRadius="10" Width="135" >
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2"/>
+                            </Border.Effect>
+                            <Button  Template="{StaticResource imageButtonTemplate}" Click="Home_Click">
+                                <Label Content="首页" Style="{StaticResource Label_Centered_30}" Foreground="White"  />
+                            </Button>
+                        </Border>
+                        <Border  Margin="0,0,165,0" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#378afc" CornerRadius="10" Width="135" >
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2"/>
+                            </Border.Effect>
+                            <Button  Template="{StaticResource imageButtonTemplate}" Click="Return_Click">
+                                <Label Content="返回" Style="{StaticResource Label_Centered_30}" Foreground="White"  />
+                            </Button>
+                        </Border>
+                        <Border HorizontalAlignment="Center">
+                            <Label Content="安徽省公共信用信息" Style="{StaticResource Label_Centered_30}"    FontSize="33" Height="54"></Label>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Width="400"  Grid.Row="1" >
+
+                      <wpf:ChromiumWebBrowser x:Name="Browser" Address="http://credit.ah.gov.cn:8096/credit/xych?token=06f26c1cd1e74632986425b43fbe106e"/> 
+                </Border>
+            </Grid>
+
+
+
+        </Grid>
+        <Grid x:Name="WaitShow" Grid.Row="1" Visibility="Hidden">
+            <Border  Background="Black" Opacity="0.13"/>
+            <Border Height="300" Width="300"  Background="White" CornerRadius="20" BorderBrush="AliceBlue" BorderThickness="8">
+                <Grid >
+                    <myLib:CirclePointRingLoading Width="100" Height="100"  IsActive="True" Foreground="#007ACC" Margin="0,0,0,70"/>
+                    <Label x:Name="hintLabel" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Margin="20" FontSize="25" Foreground="Black"  Content="正在查询请耐心等待" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>
