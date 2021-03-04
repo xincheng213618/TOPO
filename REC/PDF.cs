@@ -6,8 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace REC
 {
-    public class PDF
+    public static class PDF
     {
+        //页面偏移函数
+        public static int PageChaneX = 0;
+        public static int PageChaneY = 0;
+
+
         //参考https://news.lianjia.com/nj/baike/0403001.html
 
         /// <summary>
@@ -215,25 +220,25 @@ namespace REC
             pdfContentByte.SetColorFill(BaseColor.BLACK);
             pdfContentByte.SetFontAndSize(HeiTi, 12);
             pdfContentByte.SetTextMatrix(0, 0);
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Tab0, 0, 550, 0); //苏
-            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, Tab1, 65, 550,0); //时间
-            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, Tab2, 140, 550, 0); //时间
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Tab3, 290, 550, 0); //编号
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QLR, 63, 513, 0); //权利人
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.GYQK, 63, 475, 0);//共有情况
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.ZL, 63, 436, 0);//坐落
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.BDCDYH, 63, 398, 0);//不动产单元号
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QLLX, 63, 359, 0);//权力类型
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QLXZ, 63, 321, 0);//权利性质
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.YT, 63, 282, 0);//用途
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 63, 244, 0);//面积
-            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 63, 205, 0);//使用期限
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Tab0, 0+PageChaneX, 550 + PageChaneY, 0); //苏
+            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, Tab1, 65+ PageChaneX, 550 + PageChaneY, 0); //时间
+            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, Tab2, 140+ PageChaneX, 550 + PageChaneY, 0); //时间
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Tab3, 290+ PageChaneX, 550 + PageChaneY, 0); //编号
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QLR, 63+ PageChaneX, 513 + PageChaneY, 0); //权利人
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.GYQK, 63+ PageChaneX, 475 + PageChaneY, 0);//共有情况
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.ZL, 63+ PageChaneX, 436 +PageChaneY, 0);//坐落
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.BDCDYH, 63 + PageChaneX, 398 + PageChaneY, 0);//不动产单元号
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QLLX, 63 + PageChaneX, 359 + PageChaneY, 0);//权力类型
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QLXZ, 63+ PageChaneX, 321+ PageChaneY, 0);//权利性质
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.YT, 63 + PageChaneX, 282 + PageChaneY, 0);//用途
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 63 + PageChaneX, 244 + PageChaneY, 0);//面积
+            pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 63+ PageChaneX, 205 + PageChaneY, 0);//使用期限
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 63, 166, 0);//其他
-            pdfContentByte = DrawMul(pdfContentByte, Item.QT, 63, 166, 0, 17);
+            pdfContentByte = DrawMul(pdfContentByte, Item.QT, 63+ PageChaneX, 166 + PageChaneY , 0, 17);
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 500, 500, 0);//附记
             pdfContentByte.SetFontAndSize(HeiTi, 10);
-            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 500, 505, 0, 14);
+            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 500 + PageChaneX, 505 + PageChaneY, 0, 14);
             pdfContentByte.SetFontAndSize(HeiTi, 12);
 
 
@@ -250,9 +255,9 @@ namespace REC
             pdfContentByte.SetFontAndSize(HeiTi, 12);
             pdfContentByte.SetTextMatrix(0, 0);
 
-            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, DateTime.Now.ToString("yyyy"), 675, 141, 0); //第一页的时间
-            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, DateTime.Now.ToString("MM"), 720, 141, 0);
-            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, DateTime.Now.ToString("dd"), 760, 141, 0);
+            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, DateTime.Now.ToString("yyyy"), 675 + PageChaneX, 141 + PageChaneY, 0); //第一页的时间
+            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, DateTime.Now.ToString("MM"), 720 + PageChaneX, 141 + PageChaneY, 0);
+            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, DateTime.Now.ToString("dd"), 760 + PageChaneX, 141 + PageChaneY, 0);
             pdfContentByte.EndText();
 
             Image image = Image.GetInstance("Temp\\BDCQZH.png");

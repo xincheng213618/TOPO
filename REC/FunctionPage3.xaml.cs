@@ -82,37 +82,37 @@ namespace REC
                 printDate.StatusCode = "打印完成，正在返回首页";
                 await Task.Delay(2000);
                 Media.Play("Base\\Media\\请取走您的不动产权证书.mp3");
-                await Dispatcher.BeginInvoke(new Action(() => Msg("请取走您的证书")));
+                Dispatcher.BeginInvoke(new Action(() => Msg("请取走您的证书")));
             }
-            if (Code == 1)
+            else if (Code == 1)
             {
                 await Task.Delay(500);
                 printDate.StatusCode = "正在打印第三页";
             }
-            if (Code == 10)
+            else if (Code == 10)
             {
                 await Task.Delay(500);
                 printDate.StatusCode = "正在打印第二页";
             }
-            if (Code == 11)
+            else if (Code == 11)
             {
                 await Task.Delay(500);
                 printDate.StatusCode = "正在打印第一页";
             }
 
-            if (Code == 12)
+            else if (Code == 12)
             {
                 await Task.Delay(1000);
                 printDate.StatusCode = "打印结束，准备盖章";
             }
-            if (Code == 3)
+            else if (Code == 3)
             {
                 //准备拍照;
                 OCR();
             }
-            if (Code ==-1)
+            else if(Code ==-1)
             {
-                await Dispatcher.BeginInvoke(new Action(() => Msg(data)));
+                 Dispatcher.BeginInvoke(new Action(() => Msg(data)));
             }
         }
 
@@ -295,13 +295,13 @@ namespace REC
 
         private void Pages()
         {
-            Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             vispShoot.SignalToStop();
             vispShoot.WaitForStop();
             vispShoot.VideoSource = null;
             ESerialPort.DevMsg -= RealEstate_Dev_devMsg; //委托事件要注销掉
 
+            Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
         private string ParseText(string imageFile, params string[] lang)
