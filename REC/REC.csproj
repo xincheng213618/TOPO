@@ -125,6 +125,9 @@
     <Compile Include="Acrobat.cs" />
     <Compile Include="CodeHelper.cs" />
     <Compile Include="EmguHelper.cs" />
+    <Compile Include="ErrorPage.xaml.cs">
+      <DependentUpon>ErrorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Http.cs" />
     <Compile Include="QRCode.xaml.cs">
@@ -143,6 +146,10 @@
     <Page Include="Dictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ErrorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FunctionPage.xaml">
       <SubType>Designer</SubType>

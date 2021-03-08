@@ -12,12 +12,13 @@ namespace REC
     //2020.12.8 此功能修改强必须要测试
     public static class EmguHelper
     {
+
         public static void PreOCR(string Filename)
         {
             Mat mat = new Mat(@Filename, ImreadModes.Color);
             Rectangle rectangle = new Rectangle(int.Parse(Global.OcrRegion[0]), int.Parse(Global.OcrRegion[1]), int.Parse(Global.OcrRegion[2]), int.Parse(Global.OcrRegion[3]));
 
-            Mat mat1 = Rotate(new Mat(mat, rectangle), -90);  //旋转加切割
+            Mat mat1 = Rotate(new Mat(mat, rectangle), Global.Config.OcrRotate);  //旋转加切割
             mat1.Save("Temp\\mat1.jpg");
 
             //纯色不做通道分离

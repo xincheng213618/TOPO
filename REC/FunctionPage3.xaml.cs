@@ -69,7 +69,7 @@ namespace REC
             }
             else
             {
-                await Dispatcher.BeginInvoke(new Action(() => Msg("上证失败，请联系管理员")));
+                await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("上证失败，请联系管理员")));
             }
         }
         private async void RealEstate_Dev_devMsg(int Code, string data)
@@ -82,7 +82,7 @@ namespace REC
                 printDate.StatusCode = "打印完成，正在返回首页";
                 await Task.Delay(2000);
                 Media.Play("Base\\Media\\请取走您的不动产权证书.mp3");
-                Dispatcher.BeginInvoke(new Action(() => Msg("请取走您的证书")));
+                await Dispatcher.BeginInvoke(new Action(() => Msg("请取走您的证书")));
             }
             else if (Code == 1)
             {
@@ -112,7 +112,7 @@ namespace REC
             }
             else if(Code ==-1)
             {
-                 Dispatcher.BeginInvoke(new Action(() => Msg(data)));
+                 await Dispatcher.BeginInvoke(new Action(() => ErrorMsg(data)));
             }
         }
 
@@ -121,6 +121,13 @@ namespace REC
             Content = new HomePage(Msg);
             Pages();
         }
+
+        private void ErrorMsg(string ErrorMsg)
+        {
+            Content = new ErrorPage(ErrorMsg);
+            Pages();
+        }
+
 
         Thread thread;
         private async void OCR()
@@ -202,7 +209,7 @@ namespace REC
         }
 
 
-        private async void OCRover(bool Success)
+        private void OCRover(bool Success)
         {
             if (Success)
             {
@@ -219,7 +226,7 @@ namespace REC
             else
             {
                 //ESerialPort.Run2(); //这里要求 异常时提示卡证,由工作人员进行处理.
-                await Dispatcher.BeginInvoke(new Action(() => Msg("打印异常，请联系工作人员")));
+                Dispatcher.BeginInvoke(new Action(() => ErrorMsg("打印异常，请联系工作人员")));
             }
         }
         private void RequestOCR()
@@ -245,19 +252,21 @@ namespace REC
                     {
                         Log.Write("印制号回填失败:"+ Environment.NewLine + (string)RECResponse.GetValue("data"));
                         JObject GTresponse = (JObject)JsonConvert.DeserializeObject((string)RECResponse.GetValue("data"));
-                        Content = new HomePage((string)GTresponse.GetValue("msg"));
+                        Content = new ErrorPage((string)GTresponse.GetValue("msg"));
                         Pages();
                     }
                 }
                 catch
                 {
-                    Content = new HomePage("印制号回传接口解析错误,请联系管理员处理证书");
+                    Content = new ErrorPage("印制号回传接口解析错误,请联系管理员处理证书");
                     Pages();
+
+
                 }
             }
             else
             {
-                Content = new HomePage("印制号回传接口连接错误，请联系管理员处理证书");
+                Content = new ErrorPage("印制号回传接口连接错误，请联系管理员处理证书");
                 Pages();
             }
         }

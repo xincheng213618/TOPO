@@ -67,10 +67,11 @@ namespace REC
         public int EstatePort2 { get; set; } = 0;
         public string OcrRegion { get; set; } = "0,0,1280,720";
         public int OcrThreshold { get; set; } = 160;
+        public int OcrRotate{ get; set; } = -90;
 
         public int PageChangeX { get; set; } = 0;
         public int PageChangeY { get; set; } = 0;
-
+        
         public string AdminPassword { get; set; } = "admin";
         public string Technica { get; set; } = "技术支持：江苏同袍科技信息有限公司";
 
