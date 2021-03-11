@@ -70,7 +70,7 @@ namespace RECSuzhou
             }
 
 
-            if (PrintTimeNo > 20+PageAllNum)
+            if (PrintTimeNo > 40+PageAllNum*2)
             {
                 Ostatue = 0;
                 Close();

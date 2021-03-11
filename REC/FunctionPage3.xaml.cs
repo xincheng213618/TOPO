@@ -154,17 +154,18 @@ namespace REC
             thread.Start();
 
         }
-
+        
+        //识别角度不能设置太高
         private void Rorc()
         {
             Match math = null;
-            for (int i = 0; i < 10; i++)
+
+            for (int i = 0; i < 5; i++)
             {
                 Mat mat = new Mat("Temp\\ocr_result.jpg", ImreadModes.Color);
                 Mat mat1 = EmguHelper.Rotate(mat, i);
                 mat1.Save("Temp\\ocr_result1.jpg");
                 var text = ParseText("Temp\\ocr.jpg", "eng");
-
                 math = Regex.Match(text, @"(\d{11})");
                 if (math.Success)
                 {

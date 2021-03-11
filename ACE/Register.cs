@@ -7,7 +7,6 @@ using System.Text;
 namespace ACE
 {
     //2021.1.11 加密有时间会重构，最近没有这个考虑
-
     /// <summary>
     /// 许可证检测
     /// </summaryd>

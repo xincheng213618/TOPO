@@ -31,6 +31,10 @@ namespace REC
         /// </summary>
         public string QT { get; set; } = "";
         /// <summary>
+        /// 权力其他情况
+        /// </summary>
+        public string QLQTZK { get; set; } = "";
+        /// <summary>
         /// 其他 附记
         /// </summary>
         public string FJ { get; set; } = "";

@@ -102,7 +102,7 @@ namespace REC
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 125, 282, 0);//面积
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 125, 252, 0);//使用期限
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 125, 222, 0);//其他
-            pdfContentByte = DrawMul(pdfContentByte, Item.QT, 125, 222, 0, 16);
+            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 125, 222, 0, 16);
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 600, 500, 0);//附记
 
@@ -233,8 +233,8 @@ namespace REC
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.YT, 63 + PageChaneX, 282 + PageChaneY, 0);//用途
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 63 + PageChaneX, 244 + PageChaneY, 0);//面积
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 63+ PageChaneX, 205 + PageChaneY, 0);//使用期限
-            //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 63, 166, 0);//其他
-            pdfContentByte = DrawMul(pdfContentByte, Item.QT, 63+ PageChaneX, 166 + PageChaneY , 0, 17);
+            //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 63, 166, 0);//权力其他情况
+            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 63+ PageChaneX, 166 + PageChaneY , 0, 17);
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 500, 500, 0);//附记
             pdfContentByte.SetFontAndSize(HeiTi, 10);
