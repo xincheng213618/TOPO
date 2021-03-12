@@ -50,7 +50,7 @@ namespace RECSuzhou
 
         private void Countdown_timer()
         {
-            Time.Countdown = 10;
+            Time.Countdown = 30;
             pageTimer = new DispatcherTimer() { IsEnabled = true, Interval = TimeSpan.FromSeconds(1) };
             pageTimer.Tick += new EventHandler((sender, e) =>
             {

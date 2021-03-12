@@ -141,7 +141,7 @@ namespace RECSuzhou
         {
             if (SZArchiveListView.SelectedIndex >= 0)
             {
-                Time.Countdown = 60;
+                Time.Countdown = 180;
                 string Archivecode = SZArchiveListItem.ElementAt(SZArchiveListView.SelectedIndex).archivecode.ToString();
                 switch (Global.PageType)
                 {
@@ -259,7 +259,8 @@ namespace RECSuzhou
         private void download(string response)
         {
             List<string> MeanList = new List<string>();
-
+            try
+            {
             JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
 
             string a = jObject["imgtext"][0].ToString();
@@ -293,6 +294,7 @@ namespace RECSuzhou
                         string PDFFile = "Temp\\"+DateTime.Now.ToString("MMddHHmmss", DateTimeFormatInfo.InvariantInfo)+ $"{MeanList[i]}.pdf";
                         item.FileName = PDFFile;
                         List<string> fileNameList = new List<string>();
+                        int kk = 0;
                         foreach (JObject imgtext in imgtextArray)
                         {
                             string mlm = (string)imgtext.GetValue("mlm");
@@ -312,7 +314,7 @@ namespace RECSuzhou
                                             { "jpgsxh", jpgsxh },
                                             { "jpgsxhz", jpgsxhz }
                                         };
-                                string PicName = $"Temp\\{jpgid}.jpg";
+                                string PicName = $"Temp\\"+ kk++ +$"{jpgid}.jpg";
                                 Http.ShowImage(dic, PicName);
                                 //下载图片
                                 fileNameList.Add(PicName);
@@ -341,7 +343,12 @@ namespace RECSuzhou
             {
                 Dispatcher.BeginInvoke(new Action(() => SZArchiveMenuMsg.Visibility = Visibility.Visible));
             }
-
+            }
+            catch
+            {
+                Content = new HomePage("该接口解析错误");
+                Pages();
+            }
 
         }
 

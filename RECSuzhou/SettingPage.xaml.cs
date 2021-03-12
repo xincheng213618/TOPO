@@ -124,7 +124,7 @@ namespace RECSuzhou
                     Pages();
                     break;
                 case "HomeCountPages":
-                    IDCardData = new IDCardData { Name = "奚玉远", IDCardNo = "152322198703291816" };
+                    IDCardData = new IDCardData { Name = "施丽华", IDCardNo = "320524197706045222" };
                     Content = new HomeCountPages(IDCardData);
                     Pages();
                     break;
@@ -139,6 +139,7 @@ namespace RECSuzhou
                     break;
                 case "SZWZArchivePages":
                     IDCardData = new IDCardData { Name = "张林", IDCardNo = "320823198102244241" };
+                    //IDCardData = new IDCardData { Name = "施丽华", IDCardNo = "320524197706045222" };
                     Content = new SZArchivePage(IDCardData);
                     Pages();
                     break;

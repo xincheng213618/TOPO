@@ -62,7 +62,7 @@ namespace RECSuzhou
             StartWindow.Show();
 
             backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
+                backgroundWindow.Show();
         }
 
         private void Application_Initialized(object sender, StartupEventArgs e)

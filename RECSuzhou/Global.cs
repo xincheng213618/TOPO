@@ -72,6 +72,7 @@ namespace RECSuzhou
         // 技术支持人员和电话
         public string Technica { get; set; }
         public string Technicamail { get; set; }
+        public string PDFJiaZai { get; set; }
 
         //setting 页面开启(0 开，其他关)
         public string SettingOptimiz { get; set; } = "0";
