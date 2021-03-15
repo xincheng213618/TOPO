@@ -165,6 +165,19 @@
                 </Grid>
             </ElementHost>
         </WindowsFormsHost>
-
+        <!--消息弹出框-->
+        <WindowsFormsHost x:Name="POP" Grid.Row="1" Visibility="Hidden"  Height="200" Width="600" VerticalAlignment="Center" HorizontalAlignment="Center"  Background="White" >
+            <ElementHost>
+      
+                <Grid Grid.Row="1" Visibility="Visible">
+                    <Border  Background="Black" Opacity="0.13"/>
+                    <Border Height="200" Width="600"  Background="White"  BorderBrush="AliceBlue" BorderThickness="8">
+                        <Grid >
+                            <Label x:Name="PopTips" HorizontalAlignment="Center"  Content="每次选择打印的页数不能超过5张" VerticalAlignment="Center" Margin="20" FontSize="25" Foreground="Black"  />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </ElementHost>
+        </WindowsFormsHost>
     </Grid>
 </Page>

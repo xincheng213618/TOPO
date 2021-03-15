@@ -120,7 +120,7 @@
             </Border>
 
             <Border   Grid.Row="1" Grid.Column="2" Margin="20" Opacity="0.9" Visibility="Visible"  >
-                <Button  Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="SZHQArchivePages">
+                <Button  Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="SZWZArchivePages">
                     <Image Source="images/archive.png"/>
                 </Button>
             </Border>

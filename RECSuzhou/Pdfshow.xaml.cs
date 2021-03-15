@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace RECSuzhou
         private bool PrintRun = false;
         private bool AllowPrint = true;
 
-        public Pdfshow(int PrintAllNum = 10000)
+        public Pdfshow(int PrintAllNum = 1000)
         {
             this.PrintAllNum = PrintAllNum;
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace RECSuzhou
         int PrintAllNum;
 
        
-        public Pdfshow(string filePath, int PrintAllNum = 200, bool AllowPrint = true)
+        public Pdfshow(string filePath, int PrintAllNum = 1000, bool AllowPrint = true)
         {
             
             this.filePath = filePath;
@@ -52,6 +53,7 @@ namespace RECSuzhou
             if (Global.PageType != null)
                 list = new List<Border>() { Button0 };
 
+            
             for (int i = 0; i < list.Count; i++)
                 list[i].Visibility = Visibility.Hidden;
 
@@ -183,9 +185,9 @@ namespace RECSuzhou
 
                     PDFListView.SelectedIndex = 0;
 
-                    PDFListView.Visibility = PageAllNum <= 5 ? Visibility.Hidden : Visibility.Visible;
-                    Button1.Visibility = AllowPrint ? Visibility.Visible : Visibility.Hidden;
-                    Button2.Visibility = AllowPrint && PageAllNum > 4 ? Visibility.Visible : Visibility.Hidden;
+                    PDFListView.Visibility =  Visibility.Visible;
+                    Button1.Visibility = AllowPrint && Global.PageType != "SZWZArchivePages" ? Visibility.Visible : Visibility.Hidden;
+                    Button2.Visibility = AllowPrint ? Visibility.Visible : Visibility.Hidden;
                     Button3.Visibility = PageAllNum <= 1 ? Visibility.Hidden : Visibility.Visible;
                     Button7.Visibility = PageAllNum <= 3 ? Visibility.Hidden : Visibility.Visible;
                     Button6.Visibility = PageAllNum <= 2 ? Visibility.Hidden : Visibility.Visible;
@@ -221,24 +223,63 @@ namespace RECSuzhou
         {
             Stamp.Close();
         }
-
+        private AxAcroPDFLib.AxAcroPDF pdfc;
+        private int PageAllNumNew = 0;
         private void PrintPDFAll_Click(object sender, RoutedEventArgs e)
         {
             if (!PrintRun)
             {
-                pageTimer.IsEnabled = false;
-                PrintRun = true;
-                PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
-                printUtil.Closed += PrintOver;
-                printUtil.Show();
-                Stamp.Start(PageAllNum);
-                AcrobatHelper.pdfControl.printAllFit(true);
+                
+                //if (PageAllNum < PrintAllNum)
+                //{
+                    pageTimer.IsEnabled = false;
+                    PrintRun = true;
+                    PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
+                    printUtil.Closed += PrintOver;
+                    printUtil.Show();
+                    Stamp.Start(PageAllNum);
+                    AcrobatHelper.pdfControl.printAllFit(true);
+                    return;
+                //}
+                
+                //string Pa = "";
+
+                //for (int i = 0; i < PDFItem.Count; i++)
+                //    Pa += PDFItem.ElementAt(i).Ischeck ? PDFItem.ElementAt(i).ListNo.ToString() + "," : "";
+
+                //if (Pa == "")
+                //    return;
+                //string[] strArray = Pa.Split(','); //字符串转数组
+               
+                //if (strArray.Length > 5)
+                //{
+                //    PopAlert(3);
+                //    return;
+                //}
+                //PdfReader reader = new PdfReader(filePath);
+                //reader.SelectPages(Pa);
+
+                //PdfStamper pdfStamper = new PdfStamper(reader, new FileStream(@"Temp\temp.pdf", FileMode.Create));
+                //pdfStamper.Close();
+
+                //pdfc = new AxAcroPDFLib.AxAcroPDF();
+                //pdfc.BeginInit();
+                //formsHost1.Child = pdfc;
+                //pdfc.EndInit();
+                //pdfc.LoadFile(@"Temp\temp.pdf");
+                //PageAllNumNew = reader.NumberOfPages;
+                //PrintUtilWindow printUtil1 = new PrintUtilWindow(PageAllNumNew);
+                //printUtil1.Closed += PrintOneOver;
+                //printUtil1.Show();
+                //Stamp.Start(PageAllNumNew);
+                //pdfc.printAllFit(true);
+
             }
         }
 
         private void PrintOver(object sender, EventArgs e)
         {
-            Stamp.Close();
+            //Stamp.Close();
             PDFShow.Visibility = Visibility.Hidden;
             Content = new PrintTips();
             Pages();
@@ -294,7 +335,20 @@ namespace RECSuzhou
             CheckBox checkbox = sender as CheckBox;
             PDFItem.ElementAt(int.Parse(checkbox.Tag.ToString()) - 1).Ischeck = checkbox.IsChecked.Value;
         }
+        private async void PopAlert(int time)
+        {
+           
 
+            
+            POP.Visibility = Visibility.Visible;
+
+            await Task.Delay(TimeSpan.FromSeconds(time));
+
+            POP.Visibility = Visibility.Hidden;
+        }
+
+
+        
 
     }
 }

@@ -34,7 +34,7 @@ namespace RECSuzhou
                 List[i].Visibility = Visibility.Hidden;
 
 
-            BackgroundItem.Kind = true;
+            BackgroundItem.Kind = false;
             BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
 
             BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
