@@ -87,7 +87,7 @@ namespace REC
                 };
 
                 url = DicAndUrl(url, dic);
-                Log.WriteUrl(url,null);
+                //Log.WriteUrl(url,null);
 
 
                 string path = Fielname;
@@ -147,8 +147,7 @@ namespace REC
                 };
 
                 url = DicAndUrl(url, dic);
-                Log.WriteUrl(url, null);
-
+                //Log.WriteUrl(url, null);
 
                 string path = FileName;
                 HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
@@ -186,7 +185,7 @@ namespace REC
                 StreamReader sr = new StreamReader(instream, Encoding.UTF8);
                 //返回结果网页（html）代码
                 string content = sr.ReadToEnd();
-                Log.WriteUrl(url, content);
+                //Log.WriteUrl(url, content);
 
                 return true;
             }
@@ -265,7 +264,7 @@ namespace REC
                 StreamReader sr = new StreamReader(instream, Encoding.UTF8);
                 //返回结果网页（html）代码
                 string content = sr.ReadToEnd();
-                Log.WriteUrl(url, content);
+                //Log.WriteUrl(url, content);
                 return true;
             }
             catch
