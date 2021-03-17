@@ -9,17 +9,17 @@ namespace BaseUtil
     {
         public static string[] MediaList = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Base\\Media\\");
 
+        public static MediaPlayer mediaPlayer = new MediaPlayer();
+
         public static bool Player(int listnum = 0)
         {
             if (MediaList.Length > listnum)
             {
                 string path = MediaList[listnum];
-                MediaPlayer media = new MediaPlayer();
-                media.Open(new Uri(path, UriKind.RelativeOrAbsolute));
-                media.Position = TimeSpan.Zero;
-                media.Play();
+                mediaPlayer.Open(new Uri(path, UriKind.RelativeOrAbsolute));
+                mediaPlayer.Position = TimeSpan.Zero;
+                mediaPlayer.Play();
             }
-
             return MediaList.Length > listnum;
         }
         public static bool Play(string path)
