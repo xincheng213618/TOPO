@@ -14,6 +14,9 @@ namespace BaseUtil
         //Designed By Mr.Xin 2020.6.7
         public static string FilePath = Environment.CurrentDirectory + "\\Logs\\";
 
+
+
+
         public static void  LogInput()
         {
             if (LogCache != ""|| LogExceptionCache != ""|| LogUrlCache != "")

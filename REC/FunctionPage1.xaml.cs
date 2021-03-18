@@ -88,6 +88,7 @@ namespace REC
                                 Item.SYQX = (string)result.GetValue("SYQX");
                                 Item.YT = (string)result.GetValue("YT");
                                 Item.MJ = (string)result.GetValue("MJ");
+                                Item.QLQTZK=(string)result.GetValue("QLQTZK");
                                 Item.QT = (string)result.GetValue("QT");
                                 Item.FJ = (string)result.GetValue("FJ");
                                 Item.HandlingStatus = (string)result.GetValue("SFZT");
@@ -119,6 +120,12 @@ namespace REC
                                     RECListViewItem.Add(Item);
                                 }
                             }
+                            if (RECListViewItem.Count == 0)
+                            {
+                                Content = new HomePage("查询到已经被过滤到的信息，请联系工作人员进行处理");
+                                Pages();
+                            }
+
                             Media.Play("Base\\Media\\请选择您要打印的证书.mp3");
                         }
                         else

@@ -136,6 +136,7 @@ namespace REC
                     {
                         PopAlert("请放置正确的二维码，并重试", 3);
                         TitleLabel.Content = "您可重新扫描二维码";
+                        //FunctionBorder.Background = bru
                         FunctionButton.Tag = "Return";
                         ButtonLabel.Content = "返    回";
                     }

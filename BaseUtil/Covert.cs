@@ -184,7 +184,5 @@ namespace BaseUtil
         {
             return File.ReadAllBytes(FilePath);
         }
-
-
     }
 }

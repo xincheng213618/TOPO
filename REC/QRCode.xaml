@@ -38,9 +38,9 @@
                     <Label/>
 
 
-                    <Border  Grid.Row="2" Height="80" Width="300"  Background="#3668d3" BorderBrush="#c5c5c5" BorderThickness="1" CornerRadius="10" Visibility="Visible">
+                    <Border x:Name="FunctionBorder"  Grid.Row="2" Height="80" Width="300"  Background="Gray" BorderBrush="#c5c5c5" BorderThickness="1" CornerRadius="10" Visibility="Visible">
                         <Button  x:Name="FunctionButton" Style="{StaticResource  hiddenButton}"   Click="Button_Click" Tag="Return" >
-                            <Label  x:Name="ButtonLabel" Style="{StaticResource Label_Centered_30}" Foreground="White" Content="返    回"/>
+                            <Label  x:Name="ButtonLabel" Style="{StaticResource Label_Centered_30}" Foreground="White" FontWeight="Bold" Content="返    回"/>
                         </Button>
                     </Border>
                 </Grid>
