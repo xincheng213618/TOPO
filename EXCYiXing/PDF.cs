@@ -837,11 +837,12 @@ namespace EXCYiXing
                 HorizontalAlignment = Element.ALIGN_CENTER,
                 VerticalAlignment = Element.ALIGN_MIDDLE
             };
+          PdfPCell tdxxcell13 = new PdfPCell(new PdfPCell(new Paragraph(houseBasic.TDQLXZ, textfont)))
 
 
-            PdfPCell tdxxcell13 = new PdfPCell(new PdfPCell(new Paragraph((string)jObject.GetValue("QLXZ").ToString(), textfont)))
-            {
-                HorizontalAlignment = Element.ALIGN_CENTER,
+          //  PdfPCell tdxxcell13 = new PdfPCell(new PdfPCell(new Paragraph((string)jObject.GetValue("QLXZ").ToString(), textfont)))
+          {
+              HorizontalAlignment = Element.ALIGN_CENTER,
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 Colspan = 4
             };
@@ -1100,7 +1101,25 @@ namespace EXCYiXing
             //===抵押信息结束==================
 
             //===查封信息开始==================
-            CFItems.Add(new CFItem());
+            if (CFItems.Count < 1)
+            {
+                CFItem CFItemr = new CFItem
+                {
+                    FWDM = "无",
+                    BDCDYH = "无",
+                    CFJG = "无",
+                    CFWH = "无",
+                    CFLX = "无",
+                    CFKSSJ = "无",
+                    CFJSSJ = "无",
+                    DJSJ = "无",
+                    QSZT = "无",
+                    CQZH = "无",
+                    FJ = "无",
+                };
+
+                CFItems.Add(CFItemr);
+            }
 
             PdfPCell cfxxcell = new PdfPCell(new PdfPCell(new Paragraph("查封信息", textfont)));
             cfxxcell.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -1820,7 +1839,25 @@ namespace EXCYiXing
 
 
             #region 查封信息开始
-            CFItems.Add(new CFItem());
+            if (CFItems.Count < 1)
+            {
+                CFItem CFItemr = new CFItem
+                {
+                    FWDM = "无",
+                    BDCDYH = "无",
+                    CFJG = "无",
+                    CFWH = "无",
+                    CFLX = "无",
+                    CFKSSJ = "无",
+                    CFJSSJ = "无",
+                    DJSJ = "无",
+                    QSZT = "无",
+                    CQZH = "无",
+                    FJ = "无",
+                };
+
+                CFItems.Add(CFItemr);
+            }
             PdfPCell cfxxcell = new PdfPCell(new PdfPCell(new Paragraph("查封信息", textfont)));
             cfxxcell.HorizontalAlignment = Element.ALIGN_CENTER;
             cfxxcell.VerticalAlignment = Element.ALIGN_MIDDLE;

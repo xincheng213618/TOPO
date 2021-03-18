@@ -106,10 +106,14 @@ namespace PEC
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (textpassword.Text.Equals("admin"))
+            if (textpassword.Password.Equals("admin"))
             {
                 password.Visibility = Visibility.Hidden;
                 test.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SetTip.Content = "密码错误";
             }
         }
 

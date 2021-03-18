@@ -36,14 +36,19 @@
         <Grid Grid.Row="1" Name="password" Background="Transparent" Grid.Column="0" Visibility="Visible">
             <Border BorderBrush="Red"   Background="Transparent">
                 <Grid>
-                    <Border  Margin="324,233,326,205"  BorderThickness="20" Background="#FFF3A352" CornerRadius="50" BorderBrush="#FFF38415" >
+                    <Border  Margin="324,233,326,205"  BorderThickness="10,10,2,2" Background="White"  CornerRadius="50" >
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
+                                <GradientStop Color="#FFF38415" Offset="0"/>
+                                <GradientStop Color="Red" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
                         <Grid >
-                            <Label FontSize="40" HorizontalAlignment="Center"   Foreground="White" Background="Transparent"  Width="336" Margin="127,0,127,242">请输入管理员密码</Label>
-                            <Border BorderBrush="Black" BorderThickness="1" Margin="138,107,122,132"  >
-                                <TextBox  Name="textpassword" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="textpassword_TextChanged" FontSize="30" Margin="0,0,0,11"/>
-                            </Border>
-                            <Button Click="Button_Click"   Content="确          定" Background="Transparent" FontSize="30"  HorizontalAlignment="Left" Width="218" Margin="80,201,0,23"></Button>
-                            <Button Click="Button_Click"   Content="返          回" Background="Transparent" FontSize="30" Margin="299,202,77,23"  ></Button>
+                            <Label Margin="121,24,122,247" Name="SetTip" Content="请输入管理员密码" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="red"></Label>
+                            <Image Source="./images/管理员.png" Margin="41,86,477,142"></Image>
+                            <PasswordBox BorderBrush="red" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"   FontSize="25" Name="textpassword" Foreground="#FFF38415" Margin="156,114,44,167"></PasswordBox>
+                            <Button Click="Button_Click"   Content="确   定" Background="Transparent" FontSize="30"   HorizontalAlignment="Left" BorderBrush="#FFF38415" Width="184" Margin="77,236,0,23" Foreground="#FFF38415"></Button>
+                            <Button Click="Button_Click"   Content="返   回" Background="Transparent" FontSize="30"   HorizontalAlignment="Left" BorderBrush="#FFF38415" Width="184" Margin="349,236,0,23" Foreground="#FFF38415"></Button>
                         </Grid>
                     </Border>
                 </Grid>

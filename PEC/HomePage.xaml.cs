@@ -67,10 +67,13 @@ namespace PEC
                     Pages();
                     break;
                 case "ProvincialPeople"://省信用
-                    Global.PageType = "ProvincialPeople";
-                    IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
-                    Content = new ReportPage(iDCardData, @"E:\仓库\PEC\bin\Debug\1.pdf");
+
+                    //IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
+                    //Content = new ReportPage(iDCardData, @"E:\仓库\PEC\bin\Debug\1.pdf");
+                    Content = new HomePage("个人信用暂不开放");
                     Pages();
+
+              
                     break;
             }
         }
