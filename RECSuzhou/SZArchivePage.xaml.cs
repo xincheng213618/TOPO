@@ -346,12 +346,17 @@ namespace RECSuzhou
             }
             catch
             {
-                Content = new HomePage("该接口解析错误");
-                Pages();
+                Dispatcher.BeginInvoke(new Action(() => ReturnHomePage()));
+                //Content = new HomePage("该接口解析错误");
+                //Pages();
             }
 
         }
-
+        private void ReturnHomePage()
+        {
+            Content = new HomePage("暂无信息，请至窗口查询。");
+            Pages();
+        }
 
         private void WZArchiveParse(string response)
         {

@@ -68,8 +68,6 @@ namespace PEC
                  
                     Media.Player(15);//读取成功
                     DAIDcrdLogin();
-
-
                 }
                 else
                 {

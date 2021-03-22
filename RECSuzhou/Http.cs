@@ -170,7 +170,7 @@ namespace RECSuzhou
             //string response = "{\"result\":[{\"zuoluo\":\"山湖湾花园北区18幢503室\",\"name\":\"孙儒/杨洋\",\"archivecode\":\"C00327313\"}],\"code\":\"0\",\"Message\":\"可以查询\"}";
             //吴中
             //string response = "{\"msg\":\"可以查询\",\"result\":[{\"zuoluo\":\"苏州市吴中区木渎镇金运花园100幢201室\",\"name\":\"徐正华/张林\",\"archivecode\":\"2018070680010305\"},{\"zuoluo\":\"苏州市吴中区木渎镇金运花园20幢904室\",\"name\":\"徐正华/张林\",\"archivecode\":\"2018070680010008\"}],\"code\":\"0\"}";
-
+            //string response = "{\"msg\":\"可以查询\",\"result\":[{\"zuoluo\":\"苏州太湖国家旅游度假区香山街道蔚蓝四季花园23幢804室\",\"name\":\"陈东鸣\",\"archivecode\":\"2020110680001908,2021010680007835\"}],\"code\":\"0\"}";
             Log.WriteUrl(url,response);
             //MessageBox.Show(response);
             return response;
@@ -207,6 +207,7 @@ namespace RECSuzhou
                     { "id_card_no", IDCardNo }
                 };
             string response = Requests.Post(Covert.DicAndUrl(url, dic));
+            //string response = "{\"imgtext\":[]}";
             Log.WriteUrl(url,response);
             //Log.Write(response);
             return response;

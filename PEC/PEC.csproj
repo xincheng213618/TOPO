@@ -41,9 +41,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="MyLoadingLib">
       <HintPath>..\DLL\MyLoadingLib.dll</HintPath>
     </Reference>
@@ -235,6 +232,7 @@
     <Resource Include="Images\账号密码登录.png" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Include="Base\Media\00.camera-shutter-click.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -318,6 +316,9 @@
     <None Include="Base\Media\16.请将收件单上的二维码放在扫码器上方扫描.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+=======
+    <Resource Include="Images\管理员.png" />
+>>>>>>> 2cd329175844c977f7ba2063582eb8efc17dc937
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

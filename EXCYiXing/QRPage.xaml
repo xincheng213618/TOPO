@@ -35,7 +35,7 @@
                 <Grid Grid.Row="1"  x:Name="input" Visibility="Visible">
                     <DockPanel x:Name="Dockfangchan" Grid.Row="1" Margin="100,0,100,150"  VerticalAlignment="Center" >
                         <Label Style="{StaticResource contentLabel}" Content="房产证号："  FontSize="26" Foreground="#3269ba" FontWeight="Bold" Width="139" />
-                        <TextBox x:Name="Textfangchan" VerticalAlignment="Center" InputMethod.IsInputMethodEnabled="True" FontSize="26" MaxLength="119"/>
+                        <TextBox x:Name="Textfangchan" VerticalAlignment="Center" InputMethod.IsInputMethodEnabled="True" FontSize="26" MaxLength="119" TextChanged="Textfangchan_TextChanged"/>
                     </DockPanel>
                   
                 </Grid>
