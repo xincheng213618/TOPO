@@ -345,6 +345,9 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> TOPO_仓库/master
     <None Include="Base\Media\00.camera-shutter-click.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -428,6 +431,7 @@
     <None Include="Base\Media\16.请将收件单上的二维码放在扫码器上方扫描.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+<<<<<<< HEAD
 =======
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
@@ -440,6 +444,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
 >>>>>>> 2cd329175844c977f7ba2063582eb8efc17dc937
+=======
+>>>>>>> TOPO_仓库/master
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

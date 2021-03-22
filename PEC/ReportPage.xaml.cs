@@ -73,7 +73,7 @@ namespace PEC
             Log.Write(filePath);
             string bs64 = (string)data.GetValue("bgwj");
             //要去掉👇
-            bs64 = Covert.FileToBase64("1.pdf");
+          //  bs64 = Covert.FileToBase64("1.pdf");
             //要去掉👆
             Covert.Base64ToFile(bs64, filePath);
             PopLabel.Content = "正在打印报告";
@@ -113,8 +113,7 @@ namespace PEC
             }
             PopLabel.Content = "正在打印报告中";
             await Task.Delay(TimeSpan.FromSeconds(time));
-            if (Printover)
-            {
+            
                 PopLabel.Content = "打印完毕";
                 await Task.Delay(TimeSpan.FromSeconds(3));
                 PopBorder.Visibility = Visibility.Hidden;
@@ -128,7 +127,7 @@ namespace PEC
                 }
                 Content = new PrintTips();
                 Pages();
-            }
+            
         }
         public bool Base64ToFile(string Base64, string FilePath)
         {
@@ -256,7 +255,7 @@ namespace PEC
                 {
                     Content = item.TemplateName,
                     Background = Brushes.Transparent,
-                    Name = item.TemplateID,
+                    Tag = item.TemplateID,
                     BorderThickness = new Thickness(0),
                 };
                 b.Click += BanbenNo;
@@ -298,6 +297,7 @@ namespace PEC
         static int printcount = 0;
         private void ProvincialPrintPdf1()
         {
+
             No.Visibility = Visibility.Hidden;
             Dispatcher.Invoke(new Action(() => alert(null, 11)));
             foreach (var item in CompanyReportItem)
@@ -317,8 +317,6 @@ namespace PEC
                     string filePath = "Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
                     Log.Write(filePath);
                     string bs64 = (string)data.GetValue("bgwj");
-                    bs64 =  BaseUtil.Covert.FileToBase64(@"1.pdf");
-
                     Base64ToFile(bs64, filePath);
                     PopLabel.Content = "正在打印报告";
                     if (printcount > 1)
@@ -340,7 +338,7 @@ namespace PEC
 
         private void BanbenNo(object sender, RoutedEventArgs e)
         {
-            mobanId = ((Button)sender).Name.ToString();
+            mobanId = ((Button)sender).Tag.ToString();
             PopBorder.Visibility = Visibility.Visible;
             Dispatcher.BeginInvoke(new Action(ProvincialPrintPdf1));
             PopLabel.Content = "打印完毕";
