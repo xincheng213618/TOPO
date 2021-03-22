@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -315,6 +316,26 @@
     <None Include="Base\Media\16.请将收件单上的二维码放在扫码器上方扫描.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="管理员.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\短信.png" />
+    <Resource Include="Images\账号.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="账号.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="短信.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="短信 %281%29.png" />
+    <Resource Include="账号 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="返回.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

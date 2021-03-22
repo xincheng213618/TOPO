@@ -30,7 +30,7 @@ namespace PEC
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            string str=((Border)sender).Name;
+            string str = ((Border)sender).Name;
             IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
             switch (str)
             {
@@ -40,21 +40,26 @@ namespace PEC
                 case "Back":
                     Content = new HomePage();
                     Pages();
-                    break; 
+                    break;
                 case "TestZireanren":
-                    Global.PageType = "ProvincialPeople";
-                    Content = new ReportPage(iDCardData);
+                    Content = new HomePage("暂时关闭");
                     Pages();
-                    break; 
+
+                    //Global.PageType = "ProvincialPeople";
+                    //Content = new ReportPage(iDCardData);
+                    //Pages();
+                    break;
                 case "TestQiye":
-                    Global.PageType = "Provincial";
-                    string response = Http.Provincial.DALogin("njcxt", "cxt888888");
-                    if (response == null)
-                    {
-                        Dispatcher.BeginInvoke(new Action(() => throw new Exception("该接口连接错误")));
-                        return;
-                    }
-                    Dispatcher.BeginInvoke(new Action(() => PhraseLogin(response)));
+                    Content = new HomePage("暂时关闭");
+                    Pages();
+                    //Global.PageType = "Provincial";
+                    //string response = Http.Provincial.DALogin("njcxt", "cxt888888");
+                    //if (response == null)
+                    //{
+                    //    Dispatcher.BeginInvoke(new Action(() => throw new Exception("该接口连接错误")));
+                    //    return;
+                    //}
+                    //Dispatcher.BeginInvoke(new Action(() => PhraseLogin(response)));
                     break;
             }
         }
@@ -103,20 +108,27 @@ namespace PEC
         {
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (textpassword.Password.Equals("admin"))
+            switch (((Button)sender).Content)
             {
-                password.Visibility = Visibility.Hidden;
-                test.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                SetTip.Content = "密码错误";
+                case "确   定":
+                    if (textpassword.Password.Equals("admin"))
+                    {
+                        password.Visibility = Visibility.Hidden;
+                        test.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        SetTip.Content = "密码错误";
+                    }
+                    break;
+                default:
+                    Content = new HomePage();
+                    Pages();
+                    break;
             }
         }
-
         private void textpassword_TextChanged(object sender, TextChangedEventArgs e)
         {
 

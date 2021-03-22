@@ -30,9 +30,12 @@ namespace PEC
         {
             InitializeComponent();
         }
+        Thread t;
         private void Page_Initialized(object sender, EventArgs e)
         {
             m_iPort = IDcard.IDcardSet();
+              t = new Thread(new ThreadStart(IDcard_reader));
+            t.Start();
             timeCount.Countdown = 30;
             Countdown();
         }
@@ -46,7 +49,7 @@ namespace PEC
         IDCardData idcard = new IDCardData();
         private void Countdown()
         {
-        
+           
             pageTimer = new DispatcherTimer() { IsEnabled = true, Interval = TimeSpan.FromSeconds(1) };
             pageTimer.Tick += new EventHandler((sender, e) =>
             {
@@ -89,6 +92,7 @@ namespace PEC
         }
         private void Pages()
         {
+            t.Abort();
             pageTimer.IsEnabled = false;
             (Application.Current.MainWindow as MainWindow).frame.Navigate(Content);
         }
@@ -124,6 +128,7 @@ namespace PEC
                     BorderLogin1.Background = Brushes.White;
                     break;
             }
+        
         }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
@@ -148,7 +153,7 @@ namespace PEC
                     }
                     break;
                 case "Login1":
-                    if (TextBoxPhoneNum.Text.Length != 11 || TextBoxVertify.Text.Length < 1)
+                    if (TextBoxPhoneNum.Text.Length >6 || TextBoxVertify.Text.Length > 1)
                     {
                         string phonenum = TextBoxPhoneNum.Text;
                         string Vertify = TextBoxVertify.Text;
@@ -346,8 +351,7 @@ namespace PEC
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-            Content = new IDCardPage();
+            Content = new HomePage();
             Pages();
         }
     }
