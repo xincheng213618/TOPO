@@ -49,7 +49,7 @@ namespace PEC
                 string response = Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
                 if (response == null)
                 {
-                    Dispatcher.BeginInvoke(new Action(() => new HomePage("个人信用报告接口返回数据空")));
+                    Dispatcher.BeginInvoke(new Action(() => new HomePage("暂无详细信息，请至大厅窗口打印")));
                 }
                 Dispatcher.BeginInvoke(new Action(() => ProvincialPeoplePhrase(response)));
             }
