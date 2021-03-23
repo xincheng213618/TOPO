@@ -75,9 +75,6 @@ namespace PEC
         {
             if (e.Exception.GetType() != typeof(StackOverflowException))
             {
-                Log.Write(e.Exception.Message);
-                Log.Write(e.Exception.StackTrace);
-                Log.Write(e.Exception.Source);
                 e.Handled = true;
                 if (MainWindow.IsActive)
                 {

@@ -73,7 +73,9 @@
     <Compile Include="CameraPage.xaml.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Http.cs" />
-    <Compile Include="IDCardPage.xaml.cs" />
+    <Compile Include="IDCardPage.xaml.cs">
+      <DependentUpon>IDCardPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -105,8 +107,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IDCardPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
@@ -318,24 +320,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="管理员.png" />
+    <Resource Include="Images\管理员.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\短信.png" />
     <Resource Include="Images\账号.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="账号.png" />
+    <Resource Include="Images\短信 %281%29.png" />
+    <Resource Include="Images\账号 %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="短信.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="短信 %281%29.png" />
-    <Resource Include="账号 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="返回.png" />
+    <Resource Include="Images\返回.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

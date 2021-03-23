@@ -94,8 +94,8 @@
                             </Border.Background>
                             <Button Style="{StaticResource hiddenButton}" Content="登   录" FontWeight="Bold" Foreground="White"  FontSize="25" Click="Login_Click" Tag="Login" />
                         </Border>
-                        <Image x:Name="img1" Source="账号 (1).png" Margin="43,-43,384,302" />
-                        <Image x:Name="img2" Source="短信 (1).png" Margin="293,-45,134,304" />
+                        <Image x:Name="img1" Source="Images/账号 (1).png" Margin="43,-43,384,302" />
+                        <Image x:Name="img2" Source="Images/短信 (1).png" Margin="293,-45,134,304" />
 
                     </Grid>
                     <Grid x:Name="GridLogin1"  Grid.Row="1" Visibility="Hidden">
@@ -158,8 +158,8 @@
                             </Border.Background>
                             <Button Style="{StaticResource hiddenButton}" Content="登   录" FontWeight="Bold" Foreground="White"  FontSize="25"  Click="Login_Click" Tag="Login1"/>
                         </Border>
-                        <Image  Source="账号 (1).png" Margin="43,-43,414,302" />
-                        <Image   Source="短信 (1).png" Margin="293,-45,156,304" />
+                        <Image  Source="images/账号 (1).png" Margin="43,-43,414,302" />
+                        <Image  Source="images/短信 (1).png" Margin="293,-45,156,304" />
                     </Grid>
                 </Grid>
             </Border>
@@ -197,7 +197,7 @@
                 <Button Style="{StaticResource hiddenButton}" Content=" " FontWeight="Bold" Foreground="White"  FontSize="25" Click="Login_Click"  Tag="Out" Margin="-51,-180,-11,124" />
             </Border>
         </Border>
-        <Image Source="返回.png" Margin="134,87,988,632" MouseDown="Border_MouseDown" Name="return_left" Grid.Row="1" />
+        <Image Source="images/返回.png" Margin="134,87,988,632" MouseDown="Border_MouseDown" Name="return_left" Grid.Row="1" />
 
         <Grid x:Name="POP" Grid.Row="1" Visibility="Hidden">
             <Border  Background="Black"    Opacity="0.13"/>

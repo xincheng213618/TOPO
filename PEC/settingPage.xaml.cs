@@ -38,7 +38,6 @@ namespace PEC
             {
                 case "up":
                     string strName = Environment.CurrentDirectory;  // 取得或设置当前工作目录的完整限定路径
-
                     string files = Directory.GetFiles(strName, "PEC.exe", SearchOption.TopDirectoryOnly).FirstOrDefault();
                     if (File.Exists(files))
                     {
@@ -54,8 +53,6 @@ namespace PEC
                             {
                                 reg.SetValue(strNewName, files);
                             }
-                            Content = new HomePage("设置成功");
-                            Pages();
                         }
                     }
  

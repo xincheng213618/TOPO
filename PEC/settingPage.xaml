@@ -33,7 +33,7 @@
                 </Grid>
             </Border>
             <Border Background="#FFF3A352" Name="Back" MouseDown="Border_MouseDown" CornerRadius="20" Margin="70,65,1024,656">
-                <Image Source="返回.png"></Image>
+                <Image Source="images/返回.png"></Image>
             </Border>
 
         </Grid>
@@ -49,7 +49,7 @@
                         </Border.BorderBrush>
                         <Grid >
                             <Label Margin="121,24,122,247" Name="SetTip" Content="请输入管理员密码" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="red"></Label>
-                            <Image Source=" 管理员.png" Margin="41,86,477,142"></Image>
+                            <Image Source="images/管理员.png" Margin="41,86,477,142"></Image>
                             <PasswordBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center"   FontSize="25" Name="textpassword" Foreground="#FFF38415" Margin="156,114,44,167">
                                 <PasswordBox.BorderBrush>
                                     <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
