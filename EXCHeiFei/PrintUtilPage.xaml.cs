@@ -67,7 +67,7 @@ namespace EXC
             }
 
 
-            if (PrintTimeNo > 20+PageAllNum)
+            if (PrintTimeNo > 20+PageAllNum*2)
             {
                 Ostatue = 0;
                 Close();

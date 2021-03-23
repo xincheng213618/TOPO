@@ -13,15 +13,15 @@
             <RowDefinition Height="81*"/>
         </Grid.RowDefinitions>
         <Grid  Grid.Row="1" Background="#c5cce8">
-            <Border Margin="50" Background="White" CornerRadius="50">
+            <Border Margin="49,47,51,53.667" Background="White" CornerRadius="50">
                 <Label Content="打证须知" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" FontSize="40" Margin="20"/>
             </Border>
             <Label Grid.Row="1"   Margin="100,10" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock x:Name="DisclaimerContent" TextWrapping="WrapWithOverflow" Text="" FontSize="25" LineHeight="50"/>
             </Label>
-            <Border  Height="50" Width="500" CornerRadius="22" Background="#00a4e8" VerticalAlignment="Bottom" Margin="100">
+            <Border  Height="65" Width="500" CornerRadius="22" Background="#00a4e8" BorderThickness="5" BorderBrush="HotPink" VerticalAlignment="Bottom" Margin="80">
                 <Button Style="{StaticResource  hiddenButton}" Click="Button_Click">
-                    <Label Content="我已经阅读并同意进入制证流程" FontSize="23" FontWeight="Bold" Foreground="White"/>
+                    <Label Content="我已经阅读并同意进入制证流程" FontSize="25" FontWeight="Bold" Foreground="White"/>
                 </Button>
             </Border>
         </Grid>
