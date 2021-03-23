@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
 
 namespace PEC
 {
@@ -34,6 +36,30 @@ namespace PEC
             IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
             switch (str)
             {
+                case "up":
+                    string strName = Environment.CurrentDirectory;  // 取得或设置当前工作目录的完整限定路径
+
+                    string files = Directory.GetFiles(strName, "PEC.exe", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    if (File.Exists(files))
+                    {
+                        string strNewName = System.IO.Path.GetFileName(files);
+                        RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                        if (reg == null)
+                        {
+                            reg = Registry.CurrentUser.CreateSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run");
+                        }
+                        else
+                        {
+                            if (reg.GetValue(strNewName) == null)
+                            {
+                                reg.SetValue(strNewName, files);
+                            }
+                            Content = new HomePage("设置成功");
+                            Pages();
+                        }
+                    }
+ 
+                    break;
                 case "Close":
                     (Application.Current.MainWindow as MainWindow).Close();
                     break;

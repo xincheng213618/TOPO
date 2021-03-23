@@ -93,10 +93,9 @@ namespace PEC
             }
             else
             {
-                Content = new HomePage("对列中有正在打印的任务："+ queues.NumberOfJobs+"个，打印机脱机："+ queues.IsOffline+"。请检查打印机后再试");
+                Content = new HomePage("对列中有正在打印的任务："+ queues.NumberOfJobs+"个，打印机是否脱机："+ (queues.IsOffline==true?"是":"否")+"。请检查打印机后再试");
                 Pages();
             }
-            
         }
         private void Pages()
         {

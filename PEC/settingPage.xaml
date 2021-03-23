@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PEC"
+      xmlns:local="clr-namespace:PEC" xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
       mc:Ignorable="d" 
   d:DesignHeight="1024" d:DesignWidth="1280"
       Title="settingPage">
@@ -27,16 +27,20 @@
                     <Border CornerRadius="2000,2000,2000, 0" Background="#FFF3A352"   Name="Close" BorderThickness="5" Margin="636,279,423,383" MouseDown="Border_MouseDown">
                         <Label Content="关闭程序" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="25"></Label>
                     </Border>
-                    <Border Margin="357,243,639,388" Name="Back" MouseDown="Border_MouseDown" Background="#FFF3A352" CornerRadius="2000,2000, 0,2000">
-                        <Label Content="返回" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="40"></Label>
+                    <Border Margin="357,243,639,388" Name="up" MouseDown="Border_MouseDown" Background="#FFF3A352" CornerRadius="2000,2000, 0,2000">
+                        <Label Content="开机自启" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="40"></Label>
                     </Border>
                 </Grid>
             </Border>
+            <Border Background="#FFF3A352" Name="Back" MouseDown="Border_MouseDown" CornerRadius="20" Margin="70,65,1024,656">
+                <Image Source="返回.png"></Image>
+            </Border>
+
         </Grid>
         <Grid Grid.Row="1" Name="password" Background="Transparent" Grid.Column="0" Visibility="Visible">
             <Border BorderBrush="Red"   Background="Transparent">
                 <Grid>
-                    <Border  Margin="324,233,326,205"  BorderThickness="10,10,2,2" Background="White"  CornerRadius="50" >
+                    <Border  Margin="324,233,326,205"  BorderThickness="15,15,2,2" Background="White"  CornerRadius="50" >
                         <Border.BorderBrush>
                             <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
                                 <GradientStop Color="#FFF38415" Offset="0"/>
@@ -54,7 +58,14 @@
                                     </LinearGradientBrush>
                                 </PasswordBox.BorderBrush>
                             </PasswordBox>
-                            <Button Click="Button_Click"   Content="确   定" Background="Transparent" FontSize="30"   HorizontalAlignment="Left" BorderBrush="#FFF38415" Width="184" Margin="77,236,0,23" Foreground="#FFF38415"></Button>
+                            <Button Click="Button_Click"   Content="确   定" FontSize="30"   HorizontalAlignment="Left" Width="184" Margin="77,236,0,23" Foreground="#FFF38415" Background="Transparent">
+                                <Button.BorderBrush>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                        <GradientStop Color="red" Offset="0"/>
+                                        <GradientStop Color="#FFF38415" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.BorderBrush>
+                            </Button>
                             <Button Click="Button_Click"   Content="返   回" Background="Transparent" FontSize="30"   HorizontalAlignment="Left" BorderBrush="#FFF38415" Width="184" Margin="349,236,0,23" Foreground="#FFF38415"></Button>
                         </Grid>
                     </Border>
@@ -63,7 +74,27 @@
 
 
         </Grid>
+        <Border x:Name="close" Grid.Row="1"  Background="White" CornerRadius="20" Margin="465,277,515,277" BorderBrush="#c5c5c5" BorderThickness="2" Visibility="Hidden">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="193*" />
+                    <RowDefinition Height="57*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2">
+                    <Button  Background="White" Style="{StaticResource hiddenButton}" >
+                        <myLib:CirclePointRingLoading   Width="90" Height="90" IsActive="True" IsLarge="False" Foreground="#007ACC"/>
+                    </Button>
+                </Border>
+
+                <Label x:Name="PopLabel" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="#3668d3"  Content="正在关闭"  Grid.Row="1" Margin="12,13,16,5" Width="268" Height="40" />
+            </Grid>
+        </Border>
 
 
     </Grid>
+
+
+
+
+
 </Page>
