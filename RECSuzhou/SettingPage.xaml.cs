@@ -140,6 +140,7 @@ namespace RECSuzhou
                 case "SZWZArchivePages":
                     IDCardData = new IDCardData { Name = "张林", IDCardNo = "320823198102244241" };
                     //IDCardData = new IDCardData { Name = "施丽华", IDCardNo = "320524197706045222" };
+                    //IDCardData = new IDCardData { Name = "陈东鸣", IDCardNo = "320504198411091255" };
                     Content = new SZArchivePage(IDCardData);
                     Pages();
                     break;
