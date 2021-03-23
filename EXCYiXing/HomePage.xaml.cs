@@ -72,8 +72,8 @@ namespace EXCYiXing
             {
                 case "YiXingPerson":
                 case "YiXingBanch":
-                    Content = new IDCardPage();
-                    //Content = new Report(new IDCardData() { Name = "沈华兵", IDCardNo = "342423198910188616" });
+                 //   Content = new IDCardPage();
+                    Content = new Report(new IDCardData() { Name = "沈华兵", IDCardNo = "342423198910188616" });
                     //Content = new Report(new IDCardData() { Name = "钱丽丽", IDCardNo = "320223198002115220" });
                     //Content = new Report(new IDCardData() { Name = "吴国中", IDCardNo = "320223196402215416" });
                     break;

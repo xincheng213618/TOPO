@@ -343,7 +343,10 @@ namespace EXCYiXing
             }
         }
 
-
+        private void Textfangchan_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Time.Countdown = 59;
+        }
     }
 }
 
