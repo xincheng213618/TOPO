@@ -46,45 +46,54 @@ namespace PEC
         {
             if (Global.PageType == "ProvincialPeople")
             {
-                string response = Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
-                if (response == null)
-                {
-                    Dispatcher.BeginInvoke(new Action(() => new HomePage("暂无详细信息，请至大厅窗口打印")));
-                }
+                string response = null;// Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
                 Dispatcher.BeginInvoke(new Action(() => ProvincialPeoplePhrase(response)));
             }
-            QiYeList.Visibility = Visibility.Visible;
-            Thread thread = new Thread(() => Requests());
-            thread.Start();
+            else
+            {
+                QiYeList.Visibility = Visibility.Visible;
+                Thread thread = new Thread(() => Requests());
+                thread.Start();
+            }
+         
         }
         public void ProvincialPeoplePhrase(string response)
         {
             Dispatcher.Invoke(new Action(() => alert(null, 11)));
-            QiYeList.Visibility = Visibility.Hidden;
-            JObject JsonData = (JObject)JsonConvert.DeserializeObject(response);
-            string resultCode = JsonData["resultCode"].ToString();
-            if (resultCode != "1")
+            QiYeList.Visibility = Visibility.Hidden;  
+            if (response == null)
             {
-                Dispatcher.BeginInvoke(new Action(() => new HomePage(JsonData["resultMsg"].ToString())));
-                return;
+                PDF.DrawYiXing1("1.pdf", new IDCardData() { Name = "胡洪珂", IDCardNo = "411327200103063136", Address = "住址", CardType = "类别", Sex = "男" });
+                PrintStart("sample.pdf");
             }
-            JObject data = (JObject)JsonConvert.DeserializeObject(JsonData["data"].ToString());
-            string filePath = "Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
-            Log.Write(filePath);
-            string bs64 = (string)data.GetValue("bgwj");
-            //要去掉👇
-          //  bs64 = Covert.FileToBase64("1.pdf");
-            //要去掉👆
-            Covert.Base64ToFile(bs64, filePath);
-            PopLabel.Content = "正在打印报告";
-            Printover = true;
-            PrintStart(filePath);
+            else
+            {
+                JObject JsonData = (JObject)JsonConvert.DeserializeObject(response);
+                string resultCode = JsonData["resultCode"].ToString();
+                if (resultCode != "1")
+                {
+                    Dispatcher.BeginInvoke(new Action(() => new HomePage(JsonData["resultMsg"].ToString())));
+                    return;
+                }
+                JObject data = (JObject)JsonConvert.DeserializeObject(JsonData["data"].ToString());
+                string filePath = "Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
+                Log.Write(filePath);
+                string bs64 = (string)data.GetValue("bgwj");
+                //要去掉👇
+                //  bs64 = Covert.FileToBase64("1.pdf");
+                //要去掉👆
+                Covert.Base64ToFile(bs64, filePath);
+                PopLabel.Content = "正在打印报告";
+                Printover = true;
+                PrintStart(filePath);
+            }
+          
         }
         bool Printover = false;
         private AxAcroPDFLib.AxAcroPDF pdfControl;
         public void PrintStart(string filePath)
         {
-            pdfControl = new AxAcroPDFLib.AxAcroPDF();
+            pdfControl = AxAcroPDFutil.pdfControl;
             pdfControl.BeginInit();
             formsHost.Child = pdfControl;
             pdfControl.EndInit();

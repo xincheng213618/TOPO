@@ -46,35 +46,48 @@ namespace PEC
         {
             POP.Visibility = Visibility.Hidden;
         }
-          PrintServer m_PrintServer = new PrintServer();
+        PrintServer m_PrintServer = new PrintServer();
         private void PageChange_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            switch (button.Tag)
+            PrintFunction printFunction = new PrintFunction();
+            bool b=printFunction.IsOfforNo();
+            if (b)
             {
-                case "Provincial":
-                    Global.PageType = "Provincial";
-                    Content = new LoginPage();
-                    Pages();
-                    break;
-                case "ProvincialLYG"://连云港要求替换省信用部分代码
-                    Global.PageType = "ProvincialLYG";
-                    Content = new HomePage((string)button.Tag);
-                    Pages();
-                    break;
-                case "QRCode":
-                    Global.PageType = "QRCode";
-                    Content = new QRCode();
-                    Pages();
-                    break;
-                case "ProvincialPeople"://省信用
-                                        //IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
-                                        //Content = new ReportPage(iDCardData, @"E:\仓库\PEC\bin\Debug\1.pdf");
-                    Content = new HomePage("个人信用暂不开放");
-                    Pages();
-                    break;
-            }
+                Button button = sender as Button;
+                switch (button.Tag)
+                {
+                    case "Provincial":
+                        Global.PageType = "Provincial";
+                        Content = new LoginPage();
+                        Pages();
+                        break;
+                    case "ProvincialLYG"://连云港要求替换省信用部分代码
+                        Global.PageType = "ProvincialLYG";
+                        Content = new HomePage((string)button.Tag);
+                        Pages();
+                        break;
+                    case "QRCode":
+                        Global.PageType = "QRCode";
+                        Content = new QRCode();
+                        Pages();
+                        break;
+                    case "ProvincialPeople"://省信用
+                        Global.PageType = "ProvincialPeople";
 
+                        IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
+                        Content = new ReportPage(iDCardData, @"E:\仓库\PEC\bin\Debug\1.pdf");
+
+                        Pages();
+                        break;
+                }
+
+            }
+            else
+            {
+                Content = new HomePage("对列中有正在打印的任务或者打印机脱机，请推出软件后检查打印机后再试");
+                  Pages();
+            }
+           
             //PrintQueue queues = null;
             //foreach (PrintQueue queue in m_PrintServer.GetPrintQueues())
             //{
