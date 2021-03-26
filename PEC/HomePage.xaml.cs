@@ -49,7 +49,7 @@ namespace PEC
         PrintServer m_PrintServer = new PrintServer();
         private void PageChange_Click(object sender, RoutedEventArgs e)
         {
-            PrintFunction printFunction = new PrintFunction();
+            PrintUtil printFunction = new PrintUtil();
             bool b=printFunction.IsOfforNo();
             if (b)
             {

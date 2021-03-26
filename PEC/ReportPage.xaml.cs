@@ -64,7 +64,7 @@ namespace PEC
             if (response == null)
             {
                 PDF.DrawYiXing1("1.pdf", new IDCardData() { Name = "胡洪珂", IDCardNo = "411327200103063136", Address = "住址", CardType = "类别", Sex = "男" });
-                PrintStart("sample.pdf");
+               // PrintStart("sample.pdf");
             }
             else
             {

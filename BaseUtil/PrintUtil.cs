@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BaseUtil
 {
-    public class PrintFunction
+    public class PrintUtil
     {
-        public static PrintServer m_PrintServer = new PrintServer();
-        public PrintServer _PrintServer = new PrintServer();
+          static PrintServer m_PrintServer = new PrintServer();
+          PrintServer _PrintServer = new PrintServer();
 
         /// <summary>
         /// 所有打印机必须满足条件
