@@ -18,15 +18,15 @@
             <Border x:Name="PassWordBorder" Background="White" Margin="50" CornerRadius="50" >
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="155*"/>
-                        <RowDefinition Height="76*"/>
-                        <RowDefinition Height="467*"/>
+                        <RowDefinition Height="123*"/>
+                        <RowDefinition Height="74*"/>
+                        <RowDefinition Height="501*"/>
                     </Grid.RowDefinitions>
-                    <Label x:Name="TitleLabel" Content="印制号回传接口解析错误,请联系管理员处理证书" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="黑体" FontWeight="Bold" FontSize="60" Height="79" Margin="247,38,247,38.333" Width="1326"/>
+                    <Label x:Name="TitleLabel" Content="印制号回传接口解析错误,请联系管理员处理证书" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="黑体" FontWeight="Bold" FontSize="50" Height="67" Margin="357,28,357,28.333" Width="1106" />
 
-                    <PasswordBox x:Name="PassWord" Grid.Row="1" VerticalAlignment="Center" Password="" InputMethod.IsInputMethodEnabled="True" KeyDown="PassWord_KeyDown" FontSize="40" MaxLength="40" BorderThickness="10" Height="71" Margin="610,2.667,610,2.333"/>
+                    <PasswordBox x:Name="PassWord" VerticalAlignment="Center" Password="" InputMethod.IsInputMethodEnabled="True" KeyDown="PassWord_KeyDown" FontSize="40" MaxLength="40" BorderThickness="10" Height="71" Margin="610,123,610,3.333" Grid.RowSpan="2"/>
 
-                    <Border  Grid.Row="2"  Background="#3668d3" BorderBrush="#c5c5c5" BorderThickness="1" Height="70" Width="300" VerticalAlignment="Top" Margin="30" CornerRadius="10" Visibility="Visible" >
+                    <Border  Grid.Row="2"  Background="#3668d3" BorderBrush="#c5c5c5" BorderThickness="1" Height="70" VerticalAlignment="Top" Margin="760,29.667,760,0" CornerRadius="10" Visibility="Visible" >
                         <Button  x:Name="FunctionButton" Style="{StaticResource  hiddenButton}"   Click="Button_Click" Tag="Login"  >
                             <Label  x:Name="ButtonLabel" Style="{StaticResource Label_Centered_30}" Foreground="White" Content="管理员登录"/>
                         </Button>

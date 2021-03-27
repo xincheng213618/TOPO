@@ -40,8 +40,6 @@ namespace PEC
         }
         private void OtherIDcardShow()
         {
-            ReturnButton.Visibility = Visibility.Hidden;//此时拒绝返回操作
-            IDcardPicture.Visibility = Visibility.Hidden;
             IDcard_info.Visibility = Visibility.Visible;
             idcardData.Name = idcardData.Name.Trim();
             idcardData.IDCardNo = idcardData.IDCardNo.Trim();

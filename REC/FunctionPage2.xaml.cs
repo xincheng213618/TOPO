@@ -56,7 +56,7 @@ namespace REC
                     AcrobatHelper.pdfControl.LoadFile(PDFpath);
                     AcrobatHelper.pdfControl.setShowScrollbars(false);
                     AcrobatHelper.pdfControl.setShowToolbar(false);
-
+                    AcrobatHelper.pdfControl.gotoNextPage();
 
                 }
                 else

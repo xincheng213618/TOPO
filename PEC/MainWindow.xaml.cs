@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -37,13 +38,6 @@ namespace PEC
         private PECDate data = new PECDate();
         private void Window_Initialized(object sender, EventArgs e)
         {
-            //frame.LoadCompleted += new LoadCompletedEventHandler((object o, NavigationEventArgs na) =>
-            //{
-            //    DoubleAnimation  d= Global.DoubleAnimationList(false);
-            //    frame.BeginAnimation(Frame.OpacityProperty, d);
-            //});
-
-
             DataContext = Global.Config;
             timeLabel.DataContext = data;
             Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new HomePage())));
@@ -57,14 +51,10 @@ namespace PEC
 
         private void Setting_Click(object sender, MouseButtonEventArgs e)
         {
-            //  frame.Navigate( new settingPage());
             Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new settingPage())));
         }
 
     }
-
-    /// <summary>
-    /// 
     /// </summary>
     public class TimeCount : INotifyPropertyChanged
     {

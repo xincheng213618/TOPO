@@ -183,7 +183,7 @@ namespace REC
             Document document = new Document(size);
             Stream stream = new FileStream(FilePath, FileMode.Create);
             PdfWriter pdfWriter = PdfWriter.GetInstance(document, stream);
-            PdfImportedPage pdfImportedPage;
+            PdfImportedPage pdfImportedPage;   
 
             document.Open();
             PdfContentByte pdfContentByte = pdfWriter.DirectContent;

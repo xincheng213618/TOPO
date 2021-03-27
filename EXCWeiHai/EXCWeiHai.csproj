@@ -329,21 +329,6 @@
     <Resource Include="Images\zhuye.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="zhuye.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="主页 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="箭头 %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="箭头 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="打印.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Base\Media\00.camera-shutter-click.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

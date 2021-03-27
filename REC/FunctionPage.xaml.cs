@@ -61,7 +61,6 @@ namespace REC
                     Pages();
                     break;
                 case "Commission":
-                    //Content = new HomePage("委托查询");
                     Content = new QRCode(iDCardData);
                     Pages();
                     break;

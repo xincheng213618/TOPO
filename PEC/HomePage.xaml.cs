@@ -70,63 +70,19 @@ namespace PEC
                 case "ProvincialPeople"://省信用
                                         //IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
                                         //Content = new ReportPage(iDCardData, @"E:\仓库\PEC\bin\Debug\1.pdf");
-                    Content = new HomePage("个人信用暂不开放");
+                                        //Content = new HomePage("个人信用暂不开放");
+                    Content = new IDCardPage();
                     Pages();
                     break;
             }
 
-            //PrintQueue queues = null;
-            //foreach (PrintQueue queue in m_PrintServer.GetPrintQueues())
-            //{
-            //    if ((queue.Name.ToString() == "NPIC20576 (HP LaserJet M506)"))
-            //    {
-            //        queues = queue;
-            //        //Console.WriteLine("正在打印：" + queue.IsPrinting);//卡纸
-            //        //Console.WriteLine("卡纸：" + queue.IsPaperJammed);//卡纸
-            //        //Console.WriteLine("墨粉：" + queue.IsTonerLow);//墨粉
-            //        //Console.WriteLine("队列：" + queue.NumberOfJobs);//墨粉
-            //        //Console.WriteLine("脱机：" + queue.IsOffline);//脱机
-            //    }
-
-            //}
-            //if (queues.IsOffline==false&& queues.NumberOfJobs<1)
-            //{
-            //    Button button = sender as Button;
-            //    switch (button.Tag)
-            //    {
-            //        case "Provincial":
-            //            Global.PageType = "Provincial";
-            //            Content = new LoginPage();
-            //            Pages();
-            //            break;
-            //        case "ProvincialLYG"://连云港要求替换省信用部分代码
-            //            Global.PageType = "ProvincialLYG";
-            //            Content = new HomePage((string)button.Tag);
-            //            Pages();
-            //            break;
-            //        case "QRCode":
-            //            Global.PageType = "QRCode";
-            //            Content = new QRCode();
-            //            Pages();
-            //            break;
-            //        case "ProvincialPeople"://省信用
-            //                                //IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
-            //                                //Content = new ReportPage(iDCardData, @"E:\仓库\PEC\bin\Debug\1.pdf");
-            //            Content = new HomePage("个人信用暂不开放");
-            //            Pages();
-            //            break;
-            //    }
-            //}
-            //else
-            //{
-            //    Content = new HomePage("对列中有正在打印的任务："+ queues.NumberOfJobs+"个，打印机是否脱机："+ (queues.IsOffline==true?"是":"否")+"。请检查打印机后再试");
-            //    Pages();
-            //}
         }
         private void Pages()
         {
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
+
+
         private void Countdown_timer()
         {
             this.DataContext = this;

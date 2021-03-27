@@ -93,9 +93,10 @@ namespace Startup
                 await Task.Delay(100);
 
                 bool b = startupGlobal.CameraTest && AmLivingBodyApi.AmOpenDevice() == 0;
-                //打开摄像头要关掉
-                if (b)
-                    AmLivingBodyApi.AmCloseDevice();
+
+                ////打开摄像头要关掉
+                //if (b)
+                //    AmLivingBodyApi.AmCloseDevice();
 
                 CameraCode.Source = b ? RightCode.Source : ErrorCode.Source;
                 try

@@ -29,10 +29,10 @@ namespace REC
         private void Page_Initialized(object sender, EventArgs e)
         {
             m_iPort = IDcard.IDcardSet();
-
             TopGrid.DataContext = timeCount;
             Countdown();
         }
+
         //逻辑修正
         private void Countdown()
         {
@@ -73,9 +73,8 @@ namespace REC
                 }
             });
         }
-        /// <summary>
-        /// 读卡
-        /// </summary>
+
+
         private void IDcard_reader()
         {
             read_success = IDcard.IDcardRead(m_iPort, ref idcardData);
@@ -83,9 +82,6 @@ namespace REC
             if (read_success == 1 || read_success == 0)
             {
                 Media.Player(15);//读取成功
-
-                //Function.IDCardDataToImage(idcardData);
-
                 idcardData.Name = idcardData.Name.Trim();
                 idcardData.IDCardNo = idcardData.IDCardNo.Trim();
                 name.Content = "*" + idcardData.Name.Substring(1);
@@ -97,9 +93,8 @@ namespace REC
                 validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
             }
         }
-        /// <summary>
-        /// 跳转
-        /// </summary>
+
+
         private void SwitchPage()
         {
             switch (Global.PageType)//可以在这里进行定义判定这里可以直接跳转
