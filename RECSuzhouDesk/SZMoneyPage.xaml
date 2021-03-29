@@ -1,0 +1,64 @@
+﻿<Page x:Class="RECSuzhou.SZMoneyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RECSuzhou"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="SZMoneyPage" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="869*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Border  Grid.Row="1" Margin="100,20,100,150" Opacity="0.9">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource  hiddenButton}" Margin="100"  Click="PageButton_Click" Tag="SZHQProgress" >
+                    <Image Source="Images/progress.png"></Image>
+                </Button>
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="100" Click="PageButton_Click" Tag="SZHQMoney" >
+                    <Image Source="Images/money.png"></Image>
+                </Button>
+
+            </Grid>
+        </Border>
+
+
+
+        
+        
+        <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click"  Margin="20">
+                    <Image Source="Images/return.png" Stretch="Uniform"/>
+                </Button>
+
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"/>
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="16"  Click="Home_Click" >
+                    <Image Source="Images/home.png"></Image>
+                </Button>
+                <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
+                    <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
+                </Label>
+
+            </Grid>
+
+
+        </Grid>
+
+
+    </Grid>
+</Page>
