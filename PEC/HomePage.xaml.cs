@@ -140,6 +140,8 @@ namespace PEC
         {
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
+
+
         private void Countdown_timer()
         {
             this.DataContext = this;

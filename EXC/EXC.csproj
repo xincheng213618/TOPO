@@ -367,7 +367,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="PrintReport_1.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -382,7 +381,6 @@
     <None Include="Connected Services\QingDao1\FRReportToBase64.wsdl" />
     <None Include="Connected Services\XinTaiWebServices\Creditreport.wsdl" />
     <None Include="packages.config" />
-    <None Include="PrintReport_0.rdlc" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

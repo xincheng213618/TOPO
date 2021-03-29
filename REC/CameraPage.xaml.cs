@@ -13,7 +13,6 @@ namespace REC
     /// </summary>
     public partial class CameraPage : Page
     {
-        int ret;
         private static bool ShootSucess = false;
         private static double b, c;
         IDCardData iDCardData = new IDCardData();
@@ -34,32 +33,21 @@ namespace REC
             formhost.Height = 675;
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
-            ret = AmLivingBodyApi.AmOpenDevice();
+            AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 20000);
+
             TopGrid.DataContext = timeCount;
             Countdown();
         }
 
-        // 人脸识别调用核心代码
-        private void CapturePhoto()
-        {
-            int ret;
-            string Paths = Directory.GetCurrentDirectory() + $"\\capture.jpg";
-            ret = AmLivingBodyApi.AmCaptureImage(Paths, 3000);
-        }
 
         AmLivingBodyApi.AmCaptureImageProc capture_image_callback = new AmLivingBodyApi.AmCaptureImageProc(OnCaptureImage);
         private unsafe static void OnCaptureImage(int code, string image, IntPtr data)
         {
-            ShootSucess = code == 0 ? true : false;
-            if (ShootSucess)
-                Media.Player(0);
+            ShootSucess = code == 0;
         }
 
 
-
-        //对比逻辑
         private int tryCount = 0;
-
         string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
         string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
 
@@ -70,28 +58,21 @@ namespace REC
                 b = AmLivingBodyApi.AmVerify(iDCardData.PhotoFileName, paths);
                 c = AmLivingBodyApi.AmVerify(iDCardData.PhotoFileName, paths_black);
 
-
                 ShootSucess = false;
 
                 if (b > 0.7 && c > 0.7)
                 {
                     Requests.Camer_Upload(iDCardData.IDCardNo, iDCardData.Name, b.ToString(), paths, iDCardData.PhotoFileName);
-
                     SwitchPage();
                 }
                 else if (b < 0)
                 {
-                    string msg = "";
-                    try
-                    {
-                        msg = (string)AmLivingBodyApi.Ecode[(int)b];
-                    }
-                    catch { }
-                    Content = new HomePage("摄像头报错："+ Environment.NewLine + b+Environment.NewLine + msg);
+                    Content = new HomePage("摄像头报错："+ Environment.NewLine + b+Environment.NewLine + b.ToString());
                     Pages();
                 }
                 else
                 {
+                    AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 20000);
                     tryCount += 1;
                 }
 
@@ -116,27 +97,21 @@ namespace REC
             pageTimer = new DispatcherTimer() { IsEnabled = true, Interval = TimeSpan.FromSeconds(1), };
             pageTimer.Tick += new EventHandler((sender, e) =>
             {
-                if (ret == 0)
+                if (--timeCount.Countdown >= 0)
                 {
-                    if (--timeCount.Countdown >= 0)
-                    {
 
-                        if (ShootSucess)
-                            Comparison();
-                        else
-                            CapturePhoto();
-                        if (timeCount.Countdown % 8 == 3)
-                            Media.Play("Base\\Media\\请抬头直视摄像头.mp3");
-                    }
-                    else
+                    if (ShootSucess)
                     {
-                        Content = new HomePage("超时自动返回");
-                        Pages();
+                        Media.Player(0);
+                        Comparison();
                     }
+
+                    if (timeCount.Countdown % 8 == 3)
+                        Media.Play("Base\\Media\\请抬头直视摄像头.mp3");
                 }
                 else
                 {
-                    Content = new HomePage("摄像头打开错误: " + AmLivingBodyApi.Ecode[ret]);
+                    Content = new HomePage("超时自动返回");
                     Pages();
                 }
 
@@ -146,7 +121,6 @@ namespace REC
 
         private void Pages()
         {
-            //CSQLite.Insert.WriteIDCardData(idcardData, paths, paths_black, b); //持久化保存比对信息，不做处理
             File.Delete(paths);
             File.Delete(paths_black);
             IDcard.DeleteIDcardImages(iDCardData);
@@ -155,22 +129,14 @@ namespace REC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
-            AmLivingBodyApi.AmCloseDevice();
         }
         private void SwitchPage()
         {
             switch (Global.PageType)
             {
-                case "Self":
-                    //CSQLite.Insert.WriteIDCardData(idcardData);
-                    Content = new FunctionPage(iDCardData);
-                    //Content = new QRCode(iDCardData);
-                    Pages();
-                    break;
                 default:
-                    Content = new HomePage("请重启系统，参数错误");
+                    Content = new FunctionPage(iDCardData);
                     Pages();
-
                     break;
             }
         }

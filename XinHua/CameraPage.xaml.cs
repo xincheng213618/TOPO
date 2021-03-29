@@ -13,7 +13,6 @@ namespace XinHua
     /// </summary>
     public partial class CameraPage : Page
     {
-        int ret=0;
         private static bool ShootSucess = false;
         private static double b, c;
         private IDCardData idcardData;
@@ -25,22 +24,11 @@ namespace XinHua
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            int ret;
-            formhost.Width = 900;
-            formhost.Height = 675;
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
-            ret = AmLivingBodyApi.AmOpenDevice();
-
+            AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
             DataContext = Time;
             Countdown_timer();
-        }
-        // 人脸识别调用核心代码
-        private void CapturePhoto()
-        {
-            int ret;
-            string Paths = Directory.GetCurrentDirectory() + $"\\capture.jpg";
-            ret = AmLivingBodyApi.AmCaptureImage(Paths, 3000);
         }
 
         AmLivingBodyApi.AmCaptureImageProc capture_image_callback = new AmLivingBodyApi.AmCaptureImageProc(OnCaptureImage);
@@ -113,28 +101,21 @@ namespace XinHua
             };
             pageTimer.Tick += ((sender,e)=>
             {
-                if (ret == 0)
+                if (--Time.Countdown >= 0)
                 {
-                    if (--Time.Countdown >= 0)
-                    {
 
-                        if (ShootSucess)
-                            Comparison();
-                        else
-                            CapturePhoto();
-
-                        if (Time.Countdown % 10 == 0)
-                            Media.Player(4);
-                    }
-                    else
+                    if (ShootSucess)
                     {
-                        Content = new HomePage("超时自动返回");
-                        Pages();
+                        Media.Player(0);
                     }
+                    Comparison();
+
+                    if (Time.Countdown % 10 == 0)
+                        Media.Player(4);
                 }
                 else
                 {
-                    Content = new HomePage("摄像头打开错误: " + AmLivingBodyApi.Ecode[ret]);
+                    Content = new HomePage("超时自动返回");
                     Pages();
                 }
             }
@@ -155,7 +136,6 @@ namespace XinHua
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
-            AmLivingBodyApi.AmCloseDevice();
         }
     }
 }

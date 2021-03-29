@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 using BaseDLL;
 using BaseUtil;
@@ -102,12 +103,16 @@ namespace REC
             while (bIsLoop);
         }
 
+        private BrushConverter Use1 = new BrushConverter();
 
         private void ShowMsg()
         {
             timeCount.Countdown = 20;
             ShowText.Text = Msg.TrimEnd('\0');//有趣的地方
             FunctionButton.Tag = "Search";
+            FunctionBorder.Background = (Brush)Use1.ConvertFrom("#60d0ff");
+            FunctionBorder.BorderBrush = Brushes.HotPink;
+
             ButtonLabel.Content = "查    询";
             Sucess = true;
         }

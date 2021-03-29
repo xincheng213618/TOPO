@@ -69,7 +69,7 @@ namespace REC
             }
             else
             {
-                await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("上证失败，请联系管理员")));
+                await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("上证失败，请联系C13号窗口工作人员")));
             }
         }
         private async void RealEstate_Dev_devMsg(int Code, string data)
@@ -227,7 +227,7 @@ namespace REC
             else
             {
                 //ESerialPort.Run2(); //这里要求 异常时提示卡证,由工作人员进行处理.
-                Dispatcher.BeginInvoke(new Action(() => ErrorMsg("打印异常，请联系工作人员")));
+                Dispatcher.BeginInvoke(new Action(() => ErrorMsg("印制号识别失败，请联系C13号窗口工作人员")));
             }
         }
         private void RequestOCR()
@@ -253,13 +253,13 @@ namespace REC
                     {
                         Log.Write("印制号回填失败:"+ Environment.NewLine + (string)RECResponse.GetValue("data"));
                         JObject GTresponse = (JObject)JsonConvert.DeserializeObject((string)RECResponse.GetValue("data"));
-                        Content = new ErrorPage((string)GTresponse.GetValue("msg"));
+                        Content = new ErrorPage("请联系C13号窗口工作人员:"+(string)GTresponse.GetValue("msg"));
                         Pages();
                     }
                 }
                 catch
                 {
-                    Content = new ErrorPage("印制号回传接口解析错误,请联系管理员处理证书");
+                    Content = new ErrorPage("印制号回传接口解析错误,请联系C13号窗口工作人员");
                     Pages();
 
 
@@ -267,7 +267,7 @@ namespace REC
             }
             else
             {
-                Content = new ErrorPage("印制号回传接口连接错误，请联系管理员处理证书");
+                Content = new ErrorPage("印制号回传接口连接错误，请联系C13号窗口工作人员");
                 Pages();
             }
         }

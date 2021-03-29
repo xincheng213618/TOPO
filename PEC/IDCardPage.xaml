@@ -31,14 +31,6 @@
                         <ColumnDefinition Width="8*"/>
                     </Grid.ColumnDefinitions>
                     <!--定时器-->
-                    <ProgressBar  HorizontalAlignment="Left" Width="60" Height="60" Value="{Binding Countdown, Mode=OneWay}"  Visibility="Visible" >
-                        <ProgressBar.Template>
-                            <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                <Border Background="{TemplateBinding Value, ConverterParameter=90, Converter={StaticResource ValueToProcessConverter}}"/>
-                            </ControlTemplate>
-                        </ProgressBar.Template>
-                    </ProgressBar>
-
 
                     <Label x:Name="IDcardContent" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Foreground="#ec1365" Content="请放入身份证"   />
                     <Button Grid.Column="5"   Click="Home_Click" Background="#3269ba" BorderBrush="#f5f6f7" BorderThickness="3,0,0,0" Visibility="Hidden">
@@ -51,11 +43,8 @@
                 </Grid>
             </Border>
 
-            <Border  x:Name="IDcardPicture" Background="White" Grid.Row="1" Grid.RowSpan="2" Margin="200,100">
-            </Border>
-            <Label Content="请将二代身份证放置在下方识别区" HorizontalContentAlignment="Center" Foreground="#ec1365" VerticalContentAlignment="Center" FontSize="20"  Margin="-1,103,1,590" Grid.Row="1" Grid.RowSpan="2"/>
 
-            <Grid x:Name="IDcard_info"  Grid.Row="1" Background="Transparent" Visibility="Hidden" Grid.RowSpan="2">
+            <Grid x:Name="IDcard_info"  Grid.Row="1" Background="White" Visibility="Visible" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="97*" />
                     <RowDefinition Height="500*" />
@@ -104,26 +93,7 @@
                     <Label x:Name="Singed" Grid.Row="9" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="20" Foreground="#f07106" Content="请查看身份证信息是否有误，即将进行下一步操作！" />
                 </Grid>
             </Grid>
-            <Border CornerRadius="0,0,20,0"   Margin="715,337,240,159" Grid.Row="2" BorderBrush="Black"   BorderThickness="0,0,5,5"/>
 
-
-            <Border CornerRadius="20,0,0,0"   Margin="240,92,710,409" Grid.Row="2" BorderBrush="Black"   BorderThickness="5,5,0,0"/>
-            <Border CornerRadius="20,20,20,20"   Margin="310,132,300,214" Grid.Row="2" BorderBrush="#ec1365"   BorderThickness="3,3,3,3"/>
-
-
-            <Border CornerRadius="0,20,0,0"   Margin="709,92,240,409" Grid.Row="2" BorderBrush="Black"   BorderThickness="0,5,5,0"/>
-            <Border CornerRadius="0,0,0,20"   Margin="240,337,709,164" Grid.Row="2" BorderBrush="Black"   BorderThickness="5,0,0,5"/>
-            <Border CornerRadius="80"   Width="80" Height="80" Grid.Row="2" BorderBrush="#ec1365"   BorderThickness="3" Margin="830,226,370,380"/>
-            <Border CornerRadius="80" Grid.Row="2"   BorderThickness="3" Margin="800,304,335,220">
-                <Border.BorderBrush>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Red" Offset="0.496"/>
-                        <GradientStop Color="White" Offset="0.524"/>
-                    </LinearGradientBrush>
-                </Border.BorderBrush>
-            </Border>
-            <Label BorderBrush="#ec1365" BorderThickness="0,3,0,3" Margin="345,237,705,374" Grid.Row="2"/>
-            <Label BorderBrush="#ec1365" BorderThickness="0,3,0,3" Margin="345,272,740,339" Grid.Row="2"/>
 
         </Grid>
     </Grid>

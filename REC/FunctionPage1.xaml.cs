@@ -122,7 +122,7 @@ namespace REC
                             }
                             if (RECListViewItem.Count == 0)
                             {
-                                Content = new HomePage("查询到已经被过滤到的信息，请联系工作人员进行处理");
+                                Content = new HomePage("查询到已经被过滤到的信息，请联系C13号窗口工作人员");
                                 Pages();
                             }
 
@@ -130,13 +130,13 @@ namespace REC
                         }
                         else
                         {
-                            Content = new HomePage("查询接口异常，请联系工作人员");
+                            Content = new HomePage("查询接口异常，请联系C13号窗口工作人员");
                             Pages();
                         }
                     }
                     else
                     {
-                        Content = new HomePage("查询接口异常，请联系工作人员");
+                        Content = new HomePage("查询接口异常，请联系C13号窗口工作人员");
                         Pages();
                     }
                 }
@@ -149,7 +149,7 @@ namespace REC
             }
             else
             {
-                Content = new HomePage("查询接口异常，请联系工作人员");
+                Content = new HomePage("查询接口异常，请联系C13号窗口工作人员");
                 Pages();
             }
         }

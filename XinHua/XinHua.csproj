@@ -344,9 +344,7 @@
   <ItemGroup>
     <Resource Include="Images\TaxA3.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BackGround\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Base\Media\00.camera-shutter-click.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

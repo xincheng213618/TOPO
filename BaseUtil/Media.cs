@@ -16,14 +16,21 @@ namespace BaseUtil
 
         public static bool Player(int listnum = 0)
         {
-            if (MediaList.Length > listnum)
+            try
             {
-                string path = MediaList[listnum];
-                mediaPlayer.Open(new Uri(path, UriKind.RelativeOrAbsolute));
-                mediaPlayer.Position = TimeSpan.Zero;
-                mediaPlayer.Play();
+                if (MediaList.Length > listnum)
+                {
+                    string path = MediaList[listnum];
+                    mediaPlayer.Open(new Uri(path, UriKind.RelativeOrAbsolute));
+                    mediaPlayer.Position = TimeSpan.Zero;
+                    mediaPlayer.Play();
+                }
+                return MediaList.Length > listnum;
             }
-            return MediaList.Length > listnum;
+            catch
+            {
+                return false;
+            }
         }
 
         public static void Play(string path)

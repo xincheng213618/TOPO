@@ -83,7 +83,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CameraPage.xaml.cs" />
+    <Compile Include="CameraPage.xaml.cs">
+      <DependentUpon>CameraPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Http.cs" />
     <Compile Include="IDCardPage.xaml.cs">
@@ -109,8 +111,8 @@
       <DependentUpon>settingPage.xaml</DependentUpon>
     </Compile>
     <Page Include="CameraPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Dictionary.xaml">
       <Generator>MSBuild:Compile</Generator>

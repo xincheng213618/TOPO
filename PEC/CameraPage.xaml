@@ -31,19 +31,6 @@
                             <ColumnDefinition Width="8*"/>
                             <ColumnDefinition Width="8*"/>
                         </Grid.ColumnDefinitions>
-
-                        <!--定时器-->
-                        <ProgressBar HorizontalAlignment="Left" Width="60" Height="60" Value="{Binding Countdown, Mode=OneWay}"   Visibility="Visible"  >
-                            <ProgressBar.Template>
-                                <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                    <Border Background="{TemplateBinding Value, ConverterParameter=90, Converter={StaticResource ValueToProcessConverter}}"/>
-                                </ControlTemplate>
-                            </ProgressBar.Template>
-                        </ProgressBar>
-
-                        <!--<Button Grid.Column="0" Margin="1068,0,68,0" Template="{StaticResource imageButtonTemplate}" Click="Return_Click" >
-                            <Image Stretch="None" Source="Images/return.png" />
-                        </Button>-->
                         <Button x:Name="CameraButton" Grid.Column="4" Style="{StaticResource hiddenButton}" Background="#f5f6f7" BorderBrush="#f5f6f7" BorderThickness="3,0,0,0" Visibility="Hidden" Click="Return_Click">
                           
                         </Button>
