@@ -5,26 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1280"
+      d:DesignHeight="768" d:DesignWidth="1024"
       Title="NoHomePages" Initialized="Page_Initialized" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" /> 
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="1" Margin="100,20,100,150" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
-        <Grid Grid.Row="1" Margin="100,20,100,150">
+        <Border Grid.Row="1" Margin="80,20,80,80" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
+        <Grid Grid.Row="1" Margin="80,20,80,80">
             <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderBrush="White" BorderThickness="0,0,0,7">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="2" Opacity="0.3"></DropShadowEffect>
                 </Border.Effect>
-                <Label x:Name="TotalLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="各区房屋查询结果" Foreground="#ffb72c" FontSize="45" FontWeight="Bold" />
+                <Label x:Name="TotalLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="各区房屋查询结果" Foreground="#ffb72c" FontSize="35" FontWeight="Bold" />
             </Border>
 
 
@@ -61,31 +61,31 @@
                 <Label x:Name="resLabel8" Grid.Row="1" Grid.Column="3" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
                 <Label x:Name="resLabel9" Grid.Row="1" Grid.Column="4" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
             </Grid>
-            <Border x:Name="PrintButton" Grid.Row="2"  Width="500" Height="80" Background="#00a2e9" BorderThickness="0" CornerRadius="20" >
+            <Border x:Name="PrintButton" Grid.Row="2"  Width="400" Height="60" Background="#00a2e9" BorderThickness="0" CornerRadius="20" >
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="3" Opacity="0.3"></DropShadowEffect>
                 </Border.Effect>
                 <Button Style="{StaticResource  hiddenButton}"   Click="Print_Click" >
-                    <Label x:Name="FunctionLabel" Style="{StaticResource Label_Centered_30}" Foreground="White" Content="打印无房证明" FontSize="45" FontWeight="Bold"/>
+                    <Label x:Name="FunctionLabel" Style="{StaticResource Label_Centered_30}" Foreground="White" Content="打印无房证明" FontSize="35" FontWeight="Bold"/>
                 </Button>
             </Border>
         </Grid>
-        
-        <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
-            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+
+        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click"  Margin="20">
-                    <Image Source="Images/return.png" Stretch="Uniform"/>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
                 </Button>
 
-                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"/>
-                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="16"  Click="Home_Click" >
-                    <Image Source="Images/home.png"></Image>
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/home.png" Margin="5"></Image>
                 </Button>
                 <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
                     <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>

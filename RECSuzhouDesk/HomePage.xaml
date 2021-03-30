@@ -5,79 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RECSuzhou"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1280"
+      d:DesignHeight="768" d:DesignWidth="1024"
       Title="HomePage" Initialized="Page_Initialized">
-
+   
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-
-
-        <Grid x:Name="SuZhouWZAll" Grid.Row="1"  Visibility="Hidden">
-            <Border  Height="250" Width="250" Margin="120,125,910,509" >
-                <Button  Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="NoHome" >
-                    <Image Source="images/SuZhou/无房证明.png" />
-                </Button>
-            </Border>
-            <Border Height="250" Width="250" Margin="0,125,0,509"  >
-                <Button   Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="OwnerShipPages" >
-                    <Image Source="images/SuZhou/权属证明.png"/>
-                </Button>
-            </Border>
-
-            <Border  Height="250" Width="250" Margin="910,125,120,509" >
-                <Button Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="HomeCountPages" >
-                    <Image Source="images/SuZhou/房屋套数证明.png"/>
-                </Button>
-            </Border>
-
-            <Border  Height="250" Width="250" Margin="120,500,910,124" >
-                <Button Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="NoHomeChild" >
-                    <Image Source="images/SuZhou/无房证明儿童.png"/>
-                </Button>
-            </Border>
-
-            <Border  Height="250" Width="250" Margin="0,500,0,124" >
-                <Button   Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="SZMoneyPages">
-                    <Image Source="images/SuZhou/其他查询.png"/>
-                </Button>
-            </Border>
-
-            <Border  Height="250" Width="250" Margin="910,500,120,124" >
-                <Button  Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="SZWZArchivePages">
-                    <Image Source="images/SuZhou/档案查询.png"/>
-                </Button>
-            </Border>
-        </Grid>
-
-        <Grid x:Name="SuZhouGuSu" Grid.Row="1"  Visibility="Hidden">
-            <Border  Height="250" Width="250" Margin="120,125,910,509" >
-                <Button  Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="NoHome" >
-                    <Image Source="images/SuZhou/无房证明.png" />
-                </Button>
-            </Border>
-            <Border Height="250" Width="250" Margin="0,125,0,509"  >
-                <Button   Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="OwnerShipPages" >
-                    <Image Source="images/SuZhou/权属证明.png"/>
-                </Button>
-            </Border>
-            <Border  Height="250" Width="250" Margin="910,125,120,509" >
-                <Button Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="HomeCountPages" >
-                    <Image Source="images/SuZhou/房屋套数证明.png"/>
-                </Button>
-            </Border>
-            <Border  Height="250" Width="250" Margin="120,500,910,124" >
-                <Button Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="NoHomeChild" >
-                    <Image Source="images/SuZhou/无房证明儿童.png"/>
-                </Button>
-            </Border>
-
-        </Grid>
-
-        <Grid x:Name="SuZhouHQAll" Grid.Row="1"   Visibility="Visible" Margin="50,50,50,60">
+        <Grid x:Name="SuZhouHQAll" Grid.Row="1"   Visibility="Visible" Margin="30,30,30,40">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -141,4 +78,5 @@
             </Border>
         </Grid>
     </Grid>
+    
 </Page>

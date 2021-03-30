@@ -5,43 +5,48 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RECSuzhou"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1280"
+      d:DesignHeight="768" d:DesignWidth="1024"
       Title="IDcardInputPage" Initialized="Page_Initialized">
 
+    
     <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <Border Grid.Row="1" Margin="100,20,100,150" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
-        <Grid Grid.Row="1" Margin="100,20,100,150">
+      
+           
+        
+        <Border Grid.Row="1" Margin="80,20,80,80" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
+        <Grid Grid.Row="1" Margin="80,20,80,80">
             <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0"  BorderBrush="White" BorderThickness="0,0,0,7">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="3" Opacity="0.3"></DropShadowEffect>
                 </Border.Effect>
-                <Label x:Name="TotalLabel"   HorizontalAlignment="Center" VerticalAlignment="Center" Content="请输入需要查询的姓名和身份证号" Foreground="#ffb72c" FontSize="45" FontWeight="Bold"  />
+                <Label x:Name="TotalLabel"   HorizontalAlignment="Center" VerticalAlignment="Center" Content="请输入需要查询的姓名和身份证号" Foreground="#ffb72c" FontSize="35" FontWeight="Bold"  />
             </Border>
 
-            <Grid Grid.Row="1"  Margin="100,20">
+            <Grid Grid.Row="1"  Margin="80,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <DockPanel LastChildFill="True" Grid.Row="0" Margin="100,50,50,50">
-                    <Label Content="姓       名:" FontSize="40" FontWeight="Bold" VerticalAlignment="Center" Width="200"/>
+                <DockPanel LastChildFill="True" Grid.Row="0" Margin="50,50,50,0">
+                    <Label Content="姓       名:" FontSize="40" FontWeight="Bold" VerticalAlignment="Center" Width="185"/>
 
                     <TextBox Grid.Column="1" x:Name="Account" Text="" InputMethod.IsInputMethodEnabled="True" FontSize="40" BorderBrush="Transparent" VerticalAlignment="Center" BorderThickness="3" Foreground="Black" Margin="20,0,0,0">
                         <TextBox.Resources>
                             <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.6" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock Text="请输入被查询人身份证号码" Foreground="Black" FontSize="20" VerticalAlignment="Center"/>
+                                    <TextBlock Text="请输入被查询人身份证号码" Foreground="Black" FontSize="30" VerticalAlignment="Center"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>
@@ -69,14 +74,14 @@
                     </TextBox>
                 </DockPanel>
 
-                <DockPanel LastChildFill="True" Grid.Row="1" Margin="100,50,50,50">
-                    <Label Content="身份证号:" FontSize="40" FontWeight="Bold" VerticalAlignment="Center" Width="200" />
+                <DockPanel LastChildFill="True" Grid.Row="1" Margin="50,20,50,0">
+                    <Label Content="身份证号:" FontSize="40" FontWeight="Bold" VerticalAlignment="Center" Width="185" />
 
-                    <TextBox Grid.Column="1" x:Name="IDCardNoText" InputMethod.IsInputMethodEnabled="True" GotFocus="Account_GotFocus" FontSize="40"  VerticalAlignment="Center" BorderThickness="4"  Foreground="Black" TextChanged="TextChanged" Margin="20,0,0,0">
+                    <TextBox Grid.Column="1" x:Name="IDCardNoText" InputMethod.IsInputMethodEnabled="True" GotFocus="Account_GotFocus" FontSize="30"  VerticalAlignment="Center" BorderThickness="4"  Foreground="Black" TextChanged="TextChanged" Margin="20,0,0,0">
                         <TextBox.Resources>
                             <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.6" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>
-                                    <TextBlock Text="请输入被查询人身份证号码" Foreground="Black" FontSize="20" VerticalAlignment="Center"/>
+                                    <TextBlock Text="请输入被查询人身份证号码" Foreground="Black" FontSize="30" VerticalAlignment="Center"/>
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </TextBox.Resources>
@@ -109,29 +114,29 @@
                 </DockPanel>
 
             </Grid>
-            <Border  Grid.Row="2" CornerRadius="30" Background="#ff3b85" Margin="250,50" >
-                <Button Style="{StaticResource hiddenButton}" Content="点  击   查   询" FontSize="40" FontWeight="Bold" Foreground="White" Click="Search_Click"></Button>
+            <Border  Grid.Row="3" CornerRadius="20" Background="#ff3b85" Margin="250,20 ">
+                <Button Style="{StaticResource hiddenButton}" Content="点  击   查   询" FontSize="30" FontWeight="Bold" Foreground="White" Click="Search_Click"></Button>
             </Border>
-            <Label x:Name="ErrorLabel" Content="请输入正确的身份证号码" Style="{StaticResource Label_Centered_20}" Foreground="Red" FontSize="22" Visibility="Hidden" Margin="217,371,0,27" Grid.Row="1"/>
+            <Label  x:Name="ErrorLabel" Content="请输入正确的身份证号码" Style="{StaticResource Label_Centered_20}" Foreground="Red" FontSize="20" Visibility="Hidden"  HorizontalAlignment="Center" Grid.Row="2"/>
 
         </Grid>
 
 
-        <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
-            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click"  Margin="20">
-                    <Image Source="Images/return.png" Stretch="Uniform"/>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
                 </Button>
 
-                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"/>
-                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="16"  Click="Home_Click" >
-                    <Image Source="Images/home.png"></Image>
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/home.png" Margin="5"></Image>
                 </Button>
                 <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
                     <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
@@ -145,4 +150,5 @@
 
 
     </Grid>
+    
 </Page>

@@ -75,7 +75,7 @@ namespace RECSuzhou
                         for (int i = 0; i < AreaList.Count; i++)
                         {
                             string count = (string)jsons["body"][i]["count"];
-                            AreaList[i].Content = count != "0" ? jsons["body"][i]["qxmc"] + "：" + count + "套房子" : jsons["body"][i]["qxmc"] + "：" + "无房";
+                            AreaList[i].Content = count != "0" ? jsons["body"][i]["qxmc"] + "："+Environment.NewLine + count + "套房子" : jsons["body"][i]["qxmc"] + "：" + Environment.NewLine + "无房";
                             if (count != "0")
                                 have = true;
                         }

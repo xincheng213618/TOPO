@@ -5,16 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RECSuzhou"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1280"
+      d:DesignHeight="768" d:DesignWidth="1024"
       Title="SettingPage">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border Grid.Row="1" Margin="100,20,100,150" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
-        <Border Grid.Row="1" Margin="100,20,100,150" BorderBrush="Transparent">
+        <Border Grid.Row="1" Margin="80,20,80,80" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
+        <Border Grid.Row="1" Margin="80,20,80,80" BorderBrush="Transparent">
             <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
@@ -25,11 +25,11 @@
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="2" Opacity="0.3"></DropShadowEffect>
                 </Border.Effect>
-                <Label x:Name="TotalLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="设置页面" Foreground="White" FontSize="45" FontWeight="Bold" />
+                <Label x:Name="TotalLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="设置页面" Foreground="White" FontSize="40" FontWeight="Bold" />
             </Border>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="*"/>
                     
                 </Grid.ColumnDefinitions>
@@ -40,20 +40,20 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0" Background="#8278d4" CornerRadius="20" Height="130" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
-                        <Button Style="{StaticResource TransparentButtonCenter}" Content="功能" Tag="Function" Click="PageChange_Click" FontSize="55" Foreground="White"/>
+                    <Border Grid.Row="0" Background="#8278d4" CornerRadius="20" Height="100" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                        <Button Style="{StaticResource TransparentButtonCenter}" Content="功能" Tag="Function" Click="PageChange_Click" FontSize="40" Foreground="White"/>
                     </Border>
-                    <Border Grid.Row="1" Background="#8278d4" CornerRadius="20" Height="130" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
-                        <Button Style="{StaticResource TransparentButtonCenter}" Content="页面" Tag="Page" Click="PageChange_Click" FontSize="55" Foreground="White"/>
+                    <Border Grid.Row="1" Background="#8278d4" CornerRadius="20" Height="100" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                        <Button Style="{StaticResource TransparentButtonCenter}" Content="页面" Tag="Page" Click="PageChange_Click" FontSize="40" Foreground="White"/>
                     </Border>
-                    <Border Grid.Row="2" Background="#8278d4" CornerRadius="20" Height="130" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
-                        <Button Style="{StaticResource TransparentButtonCenter}" Content="测试" Tag="Test" Click="PageChange_Click" FontSize="55" Foreground="White"/>
+                    <Border Grid.Row="2" Background="#8278d4" CornerRadius="20" Height="100" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                        <Button Style="{StaticResource TransparentButtonCenter}" Content="测试" Tag="Test" Click="PageChange_Click" FontSize="40" Foreground="White"/>
                     </Border>
                 </Grid>
                     <Grid x:Name="FunctionScrollViewer" Grid.Column="1" Visibility="Visible" >
-                        <Border CornerRadius="30" Background="AliceBlue" Height="80" Margin="50,51,50,543">
+                        <Border CornerRadius="10" Background="AliceBlue"   Margin="80,20,80,388">
 
-                            <Button  Style="{StaticResource hiddenButton}" Height="80"    FontSize="35"   Tag="Close"  Click="Button_Click" >
+                            <Button  Style="{StaticResource hiddenButton}" Height="50"    FontSize="25"   Tag="Close"  Click="Button_Click" >
                                 <Label Content="关闭程序" FontWeight="Bold"  Foreground="Red"/>
                             </Button>
                         </Border>
@@ -68,7 +68,7 @@
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="1" Content="自定义页面" FontSize="20"  IsEnabled="False"/>
+                            <Label Grid.Row="1" Content="自定义页面" FontSize="18"  IsEnabled="False"/>
                             <!--键盘-->
                             <Border Grid.Row="2" Background="Transparent"  CornerRadius="10">
                                
@@ -83,7 +83,7 @@
                                    
                                     <Border Grid.Row="0"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                                         <Grid Margin="20,0,20,0">
-                                            <Label Content="PDF查看" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Label Content="PDF查看" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                             <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="PDF"  Click="PageButton_Click"/>
                                         </Grid>
                                     </Border>
@@ -102,7 +102,7 @@
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="1" Content="不动产模拟数据" FontSize="20"  IsEnabled="False" />
+                            <Label Grid.Row="1" Content="不动产模拟数据" FontSize="18"  IsEnabled="False" />
                             <!--键盘-->
                             <Border Grid.Row="2" Background="Transparent"  CornerRadius="10">
                                
@@ -123,7 +123,7 @@
                                                 <ColumnDefinition Width="17*"/>
                                                 <ColumnDefinition Width="143*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Content="无房证明页面" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,8" />
+                                            <Label Content="无房证明页面" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,8" />
                                             <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="NoHome"  Click="TestButton_Click" Grid.ColumnSpan="2" />
                                         </Grid>
                                     </Border>
@@ -133,31 +133,31 @@
                                                 <ColumnDefinition Width="133*"/>
                                                 <ColumnDefinition Width="347*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Content="无房证明儿童查询" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,7" />
+                                            <Label Content="无房证明儿童查询" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,7" />
                                             <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="NoHomeChild"  Click="TestButton_Click" Grid.ColumnSpan="2"/>
                                         </Grid>
                                     </Border>
                                     <Border Grid.Row="2"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                                         <Grid Margin="20,0,20,0">
-                                            <Label Content="有房证明页面(唯一证明)" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Label Content="有房证明页面(唯一证明)" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                             <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="HomeCountPages"  Click="TestButton_Click"/>
                                         </Grid>
                                     </Border>
                                     <Border Grid.Row="3"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                                         <Grid Margin="20,0,20,0">
-                                            <Label Content="权属页面(产调)" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Label Content="权属页面(产调)" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                             <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="OwnerShipPages"  Click="TestButton_Click"/>
                                         </Grid>
                                     </Border>
                                     <Border Grid.Row="4"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                                         <Grid Margin="20,0,20,0">
-                                            <Label Content="档案查询页面(苏州虎丘区)" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Label Content="档案查询页面(苏州虎丘区)" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                             <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="SZHQArchivePages"  Click="TestButton_Click"/>
                                         </Grid>
                                     </Border>
                                     <Border Grid.Row="5"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,0" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                                         <Grid Margin="20,0,20,0">
-                                            <Label Content="档案查询页面(苏州吴中区)" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Label Content="档案查询页面(苏州吴中区)" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                             <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="SZWZArchivePages"  Click="TestButton_Click"/>
                                         </Grid>
                                     </Border>
@@ -170,27 +170,29 @@
             </Grid>
             </Grid>
         </Border>
-        <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
-            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click"  Margin="20">
-                    <Image Source="Images/return.png" Stretch="Uniform"/>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
                 </Button>
 
-                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"/>
-                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="16"  Click="Home_Click" >
-                    <Image Source="Images/home.png"></Image>
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/home.png" Margin="5"></Image>
                 </Button>
                 <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
                     <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
                 </Label>
 
             </Grid>
+
+
         </Grid>
 
     </Grid>

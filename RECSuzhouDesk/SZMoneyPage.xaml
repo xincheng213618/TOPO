@@ -5,25 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RECSuzhou"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1280"
+      d:DesignHeight="768" d:DesignWidth="1024"
       Title="SZMoneyPage" Initialized="Page_Initialized">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
-            <RowDefinition Height="869*" />
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="*" />
+           
         </Grid.RowDefinitions>
-        <Border  Grid.Row="1" Margin="100,20,100,150" Opacity="0.9">
+        <Border Grid.Row="1" Margin="80,20,80,80" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
+        <Border  Grid.Row="1" Margin="80,20,80,80" Opacity="0.9">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Style="{StaticResource  hiddenButton}" Margin="100"  Click="PageButton_Click" Tag="SZHQProgress" >
+                <Button Grid.Column="0" Style="{StaticResource  hiddenButton}" Margin="80"  Click="PageButton_Click" Tag="SZHQProgress" >
                     <Image Source="Images/progress.png"></Image>
                 </Button>
-                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="100" Click="PageButton_Click" Tag="SZHQMoney" >
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="80" Click="PageButton_Click" Tag="SZHQMoney" >
                     <Image Source="Images/money.png"></Image>
                 </Button>
 
@@ -32,23 +33,23 @@
 
 
 
-        
-        
-        <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
-            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+
+
+        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click"  Margin="20">
-                    <Image Source="Images/return.png" Stretch="Uniform"/>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
                 </Button>
 
-                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"/>
-                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="16"  Click="Home_Click" >
-                    <Image Source="Images/home.png"></Image>
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/home.png" Margin="5"></Image>
                 </Button>
                 <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
                     <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
