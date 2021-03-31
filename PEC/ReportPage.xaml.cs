@@ -59,20 +59,24 @@ namespace PEC
         }
         public void ProvincialPeoplePhrase(string response)
         {
-            Dispatcher.Invoke(new Action(() => alert(null, 11)));
-            QiYeList.Visibility = Visibility.Hidden;  
+           
             if (response == null)
             {
-                PDF.DrawYiXing1("1.pdf", new IDCardData() { Name = "胡洪珂", IDCardNo = "411327200103063136", Address = "住址", CardType = "类别", Sex = "男" });
-               // PrintStart("sample.pdf");
-            }
+               Content= new HomePage("接口异常");
+                Pages();
+    }
             else
             {
+                Dispatcher.Invoke(new Action(() => alert(null, 11)));
+                QiYeList.Visibility = Visibility.Hidden;
                 JObject JsonData = (JObject)JsonConvert.DeserializeObject(response);
                 string resultCode = JsonData["resultCode"].ToString();
                 if (resultCode != "1")
                 {
-                    Dispatcher.BeginInvoke(new Action(() => new HomePage(JsonData["resultMsg"].ToString())));
+
+                    PDF.DrawYiXing1("1.pdf", new IDCardData() { Name = "胡洪珂", IDCardNo = "411327200103063136", Address = "住址", CardType = "类别", Sex = "男" });
+                    // PrintStart("sample.pdf");
+
                     return;
                 }
                 JObject data = (JObject)JsonConvert.DeserializeObject(JsonData["data"].ToString());
