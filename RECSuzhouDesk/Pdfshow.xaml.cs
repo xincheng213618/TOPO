@@ -63,7 +63,7 @@ namespace RECSuzhou
         private void Page_Initialized(object sender, EventArgs e)
         {
             this.DataContext = Time;
-            Countdown_timer();
+            //Countdown_timer();
 
             AcrobatHelper.pdfControl = new AxAcroPDFLib.AxAcroPDF();
             AcrobatHelper.pdfControl.BeginInit();

@@ -6,26 +6,26 @@
       xmlns:local="clr-namespace:RECSuzhou"
       xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1280"
+      d:DesignHeight="768" d:DesignWidth="1024"
       Title="OwnerShipPage" Initialized="Page_Initialized">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="1" Margin="100,20,100,150" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
-        <Grid Grid.Row="1" Margin="100,20,100,150">
+        <Border Grid.Row="1" Margin="80,20,80,80" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
+        <Grid Grid.Row="1" Margin="80,20,80,80">
             <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderBrush="White" BorderThickness="0,0,0,7">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="2" Opacity="0.3"></DropShadowEffect>
                 </Border.Effect>
-                <Label x:Name="TotalLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="权属查询结果" Foreground="#ffb72c" FontSize="45" FontWeight="Bold" />
+                <Label x:Name="TotalLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="权属查询结果" Foreground="#ffb72c" FontSize="40" FontWeight="Bold" />
             </Border>
 
             <Grid x:Name="OwnerShipGrid" Grid.Row="1"  Visibility="Visible" Margin="0,10,0,0">
@@ -38,15 +38,15 @@
                 <Border Grid.Row="0"  Visibility="Visible">
                     <Grid >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="560"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="175"/>
-                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="480"/>
+                            <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="155"/>
-                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="10"/>
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="1" CornerRadius="10,0,0,10" Background="#453994">
                             <Label HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  Content="序号" Foreground="White" FontSize="20"/>
@@ -65,7 +65,7 @@
                     </Grid>
                 </Border>
                 <!--list-->
-                <ListView  Grid.Row="1" x:Name="OwnerShipListView"  Margin="30,0,30,0" AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="OwnerShipListView_SelectionChanged" Grid.RowSpan="2">
+                <ListView  Grid.Row="1" x:Name="OwnerShipListView"   AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="OwnerShipListView_SelectionChanged" Grid.RowSpan="2">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}">
                             <Setter Property="Height" Value="auto" />
@@ -88,7 +88,7 @@
                     </ListView.ItemContainerStyle>
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
-                            <GridViewColumn Width="100"  Header="序号">
+                            <GridViewColumn Width="60"  Header="序号">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Path=ListNo}" Foreground="White"/>
@@ -96,34 +96,27 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn  Width="560"  Header="坐落">
+                            <GridViewColumn  Width="480"  Header="坐落">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Label Content="{Binding Path=Location}" Foreground="White"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn  Width="175"  Header="权利人">
+                            <GridViewColumn  Width="165"  Header="权利人">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Label Content="{Binding Path=Name}" Foreground="White"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn  Width="155"  Header="操作">
+                            <GridViewColumn  Width="125"  Header="操作">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Border CornerRadius="15" Background="#00a2e9" Visibility="{Binding Path=Visible}" Margin="20,10,0,5" Height="30">
+                                        <Border CornerRadius="15" Background="#00a2e9" Visibility="{Binding Path=Visible}" Margin="20,10,0,5" Height="30" Width="80">
                                             <Border>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="50"/>
-                                                        <ColumnDefinition Width="105"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Grid.Column="0" HorizontalAlignment="Right" Stretch="Uniform" Source="Images/yulan.png" Margin="20,5,0,5"/>
-                                                    <Label Grid.Column="1" Content="预览" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White"  />
-                                                </Grid>
 
+                                                <Label Content="打印" HorizontalContentAlignment="Center" Foreground="White"/>
                                             </Border>
                                         </Border>
                                     </DataTemplate>
@@ -149,30 +142,45 @@
 
 
 
-        <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
-            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click"  Margin="20">
-                    <Image Source="Images/return.png" Stretch="Uniform"/>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
                 </Button>
 
-                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"/>
-                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="16"  Click="Home_Click" >
-                    <Image Source="Images/home.png"></Image>
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/home.png" Margin="5"></Image>
                 </Button>
                 <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
                     <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
                 </Label>
 
             </Grid>
+
+
         </Grid>
 
-
+        <Grid x:Name="WaitShow" Grid.Row="1" Visibility="Hidden">
+            <Grid Background="#7c7c7c" Opacity="0.2"/>
+            <Grid Grid.Row="1" >
+                <Border  Background="Black" Opacity="0.13"/>
+                <Border Height="350" Width="400"  Background="White"  BorderBrush="AliceBlue" CornerRadius="30" BorderThickness="8">
+                    <Grid >
+                        <myLib:CirclePointRingLoading Width="120" Height="100"  IsActive="True" Foreground="#007ACC" Margin="0,0,0,70"/>
+                        <Label HorizontalAlignment="Center"  VerticalAlignment="Center"   FontSize="30" Foreground="Black" Margin="20,220,20,0" >
+                            <TextBlock  x:Name="PopTips" Text="正在查询"  TextWrapping="WrapWithOverflow"/>
+                        </Label>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
         <Border  x:Name="PopBorder" Grid.Row="1" Height="300" Width="300"  Background="White" CornerRadius="20" Margin="0,0,50,0" BorderBrush="#c5c5c5" BorderThickness="2" Visibility="Hidden">
             <Grid >
                 <Grid.RowDefinitions>

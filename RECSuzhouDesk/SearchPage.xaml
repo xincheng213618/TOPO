@@ -5,484 +5,95 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RECSuzhou" xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1280"
+      d:DesignHeight="768" d:DesignWidth="1024"
       Title="SearchPage" Initialized="Page_Initialized">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <Grid Grid.Row="1" Background="Transparent">
+        <Border Grid.Row="1" Margin="80,20,80,80" Background="#90acfd" Opacity="0.8" CornerRadius="30"/>
+        <Grid Grid.Row="1" Margin="80,20,80,80">
             <Grid.RowDefinitions>
-                <RowDefinition Height="73*"/>
-                <RowDefinition Height="650"/>
-                <RowDefinition Height="158*"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="120"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="85*"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Row="2" Grid.Column="1" Background="#4d3fc3" Opacity="0.9" Margin="320,50,320,0" CornerRadius="15,15,0,0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" Margin="20"  BorderThickness="0,0,0,0" BorderBrush="White">
-                        <Button   Style="{StaticResource  hiddenButton}"   Click="Home_Click" >
-                            <Image Source="Images/return.png"></Image>
-                        </Button>
-                    </Border>
-                    <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"></Border>
-                    <Border Grid.Column="1" Margin="20">
-                        <Button   Style="{StaticResource  hiddenButton}"   Click="Home_Click" >
-                            <Image Source="Images/home.png"></Image>
-                        </Button>
-                    </Border>
-                    <Border Grid.Column="2" Margin="20">
-                        <Label Grid.Row="1"  Foreground="White" FontSize="50" >
-                            <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
-                        </Label>
-                    </Border>
-                </Grid>
+
+            <Border Grid.Row="0" BorderBrush="White" BorderThickness="0,0,0,7">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" Opacity="0.3"></DropShadowEffect>
+                </Border.Effect>
+                <Label x:Name="SearchTitleLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="" Foreground="#ffb72c" FontSize="40" FontWeight="Bold" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="1" CornerRadius="20,20,20,20" Background="#4d3fc3" Opacity="0.9" BorderBrush="Transparent" BorderThickness="1" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
+            <Grid  Grid.Row="1" x:Name="queryInput">
+                
+                <DockPanel LastChildFill="True" Grid.Row="0" Margin="50,50,50,0">
+                    <Label Content="输       入:" FontSize="40" FontWeight="Bold" VerticalAlignment="Center" Width="185"/>
 
-                        <ColumnDefinition Width="244*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="80"/>
-                        <RowDefinition Height="*"/>
-                       
-                    </Grid.RowDefinitions>
-                    <Border Grid.Row="0"  BorderBrush="#f5f6f7" CornerRadius="20,20,0,0" BorderThickness="0,0,0,4" Grid.ColumnSpan="2">
-                        <Grid>
-
-                            <Label x:Name="SearchTitleLabel" Content=""  Style="{StaticResource Label_Centered_30}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
-
-                        </Grid>
-                    </Border>
-
-                    <Border Grid.Row="1"  x:Name="queryInput" >
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="80" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Border Grid.Row="0" Margin="250,30,250,0" CornerRadius="25" Background="#453994">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="60" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBox Grid.Column="0" Margin="20,0,0,0" Background="Transparent" Text="" FontSize="40" Foreground="White" BorderBrush="Transparent" BorderThickness="0" x:Name="CompanySearchBox"  TextChanged=" TextChanged" VerticalContentAlignment="Center" InputMethod.IsInputMethodEnabled="True"   KeyDown="KeyEnter"></TextBox>
-                                    <Button Grid.Column="1" Style="{StaticResource button_hover_false}" Click="Query_Click">
-                                        <Image  Source="Images/search.png" Margin="0,0,15,0"></Image>
-                                    </Button>
-                                    
-                                </Grid>
-                                
-                            </Border>
-                            <Border Grid.Row="1">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="200" />
-                                    </Grid.ColumnDefinitions>
-                                    <Border Grid.Column="1">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="50"/>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="50"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid Grid.Row="1">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="*"/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Border Grid.Column="0" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="1">
-                                                        <Label Content="1" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="1" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="2">
-                                                        <Label Content="2" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="2" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="3">
-                                                        <Label Content="3" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="3" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="4">
-                                                        <Label Content="4" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="4" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="5">
-                                                        <Label Content="5" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="5" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="6">
-                                                        <Label Content="6" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="6" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="7">
-                                                        <Label Content="7" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="7" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="8">
-                                                        <Label Content="8" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="8" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="9">
-                                                        <Label Content="9" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="9" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="0">
-                                                        <Label Content="0" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="0" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="Q">
-                                                        <Label Content="Q" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="1" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="W">
-                                                        <Label Content="W" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="2" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="E">
-                                                        <Label Content="E" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="3" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="R">
-                                                        <Label Content="R" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="4" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="T">
-                                                        <Label Content="T" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="5" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="Y">
-                                                        <Label Content="Y" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="6" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="U">
-                                                        <Label Content="U" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="7" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="I">
-                                                        <Label Content="I" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="8" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="O">
-                                                        <Label Content="O" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="9" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="P">
-                                                        <Label Content="P" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-
-                                            </Grid>
-                                            <Grid Grid.Row="2">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="40" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="70" />
-                                                </Grid.ColumnDefinitions>
-                                                <Border Grid.Column="1" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="A">
-                                                        <Label Content="A" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="2" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="S">
-                                                        <Label Content="S" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="3" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="D">
-                                                        <Label Content="D" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="4" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="F">
-                                                        <Label Content="F" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="5" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="G">
-                                                        <Label Content="G" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="6" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="H">
-                                                        <Label Content="H" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="7" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="J">
-                                                        <Label Content="J" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="8" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="K">
-                                                        <Label Content="K" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="9" Grid.Row="0" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="L">
-                                                        <Label Content="L" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="2" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="Z">
-                                                        <Label Content="Z" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="3" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="X">
-                                                        <Label Content="X" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="4" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="C">
-                                                        <Label Content="C" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="5" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="V">
-                                                        <Label Content="V" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="6" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="B">
-                                                        <Label Content="B" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="7" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="N">
-                                                        <Label Content="N" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                                <Border Grid.Column="8" Grid.Row="1" Background="#403879" CornerRadius="100" Height="60" Width="60">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect ShadowDepth="2"/>
-                                                    </Border.Effect>
-                                                    <Button Style="{StaticResource button_hover_false}" Click="Keypad_Click" Tag="M">
-                                                        <Label Content="M" FontSize="40" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Foreground="White" />
-                                                    </Button>
-                                                </Border>
-                                            </Grid>
-                                        </Grid>
-                                        
-                                    </Border>
-                                    <Border Grid.Column="2">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="50" />
-                                                <RowDefinition Height="*" />
-                                                <RowDefinition Height="*" />
-                                                <RowDefinition Height="*" />
-                                                <RowDefinition Height="*" />
-                                                <RowDefinition Height="50" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="50" />
-                                            </Grid.ColumnDefinitions>
-                                            <Border Grid.Row="1" CornerRadius="100" Background="#00a2e9" Height="80" Width="80" >
-                                                <Button Style="{StaticResource hiddenButton}" Click="KeyBoard_Click">
-                                                    <Label Content="键盘" FontSize="30" Foreground="White"/>
-                                                </Button>
-                                            </Border>
-                                            <Border Grid.Row="2" CornerRadius="100" Background="#00a2e9" Height="80" Width="80" >
-                                                <Button Style="{StaticResource hiddenButton}" Click="Delete_Click">
-                                                    <Label Content="删除" FontSize="30" Foreground="White"/>
-                                                </Button>
-                                            </Border>
-                                            <Border Grid.Row="3" CornerRadius="100" Background="#00a2e9" Height="80" Width="80" >
-                                                <Button Style="{StaticResource hiddenButton}" Click="Clear_Click">
-                                                    <Label Content="清空" FontSize="30" Foreground="White"/>
-                                                </Button>
-                                            </Border>
-                                            <Border Grid.Row="4" CornerRadius="100" Background="#00a2e9" Height="80" Width="80" >
-                                                <Button Style="{StaticResource hiddenButton}" Click="Query_Click">
-                                                    <Label Content="确认" FontSize="30" Foreground="White"/>
-                                                </Button>
-                                            </Border>
-                                        </Grid>
-                                        
-                                    </Border>
-                                </Grid>
-                                
-                            </Border>
-
-                        </Grid>
-                    </Border>
-                    
-                    
-                </Grid>
+                    <TextBox Grid.Column="1" x:Name="CompanySearchBox" Text="" InputMethod.IsInputMethodEnabled="True" FontSize="40" BorderBrush="Transparent" VerticalAlignment="Center" BorderThickness="3" Foreground="Black" Margin="20,0,0,0">
+                        <TextBox.Resources>
+                            <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.6" Stretch="None" AlignmentX="Left">
+                                <VisualBrush.Visual>
+                                    <TextBlock Text="请输入被查询信息" Foreground="Black" FontSize="30" VerticalAlignment="Center"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </TextBox.Resources>
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource HintText}"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="" >
+                                        <Setter Property="Background" Value="{StaticResource HintText}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="BorderBrush" Value="#1a73e8"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="False">
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Setter Property="FontWeight" Value="Normal"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Setter Property="Background" Value="Transparent" />
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </DockPanel>
+            </Grid>
+            <Border  Grid.Row="2" CornerRadius="20" Background="#ff3b85" Margin="250,20 ">
+                <Button Style="{StaticResource hiddenButton}" Content="点  击   查   询" FontSize="30" FontWeight="Bold" Foreground="White" Click="Query_Click"></Button>
             </Border>
+
         </Grid>
 
+        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
+                </Button>
 
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/home.png" Margin="5"></Image>
+                </Button>
+                <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
+                    <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
+                </Label>
+
+            </Grid>
+
+
+        </Grid>
 
 
 
