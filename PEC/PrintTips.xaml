@@ -25,9 +25,12 @@
                 <Label x:Name="TitleLabel" Content="提示" HorizontalAlignment="Center" Foreground="Red"  FontFamily="黑体" FontWeight="Bold" VerticalAlignment="Center" FontSize="50"/>
 
                 <Label x:Name="CountLabel" Content="{Binding Path=Countdown}" HorizontalAlignment="Left" Foreground="Red"  FontFamily="黑体" FontWeight="Bold" VerticalAlignment="Center" FontSize="50" Margin="70,0,0,5"/>
-               
+
                 <Label Grid.Row="1"   Margin="100,10" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock TextWrapping="WrapWithOverflow" Text="请在报告出口拿取您打印的文件，检查完整后，您可以继续选择打印，如有疑问请咨询窗口工作人员。" FontSize="30"/>
+                </Label>
+                <Label Grid.Row="1"   Margin="146,238,140,124" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Grid.RowSpan="2" Width="784">
+                    <TextBlock TextWrapping="WrapWithOverflow" Text=" (如果未出报告，请联系工作人员检查打印机是否有纸张)" Foreground="Red" FontSize="30" Width="755"/>
                 </Label>
 
 
