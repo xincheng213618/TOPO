@@ -456,5 +456,10 @@ namespace RECSuzhou
                     break;
             }
         }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
