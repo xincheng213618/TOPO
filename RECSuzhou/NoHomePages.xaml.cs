@@ -57,6 +57,7 @@ namespace RECSuzhou
         {
             if (response != null)
             {
+                WaitShow.Visibility = Visibility.Hidden;
                 try
                 {
                     JObject jsons = (JObject)JsonConvert.DeserializeObject(response);
@@ -80,8 +81,6 @@ namespace RECSuzhou
                                 have = true;
                         }
                         PrintButton.Visibility = Visibility.Visible; //不管如何都提供打印功能  (原版设计不满足条件不提供打印)
-
-                        WaitShow.Visibility = Visibility.Hidden;
                     }
                     else
                     {

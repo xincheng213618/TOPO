@@ -235,7 +235,7 @@
         </Grid>
 
 
-        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+        <Grid Grid.Row="1" Height="60" VerticalAlignment="Bottom" Margin="280,3">
             <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -243,13 +243,13 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Style="{StaticResource  hiddenButton}"  Click="Button_Click"   Tag="Return" >
-                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="8"/>
                 </Button>
 
                 <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
-                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Button_Click" Tag="Home" >
-                    <Image Source="Images/home.png" Margin="5"></Image>
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                    <Image Source="Images/home.png" Margin="8"></Image>
                 </Button>
                 <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
                     <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
@@ -259,12 +259,13 @@
 
 
         </Grid>
-       
+
+
         <Grid x:Name="WaitShow" Grid.Row="1" Visibility="Hidden">
             <Grid Background="#7c7c7c" Opacity="0.2"/>
             <Grid Grid.Row="1" >
                 <Border  Background="Black" Opacity="0.13"/>
-                <Border Height="350" Width="400"  Background="White"  BorderBrush="AliceBlue" CornerRadius="30" BorderThickness="8">
+                <Border Height="300" Width="350"  Background="White"  BorderBrush="AliceBlue" CornerRadius="30" BorderThickness="8">
                     <Grid >
                         <myLib:CirclePointRingLoading Width="120" Height="100"  IsActive="True" Foreground="#007ACC" Margin="0,0,0,70"/>
                         <Label HorizontalAlignment="Center"  VerticalAlignment="Center"   FontSize="30" Foreground="Black" Margin="20,220,20,0" >
@@ -275,7 +276,5 @@
             </Grid>
         </Grid>
 
-        <!--打印-->
-        <WindowsFormsHost x:Name="formsHost" Visibility="Hidden" />
     </Grid>
 </Page>

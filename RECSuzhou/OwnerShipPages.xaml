@@ -173,23 +173,20 @@
         </Grid>
 
 
-        <Border  x:Name="PopBorder" Grid.Row="1" Height="300" Width="300"  Background="White" CornerRadius="20" Margin="0,0,50,0" BorderBrush="#c5c5c5" BorderThickness="2" Visibility="Hidden">
-            <Grid >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="193*" />
-                    <RowDefinition Height="57*" />
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0" BorderBrush="#c5c5c5" BorderThickness="0,0,0,2">
-                    <Button  Background="White" Style="{StaticResource hiddenButton}" >
-                        <myLib:CirclePointRingLoading   Width="90" Height="90" IsActive="True" IsLarge="False" Foreground="#007ACC"/>
-                    </Button>
+        <Grid x:Name="WaitShow" Grid.Row="1" Visibility="Hidden">
+            <Grid Background="#7c7c7c" Opacity="0.2"/>
+            <Grid Grid.Row="1" >
+                <Border  Background="Black" Opacity="0.13"/>
+                <Border Height="350" Width="400"  Background="White"  BorderBrush="AliceBlue" CornerRadius="30" BorderThickness="8">
+                    <Grid >
+                        <myLib:CirclePointRingLoading Width="120" Height="100"  IsActive="True" Foreground="#007ACC" Margin="0,0,0,70"/>
+                        <Label HorizontalAlignment="Center"  VerticalAlignment="Center"   FontSize="30" Foreground="Black" Margin="20,220,20,0" >
+                            <TextBlock  x:Name="PopTips" Text="正在查询"  TextWrapping="WrapWithOverflow"/>
+                        </Label>
+                    </Grid>
                 </Border>
-
-                <Label x:Name="PopLabel" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="#3668d3"  Content="正在打印"  Grid.Row="1" Margin="12,13,16,12" Width="268" />
             </Grid>
+        </Grid>
 
-        </Border>
-        <!--打印-->
-        <WindowsFormsHost x:Name="formsHost" Visibility="Hidden" />
     </Grid>
 </Page>

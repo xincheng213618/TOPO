@@ -46,8 +46,7 @@ namespace RECSuzhou
         {
             TotalLabel.Content = idcardData.Name + TotalLabel.Content;
             Countdown_timer();
-            PopLabel.Content = "正在查询中";
-            PopBorder.Visibility = Visibility.Visible;
+            WaitShow.Visibility = Visibility.Visible;
             Thread thread = new Thread(() => OwnerShip())
             {
                 IsBackground = true
@@ -67,7 +66,7 @@ namespace RECSuzhou
         {
             if (response != null)
             {
-                PopBorder.Visibility = Visibility.Hidden;
+                WaitShow.Visibility = Visibility.Hidden;
                 try
                 {
                     OwnerShipListView.ItemsSource = HouseItem;

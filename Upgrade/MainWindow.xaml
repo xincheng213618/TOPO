@@ -32,8 +32,8 @@
                 </Grid>
             </Border>
 
-            <Grid x:Name="Updrade" Grid.Row="1">
-                <Button x:Name="Down" Height="40"  Margin="100,10,100,111.333" Click="Down_Click" >
+            <Grid x:Name="Function" Grid.Row="1" Visibility="Visible">
+                <Button x:Name="Down" Height="50" Margin="50" Click="Down_Click" >
                     <Button.Template>
                         <ControlTemplate>
                             <Border Background="#ecc392" CornerRadius="10">
@@ -42,9 +42,15 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+
+            </Grid>
+
+            <Grid x:Name="Updrade" Grid.Row="1" Visibility="Hidden">
+                <Label x:Name="TotalLabel" Content="正在下载文件" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"></Label>
+                
                 <Label x:Name="InofLabel" Content="" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="10,61.8,10,0"  VerticalAlignment="Top"/>
 
-                <ProgressBar  x:Name="ProgressBarDown" Height="40"  Margin="5,0,5,30" Value="10" Maximum="100"  Foreground="#74bafc" VerticalAlignment="Bottom" >
+                <ProgressBar  x:Name="ProgressBarDown" Height="40"  Margin="5,0,5,30" Value="0" Maximum="100"  Foreground="#74bafc" VerticalAlignment="Bottom" >
                 </ProgressBar>
 
 

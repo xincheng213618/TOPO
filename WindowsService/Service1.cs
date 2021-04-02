@@ -50,9 +50,25 @@ namespace WindowsService
         {
              if (Isable)
             {
-                Log("Run");
+                Process[] existing = Process.GetProcessesByName("REC");
+                if (existing.Length > 0)
+                {
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(@"C:\Users\TOPO\Desktop\log.txt", true))
+                    {
+                        Log("REC 正在运行中");
+                    }
+                }
+                else
+                {
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(@"C:\Users\TOPO\Desktop\log.txt", true))
+                    {
+                        Log("REC 已经关闭");
+                    }
+                }
             }
         }
+
+
 
         private void Log(string Msg)
         {
@@ -60,6 +76,8 @@ namespace WindowsService
             {
                 sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ") + Msg);
             }
+
+
         }
     }
 }
