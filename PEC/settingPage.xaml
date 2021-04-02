@@ -13,23 +13,27 @@
             <RowDefinition Height="389*" />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <Grid  Grid.Row="1" Grid.Column="0" Name="test" Visibility="Hidden">
-            <Border BorderBrush="Red"   Background="Transparent">
+        <Grid  Grid.Row="1" Grid.Column="0" Name="test" Visibility="Hidden"  >
+            <Border BorderBrush="WhiteSmoke" BorderThickness="5" Margin="380,134,380,124">
+                <Grid >
+                    <Border  CornerRadius="20"   Background="#FFF3A352"   Name="TestQiye" BorderThickness="5"   MouseDown="Border_MouseDown" Margin="0,295,0,120">
+                        <Label Content="测试企业" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"></Label>
+                    </Border>
+
+                    <Border   CornerRadius="20"   Background="#FFF3A352"  Name="TestZireanren" BorderThickness="5"    MouseDown="Border_MouseDown" Margin="0,195,0,220">
+                        <Label Content="测试个人" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25" Height="38" Margin="200,27,185,20" Width="115"></Label>
+                    </Border>
+                    <Border   CornerRadius="20"   Background="#FFF3A352"   Name="Close" BorderThickness="5"  MouseDown="Border_MouseDown" Margin="100,435,100,5">
+                        <Label Content="关闭程序" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"></Label>
+                    </Border>
+                    <Border CornerRadius="20"  Name="up" MouseDown="Border_MouseDown"  BorderThickness="5" Background="#FFF3A352" Margin="0,0,0,415" Height="95" VerticalAlignment="Bottom"  >
+                        <Label Content="开机自启" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"></Label>
+                    </Border>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Red"   Background="Transparent" Margin="-5,-1,5,1">
                 <Grid>
-                    <Border CornerRadius="0,2000,2000,2000" Background="#FFF3A352"   Name="TestQiye" BorderThickness="5" Margin="636,385,361,282" MouseDown="Border_MouseDown">
-                        <Label Content="测试企业" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="30"></Label>
-                    </Border>
-                    <Border CornerRadius="0,2000,2000,2000"     BorderThickness="5" Margin="607,370,612,367" MouseDown="Border_MouseDown">
-                    </Border>
-                    <Border CornerRadius="2000,0,2000,2000" Background="#FFF3A352"  Name="TestZireanren" BorderThickness="5" Margin="434,385,634,302"  MouseDown="Border_MouseDown">
-                        <Label Content="测试个人" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="20" Height="38" Margin="54,25,54,18" Width="94"></Label>
-                    </Border>
-                    <Border CornerRadius="2000,2000,2000, 0" Background="#FFF3A352"   Name="Close" BorderThickness="5" Margin="636,279,423,383" MouseDown="Border_MouseDown">
-                        <Label Content="关闭程序" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="25"></Label>
-                    </Border>
-                    <Border Margin="357,243,639,388" Name="up" MouseDown="Border_MouseDown" Background="#FFF3A352" CornerRadius="2000,2000, 0,2000">
-                        <Label Content="开机自启" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="40"></Label>
-                    </Border>
+
                 </Grid>
             </Border>
             <Border Background="#FFF3A352" Name="Back" MouseDown="Border_MouseDown" CornerRadius="20" Margin="70,65,1024,656">
@@ -40,17 +44,17 @@
         <Grid Grid.Row="1" Name="password" Background="Transparent" Grid.Column="0" Visibility="Visible">
             <Border BorderBrush="Red"   Background="Transparent">
                 <Grid>
-                    <Border  Margin="324,233,326,205"  BorderThickness="15,15,2,2" Background="White"  CornerRadius="50" >
+                    <Border  Margin="324,184,326,205"  BorderThickness="5,5,5,5" Background="White"  CornerRadius="40,40,40,40" >
                         <Border.BorderBrush>
                             <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
-                                <GradientStop Color="#FFF38415" Offset="0"/>
-                                <GradientStop Color="Red" Offset="1"/>
+                                <GradientStop Color="WhiteSmoke" Offset="0"/>
+                                <GradientStop Color="WhiteSmoke" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.BorderBrush>
                         <Grid >
-                            <Label Margin="121,24,122,247" Name="SetTip" Content="请输入管理员密码" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="red"></Label>
-                            <Image Source="images/管理员.png" Margin="41,86,477,142"></Image>
-                            <PasswordBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center"   FontSize="25" Name="textpassword" Foreground="#FFF38415" Margin="156,114,44,167">
+                            <Label Margin="209,48,189,289" Name="SetTip" Content="请输入管理员密码" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" Height="42" Width="222"></Label>
+                            <Image Source="images/管理员.png" Margin="34,70,477,142"></Image>
+                            <PasswordBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center"   FontSize="25" Name="textpassword" Foreground="#FFF38415" Margin="156,145,44,182">
                                 <PasswordBox.BorderBrush>
                                     <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
                                         <GradientStop Color="#FFF38415" Offset="0"/>
@@ -58,7 +62,7 @@
                                     </LinearGradientBrush>
                                 </PasswordBox.BorderBrush>
                             </PasswordBox>
-                            <Button Click="Button_Click"   Content="确   定" FontSize="30"   HorizontalAlignment="Left" Width="184" Margin="77,236,0,23" Foreground="#FFF38415" Background="Transparent">
+                            <Button Click="Button_Click"   Content="确   定" FontSize="30"   HorizontalAlignment="Left" Width="184" Margin="77,300,0,23" Foreground="#FFF38415" Background="Transparent">
                                 <Button.BorderBrush>
                                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                         <GradientStop Color="red" Offset="0"/>
@@ -66,7 +70,7 @@
                                     </LinearGradientBrush>
                                 </Button.BorderBrush>
                             </Button>
-                            <Button Click="Button_Click"   Content="返   回" Background="Transparent" FontSize="30"   HorizontalAlignment="Left" BorderBrush="#FFF38415" Width="184" Margin="349,236,0,23" Foreground="#FFF38415"></Button>
+                            <Button Click="Button_Click"   Content="返   回" Background="Transparent" FontSize="30"   HorizontalAlignment="Left" BorderBrush="#FFF38415" Width="184" Margin="349,300,0,23" Foreground="#FFF38415"></Button>
                         </Grid>
                     </Border>
                 </Grid>
