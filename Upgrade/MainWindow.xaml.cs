@@ -23,7 +23,6 @@ namespace Upgrade
 
         }
 
-
         private void showWarn(string message)
         {
             MessageBox.Show(message);
@@ -32,6 +31,10 @@ namespace Upgrade
 
         private void Down_Click(object sender, RoutedEventArgs e)
         {
+            Function.Visibility = Visibility.Hidden;
+            Updrade.Visibility = Visibility.Visible;
+
+
             string url = "http://xc213618.ddns.net:9090/s/REC.zip";
 
             Uri uri = new Uri(url);
@@ -117,15 +120,14 @@ namespace Upgrade
             }
 
             Process.Start("REC.exe");
-            MessageBox.Show("Upgrade successed(升级成功)");
             Close();
         }
 
 
-          void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
+            TotalLabel.Content = "正在下载";
             Upgrade();
-
         }
 
         private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

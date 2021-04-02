@@ -61,17 +61,26 @@
                 <Label x:Name="resLabel8" Grid.Row="1" Grid.Column="3" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
                 <Label x:Name="resLabel9" Grid.Row="1" Grid.Column="4" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Foreground="#f7fd90" FontWeight="Bold"/>
             </Grid>
-            <Border x:Name="PrintButton" Grid.Row="2"  Width="400" Height="60" Background="#00a2e9" BorderThickness="0" CornerRadius="20" >
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="3" Opacity="0.3"></DropShadowEffect>
-                </Border.Effect>
-                <Button Style="{StaticResource  hiddenButton}"   Click="Print_Click" >
-                    <Label x:Name="FunctionLabel" Style="{StaticResource Label_Centered_30}" Foreground="White" Content="打印无房证明" FontSize="35" FontWeight="Bold"/>
-                </Button>
-            </Border>
+
+            <Button  x:Name="PrintButton" Grid.Row="2"  Width="400" Height="60" VerticalAlignment="Bottom" Margin="0,0,0,10" Style="{StaticResource  hiddenButton}"   Click="Print_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Background="#00a2e9"  CornerRadius="10"   >
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2" Opacity="0.3"></DropShadowEffect>
+                            </Border.Effect>
+                            <Label Style="{StaticResource Label_Centered_30}" Foreground="White" Content="打印无房证明" FontSize="35" FontWeight="Bold"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
         </Grid>
 
-        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+
+
+
+        <Grid Grid.Row="1" Height="60" VerticalAlignment="Bottom" Margin="280,3">
             <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -80,20 +89,18 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
-                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="8"/>
                 </Button>
 
                 <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
                 <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
-                    <Image Source="Images/home.png" Margin="5"></Image>
+                    <Image Source="Images/home.png" Margin="8"></Image>
                 </Button>
                 <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
                     <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
                 </Label>
 
             </Grid>
-
-
         </Grid>
 
 
@@ -101,7 +108,7 @@
             <Grid Background="#7c7c7c" Opacity="0.2"/>
             <Grid Grid.Row="1" >
                 <Border  Background="Black" Opacity="0.13"/>
-                <Border Height="350" Width="400"  Background="White"  BorderBrush="AliceBlue" CornerRadius="30" BorderThickness="8">
+                <Border Height="300" Width="350"  Background="White"  BorderBrush="AliceBlue" CornerRadius="30" BorderThickness="8">
                     <Grid >
                         <myLib:CirclePointRingLoading Width="120" Height="100"  IsActive="True" Foreground="#007ACC" Margin="0,0,0,70"/>
                         <Label HorizontalAlignment="Center"  VerticalAlignment="Center"   FontSize="30" Foreground="Black" Margin="20,220,20,0" >
@@ -112,7 +119,6 @@
             </Grid>
         </Grid>
 
-        <!--打印-->
         <WindowsFormsHost x:Name="formsHost" Visibility="Hidden" />
     </Grid>
 </Page>

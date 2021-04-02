@@ -25,7 +25,7 @@
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="2" Opacity="0.3"></DropShadowEffect>
                 </Border.Effect>
-                <Label x:Name="SearchTitleLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="" Foreground="#ffb72c" FontSize="40" FontWeight="Bold" />
+                <Label x:Name="SearchTitleLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="11111" Foreground="#ffb72c" FontSize="40" FontWeight="Bold" />
             </Border>
             <Grid  Grid.Row="1" x:Name="queryInput">
                 
@@ -64,13 +64,23 @@
                     </TextBox>
                 </DockPanel>
             </Grid>
-            <Border  Grid.Row="2" CornerRadius="20" Background="#ff3b85" Margin="250,20 ">
-                <Button Style="{StaticResource hiddenButton}" Content="点  击   查   询" FontSize="30" FontWeight="Bold" Foreground="White" Click="Query_Click"></Button>
-            </Border>
+            <Button  x:Name="PrintButton" Grid.Row="2"  Width="300" Height="60" VerticalAlignment="Bottom" Margin="0,0,0,20" Style="{StaticResource  hiddenButton}"   Click="Print_Click">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Background="#00a2e9"  CornerRadius="10"   >
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2" Opacity="0.3"></DropShadowEffect>
+                            </Border.Effect>
+                            <Label Style="{StaticResource Label_Centered_30}" Foreground="White" Content="点击查询" FontSize="30" FontWeight="Bold"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
 
         </Grid>
 
-        <Grid Grid.Row="1" Height="50" VerticalAlignment="Bottom" Margin="300,10">
+        <Grid Grid.Row="1" Height="60" VerticalAlignment="Bottom" Margin="280,3">
             <Border Background="#7994e2" Opacity="0.8" CornerRadius="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -79,12 +89,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
-                    <Image Source="Images/return.png" Stretch="Uniform" Margin="5"/>
+                    <Image Source="Images/return.png" Stretch="Uniform" Margin="8"/>
                 </Button>
 
                 <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" />
                 <Button Grid.Column="1" Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
-                    <Image Source="Images/home.png" Margin="5"></Image>
+                    <Image Source="Images/home.png" Margin="8"></Image>
                 </Button>
                 <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
                     <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
