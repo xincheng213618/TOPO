@@ -64,7 +64,7 @@
                     </TextBox>
                 </DockPanel>
             </Grid>
-            <Button  x:Name="PrintButton" Grid.Row="2"  Width="300" Height="60" VerticalAlignment="Bottom" Margin="0,0,0,20" Style="{StaticResource  hiddenButton}"   Click="Print_Click">
+            <Button  x:Name="PrintButton" Grid.Row="2"  Width="300" Height="60" VerticalAlignment="Bottom" Margin="0,0,0,20" Style="{StaticResource  hiddenButton}"   Click="Query_Click">
                 <Button.Template>
                     <ControlTemplate>
                         <Border Background="#00a2e9"  CornerRadius="10"   >
