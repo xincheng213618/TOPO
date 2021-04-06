@@ -126,9 +126,9 @@ namespace EXC
             try
             {
                 Log.Write(PDFpath);
-                pdfControl.LoadFile(PDFpath);
-                pdfControl.setShowScrollbars(false);
-                pdfControl.setShowToolbar(false);
+                AcrobatHelper.pdfControl.LoadFile(PDFpath);
+                AcrobatHelper.pdfControl.setShowScrollbars(false);
+                AcrobatHelper.pdfControl.setShowToolbar(false);
                 PdfReader reader = new PdfReader(PDFpath);
                 PageAllNum = reader.NumberOfPages;
                 reader.Close();

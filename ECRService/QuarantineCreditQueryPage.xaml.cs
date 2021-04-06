@@ -69,14 +69,8 @@ namespace ECRService
             }
             else
             {
-                QuarantineCreditQueryCondition queryCondition = new QuarantineCreditQueryCondition();
-                queryCondition.Institution = institution.Text;
-                queryCondition.Record = record.Text;
-
                 string CompanyName = institution.Text;
                 string USCI = record.Text; 
-
-
                 Thread worker = new Thread(() => Requests(CompanyName, USCI, "2"))
                 {
                     IsBackground = true

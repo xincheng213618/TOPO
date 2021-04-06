@@ -27,10 +27,10 @@ namespace ECRService
             //    return NanJingClient.getreportGR(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "1");
             //}
 
-            //public static string GetReportList(string IDCardNo = null)
-            //{
-            //    return NanJingClient.getreportlist(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "1");
-            //}
+            public static string GetReportList(string IDCardNo = "",string Kinds="")
+            {
+                return NanJingClient.getreportlist(Global.Config.LoginName, Global.Config.LoginPassword, IDCardNo, Kinds);
+            }
 
             public static string GetReport(string FileName = null, string USCI = null, string Kinds = "0")
             {

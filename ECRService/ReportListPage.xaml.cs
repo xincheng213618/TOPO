@@ -1,19 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Windows.Input;
-using System.Windows.Forms.Integration;
 using System.Xml;
-using ECRService.CreditreportDelegate1;
-using System.Security.Cryptography;
 using BaseDLL;
 using BaseUtil;
 
@@ -150,13 +145,8 @@ namespace ECRService
 
         private void GetReportListProc()
         {
-            System.ServiceModel.BasicHttpBinding binding = new System.ServiceModel.BasicHttpBinding();
-            binding.MaxReceivedMessageSize = 16777216;
-            binding.SendTimeout = TimeSpan.FromSeconds(30);
-            binding.ReceiveTimeout = TimeSpan.FromSeconds(30);
-            System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress(Global.Config.ServerURL);
-            CreditreportDelegate reportService = new CreditreportDelegateClient(binding, endpointAddress);
-            string response = reportService.getreportlist(Global.Config.LoginName, Global.Config.LoginPassword, iDCardData.IDCardNo, "1");
+            string response = Webservice.NanJing.GetReportList(iDCardData.IDCardNo, "1");
+            //string response =  reportService.getreportlist(Global.Config.LoginName, Global.Config.LoginPassword, iDCardData.IDCardNo, "1");
             // string response = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?><data><returncode>1</returncode><returnmsg>调用成功</returnmsg><result><report><id>ABC0000000001</id><qymc>江苏同袍信息科技有限公司</qymc><sqrq>2017-09-09</sqrq></report></result></data>";
             Dispatcher.BeginInvoke(new Action(() => GetReportListCompleted(response)));
         }
@@ -196,14 +186,15 @@ namespace ECRService
 
             if (!File.Exists($"{item.Identifier}.pdf"))
             {
-                System.ServiceModel.BasicHttpBinding binding = new System.ServiceModel.BasicHttpBinding();
-                binding.MaxReceivedMessageSize = 16777216;
-                binding.SendTimeout = TimeSpan.FromSeconds(30);
-                binding.ReceiveTimeout = TimeSpan.FromSeconds(30);
-                System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress(Global.Config.ServerURL);
-                CreditreportDelegate reportService = new CreditreportDelegateClient(binding, endpointAddress);
-                string response = reportService.getreport(Global.Config.LoginName, Global.Config.LoginPassword, item.Identifier, "", "1");
+                //System.ServiceModel.BasicHttpBinding binding = new System.ServiceModel.BasicHttpBinding();
+                //binding.MaxReceivedMessageSize = 16777216;
+                //binding.SendTimeout = TimeSpan.FromSeconds(30);
+                //binding.ReceiveTimeout = TimeSpan.FromSeconds(30);
+                //System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress(Global.Config.ServerURL);
+                //CreditreportDelegate reportService = new CreditreportDelegateClient(binding, endpointAddress);
+                //string response = reportService.getreport(Global.Config.LoginName, Global.Config.LoginPassword, item.Identifier, "", "1");
 
+                string response = Webservice.NanJing.GetReport(item.Identifier, "", "1");
                 XmlDocument document = new XmlDocument();
                 document.LoadXml(response);
 
@@ -371,6 +362,9 @@ namespace ECRService
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new PrintIndexPage())));
         }
 
+        private void ViewReport_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

@@ -87,9 +87,9 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Grid MinWidth="{Binding ElementName=column4,Path=ActualWidth}">
-                                            <local:PrintButton HorizontalAlignment="Center" Identifier="{Binding Path=Identifier}" CompanyName="{Binding Path=CompanyName}" Template="{StaticResource imageButtonTemplate}" Click="ViewReport_Click">
+                                            <Button HorizontalAlignment="Center" Template="{StaticResource imageButtonTemplate}" Click="ViewReport_Click">
                                                 <Image Stretch="None" Source="Images/preview.png" />
-                                            </local:PrintButton>
+                                            </Button>
                                         </Grid>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
