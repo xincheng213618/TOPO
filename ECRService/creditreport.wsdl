@@ -1,0 +1,39 @@
+<?xml version="1.0" ?><wsdl:definitions name="ReportServiceImplService" targetNamespace="http://impl.creditws.les.com/" xmlns:ns1="http://creditws.les.com/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://impl.creditws.les.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="http://10.250.50.95/ckfw/services/creditreport?wsdl=ReportService.wsdl" namespace="http://creditws.les.com/">
+    </wsdl:import>
+  <wsdl:binding name="ReportServiceImplServiceSoapBinding" type="ns1:ReportService">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getreport">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="getreport">
+        <soap:body namespace="http://creditws.les.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getreportResponse">
+        <soap:body namespace="http://creditws.les.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatereportstatus">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="updatereportstatus">
+        <soap:body namespace="http://creditws.les.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updatereportstatusResponse">
+        <soap:body namespace="http://creditws.les.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getreportlist">
+      <soap:operation soapAction="" style="rpc"></soap:operation>
+      <wsdl:input name="getreportlist">
+        <soap:body namespace="http://creditws.les.com/" use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getreportlistResponse">
+        <soap:body namespace="http://creditws.les.com/" use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReportServiceImplService">
+    <wsdl:port binding="tns:ReportServiceImplServiceSoapBinding" name="ReportServiceImplPort">
+      <soap:address location="http://10.250.50.95/ckfw/services/creditreport"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,38 @@
+﻿<Page x:Class="ECRService.ReportViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ECRService"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="400"
+      Title="ReportPage" Initialized="Page_Initialized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <WindowsFormsHost x:Name="formsHost" Visibility="Hidden" />
+        <Label x:Name="timerLabel" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center"/>
+        <Image x:Name="reportView" Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" />
+        <Button x:Name="previous" Grid.Row="4" Grid.Column="0" Content="上一页" Style="{StaticResource actionButton}" Visibility="Hidden" Click="Previous_Click" />
+        <Button x:Name="next" Grid.Row="4" Grid.Column="2" Content="下一页" Style="{StaticResource actionButton}" Visibility="Hidden" Click="Next_Click" />
+        <Button x:Name="returnButton" Grid.Row="5" Grid.Column="0" Content="返回" Style="{StaticResource actionButton}" Visibility="Hidden" Click="Return_Click"/>
+        <Button x:Name="printButton" Grid.Row="5" Grid.Column="2" Content="打印" Style="{StaticResource actionButton}" Visibility="Hidden" Click="Print_Click" />
+        <Grid x:Name="hintPanel" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="10">
+            <Border Background="#c0addd7b" CornerRadius="8,8,8,8">
+                <Label x:Name="hintLabel" HorizontalAlignment="Center" />
+            </Border>
+        </Grid>
+        <MediaElement x:Name="media" Visibility="Hidden" LoadedBehavior="Manual" />
+    </Grid>
+</Page>

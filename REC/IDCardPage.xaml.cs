@@ -13,15 +13,14 @@ namespace REC
     /// </summary>
     public partial class IDCardPage : Page
     {
-        public static int m_iPort;  //端口
-        public static int read_success = -1;  //是否读取到身份证信息
-        IDCardData idcardData = new IDCardData();
-
-
         public IDCardPage()
         {
             InitializeComponent();
         }
+
+        public static int m_iPort;  //端口
+        public static int read_success = -1;  //是否读取到身份证信息
+        IDCardData idcardData = new IDCardData();
 
         private DispatcherTimer pageTimer = null;
         public TimeCount timeCount = new TimeCount() { Countdown = 25 };

@@ -1,0 +1,78 @@
+﻿<Page x:Class="ECRService.NaturalPersonQueryIndexPage2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ECRService"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="400"
+      Title="QueryIndexPage2" Initialized="Page_Initialized" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*" />
+            <RowDefinition Height="21*" />
+            <RowDefinition Height="131*" />
+            <RowDefinition Height="131*" />
+            <RowDefinition Height="131*" />
+            <RowDefinition Height="131*" />
+            <RowDefinition Height="143*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="462*" />
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="462*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="2" Grid.Column="0" Height="89" Width="328" CornerRadius="4" HorizontalAlignment="Right">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="FDCJJ_Click">
+                <Image Stretch="None" Source="Images/natural_person_fdcjj.png" />
+            </Button>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="2" Height="89" Width="328" CornerRadius="4" HorizontalAlignment="Left">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="JLGC_Click">
+                <Image Stretch="None" Source="Images/natural_person_jlgc.png" />
+            </Button>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="0" Height="89" Width="328" CornerRadius="4" HorizontalAlignment="Right">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="XXXTGCJL_Click">
+                <Image Stretch="None" Source="Images/natural_person_xxxtgcjl.png" />
+            </Button>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="2" Height="89" Width="328" CornerRadius="4" HorizontalAlignment="Left">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="XTJCGJXMJL_Click">
+                <Image Stretch="None" Source="Images/natural_person_xtjcgjxmjl.png" />
+            </Button>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="0" Height="89" Width="328" CornerRadius="4" HorizontalAlignment="Right">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="XTJCXMJL_Click">
+                <Image Stretch="None" Source="Images/natural_person_xtjcxmjl.png" />
+            </Button>
+        </Border>
+        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="270*" />
+                <ColumnDefinition Width="484*" />
+                <ColumnDefinition Width="270*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="23" HorizontalAlignment="Right" VerticalAlignment="Top" Template="{StaticResource imageButtonTemplate}" Click="Previous_Click">
+                <Image Stretch="None" Source="Images/last_page.png" />
+            </Button>
+            <Button Grid.Column="2" Margin="23" HorizontalAlignment="Left" VerticalAlignment="Top" Template="{StaticResource imageButtonTemplate}" Click="Return_Click">
+                <Image Stretch="None" Source="Images/return.png" />
+            </Button>
+        </Grid>
+<!--
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="上一页" Style="{StaticResource navigateButton}" Click="Previous_Click">
+                    </Button>
+                    <Button Grid.Column="1" Content="返回" Style="{StaticResource navigateButton}" Click="Return_Click">
+                    </Button>
+                </Grid>
+        -->
+        <MediaElement x:Name="media" Visibility="Hidden" LoadedBehavior="Manual" />
+    </Grid>
+</Page>

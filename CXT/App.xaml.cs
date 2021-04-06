@@ -56,18 +56,7 @@ namespace XinHua
             //if (e.Exception.Source != "System.Windows.Forms")
             //    Log.WriteException(e.Exception);
         }
-        private Mutex mutex;
-        private void App_Startup(object sender, StartupEventArgs e)
-        {
 
-            bool ret;
-            mutex = new Mutex(true, "ElectronicNeedleTherapySystem", out ret);
-            if (!ret)
-            {
-               
-                Environment.Exit(0);
-            }
-        }
         public MainWindow mainWindow;
         public StartWindow StartWindow;
         public static BackgroundWindow backgroundWindow;
@@ -85,6 +74,19 @@ namespace XinHua
             Global.Initialized();
             //获取屏幕数量
             BackgroundItem.Screens = System.Windows.Forms.Screen.AllScreens.Count()-1;
+        }
+
+        private Mutex mutex;
+        private void App_Startup(object sender, StartupEventArgs e)
+        {
+
+            bool ret;
+            mutex = new Mutex(true, "ElectronicNeedleTherapySystem", out ret);
+            if (!ret)
+            {
+
+                Environment.Exit(0);
+            }
         }
         private void Application_Exit(object sender, ExitEventArgs e)
         {

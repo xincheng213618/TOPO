@@ -1,0 +1,71 @@
+﻿<Page x:Class="ECRService.IDCardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ECRService"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="IDCardPage" Initialized="Page_Initialized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="58" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="98*" />
+            <ColumnDefinition Width="828*" />
+            <ColumnDefinition Width="98" />
+        </Grid.ColumnDefinitions>
+        <WindowsFormsHost x:Name="formsHost" Visibility="Hidden" />
+        <ProgressBar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 100 0" HorizontalAlignment="Right" Width="50" Height="50" Minimum="0" Maximum="100" Value="{Binding Countdown, Mode=OneWay}">
+            <ProgressBar.Template>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Border Background="{TemplateBinding Value, Converter={StaticResource ValueToProcessConverter}, ConverterParameter=90}"/>
+                </ControlTemplate>
+            </ProgressBar.Template>
+        </ProgressBar>
+        <Image Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Source="Images/idcard.png" />
+        <Label Grid.Row="2" Grid.Column="1" Margin="0 18 0 0" Content="读取身份证信息" Style="{StaticResource titleLabel}"/> 
+        <Button Grid.Row="4" Grid.Column="0" Margin="98 0 0 0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Template="{StaticResource imageButtonTemplate}" Click="Return_Click">
+            <Image Stretch="None" Source="Images/return.png" />
+        </Button>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="40*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="324" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="400" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="1" Grid.RowSpan="9" x:Name="idcardPicture" Width="135" Height="166" Grid.Column="0"  VerticalAlignment="Top" />
+            <Label Grid.Row="1" Grid.Column="1" Content="姓       名：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="2" x:Name="name" Style="{StaticResource contentLabel}" />
+            <Label Grid.Row="2" Grid.Column="1" Content="性       别：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="2" x:Name="sex" Style="{StaticResource contentLabel}" />
+            <Label Grid.Row="3" Grid.Column="1" Content="出生日期：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Right"/>
+            <Label Grid.Row="3" Grid.Column="2" x:Name="bir" Style="{StaticResource contentLabel}" />
+            <Label Grid.Row="4" Grid.Column="1" Content="证件号码：" Style="{StaticResource contentLabel}" HorizontalAlignment="Right"/>
+            <Label Grid.Row="4" Grid.Column="2" x:Name="cardNo" Style="{StaticResource contentLabel}" />
+            <Label Grid.Row="5" Grid.Column="1" Content="签发单位：" Style="{StaticResource contentLabel}" HorizontalAlignment="Right"/>
+            <Label Grid.Row="5" Grid.Column="2" x:Name="placesOfIssue" Style="{StaticResource contentLabel}" />
+            <Label Grid.Row="6" Grid.Column="1" Content="有效期限：" Style="{StaticResource contentLabel}" HorizontalAlignment="Right"/>
+            <Label Grid.Row="6" Grid.Column="2" x:Name="validDate" Style="{StaticResource contentLabel}" />
+        </Grid>
+
+
+
+
+    </Grid>
+</Page>

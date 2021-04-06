@@ -1,0 +1,1055 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B229A358-1FA1-4EC9-87DA-B0752D75BD86}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ECRService</RootNamespace>
+    <AssemblyName>ECRService</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>Custom</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxAcroPDFLib">
+      <HintPath>..\..\ECRControl\AxAcroPDFLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AxAmFaceControlLib">
+      <HintPath>..\..\PCRControl\AxAmFaceControlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AxSYNCARDOCXLib">
+      <HintPath>..\..\PCRControl\AxSYNCARDOCXLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Ink, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Common Files\Microsoft Shared\Ink\Microsoft.Ink.dll</HintPath>
+    </Reference>
+    <Reference Include="O2S.Components.PDFRender4NET, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\O2S.Components.PDFRender4NET.dll</HintPath>
+    </Reference>
+    <Reference Include="O2S.Components.PDFView4NET, Version=4.0.2.0, Culture=neutral, PublicKeyToken=bdf0cc7afcc23208, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\O2S.Components.PDFView4NET.dll</HintPath>
+    </Reference>
+    <Reference Include="SYNCARDOCXLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\SYNCARDOCXLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Global.cs" />
+    <Compile Include="LegalEntityDetailPage.xaml.cs">
+      <DependentUpon>LegalEntityDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LegalEntityQueryIndexPage.xaml.cs">
+      <DependentUpon>LegalEntityQueryIndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LegalEntityQueryPage.xaml.cs">
+      <DependentUpon>LegalEntityQueryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NaturalPersonDetailPage.xaml.cs">
+      <DependentUpon>NaturalPersonDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NaturalPersonQueryPage.xaml.cs">
+      <DependentUpon>NaturalPersonQueryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintIndexPage.xaml.cs">
+      <DependentUpon>PrintIndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuarantineCreditCertificatePage.xaml.cs">
+      <DependentUpon>QuarantineCreditCertificatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuarantineCreditQueryPage.xaml.cs">
+      <DependentUpon>QuarantineCreditQueryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NaturalPersonQueryIndexPage.xaml.cs">
+      <DependentUpon>NaturalPersonQueryIndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryIndexPage.xaml.cs">
+      <DependentUpon>QueryIndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportListPage.xaml.cs">
+      <DependentUpon>ReportListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CreditreportDelegate1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ReportServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReferenceRecord\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ValueToProcessConverter.cs" />
+    <Page Include="CameraPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IDCardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LegalEntityDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LegalEntityQueryIndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LegalEntityQueryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CameraPage.xaml.cs">
+      <DependentUpon>CameraPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IDCardPage.xaml.cs">
+      <DependentUpon>IDCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="NaturalPersonDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NaturalPersonQueryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ECRResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintIndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuarantineCreditCertificatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuarantineCreditQueryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NaturalPersonQueryIndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QueryIndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\CreditreportDelegate1\Creditreport.wsdl" />
+    <None Include="Service References\ReportServiceReference\ReportService.wsdl" />
+    <None Include="Service References\ReportServiceReference\ReportServiceImplService.wsdl" />
+    <None Include="Service References\ServiceReferenceRecord\Creditreport.wsdl" />
+    <None Include="WebService\Creditreport.wsdl" />
+    <None Include="WebService\Creditreport_schema1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
+      <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>
+      <Name>BaseDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseUtil\BaseUtil.csproj">
+      <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
+      <Name>BaseUtil</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\idcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CreditreportDelegate1\" />
+    <WCFMetadataStorage Include="Service References\ReportServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ServiceReferenceRecord\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ReportServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ReportServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ReportServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\info_background.png" />
+    <Resource Include="Images\print.png" />
+    <Resource Include="Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+    <Resource Include="Images\home_print.png" />
+    <Resource Include="Images\home_search.png" />
+    <Resource Include="Images\last_page.png" />
+    <Resource Include="Images\next_page.png" />
+    <Resource Include="Images\preview.png" />
+    <Resource Include="Images\return.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\quarantine_certificate.png" />
+    <Resource Include="Images\credit_report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\legal_entity_search.png" />
+    <Resource Include="Images\natural_person_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\enterprise_unit_search.png" />
+    <Resource Include="Images\individual_business_search.png" />
+    <Resource Include="Images\non_enterprise_search.png" />
+    <Resource Include="Images\social_group_search.png" />
+    <Resource Include="Images\public_institution_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\natural_person_xtjcxmjl.png" />
+    <Resource Include="Images\natural_person_zyls.png" />
+    <Resource Include="Images\natural_person_xxxtgcjl.png" />
+    <Resource Include="Images\natural_person_jgjz.png" />
+    <Resource Include="Images\natural_person_zyys.png" />
+    <Resource Include="Images\natural_person_xtjcgjxmjl.png" />
+    <Resource Include="Images\natural_person_jlgc.png" />
+    <Resource Include="Images\natural_person_fdcjj.png" />
+    <Resource Include="Images\natural_person_fdcgj.png" />
+    <Resource Include="Images\natural_person_gzy.png" />
+    <Resource Include="Images\natural_person_spjy.png" />
+    <Resource Include="Images\natural_person_xygl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\natural_person_gcjs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\continue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shutdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\keyboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clear.png" />
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\handwriting_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shutter.png" />
+    <Resource Include="Images\shutter1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\video_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\print_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background.png" />
+    <Resource Include="Images\card_bg.png" />
+    <Resource Include="Images\fr_title.png" />
+    <Resource Include="Images\go_home.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\info_bg.png" />
+    <Resource Include="Images\jyjy_bg.png" />
+    <Resource Include="Images\zrr_title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="picture\办事指南1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="picture\报告打印1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="picture\交通运输局.png" />
+    <Resource Include="picture\人社局.png" />
+    <Resource Include="picture\人防办.png" />
+    <Resource Include="picture\住建局.png" />
+    <Resource Include="picture\信息查询1.png" />
+    <Resource Include="picture\倒计时.png" />
+    <Resource Include="picture\关于委托办理.png" />
+    <Resource Include="picture\卫计局.png" />
+    <Resource Include="picture\发改局.png" />
+    <Resource Include="picture\司法局.png" />
+    <Resource Include="picture\商务局.png" />
+    <Resource Include="picture\国土分局.png" />
+    <Resource Include="picture\国税分局.png" />
+    <Resource Include="picture\城管局.png" />
+    <Resource Include="picture\市场监督管理局.png" />
+    <Resource Include="picture\文化旅游局.png" />
+    <Resource Include="picture\档案局.png" />
+    <Resource Include="picture\民政局.png" />
+    <Resource Include="picture\水务局.png" />
+    <Resource Include="picture\物价局.png" />
+    <Resource Include="picture\环保局.png" />
+    <Resource Include="picture\符号.png" />
+    <Resource Include="picture\药监局.png" />
+    <Resource Include="picture\规划分局.png" />
+    <Resource Include="picture\财政局.png" />
+    <Resource Include="picture\财政局相关事项.png" />
+    <Resource Include="picture\质监局.png" />
+    <Resource Include="picture\返回.png" />
+    <Resource Include="picture\返回1.png" />
+    <Resource Include="picture\首页文字.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\caizhengju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\chengguanju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\caizheng1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\caizheng3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\caizheng2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\caizheng4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\chengguan0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\chengguan1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\caizheng0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\danganju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\dangan0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\dangan1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagaiju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagai0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagai1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagai2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagai3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagai4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagai5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagai6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\fagai7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\guihuafenju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\规划分局7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\guoshuifenju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局15.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局10.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局9.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局11.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局14.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局13.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局12.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国税分局16.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\huanbaoju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\huanbao0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\huanbao1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\huanbao5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\huanbao4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\huanbao3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\huanbao2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshuju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\jiaotongyunshu8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzhengju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzheng0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzheng1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzheng2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzheng3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzheng4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzheng5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzheng6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\minzheng7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\renfangban.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办18.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办10.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办11.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办12.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办13.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办14.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办15.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办16.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办17.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人防办9.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\rensheju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\人社局0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shangwuju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shangwu2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shangwu0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shangwu1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjianguanju.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian16.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian26.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian25.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian24.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian23.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian22.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian21.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian20.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian19.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian18.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian17.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian15.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian14.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian13.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian12.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian11.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian10.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\shichangjian9.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\水务局.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\交通运输局.png" />
+    <Resource Include="Images\人社局.png" />
+    <Resource Include="Images\人防办.png" />
+    <Resource Include="Images\住建局.png" />
+    <Resource Include="Images\信息查询1.png" />
+    <Resource Include="Images\倒计时.png" />
+    <Resource Include="Images\关于委托办理.png" />
+    <Resource Include="Images\办事指南1.png" />
+    <Resource Include="Images\卫计局.png" />
+    <Resource Include="Images\发改局.png" />
+    <Resource Include="Images\司法局.png" />
+    <Resource Include="Images\商务局.png" />
+    <Resource Include="Images\国土分局.png" />
+    <Resource Include="Images\国税分局.png" />
+    <Resource Include="Images\城管局.png" />
+    <Resource Include="Images\市场监督管理局.png" />
+    <Resource Include="Images\报告打印1.png" />
+    <Resource Include="Images\文化旅游局.png" />
+    <Resource Include="Images\档案局.png" />
+    <Resource Include="Images\民政局.png" />
+    <Resource Include="Images\水务局.png" />
+    <Resource Include="Images\物价局.png" />
+    <Resource Include="Images\环保局.png" />
+    <Resource Include="Images\符号.png" />
+    <Resource Include="Images\药监局.png" />
+    <Resource Include="Images\规划分局.png" />
+    <Resource Include="Images\财政局.png" />
+    <Resource Include="Images\财政局相关事项.png" />
+    <Resource Include="Images\质监局.png" />
+    <Resource Include="Images\返回.png" />
+    <Resource Include="Images\返回1.png" />
+    <Resource Include="Images\首页文字.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\水务0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\水务1.txt" />
+    <Resource Include="事项分类\水务9.txt" />
+    <Resource Include="事项分类\水务10.txt" />
+    <Resource Include="事项分类\水务11.txt" />
+    <Resource Include="事项分类\水务12.txt" />
+    <Resource Include="事项分类\水务13.txt" />
+    <Resource Include="事项分类\水务2.txt" />
+    <Resource Include="事项分类\水务3.txt" />
+    <Resource Include="事项分类\水务4.txt" />
+    <Resource Include="事项分类\水务5.txt" />
+    <Resource Include="事项分类\水务6.txt" />
+    <Resource Include="事项分类\水务7.txt" />
+    <Resource Include="事项分类\水务8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\司法局.txt" />
+    <Resource Include="事项分类\司法局0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\司法局2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\卫计局.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\卫计局0.txt" />
+    <Resource Include="事项分类\卫计局1.txt" />
+    <Resource Include="事项分类\卫计局2.txt" />
+    <Resource Include="事项分类\卫计局3.txt" />
+    <Resource Include="事项分类\卫计局4.txt" />
+    <Resource Include="事项分类\卫计局5.txt" />
+    <Resource Include="事项分类\卫计局6.txt" />
+    <Resource Include="事项分类\卫计局7.txt" />
+    <Resource Include="事项分类\卫计局8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\文化旅游局.txt" />
+    <Resource Include="事项分类\文化旅游局0.txt" />
+    <Resource Include="事项分类\文化旅游局1.txt" />
+    <Resource Include="事项分类\文化旅游局2.txt" />
+    <Resource Include="事项分类\文化旅游局3.txt" />
+    <Resource Include="事项分类\文化旅游局4.txt" />
+    <Resource Include="事项分类\文化旅游局5.txt" />
+    <Resource Include="事项分类\文化旅游局6.txt" />
+    <Resource Include="事项分类\文化旅游局7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\物价局.txt" />
+    <Resource Include="事项分类\物价局0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\药监局.txt" />
+    <Resource Include="事项分类\药监局0.txt" />
+    <Resource Include="事项分类\药监局1.txt" />
+    <Resource Include="事项分类\药监局2.txt" />
+    <Resource Include="事项分类\药监局3.txt" />
+    <Resource Include="事项分类\药监局4.txt" />
+    <Resource Include="事项分类\药监局5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\质监局.txt" />
+    <Resource Include="事项分类\质监局0.txt" />
+    <Resource Include="事项分类\质监局1.txt" />
+    <Resource Include="事项分类\质监局2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\住建局.txt" />
+    <Resource Include="事项分类\住建局0.txt" />
+    <Resource Include="事项分类\住建局1.txt" />
+    <Resource Include="事项分类\住建局2.txt" />
+    <Resource Include="事项分类\住建局3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="事项分类\国土分局.txt" />
+    <Resource Include="事项分类\国土分局0.txt" />
+    <Resource Include="事项分类\国土分局1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreditreportDelegate1\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreditreportDelegate1\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CreditreportDelegate1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReferenceRecord\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReferenceRecord\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReferenceRecord\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\record_print.png" />
+    <Resource Include="Images\返回（按下键效果）.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Base\Media\00.camera-shutter-click.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Base\Media\01.打印报告类型.mp3" />
+    <None Include="Base\Media\02.查询信息类型.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\03.放置身份证.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\04.直视摄像头.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\05.比对中.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\06.选择报告，打印.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\07.取走身份证和报告.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\08.取走报告核对页数.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\09.点击退出.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\10.输入代码或号码.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\11.确认并打印.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\12.输入姓名和号码提交.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\13.输入证件号码提交.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\14.振动.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\15.滴.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Base\Media\16.请将收件单上的二维码放在扫码器上方扫描.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
