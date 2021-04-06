@@ -137,7 +137,7 @@ namespace ECRService
                     Pages();
                     break;
                 case "QuarantineCreditReport":
-                    Content = new QuarantineCreditQueryPage(iDCardData);
+                    Content = new QuarantineCreditQueryPage();
                     Pages();
                     break;
 

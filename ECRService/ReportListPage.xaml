@@ -114,7 +114,6 @@
         <Border x:Name="hintBorder" Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="5" Width="400" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red" CornerRadius="17">
             <Label x:Name="hintLabel" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17" Foreground="White" />
         </Border>
-        <MediaElement x:Name="media" Visibility="Hidden" LoadedBehavior="Manual" />
     </Grid>
 </Page>
 

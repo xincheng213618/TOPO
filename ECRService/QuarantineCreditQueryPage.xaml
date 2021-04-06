@@ -11,8 +11,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition Height="58" />
-            <RowDefinition Height="377" />
-            <RowDefinition Height="78" />
+            <RowDefinition Height="390.667" />
+            <RowDefinition Height="64" />
             <RowDefinition Height="110" />
             <RowDefinition Height="45" />
         </Grid.RowDefinitions>
@@ -22,7 +22,7 @@
             <ColumnDefinition Width="98*" />
         </Grid.ColumnDefinitions>
 
-        <ProgressBar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 0 100 0" HorizontalAlignment="Right" Width="50" Height="50" Minimum="0" Maximum="100" Value="{Binding Countdown, Mode=OneWay}">
+        <ProgressBar Grid.Row="1" Grid.Column="1" Margin="0,4,2,4" HorizontalAlignment="Right" Width="50" Minimum="0" Maximum="100" Value="{Binding Countdown, Mode=OneWay}">
             <ProgressBar.Template>
                 <ControlTemplate TargetType="ProgressBar">
                     <Border Background="{TemplateBinding Value, Converter={StaticResource ValueToProcessConverter}, ConverterParameter=90}"/>
@@ -30,7 +30,7 @@
             </ProgressBar.Template>
         </ProgressBar>
 
-        <Border Grid.Row="2" Grid.Column="1" Background="{StaticResource jyjy_background}" Height="377" >
+        <Border Grid.Row="2" Grid.Column="1" Background="{StaticResource jyjy_background}" Margin="0,0,0,0.667" >
             <Grid Margin="60 0 60 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="65" />
@@ -47,86 +47,17 @@
                 <TextBox Grid.Row="4" x:Name="record" VerticalAlignment="Center" InputMethod.IsInputMethodEnabled="False" GotFocus="Record_GotFocus" />
             </Grid>
         </Border>
-        <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" Margin="0 200 0 0" Width="544" Height="212" HorizontalAlignment="Center" Background="{StaticResource keyboard_background}" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_1_Click" />
-            <Button Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_2_Click" />
-            <Button Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_3_Click" />
-            <Button Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_4_Click" />
-            <Button Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_5_Click" />
-            <Button Grid.Row="0" Grid.Column="10" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_6_Click" />
-            <Button Grid.Row="0" Grid.Column="12" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_7_Click" />
-            <Button Grid.Row="0" Grid.Column="14" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_8_Click" />
-            <Button Grid.Row="0" Grid.Column="16" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_9_Click" />
-            <Button Grid.Row="0" Grid.Column="18" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_0_Click" />
-            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_Q_Click" />
-            <Button Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_W_Click" />
-            <Button Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_E_Click" />
-            <Button Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_R_Click" />
-            <Button Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_T_Click" />
-            <Button Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_Y_Click" />
-            <Button Grid.Row="1" Grid.Column="12" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_U_Click" />
-            <Button Grid.Row="1" Grid.Column="14" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_I_Click" />
-            <Button Grid.Row="1" Grid.Column="16" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_O_Click" />
-            <Button Grid.Row="1" Grid.Column="18" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_P_Click" />
-            <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_A_Click" />
-            <Button Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_S_Click" />
-            <Button Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_D_Click" />
-            <Button Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_F_Click" />
-            <Button Grid.Row="2" Grid.Column="9" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_G_Click" />
-            <Button Grid.Row="2" Grid.Column="11" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_H_Click" />
-            <Button Grid.Row="2" Grid.Column="13" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_J_Click" />
-            <Button Grid.Row="2" Grid.Column="15" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_K_Click" />
-            <Button Grid.Row="2" Grid.Column="17" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_L_Click" />
-            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Width="78" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_Clear_Click" />
-            <Button Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_Z_Click" />
-            <Button Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_X_Click" />
-            <Button Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_C_Click" />
-            <Button Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_V_Click" />
-            <Button Grid.Row="3" Grid.Column="11" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_B_Click" />
-            <Button Grid.Row="3" Grid.Column="13" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_N_Click" />
-            <Button Grid.Row="3" Grid.Column="15" Grid.ColumnSpan="2" Width="52" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_M_Click" />
-            <Button Grid.Row="3" Grid.Column="17" Grid.ColumnSpan="3" Width="78" Height="52" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="False" Style="{StaticResource hiddenButton}" Click="Keyboard_Backspace_Click" />
-        </Grid>
-        <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"  Template="{StaticResource imageButtonTemplate}" Click="Return_Click">
+        <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"  Template="{StaticResource imageButtonTemplate}" Click="PageChange_Click" Tag="Return" Margin="0,9.333,0,0.667" Width="87">
             <Image Stretch="None" Source="Images/return.png" />
         </Button>
-        <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"  Template="{StaticResource imageButtonTemplate}" Click="Exit_Click">
+        <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"  Template="{StaticResource imageButtonTemplate}" Click="PageChange_Click" Tag="HomePage" Margin="0,9.333,0,0.667" Width="87">
             <Image Stretch="None" Source="Images/home.png" />
         </Button>
-        <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Grid.RowSpan="2" Margin="0 55 0 0" VerticalAlignment="Top" Template="{StaticResource imageButtonTemplate}" Click="Query_Click">
+        <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0.333,0,0" VerticalAlignment="Top" Template="{StaticResource imageButtonTemplate}" Click="Query_Click" Height="39" Width="87">
             <Image Stretch="None" Source="Images/search.png" />
         </Button>
-        <Border x:Name="hintBorder" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5" Width="400" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red" CornerRadius="17" Visibility="Hidden">
+        <Border x:Name="hintBorder" Grid.Row="2" Grid.Column="1" Width="400" Height="34" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red" CornerRadius="17" Visibility="Hidden" Margin="214,215,214,141.667">
             <Label x:Name="hintLabel" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17" Foreground="White"/>
         </Border>
-        <MediaElement x:Name="media" Visibility="Hidden" LoadedBehavior="Manual" />
     </Grid>
 </Page>

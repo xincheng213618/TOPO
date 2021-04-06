@@ -42,68 +42,45 @@ namespace ECRService
         }
     }
 
-    public class PrintButton : Button
-    {
-        public string Identifier
-        {
-            get { return base.GetValue(IdentifierProperty) as string; }
-            set { base.SetValue(IdentifierProperty, value); }
-        }
-        public string CompanyName
-        {
-            get { return base.GetValue(CompanyNameProperty) as string; }
-            set { base.SetValue(CompanyNameProperty, value); }
-        }
 
-        public static readonly DependencyProperty CompanyNameProperty = DependencyProperty.Register("CompanyName", typeof(string), typeof(PrintButton));
-        public static readonly DependencyProperty IdentifierProperty = DependencyProperty.Register("Identifier", typeof(string), typeof(PrintButton));
-    }
 
     /// <summary>
     /// ReportListPage.xaml 的交互逻辑
     /// </summary>
-    public partial class ReportListPage : Page, INotifyPropertyChanged
+    public partial class ReportListPage : Page
     {
-        private const int TIMEOUT = 90;
-        public int countdown = TIMEOUT;
-        private DispatcherTimer pageTimer = null;
         private ObservableCollection<ReportItem> items;
-
-        private Thread worker_PrinterStatus = null;
-
-        private Dictionary<string, WindowsFormsHost> formsHosts = new Dictionary<string, WindowsFormsHost>();
-        private AxAcroPDFLib.AxAcroPDF pdfControl = null;
         private bool printing = false;
-
         public bool isPageTimer = false;
-
         private int downloadCount;
         private int printCount;
-
         private Timer timer;
 
-        public int Countdown
-        {
-            get { return countdown; }
-            set { countdown = value; OnPropertyChanged("Countdown"); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
         IDCardData iDCardData = new IDCardData();
 
         public ReportListPage(IDCardData iDCardData)
         {
             this.iDCardData = iDCardData;
             InitializeComponent();
-            this.DataContext = this;
+            listView.ItemsSource = items;
+        }
+        private void Page_Initialized(object sender, EventArgs e)
+        {
+            Countdown_timer();
+            DataContext = mainWidownData;
+            AcrobatHelper.pdfControl = new AxAcroPDFLib.AxAcroPDF();
+            AcrobatHelper.pdfControl.BeginInit();
+            formsHost.Child = AcrobatHelper.pdfControl;
+            AcrobatHelper.pdfControl.EndInit();
 
+            hintLabel.Content = "正在获取企业信用报告列表……";
+            Thread worker = new Thread(() => GetReportListProc());
+            worker.Start();
+        }
+        private DispatcherTimer pageTimer = null;
+        private MainWidownData mainWidownData = new MainWidownData() { Countdown = 90 };
+        private void Countdown_timer()
+        {
             pageTimer = new DispatcherTimer()
             {
                 IsEnabled = true,
@@ -111,22 +88,19 @@ namespace ECRService
             };
             pageTimer.Tick += new EventHandler((sender, e) =>
             {
-                if (--Countdown <= 0)
+                if (--mainWidownData.Countdown <= 0)
                 {
                     pageTimer.IsEnabled = false;
                     Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new HomePage())));
                 }
 
-                if (Countdown % 15 == 0)
+                if (mainWidownData.Countdown % 15 == 0)
                 {
-                    media.Source = new Uri(Directory.GetCurrentDirectory() + "/Media/6、选择报告，打印.mp3", UriKind.Absolute);
-                    media.Position = TimeSpan.Zero;
-                    media.Play();
+                    Media.Player(6);
                 }
             });
-
-            listView.ItemsSource = items;
         }
+
 
         private void GetReportListCompleted(string response)
         {
@@ -148,14 +122,7 @@ namespace ECRService
                         item.Identifier = xn["id"].InnerText;
                         item.CompanyName = xn["qymc"].InnerText;
                         item.FillingDate = xn["sqrq"].InnerText;
-                        items.Add(item);
-
-                        //string tyshxydm = xn["tyshxydm"].InnerText;
-                        //string zzjgdm = xn["zzjgdm"].InnerText;
-                        //string fddbr = xn["fddbr"].InnerText;
-                        //string jbr = xn["jbr"].InnerText;
-
-                       
+                        items.Add(item);                 
                     }
                 }
                 else if (returncode.CompareTo("0") == 0)
@@ -194,72 +161,25 @@ namespace ECRService
             Dispatcher.BeginInvoke(new Action(() => GetReportListCompleted(response)));
         }
 
-        private void GetPrinterStatus()
-        {
-        }
-
-        private void Page_Initialized(object sender, EventArgs e)
-        {
-            AxAcroPDFLib.AxAcroPDF pdfControl = new AxAcroPDFLib.AxAcroPDF();
-            pdfControl.BeginInit();
-            formsHost.Child = pdfControl;
-            pdfControl.EndInit();
-
-            hintLabel.Content = "正在获取企业信用报告列表……";
-            Thread worker = new Thread(() => GetReportListProc());
-            worker.Start();
-
-            /*
-            ReportItem item = new ReportItem();
-            item.Identifier = "XYBG0100170504001";
-            item.CompanyName = "南京莱斯信息技术股份有限公司";
-            item.FillingDate = "20170701";
-            items.Add(item);
-
-            item = new ReportItem();
-            item.Identifier = "XYBG3201001700003";
-            item.CompanyName = "南京江北金申工贸有限公司";
-            item.FillingDate = "20170701";
-            items.Add(item);
-
-            hintLabel.Content = "";
-            hintBorder.Visibility = Visibility.Hidden;
-            listView.Visibility = Visibility.Visible;
-            printButton.Visibility = Visibility.Visible;
-            exitButton.Visibility = Visibility.Visible;*/
-        }
-
 
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            if (null != pdfControl)
-            {
-                pdfControl.Dispose();
-            }
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new HomePage())));
         }
 
         private void LoadPDFFile(ReportItem item)
         {
-            pdfControl = formsHost.Child as AxAcroPDFLib.AxAcroPDF;
-            pdfControl.LoadFile($"{item.Identifier}.pdf");
+            AcrobatHelper.pdfControl.LoadFile($"{item.Identifier}.pdf");
         }
 
         private void PrintPDFFile(ReportItem item)
         {
             hintLabel.Content = $"正在打印{item.Identifier}……";
-            pdfControl = formsHost.Child as AxAcroPDFLib.AxAcroPDF;
-            pdfControl.printAll();
+            AcrobatHelper.pdfControl.printAll();
 
-            System.ServiceModel.BasicHttpBinding binding = new System.ServiceModel.BasicHttpBinding();
-            binding.MaxReceivedMessageSize = 16777216;
-            binding.SendTimeout = TimeSpan.FromSeconds(30);
-            binding.ReceiveTimeout = TimeSpan.FromSeconds(30);
-            System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress(Global.Config.ServerURL);
-            CreditreportDelegate reportService = new CreditreportDelegateClient(binding, endpointAddress);
-            reportService.updatereportstatus(Global.Config.LoginName, Global.Config.LoginPassword, item.Identifier, "0", "1");
+            Webservice.NanJing.updatereportstatus(item.Identifier, "1");
 
             printCount++;
 
@@ -319,19 +239,6 @@ namespace ECRService
 
         }
 
-        public void ResetTimer()
-        {
-            Countdown = TIMEOUT;
-            pageTimer.IsEnabled = true;
-        }
-
-        public void UpdatePrintedItem()
-        {
-            StyleSelector selector = listView.ItemContainerStyleSelector;
-            listView.ItemContainerStyleSelector = null;
-            listView.ItemContainerStyleSelector = selector;
-        }
-
         private void PrintingJobsCompleted()
         {
             for (int i = items.Count - 1; i >= 0; i--)
@@ -346,9 +253,7 @@ namespace ECRService
 
             exitButton.Visibility = Visibility.Visible;
 
-            media.Source = new Uri(Directory.GetCurrentDirectory() + "/Media/7、取走身份证和报告.mp3", UriKind.Absolute);
-            media.Position = TimeSpan.Zero;
-            media.Play();
+            Media.Player(7);
 
             timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => PrintCompletedInfo())), null, TimeSpan.FromSeconds(10), Timeout.InfiniteTimeSpan);
         }
@@ -371,7 +276,6 @@ namespace ECRService
 
             if (items.Count == 0)
             {
-                pdfControl.Dispose();
                 pageTimer.IsEnabled = false;
                 Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new HomePage())));
             }
@@ -429,11 +333,6 @@ namespace ECRService
             if (printing)
                 return;
 
-            if (worker_PrinterStatus != null)
-            {
-                worker_PrinterStatus.Join();
-                worker_PrinterStatus = null;
-            }
 
             printing = true;
             exitButton.Visibility = Visibility.Hidden;
@@ -468,10 +367,6 @@ namespace ECRService
 
         private void back_Click(object sender, RoutedEventArgs e)
         {
-            if (null != pdfControl)
-            {
-                pdfControl.Dispose();
-            }
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new PrintIndexPage())));
         }

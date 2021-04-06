@@ -211,6 +211,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AcrobatHelper.cs" />
     <Compile Include="AForgePage.xaml.cs">
       <DependentUpon>AForgePage.xaml</DependentUpon>
     </Compile>

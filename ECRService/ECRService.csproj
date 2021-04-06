@@ -117,6 +117,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AcrobatHelper.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="LegalEntityDetailPage.xaml.cs">
       <DependentUpon>LegalEntityDetailPage.xaml</DependentUpon>
@@ -170,6 +171,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ValueToProcessConverter.cs" />
+    <Compile Include="Webservice.cs" />
     <Page Include="CameraPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
