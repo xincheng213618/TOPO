@@ -22,8 +22,6 @@ namespace EXCYiXing
     public partial class Report : Page
     {
         private IDCardData idcardData;
-        private string CompanyID;
-        private string TemplateID = "";
 
         public Report()
         {

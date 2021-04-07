@@ -14,7 +14,6 @@ namespace EXC
     /// </summary>
     public partial class CameraPage : Page
     {
-        int ret=0;
         private static bool ShootSucess = false;
         private static double b, c;
 

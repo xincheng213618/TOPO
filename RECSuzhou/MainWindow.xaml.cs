@@ -28,7 +28,6 @@ namespace RECSuzhou
         
         private Timer timer;
         SuZhouDate Time = new SuZhouDate();
-        private int ExitNum = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -38,10 +37,7 @@ namespace RECSuzhou
         {
             Time.Date = DateTime.Now.ToString("MM月dd日 HH:mm:ss");
             Log.LogInput();// 每个一秒刷新一次日志
-            if (DateTime.Now.Second == 0)
-            {
-                ExitNum = 0; //让计数归零，防止用户误触退出程序
-            }
+
             //规定的时间内删除缓存
             if (DateTime.Now.Hour == 14 && DateTime.Now.Minute == 0 && DateTime.Now.Second == 0)
             {

@@ -63,30 +63,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxAcroPDFLib">
-      <HintPath>..\..\ECRControl\AxAcroPDFLib.dll</HintPath>
-    </Reference>
-    <Reference Include="AxAmFaceControlLib">
-      <HintPath>..\..\PCRControl\AxAmFaceControlLib.dll</HintPath>
-    </Reference>
-    <Reference Include="AxSYNCARDOCXLib">
-      <HintPath>..\..\PCRControl\AxSYNCARDOCXLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Ink, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Common Files\Microsoft Shared\Ink\Microsoft.Ink.dll</HintPath>
-    </Reference>
-    <Reference Include="O2S.Components.PDFRender4NET, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\O2S.Components.PDFRender4NET.dll</HintPath>
-    </Reference>
-    <Reference Include="O2S.Components.PDFView4NET, Version=4.0.2.0, Culture=neutral, PublicKeyToken=bdf0cc7afcc23208, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\O2S.Components.PDFView4NET.dll</HintPath>
-    </Reference>
-    <Reference Include="SYNCARDOCXLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>bin\Debug\SYNCARDOCXLib.dll</HintPath>
+      <HintPath>..\DLL\AxAcroPDFLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -259,6 +236,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="clear.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\app.manifest">
       <SubType>Designer</SubType>
     </None>

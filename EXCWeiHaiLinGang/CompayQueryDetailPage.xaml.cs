@@ -100,8 +100,8 @@ namespace EXC
 
         int HeiFeiXKNo = 0;
         int HeiFeiCFNo = 0;
-        int HeiFeiRedNo = 0;
-        int HeiFeiBlackNo = 0;
+        //int HeiFeiRedNo = 0;
+        //int HeiFeiBlackNo = 0;
 
         private void HeiFeiListPhrase(string response, string Type)
         {

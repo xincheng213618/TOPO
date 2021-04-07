@@ -6,12 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Xml;
 using ECRService.ReportServiceReference;
-using System.ComponentModel;
-using Microsoft.Ink;
-using System.Runtime.InteropServices;
 using BaseUtil;
 
 namespace ECRService
@@ -223,116 +219,15 @@ namespace ECRService
             listViewHeader.Visibility = Visibility.Hidden;
             listView.Visibility = Visibility.Hidden;
 
-            inkPanel.Visibility = Visibility.Visible;
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            inkPanel.Visibility = Visibility.Hidden;
 
             if (queried)
             {
                 listViewHeader.Visibility = Visibility.Visible;
                 listView.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            Clear_ink();
-        }
-
-
-
-        private Timer timer = null;
-
-        private void InkCanvas_StrokeCollected(object sender, InkCanvasStrokeCollectedEventArgs e)
-        {
-            if (timer != null)
-            {
-                timer.Dispose();
-                timer = null;
-            }
-            timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => HandWriting_Recognize())), null, TimeSpan.FromMilliseconds(200), Timeout.InfiniteTimeSpan);
-        }
-
-        private int lastcout = 0;
-        private void HandWriting_Recognize()
-        {
-            timer.Dispose();
-            timer = null;
-            using (MemoryStream stream = new MemoryStream())
-            {
-                inkCanvas.Strokes.Save(stream);
-                InkCollector inkCollector = new InkCollector();
-                Ink ink = new Ink();
-                ink.Load(stream.ToArray());
-                new Thread(_ =>
-                {
-                    using (RecognizerContext context = new RecognizerContext())
-                    {
-                        context.Factoid = Factoid.ChineseSimpleCommon;
-                        if (ink.Strokes.Count - lastcout > 10)
-                        {
-                            lastcout = ink.Strokes.Count;
-                            Dispatcher.BeginInvoke(new Action(() => Clear_ink()));
-                        }
-                        else
-                        {
-                            lastcout = ink.Strokes.Count;
-                        }
-                        if (ink.Strokes.Count > 0 && ink.Strokes.Count < 40)
-                        {
-                            context.Strokes = ink.Strokes;
-                            RecognitionStatus status;
-                            var result = context.Recognize(out status);
-                            if (status == RecognitionStatus.NoError)
-                            {
-                                RecognitionAlternates selections = result.GetAlternatesFromSelection();
-                                Dispatcher.BeginInvoke(new Action(() => {
-                                    select0.Content = selections.Count > 1 ? selections[0].ToString() : null;
-                                    select1.Content = selections.Count > 2 ? selections[1].ToString() : null;
-                                    select2.Content = selections.Count > 3 ? selections[2].ToString() : null;
-                                    select3.Content = selections.Count > 4 ? selections[3].ToString() : null;
-                                    select4.Content = selections.Count > 5 ? selections[4].ToString() : null;
-                                }));
-                            }
-                        }
-                        else
-                        {
-                            Dispatcher.BeginInvoke(new Action(() => Clear_ink()));
-                        }
-                    }
-                }).Start();
-            }
-        }
-
-        private void Clear_ink()
-        {
-            inkCanvas.Strokes.Clear();
-            select0.Content = null;
-            select1.Content = null;
-            select2.Content = null;
-            select3.Content = null;
-            select4.Content = null;
-        }
-
-        //修正不直接对页面负责对窗口负责
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            User32dll.KeyHelper.OnKeyPress(User32dll.KeyHelper.KeyCode.BACK);
-        }
-
-        private void Recognizer_Select(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-
-            if (button.Content != null)
-            {
-                textBox.Text = textBox.Text.ToString() + button.Content.ToString();
-                TextBox focus = FocusManager.GetFocusedElement(this) as TextBox;
-                focus.Select(textBox.Text.Length, 0);
-                Clear_ink();
             }
         }
 

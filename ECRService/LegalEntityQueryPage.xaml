@@ -95,36 +95,6 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <Grid x:Name="inkPanel" Grid.Row="5" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Hidden" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="53" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="83" />
-                        <ColumnDefinition Width="83" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" >
-                        <Button x:Name="select0" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select1" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select2" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select3" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select4" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                    </StackPanel>
-                    <Button Grid.Row="0" Grid.Column="1" Width="83" Height="53" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="Clear_Click">
-                        <Image Stretch="None" Source="Images/clear.png" />
-                    </Button>
-                    <Button Grid.Row="0" Grid.Column="2" Width="83" Height="53" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="Delete_Click">
-                        <Image Stretch="None" Source="Images/delete.png" />
-                    </Button>
-                    <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" BorderBrush="#ff52aced" BorderThickness="1,1,1,1" Visibility="Visible" >
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="5" Color="Black" Direction="315" Opacity="0.3" RenderingBias="Performance" ShadowDepth="3" />
-                        </Border.Effect>
-                        <InkCanvas x:Name="inkCanvas" Focusable="False" StrokeCollected="InkCanvas_StrokeCollected" Background="{StaticResource handwriting_background}" />
-                    </Border>
-                </Grid>
             </Grid>
         </Border>
         

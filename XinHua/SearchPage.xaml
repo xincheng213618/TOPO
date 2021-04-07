@@ -59,59 +59,6 @@
                 </Grid>
 
             </Border>
-            <Border x:Name="inkPanel" Grid.Row="1" Background="#eeeeef" CornerRadius="30" Opacity="0.9" Margin="100,100,100,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="55"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="120"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="30,10,0,-10" >
-                        <Button x:Name="select0" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select1" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select2" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select3" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select4" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select5" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select6" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select7" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select8" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        <Button x:Name="select9" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                    </StackPanel>
-
-                    <Border Grid.Row="1" Grid.Column="0" Margin="50,20,0,30" BorderBrush="#c5c5c5" Visibility="Visible" >
-                        <InkCanvas x:Name="inkCanvas" Focusable="False"  StrokeCollected="InkCanvas_StrokeCollected" Background="White" />
-                    </Border>
-
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="Fun_Click" >
-                            <Image Stretch="Uniform" Source="Images/中英.png" Width="60" Height="60"/>
-                        </Button>
-
-                        <Button Grid.Row="0" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="Clear_Click" >
-                            <Image Stretch="Uniform" Source="Images/清空.png" Width="60" Height="60"/>
-                        </Button>
-                        <Button Grid.Row="1" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="Delete_Click" >
-                            <Image Stretch="Uniform" Source="Images/删除.png" Width="60" Height="60"/>
-                        </Button>
-                        <Button Grid.Row="2" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="KeyBoard_Click" >
-                            <Grid>
-                                <Image Stretch="Uniform" Source="Images/键盘.png" Width="60" Height="60" />
-                                <Label Content="键盘" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23" FontFamily="宋体"/>
-                            </Grid>
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Border>
 
         </Grid>
 
