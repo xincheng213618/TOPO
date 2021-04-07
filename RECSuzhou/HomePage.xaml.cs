@@ -45,7 +45,6 @@ namespace RECSuzhou
             Global.PageType = null;
             Global.IDCardInfo = new SaveInfo();
             Stamp.Close();
-            Stamp.ClosePort();
         }
 
 
