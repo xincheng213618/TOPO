@@ -216,7 +216,24 @@ namespace RECSuzhou
             PrintUtilWindow printUtil = new PrintUtilWindow(1);
             printUtil.Closed += PrintOneOver;
             printUtil.Show();
-            Stamp.Start(1);
+            //Stamp.Start(1);
+            int port = Stamp.OpenDevice();
+            if ("0".Equals(port.ToString()))
+            {
+                Log.Write("打开串口失败,可能端口被占用");
+                Content = new HomePage("打开串口失败,可能端口被占用");
+                Pages();
+                return;
+            }
+            int run = Stamp.Start(PageAllNum);
+            if (!"0".Equals(run.ToString()))
+            {
+                Log.Write("盖章机启动失败");
+                Content = new HomePage("盖章机启动失败");
+                
+                Pages();
+                return;
+            }
             AcrobatHelper.pdfControl.printPagesFit(PageNum, PageNum, true);
         }
         private void PrintOneOver(object sender, EventArgs e)
@@ -237,8 +254,24 @@ namespace RECSuzhou
                     PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
                     printUtil.Closed += PrintOver;
                     printUtil.Show();
-                    Stamp.Start(PageAllNum);
-                    AcrobatHelper.pdfControl.printAllFit(true);
+                //Stamp.Start(PageAllNum);
+                int port = Stamp.OpenDevice();
+                if ("0".Equals(port.ToString()))
+                {
+                    Log.Write("打开串口失败,可能端口被占用");
+                    Content = new HomePage("打开串口失败,可能端口被占用");
+                    Pages();
+                    return;
+                }
+                int run = Stamp.Start(PageAllNum);
+                if (!"0".Equals(run.ToString()))
+                {
+                    Log.Write("盖章机启动失败");
+                    Content = new HomePage("盖章机启动失败");
+                    Pages();
+                    return;
+                }
+                AcrobatHelper.pdfControl.printAllFit(true);
                     return;
                 //}
                 
