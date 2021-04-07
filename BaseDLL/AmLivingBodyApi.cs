@@ -166,8 +166,4 @@ namespace BaseDLL
         };
     }
 
-    public class AmLivingBodyApi86 : AmLivingBodyApi
-    {
-        private const string DLLPath = @"C:\Program Files\AuthenMetric\LivingBody\bin\LibLivingBody.dll";
-    }
 }

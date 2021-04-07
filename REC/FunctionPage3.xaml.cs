@@ -112,7 +112,7 @@ namespace REC
             }
             else if(Code ==-1)
             {
-                 await Dispatcher.BeginInvoke(new Action(() => ErrorMsg(data)));
+                 await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("上证失败，请联系C13号窗口工作人员")));
             }
         }
 

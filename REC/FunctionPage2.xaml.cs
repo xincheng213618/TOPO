@@ -57,7 +57,6 @@ namespace REC
                     AcrobatHelper.pdfControl.setShowScrollbars(false);
                     AcrobatHelper.pdfControl.setShowToolbar(false);
                     AcrobatHelper.pdfControl.gotoNextPage();
-
                 }
                 else
                 {
@@ -84,6 +83,7 @@ namespace REC
                 }
             });
         }
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
