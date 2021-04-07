@@ -60,12 +60,7 @@ namespace RECSuzhou
                 Stamp.StampPort = Global.Config.StampPort;
                 Stamp.Kind = "StampPrinter";
             }
-            //int port = Stamp.OpenDevice();
-            //if ("0".Equals(port.ToString()))
-            //{
-            //    Log.Write("打开串口失败,可能端口被占用");
-            //    MessageBox.Show("打开串口失败,可能端口被占用");              
-            //}
+            Stamp.OpenDevice();
             DateLabel.DataContext = Time;
             DataContext = Global.Config;
             Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new HomePage())));
@@ -82,7 +77,7 @@ namespace RECSuzhou
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Stamp.ClosePort();
+            Stamp.Close();
             Environment.Exit(0);
         }
 

@@ -42,14 +42,6 @@ namespace BaseDLL
             }
         }
 
-        public static void ClosePort()
-        {
-            if (Kind == "StampPrinter")
-            {
-                StampPrinter.ClosePort();
-            }
-        }
-
         public static int Start(int PageAllNum)
         {
             if (Kind == "PStamp")
