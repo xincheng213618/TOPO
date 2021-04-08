@@ -23,7 +23,7 @@
             <Label Content="{Binding Path=Show}" Foreground="#f4f7c7" FontSize="30" FontFamily="黑体" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,5" />
         </Grid>
         <Grid  Grid.Row="1"  Background="#c4cce7">
-            <Border x:Name="PassWordBorder" Background="White" Margin="50" CornerRadius="50" >
+            <Border x:Name="PassWordBorder" Background="White" Margin="50" CornerRadius="20" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="8*"/>
@@ -43,7 +43,7 @@
 
             </Border>
 
-            <Border x:Name="SettingBorder" Background="White" Margin="50" CornerRadius="50" Visibility="Hidden">
+            <Border x:Name="SettingBorder" Background="White" Margin="50" CornerRadius="20" Visibility="Hidden">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="8*"/>

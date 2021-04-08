@@ -99,7 +99,6 @@ namespace REC
                 await Task.Delay(500);
                 printDate.StatusCode = "正在打印第一页";
             }
-
             else if (Code == 12)
             {
                 await Task.Delay(1000);
@@ -112,7 +111,7 @@ namespace REC
             }
             else if(Code ==-1)
             {
-                 await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("上证失败，请联系C13号窗口工作人员")));
+                 await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("打印状态更新超时，请联系C13号窗口工作人员")));
             }
         }
 

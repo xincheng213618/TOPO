@@ -31,6 +31,7 @@ namespace REC
         {
             formhost.Width = 900;
             formhost.Height = 675;
+            Log.Write("正在尝试打开摄像头："+ AmLivingBodyApi.AmOpenDevice().ToString());
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 20000);
