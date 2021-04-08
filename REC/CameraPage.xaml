@@ -20,7 +20,7 @@
         </Grid>
         
         <Grid  Grid.Row="1" Background="#c5cce8">
-            <Border Background="White" Margin="50" CornerRadius="50" >
+            <Border Background="White" Margin="50" CornerRadius="20" >
                 <WindowsFormsHost x:Name="formhost" Width="900" Background="Transparent" >
                     <winf:PictureBox x:Name="picturebox"   SizeMode="StretchImage"  Dock="Fill"></winf:PictureBox>
                 </WindowsFormsHost>
