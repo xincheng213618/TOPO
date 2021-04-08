@@ -83,16 +83,14 @@ namespace REC
                 Media.Player(15);//读取成功
                 idcardData.Name = idcardData.Name.Trim();
                 idcardData.IDCardNo = idcardData.IDCardNo.Trim();
-                NameLabel.Content += "*" + idcardData.Name.Substring(1);
-                IDCardNo.Content += idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
+                name.Content = "*" + idcardData.Name.Substring(1);
+                cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
                 idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-                Sex.Content += idcardData.Sex;
-                Born.Content += idcardData.Born;
-                GrantDept.Content += idcardData.GrantDept;
-                validDate.Content += idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
-                Singed.Visibility = Visibility.Visible;
+                sex.Content = idcardData.Sex;
+                bir.Content = idcardData.Born;
+                placesOfIssue.Content = idcardData.GrantDept;
+                validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
             }
-
         }
 
 

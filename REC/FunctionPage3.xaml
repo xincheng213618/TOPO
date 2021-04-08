@@ -26,7 +26,8 @@
         </Grid>
 
         <Grid  Grid.Row="1"  Background="#c4cce7">
-            <Border  Margin="50"  CornerRadius="20" Background="White"/>
+            <Border  Margin="50"  CornerRadius="50" Background="White">
+            </Border>
         </Grid>
         <Grid x:Name="WaitShow" Grid.Row="1" Visibility="Hidden">
             <Border  Background="Black" Opacity="0.13"/>

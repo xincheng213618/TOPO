@@ -12,7 +12,7 @@ namespace BaseDLL
 
         private const string DLLPath = @"C:\Program Files (x86)\AuthenMetric\LivingBody\bin\LibLivingBody.dll";
         /// <summary>
-        /// 
+        /// 设置显示视频的窗口句柄及显示区域
         /// </summary>
         /// <param name="handle">显示视频的窗口句柄</param>
         /// <param name="left">显示视频相对于父窗口的左边的距离，单位为像素</param>
@@ -23,8 +23,9 @@ namespace BaseDLL
         [DllImport(DLLPath, EntryPoint = "AmSetVideoWindowHandle", CallingConvention = CallingConvention.StdCall)]
         public static extern int AmSetVideoWindowHandle(IntPtr handle, int left, int top, int width, int height);
 
+    
         /// <summary>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-        /// 打开设备
+        ///     打开设备
         /// </summary>
         /// <returns>=AM_E_SUCCESS 表示成功，小于0表示错误码</returns>
         [DllImport(DLLPath, EntryPoint = "AmOpenDevice", CallingConvention = CallingConvention.StdCall)]
@@ -51,31 +52,30 @@ namespace BaseDLL
         [DllImport(DLLPath, EntryPoint = "AmCloseDevice", CallingConvention = CallingConvention.StdCall)]
         public static extern int AmCloseDevice();
 
-        /// <summary>
-        /// 打开可见光摄像头
-        /// </summary>
-        /// <returns></returns>
+
+        /**
+          * 打开可见光摄像头
+          */
         [DllImport(DLLPath, EntryPoint = "AmOpenVISCamera", CallingConvention = CallingConvention.StdCall)]
         public static extern int AmOpenVISCamera();
 
-        /// <summary>
-        /// 关闭可见光摄像头
-        /// </summary>
-        /// <returns></returns>
+        /**
+          * 关闭可见光摄像头
+          */
+
         [DllImport(DLLPath, EntryPoint = "AmCloseVISCamera", CallingConvention = CallingConvention.StdCall)]
         public static extern int AmCloseVISCamera();
 
-        /// <summary>
-        /// 打开近红外摄像头
-        /// </summary>
-        /// <returns></returns>
+
+        /**
+          * 打开近红外摄像头
+          */
         [DllImport(DLLPath, EntryPoint = "AmOpenNIRCamera", CallingConvention = CallingConvention.StdCall)]
         public static extern int AmOpenNIRCamera();
 
-        /// <summary>
-        /// 关闭近红外摄像头
-        /// </summary>
-        /// <returns></returns>
+        /**
+          * 关闭近红外摄像头
+          */
         [DllImport(DLLPath, EntryPoint = "AmCloseNIRCamera", CallingConvention = CallingConvention.StdCall)]
         public static extern int AmCloseNIRCamera();
 
@@ -118,7 +118,7 @@ namespace BaseDLL
 
 
         /// <summary>
-        /// 活体抓拍回调函数
+        ///     活体抓拍回调函数
         /// </summary>
         /// <param name="code">错误码</param>
         /// <param name="image">活体图片全路径</param>

@@ -22,74 +22,60 @@
                 <ColumnDefinition Width="611*"/>
                 <ColumnDefinition Width="29*"/>
             </Grid.ColumnDefinitions>
-            <Border  Background="White" Margin="50" CornerRadius="20" Grid.ColumnSpan="2">
-                <Grid   Grid.Row="1" Background="Transparent" Visibility="Visible" Grid.RowSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Border  Background="#60d0ff"  Margin="50"  CornerRadius="50">
-                        <Grid>
-                            <Label Content="操作说明" Foreground="Red" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50"/>
-                            <Label  VerticalAlignment="Center" Margin="20">
-                                <TextBlock Text="请将身份证放置在读卡器上，如果读不出来，请重新放置" FontSize="30" FontWeight="Bold" Foreground=" White" LineHeight="40" TextWrapping="WrapWithOverflow" />
-                            </Label>
+            <Border  Background="White" Margin="50" CornerRadius="50" Grid.ColumnSpan="2">
+                <Grid>
+                    <Label Content="请放置您的身份证" HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Center" FontSize="40" />
 
-                        </Grid>
-                    </Border>
-
-                    <Grid Grid.Column="1">
+                    <Grid   Grid.Row="1" Background="Transparent" Visibility="Visible" Grid.RowSpan="2">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="8*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="0*" />
+                            <RowDefinition Height="692*" />
+                            <RowDefinition Height="7*" />
                         </Grid.RowDefinitions>
-                        <Border x:Name="IDCardInofShow" Grid.Row="1" Background="AliceBlue" CornerRadius="20">
-                            <Grid  >
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="6*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Label Grid.Row="0"  Content="基本信息" FontSize="30" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
-                                <Label x:Name="Singed" Visibility="Hidden" Grid.Row="2"  Content="请查看身份证信息是否有误，即将进行下一步操作！" FontSize="30" FontWeight="Bold"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"/>
-                                <Grid Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="209*"/>
-                                        <ColumnDefinition Width="246*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image x:Name="idcardPicture" Margin="88,127,87.6,126.2" />
-                                    <Grid Grid.Column="1" Margin="4.4,0,-0.4,0.2">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150*" />
+                            <ColumnDefinition Width="1000*" />
+                            <ColumnDefinition Width="150*" />
+                        </Grid.ColumnDefinitions>
 
-                                        </Grid.RowDefinitions>
-                                        <Label Grid.Row="0" x:Name="NameLabel" Content="姓       名：" Style="{StaticResource contentLabel}" FontWeight="Bold"  HorizontalAlignment="Left"  />
-                                        <Label Grid.Row="1" x:Name="Sex"  Content="性       别：" Style="{StaticResource contentLabel}" FontWeight="Bold"  HorizontalAlignment="Left" />
-                                        <Label Grid.Row="2" x:Name="Born" Content="出生日期：" Style="{StaticResource contentLabel}" FontWeight="Bold"  HorizontalAlignment="Left" />
-                                        <Label Grid.Row="3" x:Name="IDCardNo" Content="证件号码：" Style="{StaticResource contentLabel}" FontWeight="Bold"  HorizontalAlignment="Left" />
-                                        <Label Grid.Row="4" x:Name="GrantDept" Content="签发单位：" Style="{StaticResource contentLabel}" FontWeight="Bold"  HorizontalAlignment="Left"  />
-                                        <Label Grid.Row="5" x:Name="validDate" Content="有效期限：" Style="{StaticResource contentLabel}" FontWeight="Bold"  HorizontalAlignment="Left" />
-                                    </Grid>
+                        <Image Grid.Column="1" Source="Images/card_bg.png" Grid.ColumnSpan="2" Margin="4,7,142,2" Grid.Row="1"  />
+                        <Grid x:Name="IDCardInofShow" Grid.Row="1" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="64*" />
+                                <RowDefinition Height="22*" />
+                                <RowDefinition Height="51*" />
+                                <RowDefinition Height="50*" />
+                                <RowDefinition Height="51*" />
+                                <RowDefinition Height="50*" />
+                                <RowDefinition Height="51*" />
+                                <RowDefinition Height="50*" />
+                                <RowDefinition Height="23*" />
+                                <RowDefinition Height="46*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="426*" />
+                                <ColumnDefinition Width="113*" />
+                                <ColumnDefinition Width="446*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.ColumnSpan="3"  Content="身份证基本信息" Style="{StaticResource titleLabel}" FontSize="25"/>
+                            <Image Grid.Row="2" Grid.RowSpan="5" x:Name="idcardPicture" Height="166" Grid.Column="0"  VerticalAlignment="Top" Margin="126,47,126,0" />
 
-
-                                </Grid>
-
-
-
-                            </Grid>
-
-                        </Border>
+                            <Label Grid.Row="2" Grid.Column="1" Content="姓       名：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Center"  />
+                            <Label Grid.Row="2" Grid.Column="2" x:Name="name" Style="{StaticResource contentLabel}" Content=""/>
+                            <Label Grid.Row="3" Grid.Column="1" Content="性       别：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Center" />
+                            <Label Grid.Row="3" Grid.Column="2" x:Name="sex" Style="{StaticResource contentLabel}" Content=""/>
+                            <Label Grid.Row="4" Grid.Column="1" Content="出生日期：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Center" />
+                            <Label Grid.Row="4" Grid.Column="2" x:Name="bir" Style="{StaticResource contentLabel}" Content="" />
+                            <Label Grid.Row="5" Grid.Column="1" Content="证件号码：" Style="{StaticResource contentLabel}" HorizontalAlignment="Center" />
+                            <Label Grid.Row="5" Grid.Column="2" x:Name="cardNo" Style="{StaticResource contentLabel}" Content="" />
+                            <Label Grid.Row="6" Grid.Column="1" Content="签发单位：" Style="{StaticResource contentLabel}" HorizontalAlignment="Center"  />
+                            <Label Grid.Row="6" Grid.Column="2" x:Name="placesOfIssue" Style="{StaticResource contentLabel}" Content="" />
+                            <Label Grid.Row="7" Grid.Column="1" Content="有效期限：" Style="{StaticResource contentLabel}" HorizontalAlignment="Center" />
+                            <Label Grid.Row="7" Grid.Column="2" x:Name="validDate" Style="{StaticResource contentLabel}" Content="" />
+                            <Label x:Name="Singed" Grid.Row="9" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="20" Foreground="#f07106" Content="请查看身份证信息是否有误，即将进行下一步操作！" Margin="465,20,465,0" />
+                        </Grid>
                     </Grid>
-
                 </Grid>
-
             </Border>
 
         </Grid>

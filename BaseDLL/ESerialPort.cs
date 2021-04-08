@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Threading;
@@ -34,10 +33,10 @@ namespace BaseDLL
                     pageTimer.IsEnabled = false;
                     DevMsg?.Invoke(-1, EventCode[-1]);
                 }
-                if (Countdown < 45 && process == 3 && Shoot==false)
+                if (Countdown <30 && process == 3 && Shoot==false)
                 {
-                    DevMsg?.Invoke(3, EventCode[3]);//请求拍照
                     Shoot = true;
+                    DevMsg?.Invoke(3, EventCode[3]);//请求拍照
                     process = 3;
                 }
             });
@@ -283,6 +282,7 @@ namespace BaseDLL
             //foreach (var a in buff)
             //    str += a.ToString("x2");
 
+
             //DevMsg?.Invoke(0, str);
             //状态
 
@@ -303,7 +303,6 @@ namespace BaseDLL
                 }
                 else if (buff[2] == 5 && buff[3] == 1)
                 {
-
                     if (buff[5] == 136)
                     {
                         DevMsg?.Invoke(1, EventCode[1]);//上证成功
@@ -314,11 +313,9 @@ namespace BaseDLL
                         process += 1;
 
                     }
-                    else if (buff[5] == 17)
+                    else if (buff[5] == 21)
                     {
-                        Shoot = true;
                         DevMsg?.Invoke(3, EventCode[3]);//请求拍照
-                        process = 3;
                     }
                     else if (buff[5] == 85)
                     {
@@ -336,12 +333,12 @@ namespace BaseDLL
             int bytesread = serialPort.BytesToRead;
             byte[] buff = new byte[bytesread];
             serialPort.Read(buff, 0, bytesread);
-            //string str = "";
-            //foreach (var a in buff)
-            //    str += a.ToString("x2");
-
+            string str = "";
+            foreach (var a in buff)
+            {
+                str += a.ToString("x2");
+            }
             //DevMsg?.Invoke(0, str);
-
             //状态
             if (buff.Length >= 7)
             {
@@ -368,12 +365,13 @@ namespace BaseDLL
                     {
                         DevMsg?.Invoke(10 + process, EventCode[10 + process]);//返回状态码判断，多次返回增加计数。
                         process += 1;
+
                     }
-                    else if (buff[5] == 17)
+                    else if (buff[5] == 21)
                     {
                         Shoot = true;
-                        process = 3;
                         DevMsg?.Invoke(3, EventCode[3]);//请求拍照
+                        process = 3;
                     }
                     else if (buff[5] == 85)
                     {
