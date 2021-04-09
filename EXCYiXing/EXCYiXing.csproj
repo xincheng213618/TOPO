@@ -347,13 +347,13 @@
     <Resource Include="Images\经营异常名录.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ACE\ACE.csproj">
+    <ProjectReference Include="..\ACE\BaseACE.csproj">
       <Project>{fb774343-20d2-4a1a-ae29-70f261d7edbc}</Project>
-      <Name>ACE</Name>
+      <Name>BaseACE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Background\Background.csproj">
+    <ProjectReference Include="..\Background\BaseBackground.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>Background</Name>
+      <Name>BaseBackground</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL1\BaseDLL1.csproj">
       <Project>{76f9a581-94dc-4c44-a165-5c4c0c371848}</Project>
@@ -371,9 +371,9 @@
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Register\Register.csproj">
+    <ProjectReference Include="..\Register\BaseRegister.csproj">
       <Project>{acd7acd3-8241-4f45-9761-baf5c9bf50b2}</Project>
-      <Name>Register</Name>
+      <Name>BaseRegister</Name>
     </ProjectReference>
     <ProjectReference Include="..\Startup\BaseStartup.csproj">
       <Project>{0d3f1343-afda-45a6-a166-fdf54e77f273}</Project>

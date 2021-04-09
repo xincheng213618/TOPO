@@ -102,9 +102,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ACE\ACE.csproj">
+    <ProjectReference Include="..\ACE\BaseACE.csproj">
       <Project>{fb774343-20d2-4a1a-ae29-70f261d7edbc}</Project>
-      <Name>ACE</Name>
+      <Name>BaseACE</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

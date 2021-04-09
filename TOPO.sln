@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Register", "Register\Register.csproj", "{ACD7ACD3-8241-4F45-9761-BAF5C9BF50B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseRegister", "Register\BaseRegister.csproj", "{ACD7ACD3-8241-4F45-9761-BAF5C9BF50B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleVerification", "SingleVerification\SingleVerification.csproj", "{0E93B48D-A899-4372-ADDC-ADAF966B430C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Background", "Background\Background.csproj", "{9EC775E3-D0D3-4F0A-ADA2-73ED74C30EE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackground", "Background\BaseBackground.csproj", "{9EC775E3-D0D3-4F0A-ADA2-73ED74C30EE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE", "ACE\ACE.csproj", "{FB774343-20D2-4A1A-AE29-70F261D7EDBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseACE", "ACE\BaseACE.csproj", "{FB774343-20D2-4A1A-AE29-70F261D7EDBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseStartup", "Startup\BaseStartup.csproj", "{0D3F1343-AFDA-45A6-A166-FDF54E77F273}"
 EndProject
@@ -45,9 +45,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EXCXuanCheng", "EXCXuanChen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RECSuzhouDesk", "RECSuzhouDesk\RECSuzhouDesk.csproj", "{D6A97F70-4FA8-499D-AA91-470F25EF164A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsService", "WindowsService\WindowsService.csproj", "{6B3D0863-F0A0-47D9-8604-B656785B0432}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseWindowsService", "WindowsService\BaseWindowsService.csproj", "{6B3D0863-F0A0-47D9-8604-B656785B0432}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upgrade", "Upgrade\Upgrade.csproj", "{C5C523AA-49DF-41BA-BFDA-BD5A4CFE56BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseUpgrade", "Upgrade\BaseUpgrade.csproj", "{C5C523AA-49DF-41BA-BFDA-BD5A4CFE56BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Product.KeyBoard", "BaseKeyBoard\HeBianGu.Product.KeyBoard.csproj", "{FE7393F0-6487-430C-9E70-133F2C6ABBD6}"
 EndProject
