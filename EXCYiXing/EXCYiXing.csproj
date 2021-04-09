@@ -377,7 +377,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Startup\BaseStartup.csproj">
       <Project>{0d3f1343-afda-45a6-a166-fdf54e77f273}</Project>
-      <Name>Startup</Name>
+      <Name>BaseStartup</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

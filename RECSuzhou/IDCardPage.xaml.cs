@@ -115,7 +115,6 @@ namespace RECSuzhou
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
                             SwitchPage();
                         }
                         else
@@ -142,11 +141,13 @@ namespace RECSuzhou
             switch (Global.PageType)
             {
                 case "NoHome":
+                    Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
                     IDcard.DeleteIDcardImages(idcardData);
                     Content = new NoHomePages(idcardData);
                     break;
              
                 default:
+                    AmLivingBodyApi.AmOpenDevice();
                     Content = new CameraPage(idcardData);
                     break;
             }

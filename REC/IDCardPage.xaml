@@ -29,7 +29,7 @@
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Border  Background="#60d0ff"  Margin="50"  CornerRadius="50">
+                    <Border  Background="#60d0ff"  Margin="50,94,188.333,79.667"  CornerRadius="50">
                         <Grid>
                             <Label Content="操作说明" Foreground="Red" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50"/>
                             <Label  VerticalAlignment="Center" Margin="20">
@@ -45,7 +45,7 @@
                             <RowDefinition Height="8*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Border x:Name="IDCardInofShow" Grid.Row="1" Background="AliceBlue" CornerRadius="20">
+                        <Border x:Name="IDCardInofShow" Grid.Row="1" Background="#60d0ff" CornerRadius="20">
                             <Grid  >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>

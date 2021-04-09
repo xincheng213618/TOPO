@@ -29,9 +29,9 @@
                         </Button>
                     </Border>
 
-                    <Border Grid.Column="1" Background="White" BorderBrush="#dadada" BorderThickness="1"  Margin="0,3,0,3" CornerRadius="10">
+                    <Border Grid.Column="1" Background="#60d0ff"  Margin="0,3,0,3" CornerRadius="10" BorderBrush="HotPink" BorderThickness="5">
                         <Button   Style="{StaticResource hiddenButton}"   Click="Button_Click" Tag="Save">
-                            <Label Style="{StaticResource Label_Centered_25}"  Content="确  定"/>
+                            <Label Style="{StaticResource Label_Centered_25}"  Content="确    定" FontWeight="Bold" Foreground="White"/>
                         </Button>
                     </Border>
                 </Grid>

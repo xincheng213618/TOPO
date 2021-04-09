@@ -52,7 +52,7 @@ namespace ECRService
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
+                            AmLivingBodyApi.AmOpenDevice();
                             SwitchPage();
                         }
                         else
