@@ -142,8 +142,8 @@ namespace EXC
                     }
                 }
                 catch
-                {
-                    Content = new HomePage("接口解析错误");
+                { 
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }
@@ -233,7 +233,7 @@ namespace EXC
                 }
                 catch
                 {
-                    Content = new HomePage("接口解析错误");
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }
@@ -344,7 +344,7 @@ namespace EXC
                 }
                 catch
                 {
-                    Content = new HomePage("接口解析错误");
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }

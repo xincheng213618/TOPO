@@ -40,7 +40,6 @@ namespace ECRService
                 FileStream stream = File.OpenRead(sFile);
                 XmlSerializer serializer = new XmlSerializer(typeof(ConfigData), typeof(ConfigData).GetNestedTypes());
                 Config = serializer.Deserialize(stream) as ConfigData;
-
             }
             catch
             {

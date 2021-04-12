@@ -28,6 +28,7 @@ namespace ECRService
         private void Page_Initialized(object sender, EventArgs e)
         {
             m_iPort = IDcard.IDcardSet();
+
             DataContext = timeCount;
             Countdown();
         }
@@ -89,14 +90,17 @@ namespace ECRService
             if (read_success == 1 || read_success == 0)
             {
                 Media.Player(15);//读取成功
+                Show1.Visibility = Visibility.Hidden;
+                IDCardInofShow.Visibility = Visibility.Visible;
                 idcardData.Name = idcardData.Name.Trim();
                 idcardData.IDCardNo = idcardData.IDCardNo.Trim();
-                name.Content = "*" + idcardData.Name.Substring(1);
-                cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
+
+                NameLabel.Content += idcardData.Name;
+                IDCardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
                 idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-                sex.Content = idcardData.Sex;
-                bir.Content = idcardData.Born;
-                placesOfIssue.Content = idcardData.GrantDept;
+                Sex.Content = idcardData.Sex;
+                Born.Content = idcardData.Born;
+                GrantDept.Content = idcardData.GrantDept;
                 validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
             }
         }

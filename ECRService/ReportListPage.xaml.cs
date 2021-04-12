@@ -32,8 +32,7 @@ namespace ECRService
 
         void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 
@@ -44,7 +43,6 @@ namespace ECRService
     /// </summary>
     public partial class ReportListPage : Page
     {
-        private ObservableCollection<ReportItem> items;
         private bool printing = false;
         public bool isPageTimer = false;
         private int downloadCount;
@@ -57,7 +55,6 @@ namespace ECRService
         {
             this.iDCardData = iDCardData;
             InitializeComponent();
-            listView.ItemsSource = items;
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
@@ -85,8 +82,8 @@ namespace ECRService
             {
                 if (--mainWidownData.Countdown <= 0)
                 {
-                    pageTimer.IsEnabled = false;
-                    Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new HomePage())));
+                    Content = new HomePage();
+                    Pages();
                 }
 
                 if (mainWidownData.Countdown % 15 == 0)
@@ -96,9 +93,18 @@ namespace ECRService
             });
         }
 
+        private void Pages()
+        {
+            pageTimer.IsEnabled = false;
+            Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
+        }
+
+
+        private ObservableCollection<ReportItem> reportItems = new ObservableCollection<ReportItem>() { };
 
         private void GetReportListCompleted(string response)
         {
+            listView.ItemsSource = reportItems;
             try
             {
                 XmlDocument document = new XmlDocument();
@@ -117,7 +123,7 @@ namespace ECRService
                         item.Identifier = xn["id"].InnerText;
                         item.CompanyName = xn["qymc"].InnerText;
                         item.FillingDate = xn["sqrq"].InnerText;
-                        items.Add(item);                 
+                        reportItems.Add(item);                 
                     }
                 }
                 else if (returncode.CompareTo("0") == 0)
@@ -131,7 +137,9 @@ namespace ECRService
             }
             catch (Exception ex)
             {
-
+                Log.Write(ex.Message);
+                Content = new HomePage("接口解析错误");
+                Pages();
             }
 
             hintLabel.Content = "";
@@ -143,11 +151,11 @@ namespace ECRService
             Media.Player(6);
         }
 
+
+
         private void GetReportListProc()
         {
-            string response = Webservice.NanJing.GetReportList(iDCardData.IDCardNo, "1");
-            //string response =  reportService.getreportlist(Global.Config.LoginName, Global.Config.LoginPassword, iDCardData.IDCardNo, "1");
-            // string response = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?><data><returncode>1</returncode><returnmsg>调用成功</returnmsg><result><report><id>ABC0000000001</id><qymc>江苏同袍信息科技有限公司</qymc><sqrq>2017-09-09</sqrq></report></result></data>";
+            string response = Webservice.NanJing.GetReportList(iDCardData.IDCardNo, "1"); 
             Dispatcher.BeginInvoke(new Action(() => GetReportListCompleted(response)));
         }
 
@@ -155,18 +163,16 @@ namespace ECRService
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            pageTimer.IsEnabled = false;
-            Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new HomePage())));
-        }
+            Content = new HomePage();
+            Pages();
 
-        private void LoadPDFFile(ReportItem item)
-        {
-            AcrobatHelper.pdfControl.LoadFile($"{item.Identifier}.pdf");
         }
 
         private void PrintPDFFile(ReportItem item)
         {
             hintLabel.Content = $"正在打印{item.Identifier}……";
+
+            AcrobatHelper.pdfControl.LoadFile($"Temp\\{item.Identifier}.pdf");
             AcrobatHelper.pdfControl.printAll();
 
             Webservice.NanJing.updatereportstatus(item.Identifier, "1");
@@ -175,25 +181,17 @@ namespace ECRService
 
             if (downloadCount == printCount)
             {
-                Dispatcher.BeginInvoke(new Action(() => PrintingJobsCompleted()));
+                Content = new HomePage("打印完成，请取走您的报告");
+                Pages();
             }
         }
 
         private void DownloadAndPrintReport(ReportItem item)
-        {
-            
+        {      
             Dispatcher.BeginInvoke(new Action(() => hintLabel.Content = $"正在下载企业信用报告{item.Identifier}……"));
 
             if (!File.Exists($"{item.Identifier}.pdf"))
             {
-                //System.ServiceModel.BasicHttpBinding binding = new System.ServiceModel.BasicHttpBinding();
-                //binding.MaxReceivedMessageSize = 16777216;
-                //binding.SendTimeout = TimeSpan.FromSeconds(30);
-                //binding.ReceiveTimeout = TimeSpan.FromSeconds(30);
-                //System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress(Global.Config.ServerURL);
-                //CreditreportDelegate reportService = new CreditreportDelegateClient(binding, endpointAddress);
-                //string response = reportService.getreport(Global.Config.LoginName, Global.Config.LoginPassword, item.Identifier, "", "1");
-
                 string response = Webservice.NanJing.GetReport(item.Identifier, "", "1");
                 XmlDocument document = new XmlDocument();
                 document.LoadXml(response);
@@ -209,89 +207,35 @@ namespace ECRService
                     {
                         using (ZipArchive archive = new ZipArchive(stream, ZipArchiveMode.Read))
                         {
-                            ZipFileExtensions.ExtractToDirectory(archive, ".");
+                            ZipFileExtensions.ExtractToDirectory(archive, "Temp");
                         }
                     }
-                }
-                else if (returncode.CompareTo("0") == 0)
-                {
+
+                    Thread.Sleep(4000);
+                    Dispatcher.BeginInvoke(new Action(() => PrintPDFFile(item)));
                 }
                 else if (returncode.CompareTo("e") == 0)
                 {
-                    throw new Exception(returnmsg);
+                    Content = new HomePage(returnmsg);
+                    Pages();
                 }
             }
 
-            Thread.Sleep(4000);
-            Dispatcher.BeginInvoke(new Action(() => LoadPDFFile(item)));
-
-            Thread.Sleep(4000);
-            Dispatcher.BeginInvoke(new Action(() => PrintPDFFile(item)));
-
-        }
-
-        private void PrintingJobsCompleted()
-        {
-            for (int i = items.Count - 1; i >= 0; i--)
-            {
-                if (items[i].isPrinted)
-                {
-                    items.RemoveAt(i);
-                }
-            }
-
-            printing = false;
-
-            exitButton.Visibility = Visibility.Visible;
-
-            Media.Player(7);
-
-            timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => PrintCompletedInfo())), null, TimeSpan.FromSeconds(10), Timeout.InfiniteTimeSpan);
-        }
-
-        private void PrintCompletedInfo()
-        {
-            timer.Dispose();
-
-            hintLabel.Content = "打印完成，请取走企业信用报告！";
-
-            timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => ClearPrintCompletedInfo())), null, TimeSpan.FromSeconds(5), Timeout.InfiniteTimeSpan);
-        }
-
-        private void ClearPrintCompletedInfo()
-        {
-            timer.Dispose();
-            hintLabel.Content = "";
-            hintBorder.Visibility = Visibility.Hidden;
-            border.Visibility = Visibility.Hidden;
-
-            if (items.Count == 0)
-            {
-                pageTimer.IsEnabled = false;
-                Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new HomePage())));
-            }
-
-            if (isPageTimer)
-            {
-                pageTimer.IsEnabled = true;
-            }
-            
         }
 
         private void PrintClick_ProcessProc()
         {
             try
             {
-                isPageTimer = false;
                 pageTimer.IsEnabled = false;
 
-                for (int i = 0; i < items.Count; i++)
+                for (int i = 0; i < reportItems.Count; i++)
                 {
-                    if (items[i].IsSelected)
+                    if (reportItems[i].IsSelected)
                     {
                         downloadCount++;
-                        items[i].isPrinted = true;
-                        DownloadAndPrintReport(items[i]);
+                        reportItems[i].isPrinted = true;
+                        DownloadAndPrintReport(reportItems[i]);
                     }
                 }
 
@@ -319,24 +263,6 @@ namespace ECRService
             }
         }
 
-        private void Print_Click(object sender, RoutedEventArgs e)
-        {
-            if (printing)
-                return;
-
-
-            printing = true;
-            exitButton.Visibility = Visibility.Hidden;
-            hintBorder.Visibility = Visibility.Visible;
-            border.Visibility = Visibility.Visible;
-
-            downloadCount = 0;
-            printCount = 0;
-
-            
-            Thread worker = new Thread(() => PrintClick_ProcessProc());
-            worker.Start();
-        }
 
         private void ListView_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
@@ -358,13 +284,26 @@ namespace ECRService
 
         private void back_Click(object sender, RoutedEventArgs e)
         {
-            pageTimer.IsEnabled = false;
-            Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(new PrintIndexPage())));
+            Content = new PrintIndexPage();
+            Pages();
         }
 
         private void ViewReport_Click(object sender, RoutedEventArgs e)
         {
+            if (printing)
+                return;
 
+            printing = true;
+            exitButton.Visibility = Visibility.Hidden;
+            hintBorder.Visibility = Visibility.Visible;
+            border.Visibility = Visibility.Visible;
+
+            downloadCount = 0;
+            printCount = 0;
+
+
+            Thread worker = new Thread(() => PrintClick_ProcessProc());
+            worker.Start();
         }
     }
 }
