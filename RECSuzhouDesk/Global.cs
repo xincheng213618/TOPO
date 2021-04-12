@@ -17,7 +17,9 @@ namespace RECSuzhou
         public static SaveInfo IDCardInfo = new SaveInfo();
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
-
+        //记录身份信息
+        public static string PageName = null;
+        public static string PageIDCard = null;
 
         public static void Initialized()
         {

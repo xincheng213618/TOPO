@@ -26,6 +26,8 @@ namespace RECSuzhou
         public IDcardInputPage()
         {
             InitializeComponent();
+            Account.Text = Global.PageName;
+            IDCardNoText.Text = Global.PageIDCard;
         }
 
         private void Page_Initialized(object sender, EventArgs e)
@@ -53,7 +55,8 @@ namespace RECSuzhou
         {
             idcardData.Name = Account.Text;
             idcardData.IDCardNo = IDCardNoText.Text;
-            
+            Global.PageName = Account.Text; 
+            Global.PageIDCard = IDCardNoText.Text;
             if (idcardData.Name.Length == 0 || idcardData.IDCardNo.Length == 0)
             {
                 ErrorLabel.Visibility = Visibility.Visible;
@@ -62,15 +65,17 @@ namespace RECSuzhou
             }
             else
             {
-                if (Check.CheckIDCardNo(idcardData.IDCardNo))
-                {
-                    SwitchPage();
-                }
-                else
-                {
-                    ErrorLabel.Visibility = Visibility.Visible;
-                    ErrorLabel.Content = "请输入正确的身份证号码";
-                }
+                // 输入外籍证件号也可查询
+                SwitchPage();
+                //if (Check.CheckIDCardNo(idcardData.IDCardNo))
+                //{
+                //    SwitchPage();
+                //}
+                //else
+                //{
+                //    ErrorLabel.Visibility = Visibility.Visible;
+                //    ErrorLabel.Content = "请输入正确的身份证号码";
+                //}
             }
         }
         private void SwitchPage()
@@ -125,6 +130,13 @@ namespace RECSuzhou
         {
             Time.Countdown = 59;
         }
-    
+
+        private void ClearText_Click(object sender, RoutedEventArgs e)
+        {
+            Global.PageName = null;
+            Global.PageIDCard = null;
+            Account.Text = "";
+            IDCardNoText.Text = "";
+        }
     }
 }

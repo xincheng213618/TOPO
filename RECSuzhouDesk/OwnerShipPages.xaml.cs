@@ -178,5 +178,11 @@ namespace RECSuzhou
             Content = new HomePage();
             Pages();
         }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new IDcardInputPage();
+            Pages();
+        }
     }
 }

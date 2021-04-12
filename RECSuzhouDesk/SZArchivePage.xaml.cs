@@ -441,25 +441,17 @@ namespace RECSuzhou
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            switch ((string)button.Tag)
-            {
-                case "Return":
-                    Content = new HomePage();
-                    Pages();
-                    break;
-                case "Home":
-                    Content = new HomePage();
-                    Pages();
-                    break;
-            }
-        }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
+            Content = new HomePage();
+            Pages();
+        }
 
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new IDcardInputPage();
+            Pages();
         }
     }
 }

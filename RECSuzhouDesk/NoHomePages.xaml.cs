@@ -188,5 +188,11 @@ namespace RECSuzhou
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new IDcardInputPage();
+            Pages();
+        }
     }
 }

@@ -219,5 +219,13 @@ namespace RECSuzhou
         {
 
         }
+
+     
+
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new IDcardInputPage();
+            Pages();
+        }
     }
 }
