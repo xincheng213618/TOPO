@@ -61,12 +61,12 @@ namespace XinHua
     public class ConfigData
     {
         //使用单位信息
-        public string LocateUser { get; set; }
+        public string LocateUser { get; set; } = "阜阳市信用查询自助机";
         //终端名称
-        public string TerminalName { get; set; }
+        public string TerminalName { get; set; } = "1号机";
         // 技术支持人员和电话
-        public string Technica { get; set; }
-        public string Technicamail { get; set; } 
+        public string Technica { get; set; } = "技术支持：江苏同袍信息科技有限公司";
+        public string Technicamail { get; set; } = "联系电话：025—*****";
 
 
         public string AdminPassword { get; set; } = "admin";
