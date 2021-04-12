@@ -46,7 +46,7 @@ namespace PEC
         {
             if (Global.PageType == "ProvincialPeople")
             {
-                string response = null;// Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
+                string response =  Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
                 Dispatcher.BeginInvoke(new Action(() => ProvincialPeoplePhrase(response)));
             }
             else
