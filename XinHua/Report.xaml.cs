@@ -46,6 +46,7 @@ namespace XinHua
         private void Page_Initialized(object sender, EventArgs e)
         {
             WaitShow.Visibility = Visibility.Visible;
+            Global.PageType = "CreditChina";
             switch (Global.PageType)
             {
                 case "XinHuaPrint":
