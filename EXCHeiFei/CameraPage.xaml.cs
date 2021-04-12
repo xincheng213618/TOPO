@@ -60,12 +60,13 @@ namespace EXC
 
             Log.Write("人脸比对相似度:"+ Environment.NewLine + b.ToString() + Environment.NewLine + c.ToString());
 
-            if (b > 0.7 && c > 0.7)
+            if (b > 0.7 || c > 0.7)
             {
                 SwitchPage();
             }
             else
             {
+                AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
                 tryCount += 1;
             }
             if (tryCount > 2)

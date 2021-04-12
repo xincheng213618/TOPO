@@ -29,7 +29,10 @@ namespace ECRService
 
             public static string GetReportList(string IDCardNo = "",string Kinds="")
             {
-                return NanJingClient.getreportlist(Global.Config.LoginName, Global.Config.LoginPassword, IDCardNo, Kinds);
+                string response = NanJingClient.getreportlist(Global.Config.LoginName, Global.Config.LoginPassword, IDCardNo, Kinds);
+                // string response = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?><data><returncode>1</returncode><returnmsg>调用成功</returnmsg><result><report><id>ABC0000000001</id><qymc>江苏同袍信息科技有限公司</qymc><sqrq>2017-09-09</sqrq></report></result></data>";
+
+                return response;
             }
 
             public static string GetReport(string FileName = null, string USCI = null, string Kinds = "0")

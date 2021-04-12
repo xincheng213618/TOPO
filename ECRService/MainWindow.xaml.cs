@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using BaseUtil;
 
 namespace ECRService
 {
@@ -20,7 +21,14 @@ namespace ECRService
         {
             InitializeComponent();
 
-            timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => timeLabel.Content = DateTime.Now.ToString("yyyy年MM月dd日 dddd HH:mm"))), null, 60 - DateTime.Now.Second, 60);
+            timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => TimeRun())), null, 0, 1000);
+        }
+
+
+        private void TimeRun()
+        {
+            Log.LogInput();// 每个一秒刷新一次日志
+            timeLabel.Content = DateTime.Now.ToString("yyyy年MM月dd日 dddd HH:mm");
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
@@ -47,6 +55,11 @@ namespace ECRService
         private void Window_Activated(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new SettingPage())));
         }
     }
 
