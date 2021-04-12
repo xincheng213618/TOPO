@@ -463,6 +463,7 @@
     <Resource Include="Images\返回（按下键效果）.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Error_X.png" />
     <None Include="Base\Media\00.camera-shutter-click.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -49,7 +49,7 @@ namespace BaseDLL
             }
         }
         /// <summary>
-        /// 
+        /// 是否连接
         /// </summary>
         /// <returns></returns>
         public static bool Isconnected()
@@ -97,6 +97,7 @@ namespace BaseDLL
                 VbarapiR.AddSymbolType(codeFormat, enable);
             }
         }
+
         /// <summary>
         /// 获取扫码内容
         /// </summary>
@@ -129,9 +130,5 @@ namespace BaseDLL
                 return false;
             }
         }
-
-
-
-
     }
 }

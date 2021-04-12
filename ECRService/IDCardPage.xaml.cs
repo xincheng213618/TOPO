@@ -16,7 +16,6 @@ namespace ECRService
         public IDCardPage()
         {
             InitializeComponent();
-            this.DataContext = this;
         }
 
         public static int m_iPort;  //端口
@@ -29,7 +28,7 @@ namespace ECRService
         private void Page_Initialized(object sender, EventArgs e)
         {
             m_iPort = IDcard.IDcardSet();
-            this.DataContext = timeCount;
+            DataContext = timeCount;
             Countdown();
         }
 
@@ -52,8 +51,16 @@ namespace ECRService
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            AmLivingBodyApi.AmOpenDevice();
-                            SwitchPage();
+                            int code = AmLivingBodyApi.AmOpenDevice();
+
+                            if (code == 0)
+                            {
+                                SwitchPage();
+                            }
+                            else
+                            {
+                                Content = new HomePage("摄像头打开异常" +Environment.NewLine+ AmLivingBodyApi.Ecode[code]);
+                            }
                         }
                         else
                         {
@@ -114,7 +121,8 @@ namespace ECRService
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-
+            Content = new HomePage();
+            Pages();
         }
     }
 }

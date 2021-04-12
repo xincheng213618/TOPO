@@ -110,11 +110,6 @@ namespace XinHua
             Content = new SearchListPage(companyName);
             Pages();
 
-            //thread = new Thread(() => SearchRequests())
-            //{
-            //    IsBackground = true
-            //};
-            //thread.Start();         
         }
 
         private async void PopAlert(string Msg, int time)
