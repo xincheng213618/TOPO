@@ -243,6 +243,7 @@ namespace PEC
                     }
                     else
                     {
+                        Log.Write(response);
                         Content = new HomePage("帐号密码错误");
                         Pages();
                     }
