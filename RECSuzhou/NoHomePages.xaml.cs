@@ -21,6 +21,7 @@ namespace RECSuzhou
         string FileName="";
 
         private IDCardData idcardData;
+
         //无房页面 
         public NoHomePages(IDCardData idcardData)
         {

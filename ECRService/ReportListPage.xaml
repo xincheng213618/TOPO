@@ -100,9 +100,6 @@
             </Grid>
         </Border>
         <WindowsFormsHost x:Name="formsHost" Visibility="Hidden" />
-        <!--<Button x:Name="printButton" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 120 0" Template="{StaticResource imageButtonTemplate}" Visibility="Hidden" Click="Print_Click">
-            <Image Stretch="None" Source="Images/print.png" />
-        </Button>-->
         <Button x:Name="exitButton" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Template="{StaticResource imageButtonTemplate}" Click="Cancel_Click">
             <Image Stretch="None" Source="Images/home.png" />
         </Button>

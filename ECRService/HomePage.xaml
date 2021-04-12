@@ -43,14 +43,14 @@
                 <ColumnDefinition Width="864*" />
                 <ColumnDefinition Width="60*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="1" Style="{StaticResource textBlock}" Margin="0 18 0 0"  Text="       依据《关于深化政务公开加强政务服务的意见》和《“互联网+政务服务”技术体系建设指南》，南京市信息中心面向全体市民提 供综合信息报告自助打印和查询服务。目前已开通《南京市社会法人信用信息查询报告》、《出入境检验检疫企业信用等级证明》自助打印、法人信用信息查询服务和自然人信用信息查询服务。" /> 
+            <TextBlock Grid.Column="1" Style="{StaticResource textBlock}" Margin="0,2,0,16"  Text="       依据《关于深化政务公开加强政务服务的意见》和《“互联网+政务服务”技术体系建设指南》，南京市信息中心面向全体市民提 供综合信息报告自助打印和查询服务。目前已开通《南京市社会法人信用信息查询报告》、《出入境检验检疫企业信用等级证明》自助打印、法人信用信息查询服务和自然人信用信息查询服务。" /> 
         </Grid>
 
 
         <!--消息弹出框-->
-        <Grid x:Name="POP" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"  Visibility="Hidden">
+        <Grid x:Name="POP" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"  Visibility="Hidden">
             <Border  Background="Black"    Opacity="0.13"/>
-            <Border Height="250" Width="450"  Background="White" CornerRadius="20" BorderBrush="#dee1e4" BorderThickness="5">
+            <Border Height="250" Width="450"  Background="White" CornerRadius="20" BorderBrush="#dee1e4" BorderThickness="5" Margin="287,264,287,129">
                 <Grid>
                     <Button   Style="{StaticResource hiddenButton}"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Click="POP_Button">
                         <Image Source="images/Error_X.png" Stretch="Uniform" Width="50"/>

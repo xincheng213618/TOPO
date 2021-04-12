@@ -73,6 +73,7 @@ namespace EXCXuanCheng
             }
             else
             {
+                AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
                 tryCount += 1;
             }
             if (tryCount > 2)

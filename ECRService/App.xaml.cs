@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -45,6 +46,9 @@ namespace ECRService
 
         private void Application_Initialized(object sender, StartupEventArgs e)
         {
+            if (!Directory.Exists("Temp"))
+                Directory.CreateDirectory("Temp");
+
             Global.Initialized();
             //获取屏幕数量
         }
