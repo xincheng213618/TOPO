@@ -117,7 +117,15 @@ namespace RECSuzhou
             pageTimer.IsEnabled = false;
             Time.ButtonClor = "#60d0ff";
             AcrobatHelper.pdfControl.LoadFile(FileName);
-            int I = Stamp.Start(1);
+            //int I = Stamp.Start(1);
+            int run = Stamp.Start(5);
+            Log.Write("启动盖章机：" + run);
+            if (!"0".Equals(run.ToString()))
+            {
+                Content = new HomePage("盖章机启动失败，请重启盖章机");
+                Pages();
+                return;
+            }
             timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(async () => await TimeRunAsync(5))), null, 0, 500);
 
             AcrobatHelper.pdfControl.printAll();

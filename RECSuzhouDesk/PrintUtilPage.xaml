@@ -6,12 +6,12 @@
       xmlns:local="clr-namespace:RECSuzhou"
       xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1280"
-      Title="PrintUtilPage"  Background="Transparent"  AllowsTransparency="True" Width="1280" Height="1024" ResizeMode="NoResize"  WindowStyle="None" Left="0" Top="0" Initialized="Page_Initialized">
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="PrintUtilPage"  Background="Transparent"  AllowsTransparency="True"  ResizeMode="NoResize"  WindowStyle="None" Left="0" Top="0" Initialized="Page_Initialized">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
