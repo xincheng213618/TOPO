@@ -213,9 +213,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Background\Background.csproj">
+    <ProjectReference Include="..\Background\BaseBackground.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>Background</Name>
+      <Name>BaseBackground</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>
@@ -225,9 +225,9 @@
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Register\Register.csproj">
+    <ProjectReference Include="..\Register\BaseRegister.csproj">
       <Project>{acd7acd3-8241-4f45-9761-baf5c9bf50b2}</Project>
-      <Name>Register</Name>
+      <Name>BaseRegister</Name>
     </ProjectReference>
     <ProjectReference Include="..\Startup\BaseStartup.csproj">
       <Project>{0d3f1343-afda-45a6-a166-fdf54e77f273}</Project>
