@@ -85,7 +85,7 @@ namespace PEC
             else
             {
                 Content = new HomePage("对列中有正在打印的任务或者打印机脱机，请推出软件后检查打印机后再试");
-                  Pages();
+                Pages();
             }
            
             //PrintQueue queues = null;

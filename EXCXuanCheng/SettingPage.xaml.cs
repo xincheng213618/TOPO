@@ -110,10 +110,10 @@ namespace EXCXuanCheng
             Button button = sender as Button;
             Log.Write(Global.PageType);
             Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
-            {
-               //
-            }
+            //switch (Global.PageType)
+            //{
+            //   //
+            //}
         }
 
         private void PageButton_Click(object sender, RoutedEventArgs e)

@@ -22,7 +22,6 @@ namespace EXC
         private int PageNum=1;
         private int PageAllNum =0;
         private string filePath = null;
-        private AxAcroPDFLib.AxAcroPDF pdfControl = null;
         private List<Border> list;
         private bool PrintRun =false;
         private bool AllowPrint = true;
@@ -55,10 +54,10 @@ namespace EXC
         {
             this.DataContext = Time;
             Countdown_timer();
-            pdfControl = new AxAcroPDFLib.AxAcroPDF();
-            pdfControl.BeginInit();
-            formsHost.Child = pdfControl;
-            pdfControl.EndInit();
+            AcrobatHelper.pdfControl = new AxAcroPDFLib.AxAcroPDF();
+            AcrobatHelper.pdfControl.BeginInit();
+            formsHost.Child = AcrobatHelper.pdfControl;
+            AcrobatHelper.pdfControl.EndInit();
 
         }
         private void Return_Click(object sender, RoutedEventArgs e)
@@ -88,13 +87,12 @@ namespace EXC
         {
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
-            //pdfControl.Dispose();  //问题1  比较年代久远的机器扛不住，容易出现白屏的情况
         }
         private void Prepdfpage_Click(object sender, RoutedEventArgs e)
         {
             if (PDFListView.SelectedIndex > 0)
             {
-                pdfControl.gotoPreviousPage();
+                AcrobatHelper.pdfControl.gotoPreviousPage();
                 PDFListView.SelectedIndex -= 1;
             }
         }
@@ -102,18 +100,18 @@ namespace EXC
         {
             if (PDFListView.SelectedIndex < PageAllNum-1)
             {
-                pdfControl.gotoNextPage();
+                AcrobatHelper.pdfControl.gotoNextPage();
                 PDFListView.SelectedIndex += 1;
             }
         }
         private void Fistpdfpage_Click(object sender, RoutedEventArgs e)
         {
-            pdfControl.gotoFirstPage();
+            AcrobatHelper.pdfControl.gotoFirstPage();
             PDFListView.SelectedIndex = 0;
         }
         private void Lastpdfpage_Click(object sender, RoutedEventArgs e)
         {
-            pdfControl.gotoLastPage();
+            AcrobatHelper.pdfControl.gotoLastPage();
             PDFListView.SelectedIndex = PageAllNum-1;
         }
         private void OpenPDF_Click(object sender, RoutedEventArgs e)
@@ -128,9 +126,9 @@ namespace EXC
             try
             {
                 Log.Write(PDFpath);
-                pdfControl.LoadFile(PDFpath);
-                pdfControl.setShowScrollbars(false);
-                pdfControl.setShowToolbar(false);
+                AcrobatHelper.pdfControl.LoadFile(PDFpath);
+                AcrobatHelper.pdfControl.setShowScrollbars(false);
+                AcrobatHelper.pdfControl.setShowToolbar(false);
                 PdfReader reader = new PdfReader(PDFpath);
                 PageAllNum = reader.NumberOfPages;
                 reader.Close();
@@ -193,7 +191,7 @@ namespace EXC
                 Stamp.Start(1); 
                 PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
                 printUtil.Show();
-                pdfControl.printPagesFit(PageNum, PageNum, true);
+                AcrobatHelper.pdfControl.printPagesFit(PageNum, PageNum, true);
             }
         }
         private void PrintPDFAll_Click(object sender, RoutedEventArgs e)
@@ -207,7 +205,7 @@ namespace EXC
                 PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
                 printUtil.Closed += PrintOver;
                 printUtil.Show();
-                pdfControl.printAllFit(true);
+                AcrobatHelper.pdfControl.printAllFit(true);
                 //pageTimer.IsEnabled = false;
                 //PrintRun = true;    
                 //if (PageAllNum < PrintAllNum)
@@ -268,7 +266,7 @@ namespace EXC
         {
             try
             {
-                pdfControl.setCurrentPage(PDFItem.ElementAt(PDFListView.SelectedIndex).ListNo);
+                AcrobatHelper.pdfControl.setCurrentPage(PDFItem.ElementAt(PDFListView.SelectedIndex).ListNo);
                 PageNumLabel.Content = (PDFListView.SelectedIndex+1).ToString() + " / " + PageAllNum.ToString();
                 PageNum = PDFListView.SelectedIndex+1;
                 Time.Countdown = 60;

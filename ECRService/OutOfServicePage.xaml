@@ -1,0 +1,30 @@
+﻿<Page x:Class="ECRService.OutOfServicePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ECRService"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="400"
+      Title="OutOfServicePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="80*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="200*" />
+            <ColumnDefinition Width="100*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="暂停服务" TextAlignment="Center" Foreground="Red" FontSize="50" />
+        <TextBlock x:Name="textBlock" Grid.Row="2" Grid.Column="1" TextAlignment="Center" FontSize="22" Style="{StaticResource textBlock}"/>
+        <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource hiddenButton}" Width="80" Height="80" Click="LeftTopCorner_Click" />
+        <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource hiddenButton}" Width="80" Height="80" Click="RightTopCorner_Click" />
+        <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource hiddenButton}" Width="80" Height="80" Click="LeftBottom_Click" />
+        <Button Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource hiddenButton}" Width="80" Height="80" Click="RightBottom_Click" />
+    </Grid>
+</Page>

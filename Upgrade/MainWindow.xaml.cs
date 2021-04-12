@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Text;
 using System.ComponentModel;
+using HeBianGu.Product.UserControls.SystemKeyBoard;
 
 namespace Upgrade
 {
@@ -31,19 +32,21 @@ namespace Upgrade
 
         private void Down_Click(object sender, RoutedEventArgs e)
         {
-            Function.Visibility = Visibility.Hidden;
-            Updrade.Visibility = Visibility.Visible;
+            //Function.Visibility = Visibility.Hidden;
+            //Updrade.Visibility = Visibility.Visible;
+
+            InputNumWindow.ShowDefault();
 
 
-            string url = "http://xc213618.ddns.net:9090/s/REC.zip";
+            //string url = "http://xc213618.ddns.net:9090/s/REC.zip";
 
-            Uri uri = new Uri(url);
-            WebClient webClient = new WebClient();
+            //Uri uri = new Uri(url);
+            //WebClient webClient = new WebClient();
 
-            webClient.DownloadProgressChanged += client_DownloadProgressChanged;
-            webClient.DownloadFileCompleted += client_DownloadFileCompleted;
+            //webClient.DownloadProgressChanged += client_DownloadProgressChanged;
+            //webClient.DownloadFileCompleted += client_DownloadFileCompleted;
 
-            webClient.DownloadFileAsync(uri, "REC.zip");
+            //webClient.DownloadFileAsync(uri, "REC.zip");
 
 
         }

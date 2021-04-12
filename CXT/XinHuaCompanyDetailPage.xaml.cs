@@ -33,7 +33,6 @@ namespace XinHua
     public partial class XinHuaCompanyDetailPage : Page
     {
         private string companyName = null;
-        private string CompanyID = null;
         private CompayQueryDetailItem item;
         public XinHuaCompanyDetailPage(string companyName = null)
         {

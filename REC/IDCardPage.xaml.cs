@@ -13,15 +13,14 @@ namespace REC
     /// </summary>
     public partial class IDCardPage : Page
     {
-        public static int m_iPort;  //端口
-        public static int read_success = -1;  //是否读取到身份证信息
-        IDCardData idcardData = new IDCardData();
-
-
         public IDCardPage()
         {
             InitializeComponent();
         }
+
+        public static int m_iPort;  //端口
+        public static int read_success = -1;  //是否读取到身份证信息
+        IDCardData idcardData = new IDCardData();
 
         private DispatcherTimer pageTimer = null;
         public TimeCount timeCount = new TimeCount() { Countdown = 25 };
@@ -52,7 +51,7 @@ namespace REC
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
+                            AmLivingBodyApi.AmOpenDevice();
                             SwitchPage();
                         }
                         else
@@ -84,14 +83,16 @@ namespace REC
                 Media.Player(15);//读取成功
                 idcardData.Name = idcardData.Name.Trim();
                 idcardData.IDCardNo = idcardData.IDCardNo.Trim();
-                name.Content = "*" + idcardData.Name.Substring(1);
-                cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
+                NameLabel.Content += "*" + idcardData.Name.Substring(1);
+                IDCardNo.Content += idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
                 idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-                sex.Content = idcardData.Sex;
-                bir.Content = idcardData.Born;
-                placesOfIssue.Content = idcardData.GrantDept;
-                validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
+                Sex.Content += idcardData.Sex;
+                Born.Content += idcardData.Born;
+                GrantDept.Content += idcardData.GrantDept;
+                validDate.Content += idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
+                Singed.Visibility = Visibility.Visible;
             }
+
         }
 
 

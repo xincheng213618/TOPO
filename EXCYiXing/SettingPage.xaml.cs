@@ -222,7 +222,6 @@ namespace EXCYiXing
                     Content = new OutOfServicePage();
                     break;
              
-                    break;
                 default:
                     break;
             }

@@ -72,13 +72,13 @@ namespace RECSuzhou
 
                         WaitShow.Visibility = Visibility.Hidden;
                         List<Label> AreaList = new List<Label>() { resLabel0, resLabel1, resLabel2, resLabel3, resLabel4, resLabel5, resLabel6, resLabel7, resLabel8, resLabel9 };
-                        bool have = false;
+                        //bool have = false;
                         for (int i = 0; i < AreaList.Count; i++)
                         {
                             string count = (string)jsons["body"][i]["count"];
                             AreaList[i].Content = count != "0" ? jsons["body"][i]["qxmc"] + "：" + count + "套房子" : jsons["body"][i]["qxmc"] + "：" + "无房";
-                            if (count != "0")
-                                have = true;
+                            //if (count != "0")
+                                //have = true;
                         }
                         PrintButton.Visibility = Visibility.Visible; //不管如何都提供打印功能  (原版设计不满足条件不提供打印)
                     }

@@ -57,21 +57,13 @@ namespace BaseUtil
 
         }
 
-          void delprint(string printName)
+        public void delprint(string printName)
         {
-            PrintQueue queues = null;
-            foreach (PrintQueue queue in _PrintServer.GetPrintQueues())
-            {
-                //queue.PrintingIsCancelled
-               
-            }
-            //if (queues==null)
+            //PrintQueue queues = null;
+            //foreach (PrintQueue queue in _PrintServer.GetPrintQueues())
             //{
-            //    return false;
-            //}
-     
-
-
+            //    queue.PrintingIsCancelled;   
+        //}
         }
 
     }

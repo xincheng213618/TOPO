@@ -48,7 +48,6 @@ namespace REC
             {
                 PdfReader reader = new PdfReader(Environment.CurrentDirectory +"//"+ FilePath);
                 PageAllNum = reader.NumberOfPages;
-                formsHost.Width = 700 * reader.GetPageSize(1).Width / reader.GetPageSize(1).Height;
                 reader.Close();
                 reader.Dispose();
                 if (PageAllNum > 0)
@@ -56,8 +55,11 @@ namespace REC
                     AcrobatHelper.pdfControl.LoadFile(PDFpath);
                     AcrobatHelper.pdfControl.setShowScrollbars(false);
                     AcrobatHelper.pdfControl.setShowToolbar(false);
-                    AcrobatHelper.pdfControl.gotoNextPage();
 
+                    AcrobatHelper.pdfControl.gotoNextPage();
+                    CurrentNum =2;
+                    NextPDFBorder.Background = (Brush)Use1.ConvertFrom("#60d0ff");
+                    PrePDFBorder.Background = (Brush)Use1.ConvertFrom("#60d0ff");
                 }
                 else
                 {
@@ -84,6 +86,7 @@ namespace REC
                 }
             });
         }
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
@@ -169,6 +172,8 @@ namespace REC
             InkImage.Source = inkPage.InkBitmapImage;
             InkButtonLabel.Content = "重新签字";
             PrintBorder.Background =(Brush)Use1.ConvertFrom("#60d0ff");
+            PrintBorder.BorderBrush = Brushes.HotPink;
+            InkBorder.BorderBrush = Brushes.White;
             Requests.Ink_Upload(iDCardData.IDCardNo, iDCardData.Name, "Temp//ink.png");
         }
 

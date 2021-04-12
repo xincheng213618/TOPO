@@ -65,11 +65,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BaseUtil\BaseUtil.csproj">
-      <Project>{90DE3B02-7DE2-434C-8028-535D094310C5}</Project>
-      <Name>BaseUtil</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

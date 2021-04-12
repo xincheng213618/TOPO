@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://creditws.les.com/" name="ReportService" targetNamespace="http://creditws.les.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="getZrrxyxxListResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getreportlistResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="updatereportstatus">
+    <wsdl:part name="RequestUser" type="xsd:string" />
+    <wsdl:part name="RequestPwd" type="xsd:string" />
+    <wsdl:part name="Reportid" type="xsd:string" />
+    <wsdl:part name="CapturedImg" type="xsd:string" />
+    <wsdl:part name="Type" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getZrrxyxxResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getreportResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getZrrxyxxList">
+    <wsdl:part name="RequestUser" type="xsd:string" />
+    <wsdl:part name="RequestPwd" type="xsd:string" />
+    <wsdl:part name="Xm" type="xsd:string" />
+    <wsdl:part name="Sfzjhm" type="xsd:string" />
+    <wsdl:part name="Type" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getreportlist">
+    <wsdl:part name="RequestUser" type="xsd:string" />
+    <wsdl:part name="RequestPwd" type="xsd:string" />
+    <wsdl:part name="Sfzjhm" type="xsd:string" />
+    <wsdl:part name="Type" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getreport">
+    <wsdl:part name="RequestUser" type="xsd:string" />
+    <wsdl:part name="RequestPwd" type="xsd:string" />
+    <wsdl:part name="Reportid" type="xsd:string" />
+    <wsdl:part name="Tyshxydm" type="xsd:string" />
+    <wsdl:part name="Type" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="checkXybgByYzmResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="checkXybgByYzm">
+    <wsdl:part name="RequestUser" type="xsd:string" />
+    <wsdl:part name="RequestPwd" type="xsd:string" />
+    <wsdl:part name="Yzm" type="xsd:string" />
+    <wsdl:part name="Type" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getQyjbxxResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getQyjbxx">
+    <wsdl:part name="RequestUser" type="xsd:string" />
+    <wsdl:part name="RequestPwd" type="xsd:string" />
+    <wsdl:part name="qyid" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getZrrxyxx">
+    <wsdl:part name="RequestUser" type="xsd:string" />
+    <wsdl:part name="RequestPwd" type="xsd:string" />
+    <wsdl:part name="Grid" type="xsd:string" />
+    <wsdl:part name="Type" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getQyxyxxResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getQyxyxx">
+    <wsdl:part name="RequestUser" type="xsd:string" />
+    <wsdl:part name="RequestPwd" type="xsd:string" />
+    <wsdl:part name="qymc" type="xsd:string" />
+    <wsdl:part name="Type" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="updatereportstatusResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="ReportService">
+    <wsdl:operation name="getZrrxyxxList">
+      <wsdl:input name="getZrrxyxxList" message="ns1:getZrrxyxxList" />
+      <wsdl:output name="getZrrxyxxListResponse" message="ns1:getZrrxyxxListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getZrrxyxx">
+      <wsdl:input name="getZrrxyxx" message="ns1:getZrrxyxx" />
+      <wsdl:output name="getZrrxyxxResponse" message="ns1:getZrrxyxxResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getQyxyxx">
+      <wsdl:input name="getQyxyxx" message="ns1:getQyxyxx" />
+      <wsdl:output name="getQyxyxxResponse" message="ns1:getQyxyxxResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getreport">
+      <wsdl:input name="getreport" message="ns1:getreport" />
+      <wsdl:output name="getreportResponse" message="ns1:getreportResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getreportlist">
+      <wsdl:input name="getreportlist" message="ns1:getreportlist" />
+      <wsdl:output name="getreportlistResponse" message="ns1:getreportlistResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getQyjbxx">
+      <wsdl:input name="getQyjbxx" message="ns1:getQyjbxx" />
+      <wsdl:output name="getQyjbxxResponse" message="ns1:getQyjbxxResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkXybgByYzm">
+      <wsdl:input name="checkXybgByYzm" message="ns1:checkXybgByYzm" />
+      <wsdl:output name="checkXybgByYzmResponse" message="ns1:checkXybgByYzmResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updatereportstatus">
+      <wsdl:input name="updatereportstatus" message="ns1:updatereportstatus" />
+      <wsdl:output name="updatereportstatusResponse" message="ns1:updatereportstatusResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

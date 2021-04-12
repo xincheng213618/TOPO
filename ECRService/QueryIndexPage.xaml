@@ -1,0 +1,64 @@
+﻿<Page x:Class="ECRService.QueryIndexPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ECRService"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="QueryIndexPage" Initialized="Page_Initialized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="158" />
+            <RowDefinition Height="17" />
+            <RowDefinition Height="131" />
+            <RowDefinition Height="22" />
+            <RowDefinition Height="285" />
+            <RowDefinition Height="110" />
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="57*" />
+            <ColumnDefinition Width="405*" />
+            <ColumnDefinition Width="400*" />
+            <ColumnDefinition Width="405*" />
+            <ColumnDefinition Width="57*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="2" Grid.Column="2" Height="89" Width="328" CornerRadius="4" HorizontalAlignment="Right">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="PageChange_Click" Tag="CompanyQuery">
+                <Image Stretch="None" Source="Images/legal_entity_search.png" />
+            </Button>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="3" Height="89" Width="328" CornerRadius="4" HorizontalAlignment="Left"  Visibility="Collapsed">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="PageChange_Click" Tag="PersonalQuery">
+                <Image Stretch="None" Source="Images/natural_person_search.png" />
+            </Button>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Background="{StaticResource info_background}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Style="{StaticResource titleLabel}" Content="信用信息查询说明" />
+                <Grid Grid.Row="1" Margin="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*" />
+                        <ColumnDefinition Width="308*" />
+                        <ColumnDefinition Width="10*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock LineHeight="30" Grid.Column="1" VerticalAlignment="Top"  Style="{StaticResource textBlock}" Text="       法人信用信息查询可提供工商企业、个体工商户、民办非企业单位、社会团体和事业单位信息查询。&#x000d;&#x000a;"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button HorizontalAlignment="Left" Template="{StaticResource imageButtonTemplate}" Click="PageChange_Click" Tag="Return">
+                <Image Stretch="None" Source="Images/return.png" />
+            </Button>
+        </Grid>
+        <MediaElement x:Name="media" Visibility="Hidden" LoadedBehavior="Manual" />
+    </Grid>
+</Page>

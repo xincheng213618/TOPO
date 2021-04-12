@@ -206,15 +206,11 @@ namespace EXC
             select9.Content = null;
         }
 
-        //IntPtr windowHandle = new WindowInteropHelper(Application.Current.MainWindow).Handle;
-
 
         //修正不直接对页面负责对窗口负责
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             User32dll.KeyHelper.OnKeyPress(User32dll.KeyHelper.KeyCode.BACK);
-            //User32dll.SendMessage(User32dll.GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0x01, IntPtr.Zero, "陈");
-            //User32dll.ShowWindow(User32dll.GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 2);
         }
 
         private void Recognizer_Select(object sender, RoutedEventArgs e)
@@ -232,7 +228,6 @@ namespace EXC
 
         private void InkCanvas_StrokeCollected(object sender, InkCanvasStrokeCollectedEventArgs e)
         {
-            //inkCanvas.Background = new SolidColorBrush(Colors.White);
             if (timer != null)
             {
                 timer.Dispose();

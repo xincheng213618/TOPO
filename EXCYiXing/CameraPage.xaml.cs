@@ -15,7 +15,6 @@ namespace EXCYiXing
     /// </summary>
     public partial class CameraPage : Page
     {
-        int ret;
         private static bool ShootSucess = false;
         private static double b, c;
 

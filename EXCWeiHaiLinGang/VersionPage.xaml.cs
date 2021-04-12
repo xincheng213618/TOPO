@@ -54,7 +54,7 @@ namespace EXC
         }
 
         private ObservableCollection<VersionItem> VersionItem = new ObservableCollection<VersionItem>();
-        private int VersionNo = 0;
+        //private int VersionNo = 0;
         private void RequestsUrl()
         {
             //WebService.GetPersonInfo(iDCardData);//只是上传不做处理

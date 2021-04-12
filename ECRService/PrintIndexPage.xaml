@@ -1,0 +1,59 @@
+﻿<Page x:Class="ECRService.PrintIndexPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ECRService"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="PrintIndexPage" Initialized="Page_Initialized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="158" />
+            <RowDefinition Height="17" />
+            <RowDefinition Height="131" />
+            <RowDefinition Height="22" />
+            <RowDefinition Height="285" />
+            <RowDefinition Height="110" />
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="57*" />
+            <ColumnDefinition Width="405*" />
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="405*" />
+            <ColumnDefinition Width="57*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="2" Grid.Column="1" CornerRadius="4" HorizontalAlignment="Right">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="CompanyCreditReport_Click">
+                <Image Stretch="None" Source="Images/credit_report.png" />
+            </Button>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="3" CornerRadius="4" HorizontalAlignment="Left">
+            <Button Template="{StaticResource imageButtonTemplate}" Click="QuarantineCreditReport_Click">
+                <Image Stretch="None" Source="Images/quarantine_certificate.png" />
+            </Button>
+        </Border>
+       
+        
+        <Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5">
+            <Image Stretch="None" Source="Images/print_info.png" />
+        </Border>
+
+       
+        <!--       
+        <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="婚姻证明" Style="{StaticResource indexButton}" Click="MarriageCertificate_Click" IsEnabled="False">
+        </Button>
+        <Button Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Content="低保证明" Style="{StaticResource indexButton}" Click="PoorCertificate_Click" IsEnabled="False">
+        </Button>
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="户籍证明" Style="{StaticResource indexButton}" Click="CensusRegisterCertificate_Click" IsEnabled="False">
+        </Button>
+        <Button Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2"  Content="出生登记证明" Style="{StaticResource indexButton}" Click="BirthCertificate_Click" IsEnabled="False">
+        </Button>
+        -->
+        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="98 0 0 0"  HorizontalAlignment="Left" Template="{StaticResource imageButtonTemplate}" Click="Return_Click">
+            <Image Stretch="None" Source="Images/return.png" />
+        </Button>
+        <MediaElement x:Name="media" Visibility="Hidden" LoadedBehavior="Manual" />
+    </Grid>
+</Page>

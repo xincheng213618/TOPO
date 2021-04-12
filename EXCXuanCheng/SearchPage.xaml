@@ -54,7 +54,7 @@
                             <!--<Label x:Name="label" Style="{StaticResource contentLabel}" Content="企业名称："  FontSize="26" />-->
                             <Border BorderBrush="#abadb3" BorderThickness="2,2,0,2" CornerRadius="3,3,0,0" Width="800"   >
                                 <Grid Margin="10,0,0,0">
-                                    <TextBox x:Name="CompanySearchBox" BorderThickness="0" Background="White" VerticalContentAlignment="Center"  VerticalAlignment="Center" Text="" TextChanged=" TextChanged" InputMethod.IsInputMethodEnabled="True" GotFocus="TextBox_GotFocus"  KeyDown="KeyEnter" LostFocus="TextBox_LostFocus"  Height="50" FontSize="24"  />
+                                    <TextBox x:Name="CompanySearchBox" BorderThickness="0" Background="White" VerticalContentAlignment="Center"  VerticalAlignment="Center" Text="" TextChanged=" TextChanged" InputMethod.IsInputMethodEnabled="True"  KeyDown="KeyEnter"  Height="50" FontSize="24"  />
                                 </Grid>
                             </Border>
                             <Border Background="#378afc" Margin="-1,0,0,0" CornerRadius="0,10,10,0">
@@ -80,47 +80,6 @@
                         </Border>
                     </Grid>
 
-                    <!--手写板-->
-                    <Grid x:Name="inkPanel" Grid.Row="1" Visibility="Visible"  Margin="120,150,70,10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="53" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="161"/>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="1" >
-                            <Button x:Name="select0" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select1" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select2" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select3" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select4" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select5" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select6" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select7" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select8" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                            <Button x:Name="select9" Template="{StaticResource hiddenButtonTemplate}" Focusable="False" MinWidth="50" Margin="10" FontSize="26" Click="Recognizer_Select" />
-                        </StackPanel>
-                        <Button Grid.Row="0" Grid.Column="1" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="Fun_Click" >
-                            <Label Content="中/英" Style="{StaticResource Label_Centered_20}" Foreground="White" Background="#378afc"/>
-                        </Button>
-
-                        <Button Grid.Row="0" Grid.Column="2" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="Clear_Click" >
-                            <Label Content="清空" Style="{StaticResource Label_Centered_20}" Foreground="White" Background="#378afc"/>
-                        </Button>
-                        <Button Grid.Row="0" Grid.Column="3" Focusable="False" Template="{StaticResource imageButtonTemplate}" Click="Delete_Click" >
-                            <Label Content="删除" Style="{StaticResource Label_Centered_20}" Foreground="White" Background="#378afc"/>
-                        </Button>
-                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="2,2,2,2" BorderBrush="#c5c5c5" BorderThickness="1,3,1,1" Visibility="Visible" >
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="5" Color="Black" Direction="315" Opacity="0.3" RenderingBias="Performance" ShadowDepth="3" />
-                            </Border.Effect>
-                            <InkCanvas x:Name="inkCanvas" Focusable="False"  StrokeCollected="InkCanvas_StrokeCollected" Background="#f5f6f7" Margin="0,-2,0,0" />
-                        </Border>
-                    </Grid>
                 </Grid>
 
             </Border>

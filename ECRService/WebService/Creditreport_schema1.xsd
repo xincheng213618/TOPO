@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://creditws.topo360.com/" targetNamespace="http://creditws.topo360.com/" version="1.0">
+  <xs:element name="getreportlist" type="tns:getreportlist"/>
+
+  <xs:element name="getreportlistResponse" type="tns:getreportlistResponse"/>
+
+  <xs:element name="checkXybgByYzm" type="tns:checkXybgByYzm"/>
+
+  <xs:element name="checkXybgByYzmResponse" type="tns:checkXybgByYzmResponse"/>
+
+  <xs:element name="getImportQyxybg" type="tns:getImportQyxybg"/>
+
+  <xs:element name="getImportQyxybgResponse" type="tns:getImportQyxybgResponse"/>
+
+  <xs:element name="getreport" type="tns:getreport"/>
+
+  <xs:element name="getreportResponse" type="tns:getreportResponse"/>
+
+  <xs:element name="updatereportstatus" type="tns:updatereportstatus"/>
+
+  <xs:element name="updatereportstatusResponse" type="tns:updatereportstatusResponse"/>
+
+  <xs:element name="getBusinessUndertaking" type="tns:getBusinessUndertaking"/>
+
+  <xs:element name="getBusinessUndertakingList" type="tns:getBusinessUndertakingList"/>
+
+  <xs:element name="getBusinessUndertakingListResponse" type="tns:getBusinessUndertakingListResponse"/>
+
+  <xs:element name="getBusinessUndertakingResponse" type="tns:getBusinessUndertakingResponse"/>
+
+  <xs:element name="getQyjbxx" type="tns:getQyjbxx"/>
+
+  <xs:element name="getQyjbxxResponse" type="tns:getQyjbxxResponse"/>
+
+  <xs:element name="getQyxyxx" type="tns:getQyxyxx"/>
+
+  <xs:element name="getQyxyxxResponse" type="tns:getQyxyxxResponse"/>
+
+	<xs:complexType name="getBusinessUndertaking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="Reportid" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getBusinessUndertakingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getBusinessUndertakingList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="CardId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getBusinessUndertakingListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getQyjbxx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="qyid" type="xs:string"/>
+	  <xs:element minOccurs="0" name="Type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getQyjbxxResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getQyxyxx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="qymc" type="xs:string"/>
+      <xs:element minOccurs="0" name="Type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getQyxyxxResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updatereportstatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="Reportid" type="xs:string"/>
+	  <xs:element minOccurs="0" name="CapturedImg" type="xs:string"/>
+	  <xs:element minOccurs="0" name="Type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updatereportstatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getreport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="Reportid" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getreportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getreportlist">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="Sfzjhm" type="xs:string"/>
+      <xs:element minOccurs="0" name="Type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getreportlistResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="checkXybgByYzm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="Yzm" type="xs:string"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="checkXybgByYzmResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getImportQyxybg">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestUser" type="xs:string"/>
+      <xs:element minOccurs="0" name="RequestPwd" type="xs:string"/>
+      <xs:element minOccurs="0" name="XmlStr" type="xs:string"/>
+      <xs:element minOccurs="0" name="fyjBase64Str" type="xs:string"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getImportQyxybgResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
