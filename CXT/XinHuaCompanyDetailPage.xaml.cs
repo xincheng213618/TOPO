@@ -915,7 +915,6 @@ namespace XinHua
                             PartnersItem.Add(item);
                         }
 
-
                         str = str.Substring(0,str.Length-1);
                         StreamWriter sw = File.CreateText("Echarts/tree-basic.js"); //保存到指定路径
                         sw.Write("var data = {\"name\": \""+companyName+"\", \"children\":[" + str + "]}");

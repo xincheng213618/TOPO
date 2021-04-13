@@ -1,0 +1,284 @@
+﻿<Page x:Class="XinHua.InfoShowPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:XinHua"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="InfoShowPage" Initialized="Page_Initialized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Border Grid.Row="1" Background="#c5c5c5" Opacity="0.05"/>
+            <Border Grid.Row="1" Background="#b6c2eb"  CornerRadius="40" Margin="50,50,50,30" Opacity="0.4" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Label  FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="243" Height="40" Foreground="White" Margin="30,10,0,0">
+                <Label.Content>
+                    <TextBlock Text="{Binding Countdown,StringFormat=剩余操作时间：{0}s}"/>
+                </Label.Content>
+            </Label>
+
+            <Button Template="{StaticResource imageButtonTemplate}"   HorizontalAlignment="Right" VerticalAlignment="Top"  Height="50" Margin="100,0" Click="Button_Click"  Tag="Home" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="Images/首页.png" Stretch="Uniform" Height="30" Margin="0,5,0,0"/>
+                    <Label Grid.Column="1" Content="主页"  FontSize="25" Foreground="#ff8160" />
+                </Grid>
+            </Button>
+
+            <Button  Template="{StaticResource imageButtonTemplate}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="200,0" Height="50" Click="Button_Click" Tag="Return" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="Images/返回.png" Stretch="Uniform" Height="30" Margin="0,5,0,0"/>
+                    <Label Grid.Column="1" Content="返回"  FontSize="25" Foreground="#ff8160" />
+                </Grid>
+            </Button>
+       
+        </Grid>
+        
+        <!--Content-->
+        <Grid Grid.Row="1" Margin="50">
+            <Label x:Name="InfoTitleLabel"  VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Style="{StaticResource Label_Centered_30}" Content="详细信息展示" FontSize="50"  Foreground="#ff9262" FontWeight="Bold" FontFamily="微软雅黑"/>
+            <!--弹出用户-->
+            <Label x:Name="NowTotalLabel" Style="{StaticResource NowTotalLabel}"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="100,70" />
+            <Label x:Name="CredittotalLabel"  Style="{StaticResource TotalLabel}" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="100,70"/>
+            
+            <!--纳税信用A-->
+            <Border x:Name="XinHuaTaxABorder" Margin="100,100,100,0" Background="AliceBlue" Panel.ZIndex="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="48"/>
+                    </Grid.RowDefinitions>
+                    <!--标题-->
+                    <ListView  Grid.Row="1" x:Name="XinHuaTaxAListView" AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="XinHuaTaxAListView_SelectionChanged" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Height" Value="60" />
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="BorderBrush" Value="#f5f6f7" />
+                                <Setter Property="BorderThickness" Value="0,1,0,1" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+
+                                <GridViewColumn  Width="105" Header="序号">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ListNo}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Width="580" Header="公司名称">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CompanyName}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Width="150" Header="统一社会信用代码">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=USCI}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Width="196" Header="评估年份">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=annualEvaluation}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn  Width="162" Header="更新日期">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=updateDate}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    
+                </Grid>
+            </Border>
+            
+            <!--TaxV-->
+            <Border x:Name="XinHuaTaxVBorder" Margin="100,100,100,0" Background="AliceBlue"  Panel.ZIndex="0" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="48"/>
+                    </Grid.RowDefinitions>
+                    <ListView  Grid.Row="0" x:Name="XinHuaTaxVListView" AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="XinHuaTaxVListView_SelectionChanged" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Height" Value="300" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="BorderBrush" Value="#f5f6f7" />
+                                <Setter Property="BorderThickness" Value="0,1,0,1" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                <GridViewColumn   Header="Content">
+                                    <GridViewColumn.CellTemplate  >
+                                        <DataTemplate>
+                                            <Border  Margin="10,5" BorderThickness="2" Background="White" BorderBrush="#c5c5c5" CornerRadius="10">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                    <!--{Binding Uniscid}-->
+                                                    <Label Grid.Row="0"  Style="{StaticResource Label_Centered_25}"  HorizontalAlignment="Center" Content="{Binding CompanyName}" />
+                                                    <Label Grid.Row="1" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="组织机构代码："/>
+                                                    <Label Grid.Row="1" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding Uniscid}" Margin="100,0,0,0"/>
+                                                    <Label Grid.Row="1" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="税务登记号：" Margin="300,0,0,0"/>
+                                                    <Label Grid.Row="1" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding taxNo}"  Margin="390,0,0,0"/>
+                                                    <Label Grid.Row="1" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="注册地：" Margin="600,0,0,0" />
+                                                    <Label Grid.Row="1" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding registeredLand}" Margin="660,0,0,0" />
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="法人代表人姓名："/>
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding legalPerson}" Margin="120,0,0,0"/>
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="法人代表人性别：" Margin="200,0,0,0"/>
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding legalpersonSex}"  Margin="320,0,0,0" />
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="证件类型：" Margin="360,0,0,0"/>
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding documentType}" Margin="430,0,0,0" />
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="证件号：" Margin="600,0,0,0"/>
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding legalPersonsec}" Margin="660,0,0,0" />
+                                                    <Label Grid.Row="3" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding caseNature}" HorizontalAlignment="Center"  />
+                                                    <TextBlock Grid.Row="4" Grid.RowSpan="3"  FontSize="15" Text="{Binding caseDes}" TextWrapping="WrapWithOverflow" Width="880" Height="80" Margin="10,0,0,38"  />
+
+                                                    <Label Grid.Row="6"  Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding dealResult}" HorizontalAlignment="Left"  />
+                                                    <Label Grid.Row="6"  Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding createDate}" HorizontalAlignment="Right"  />
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+
+                    </ListView>
+                </Grid>
+            </Border>
+            
+            <!---LostCredit-->
+            <Border x:Name="XinHuaLostCreditBorder"  Margin="100,100,100,0" Background="AliceBlue"  Panel.ZIndex="0" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="48"/>
+                    </Grid.RowDefinitions>
+                    <!--标题-->
+                    <ListView  Grid.Row="0" x:Name="XinHuaLostCreditListView" AllowDrop="False" ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0,0,0,0" BorderBrush="White" Visibility="Visible" SelectionChanged="XinHuaTaxVListView_SelectionChanged" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Height" Value="300" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="BorderBrush" Value="#f5f6f7" />
+                                <Setter Property="BorderThickness" Value="0,1,0,1" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="true">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}">
+                                <GridViewColumn Header="Content">
+                                    <GridViewColumn.CellTemplate  >
+                                        <DataTemplate>
+                                            <Border Margin="25,5" BorderThickness="2" Background="White" BorderBrush="#c5c5c5" CornerRadius="10">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                    <!--{Binding Uniscid}-->
+                                                    <Label Grid.Row="0"  Style="{StaticResource Label_Centered_25}"  HorizontalAlignment="Center" Content="{Binding CompanyName}" />
+                                                    <Label Grid.Row="1" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="组织机构代码："/>
+                                                    <Label Grid.Row="1" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding Uniscid}" Margin="100,0,0,0"/>
+
+                                                    <Label Grid.Row="2" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding courtName}"  HorizontalAlignment="Center" />
+                                                    <Label Grid.Row="3" Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding disreputTypeName}" HorizontalAlignment="Center"  />
+                                                    <TextBlock Grid.Row="4" Grid.RowSpan="3"  FontSize="15" Text="{Binding duty}" TextWrapping="WrapWithOverflow" Width="880" Height="80" Margin="10,0,0,38"  />
+
+                                                    <Label Grid.Row="6"  Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding performance}" HorizontalAlignment="Left"  />
+                                                    <Label Grid.Row="6"  Style="{StaticResource Label_Centered_20}" FontSize="15" Content="{Binding updateDate}" HorizontalAlignment="Right"  />
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+            </Border>
+
+
+        </Grid>
+
+    </Grid>
+</Page>
