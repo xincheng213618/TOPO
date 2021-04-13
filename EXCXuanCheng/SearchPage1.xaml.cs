@@ -33,7 +33,7 @@ namespace EXCXuanCheng
         private void Page_Initialized(object sender, EventArgs e)
         {
             Countdown_timer();
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "XuanChengQiYi":
                     SearchTitleLabel.Content = "安徽省企业信息列表搜索";
@@ -86,7 +86,7 @@ namespace EXCXuanCheng
         private void SearchRequests(string SearchContent)
         {
             string response = null;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "XuanChengQiYi":
                     response = Http.XuanCheng.Search.queryList(SearchContent, "企业");
@@ -260,7 +260,7 @@ namespace EXCXuanCheng
             {
                 SearchContent = CompaQueryListItem.ElementAt(listView.SelectedIndex).CompanyName.ToString();
 
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "TopoSearch":
                         Content = new CompayQueryDetailPage(SearchContent);

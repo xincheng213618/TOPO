@@ -1121,7 +1121,7 @@ namespace XinHua
                     break;
 
                 case "Print":
-                    Global.PageType = "XinHuaPrint";
+                    Global.Related.PageType = "XinHuaPrint";
                     CompanyInfo.CompanyName = companyName;
                     CompanyInfo.CompanyID = CompanyID;
 
@@ -1133,8 +1133,8 @@ namespace XinHua
                     else
                     {
                         //Global.PageType = "CreditChina";
-                        Content = new Report(listItems[0].CompanyName,"",listItems[0].USCI) ;
-                        //Content = new IDCardPage();
+                        //Content = new Report(listItems[0].CompanyName,"",listItems[0].USCI) ;
+                        Content = new IDCardPage();
                         Pages();
                     }
                     break;

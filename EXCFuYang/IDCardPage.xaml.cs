@@ -18,7 +18,7 @@ namespace XinHua
         ///// 端口号
         public static int m_iPort;
         public static int read_success = -1;
-        IDCardData idcardData = new IDCardData();
+        
         public IDCardPage()
         {
             InitializeComponent();
@@ -36,21 +36,24 @@ namespace XinHua
 
         private void IDcard_reader()
         {
-            read_success = IDcard.IDcardRead(m_iPort, ref idcardData);
+            read_success = IDcard.IDcardRead(m_iPort, ref Global.Related.IDCardData);
 
             if (read_success == 1 || read_success == 0)
             {
                 Media.Player( 15);//读取成功
 
-                idcardData.Name = idcardData.Name.Trim();
-                idcardData.IDCardNo = idcardData.IDCardNo.Trim();
+                Global.Related.IDCardData.Name = Global.Related.IDCardData.Name.Trim();
+                Global.Related.IDCardData.IDCardNo = Global.Related.IDCardData.IDCardNo.Trim();
                 searchTitle.Content = "请检查身份证信息";
                 IDcardPicture.Visibility = Visibility.Hidden;
                 ShowIDcardData.Visibility = Visibility.Visible;
-                ShowIDcardData.DataContext = idcardData;
-                cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
-                idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-                validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
+                name.Content = "*" + Global.Related.IDCardData.Name.Substring(1);
+                cardNo.Content = Global.Related.IDCardData.IDCardNo.Substring(0, 10) + "******" + Global.Related.IDCardData.IDCardNo.Substring(16);
+                idcardPicture.Source = Covert.FileToImage(Global.Related.IDCardData.PhotoFileName);
+                sex.Content = Global.Related.IDCardData.Sex;
+                bir.Content = Global.Related.IDCardData.Born;
+                placesOfIssue.Content = Global.Related.IDCardData.GrantDept;
+                validDate.Content = Global.Related.IDCardData.UserLifeBegin + " - " + Global.Related.IDCardData.UserLifeEnd;
 
             }
         }
@@ -99,10 +102,10 @@ namespace XinHua
 
         private void SwitchPage()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 default:
-                    Content = new CameraPage(idcardData);
+                    Content = new CameraPage();
                     Pages();
                     break;
             }

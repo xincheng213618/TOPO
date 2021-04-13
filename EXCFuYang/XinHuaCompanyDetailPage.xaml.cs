@@ -1312,7 +1312,7 @@ namespace XinHua
                     break;
 
                 case "Print":
-                    //Global.PageType = "XinHuaPrint";
+                    //Global.Related.PageType = "XinHuaPrint";
                     //CompanyInfo.CompanyName = companyName;
                     //CompanyInfo.CompanyID = CompanyID;
                     //if ((CompanyInfo.CompanyName == null) || (CompanyInfo.CompanyID == null))

@@ -44,7 +44,7 @@ namespace EXCXuanCheng
             //    Process.Start("SystemKeyBoard.exe");
 
             Countdown_timer();
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
               
                 case "TopoSearch":
@@ -96,7 +96,7 @@ namespace EXCXuanCheng
         private void SearchRequests()
         {
             string response = null;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "TopoSearch":
                     response = Http.TOPO.CompanySearch(SearchContent, pageNo);
@@ -299,7 +299,7 @@ namespace EXCXuanCheng
                 SearchContent = CompayQueryListItem.ElementAt(listView.SelectedIndex).CompanyName.ToString();
                 USCI = CompayQueryListItem.ElementAt(listView.SelectedIndex).USCI.ToString();
 
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "TopoSearch":
                         Content = new CompayQueryDetailPage(SearchContent);
