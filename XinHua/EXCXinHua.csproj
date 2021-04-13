@@ -310,10 +310,6 @@
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>
       <Name>BaseDLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BaseKeyBoard\HeBianGu.Product.KeyBoard.csproj">
-      <Project>{fe7393f0-6487-430c-9e70-133f2c6abbd6}</Project>
-      <Name>HeBianGu.Product.KeyBoard</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BaseUtil\BaseUtil.csproj">
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
