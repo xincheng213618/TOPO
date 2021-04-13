@@ -36,7 +36,7 @@ namespace XinHua
             this.USCI = USCI;
             InitializeComponent();
         }
-        public Report (IDCardData iDCardData)
+        public Report ()
         {
             InitializeComponent();
         }
@@ -46,8 +46,8 @@ namespace XinHua
         private void Page_Initialized(object sender, EventArgs e)
         {
             WaitShow.Visibility = Visibility.Visible;
-            Global.PageType = "CreditChina";
-            switch (Global.PageType)
+            Global.Related.PageType = "XinHuaPrint";
+            switch (Global.Related.PageType)
             {
                 case "XinHuaPrint":
                     hintLabel.Content = "正在生成报告";        
@@ -65,7 +65,7 @@ namespace XinHua
         private void RequestUrl()
         {
             string response;
-            switch(Global.PageType)
+            switch(Global.Related.PageType)
             {
                 case "XinHuaPrint":
                     response = Http.XinHuaReport(CompanyInfo.CompanyName, CompanyInfo.CompanyID);
@@ -137,7 +137,7 @@ namespace XinHua
         private void RequestUrl1(string FileName, string filePath = null)
         {
             
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "XinHuaPrint":
                     bool Sucess = Http.GetXinHuaReport(FileName, filePath);
@@ -151,7 +151,7 @@ namespace XinHua
         {
             if (Sucess) 
             {
-                Global.PageType = null;
+                Global.Related.PageType = null;
                 Content = new Pdfshow(filepath);
             }
             else

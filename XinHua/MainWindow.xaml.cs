@@ -63,7 +63,7 @@ namespace XinHua
 
         private void Setting_Click(object sender, MouseButtonEventArgs e)
         {
-            if (Global.PageType == null)
+            if (Global.Related.PageType == null)
                 Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new EXCPassword())));
         }
 

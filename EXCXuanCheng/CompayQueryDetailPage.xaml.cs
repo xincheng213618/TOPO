@@ -741,7 +741,8 @@ namespace EXCXuanCheng
                 {
 
                     JObject data = (JObject)PartnersResponse["data"];
-                    JArray resultArray = (JArray)data["list"];
+                    JObject cpartners = (JObject)data["cpartners"];
+                    JArray resultArray = (JArray)cpartners["list"];
                     if (resultArray.Count != 0)
                     {
                         PartnersListView.ItemsSource = PartnersItem;

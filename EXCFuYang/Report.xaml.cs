@@ -35,17 +35,13 @@ namespace XinHua
         {
             InitializeComponent();
         }
-        private IDCardData idcardData;
-        public Report(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
+       
+       
         private void Page_Initialized(object sender, EventArgs e)
         {
             Countdown_timer();
             WaitShow.Visibility = Visibility.Visible;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "XinHuaPrint":
                     hintLabel.Content = "正在生成报告";        
@@ -65,7 +61,7 @@ namespace XinHua
         private void RequestUrl()
         {
             string response;
-            switch(Global.PageType)
+            switch(Global.Related.PageType)
             {
                 case "XinHuaPrint":
                     response = Http.XinHuaReport(CompanyInfo.CompanyName, CompanyInfo.CompanyID);
@@ -73,12 +69,12 @@ namespace XinHua
                     break;
                 case "NanJingReport":
                     
-                    response = Webservice.NanJing.GetReportList(idcardData.IDCardNo);
+                    response = Webservice.NanJing.GetReportList(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportNanJing(response)));
                     break;
                 case "NanJingGRReport":
-                    Global.PageType = null;
-                    response = Webservice.NanJing.GetReport(idcardData.IDCardNo);
+                    Global.Related.PageType = null;
+                    response = Webservice.NanJing.GetReport(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportGRNanJing(response)));
                     break;
                 default:
@@ -206,7 +202,7 @@ namespace XinHua
         {
 
             string response;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "XinHuaPrint":
                     bool Sucess = Http.GetXinHuaReport(FileName, filePath);
@@ -254,7 +250,7 @@ namespace XinHua
         {
             if (Sucess) 
             {
-                Global.PageType = null;
+                Global.Related.PageType = null;
                 Content = new Pdfshow(filepath);
             }
             else

@@ -27,10 +27,10 @@ namespace EXCXuanCheng
         private static bool ShootSucess = false;
         private static double b, c;
 
-        private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
+        
+        public CameraPage()
         {
-            this.idcardData = idcardData;
+           
             InitializeComponent();
         }
 
@@ -58,10 +58,10 @@ namespace EXCXuanCheng
         {
             string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
             string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
-            if (idcardData.PhotoFileName == null)
+            if (Global.Related.IDCardData.PhotoFileName == null)
                 return;
-            b = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths);
-            c = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths_black);
+            b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
+            c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
 
             ShootSucess = false;
 
@@ -86,7 +86,7 @@ namespace EXCXuanCheng
 
         private void SwitchPage()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "":
                     break;
@@ -142,7 +142,7 @@ namespace EXCXuanCheng
             File.Delete(paths);
             File.Delete(paths_black);
 
-            IDcard.DeleteIDcardImages(idcardData);
+            IDcard.DeleteIDcardImages(Global.Related.IDCardData);
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));

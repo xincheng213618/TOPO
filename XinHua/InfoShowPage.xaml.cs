@@ -45,7 +45,7 @@ namespace XinHua
         {
             this.DataContext = Time;
             Countdown_timer();
-            switch (Global.PageType) 
+            switch (Global.Related.PageType) 
             {
                 case "ShuiShouWeiFa":
                     InfoTitleLabel.Content = "重大税收违法案件人详情";
@@ -68,7 +68,7 @@ namespace XinHua
         private void Request()
         {
             string response = null; 
-            switch(Global.PageType)
+            switch(Global.Related.PageType)
             {
                 case "ShuiShouWeiFa":
                     response = Http.XinHuaTaxVDetail(CompanyName, CompanyID);
@@ -88,7 +88,7 @@ namespace XinHua
                 Dispatcher.BeginInvoke(new Action(() => Pages()));
                 return;
             }
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ShuiShouWeiFa":
                     Dispatcher.BeginInvoke(new Action(() => XinHuaTaxVDetailPharse(response)));

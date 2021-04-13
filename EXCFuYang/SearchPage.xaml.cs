@@ -35,7 +35,7 @@ namespace XinHua
         {
             FocusManager.SetFocusedElement(this, CompanySearchBox);
             Countdown_timer();
-            switch(Global.PageType)
+            switch(Global.Related.PageType)
             {
                 case ("QiYeXinXi"):
                     searchTitle.Content = "企业信息查询";

@@ -38,8 +38,8 @@ namespace EXCXuanCheng
         {
             Button button = sender as Button;
 
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "TopoSearch":
                     Content = new SearchPage();
@@ -67,7 +67,7 @@ namespace EXCXuanCheng
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-            Global.PageType = null;
+            Global.Related.Initialized();
 
             BackgroundItem.Kind = true;
             BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
