@@ -112,18 +112,18 @@ namespace XinHua
         /// 加速加速度
         /// 减速加速度
         /// 持续时间
-        private void DoMove(DependencyProperty dp, double to, double ar, double dr, double duration)
-        {
-            DoubleAnimation doubleAnimation = new DoubleAnimation();//创建双精度动画对象
+        //private void DoMove(DependencyProperty dp, double to, double ar, double dr, double duration)
+        //{
+        //    DoubleAnimation doubleAnimation = new DoubleAnimation();//创建双精度动画对象
 
-            doubleAnimation.To = to;//设置动画的结束值
-            doubleAnimation.Duration = TimeSpan.FromSeconds(duration);//设置动画时间线长度
-            doubleAnimation.AccelerationRatio = ar;//动画加速
-            doubleAnimation.DecelerationRatio = dr;//动画减速
-            doubleAnimation.FillBehavior = FillBehavior.HoldEnd;//设置动画完成后执行的操作
+        //    doubleAnimation.To = to;//设置动画的结束值
+        //    doubleAnimation.Duration = TimeSpan.FromSeconds(duration);//设置动画时间线长度
+        //    doubleAnimation.AccelerationRatio = ar;//动画加速
+        //    doubleAnimation.DecelerationRatio = dr;//动画减速
+        //    doubleAnimation.FillBehavior = FillBehavior.HoldEnd;//设置动画完成后执行的操作
 
-            grdTransfer.BeginAnimation(dp, doubleAnimation);//设置动画应用的属性并启动动画
-        }
+        //    grdTransfer.BeginAnimation(dp, doubleAnimation);//设置动画应用的属性并启动动画
+        //}
 
 
 
@@ -134,55 +134,55 @@ namespace XinHua
         ///
         ///
         ///
-        private void grdTest_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //获得鼠标点击的X坐标
-            pressedX = e.GetPosition(cvsGround).X;
+        //private void grdTest_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    //获得鼠标点击的X坐标
+        //    pressedX = e.GetPosition(cvsGround).X;
 
-        }
+        //}
 
 
 
         //鼠标释放时的操作
 
-        private void grdTest_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            double transferLeft = Convert.ToDouble(grdTransfer.GetValue(Canvas.LeftProperty));
+        //private void grdTest_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        //{
+        //    double transferLeft = Convert.ToDouble(grdTransfer.GetValue(Canvas.LeftProperty));
 
-            if (transferLeft > 0)
-            {
-                transferLeft = 0;
-            }
-            if (this.Width - transferLeft > cvsGround.Width)
-            {
-                transferLeft = this.Width - cvsGround.Width;
-            }
+        //    if (transferLeft > 0)
+        //    {
+        //        transferLeft = 0;
+        //    }
+        //    if (this.Width - transferLeft > cvsGround.Width)
+        //    {
+        //        transferLeft = this.Width - cvsGround.Width;
+        //    }
 
-            //获得鼠标释放时的位置
-
-
-            double releasedX = e.GetPosition(cvsGround).X;
-
-            //获得距离间隔
-            double interval = releasedX - pressedX;
-            pressedX = 0;
-            //计算出传送带要的目标位置
-            double to = transferLeft + interval;
-            //移动
+        //    //获得鼠标释放时的位置
 
 
+        //    double releasedX = e.GetPosition(cvsGround).X;
 
-            // btn1.Content = transferLeft.ToString() + " " + to.ToString();
-            DoMove(Canvas.LeftProperty, to, 0.1, 0.5, 0.5);
-        }
+        //    //获得距离间隔
+        //    double interval = releasedX - pressedX;
+        //    pressedX = 0;
+        //    //计算出传送带要的目标位置
+        //    double to = transferLeft + interval;
+        //    //移动
 
-        private void grdTransfer_PreviewMouseMove(object sender, MouseEventArgs e)
-        {
 
-            //double pressedX1 = e.GetPosition(cvsGround).X;
-            ////计算相对位置
-            //double diffOffsetX = pressedX1 - pressedX;
-            //DoMove(Canvas.LeftProperty, diffOffsetX, 0.1, 0.5, 0.5);
-        }
+
+        //    // btn1.Content = transferLeft.ToString() + " " + to.ToString();
+        //    DoMove(Canvas.LeftProperty, to, 0.1, 0.5, 0.5);
+        //}
+
+        //private void grdTransfer_PreviewMouseMove(object sender, MouseEventArgs e)
+        //{
+
+        //    //double pressedX1 = e.GetPosition(cvsGround).X;
+        //    ////计算相对位置
+        //    //double diffOffsetX = pressedX1 - pressedX;
+        //    //DoMove(Canvas.LeftProperty, diffOffsetX, 0.1, 0.5, 0.5);
+        //}
     }
 }
