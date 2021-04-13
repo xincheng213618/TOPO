@@ -70,19 +70,19 @@ namespace EXC
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            //if(!Directory.Exists("Temp"))
-            //{
-            //    Directory.CreateDirectory("Temp");
-            //}
-            //mainWindow = new MainWindow(); 
-            //StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = true });//启动逻辑照旧，从启动窗口启动
-            //StartWindow.Show();
+            if (!Directory.Exists("Temp"))
+            {
+                Directory.CreateDirectory("Temp");
+            }
+            mainWindow = new MainWindow();
+            StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = true });//启动逻辑照旧，从启动窗口启动
+            StartWindow.Show();
 
-            //backgroundWindow = new BackgroundWindow();
-            //backgroundWindow.Show();
+            backgroundWindow = new BackgroundWindow();
+            backgroundWindow.Show();
 
-            InkWindow inkWindow = new InkWindow();
-            inkWindow.Show();
+            //InkWindow inkWindow = new InkWindow();
+            //inkWindow.Show();
         }
 
         private void Application_Initialized(object sender, StartupEventArgs e)

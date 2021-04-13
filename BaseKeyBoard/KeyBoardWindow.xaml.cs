@@ -45,8 +45,6 @@ namespace HeBianGu.Product.UserControls.SystemKeyBoard
             this.Top = y1 - this.Height;
 
             this.Left = (x1 - this.Width) / 2;
-
-
             this.Loaded += KeyBoardWindow_Loaded;
         }
 
