@@ -61,7 +61,7 @@ namespace XinHua
     public class ConfigData
     {
         //使用单位信息
-        public string LocateUser { get; set; } = "阜阳市信用查询自助机";
+        public string LocateUser { get; set; } 
         //终端名称
         public string TerminalName { get; set; } = "1号机";
         // 技术支持人员和电话
