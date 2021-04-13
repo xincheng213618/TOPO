@@ -42,7 +42,7 @@ namespace EXC
             this.AllowPrint = AllowPrint;
             InitializeComponent();
             list = new List<Border>() { Button0, Button8 };
-            if (Global.PageType != null&& Global.PageType!= "YiXingNew")
+            if (Global.Related.PageType != null&& Global.Related.PageType != "YiXingNew")
             {
                 list = new List<Border>() { Button0 };
             }
@@ -62,7 +62,7 @@ namespace EXC
         }
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {  
                 case "ReportNingYang":
                 case "ReportNanJing":
@@ -70,13 +70,13 @@ namespace EXC
                 case "YiXingBanch":
                 case "YiXingPerson":
                     Content = new Report();
-                   ;
+                    Pages();
                     break;
                 default:
                     Content = new HomePage();
+                    Pages();
                     break;
             }
-            Pages();
         }
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {

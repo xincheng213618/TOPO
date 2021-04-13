@@ -28,12 +28,12 @@ namespace PEC
         private DispatcherTimer pageTimer = null;
         private void Page_Initialized(object sender, EventArgs e)
         {
+            Global.Related.Initialized();
             //图片轮换的另一种简单的写法
             int Countdown = 0;
             List<Image> images = new List<Image> { imageLogout1, imageLogout2, imageLogout3 };
             pageTimer = new DispatcherTimer() { IsEnabled = true, Interval = TimeSpan.FromSeconds(10)};
-            pageTimer.Tick += new EventHandler((sender1, e1) => { Panel.SetZIndex(images[Countdown % 3], Countdown += 1); }); Global.PageType = "";
-       
+            pageTimer.Tick += new EventHandler((sender1, e1) => { Panel.SetZIndex(images[Countdown % 3], Countdown += 1); }); 
         }
         private async void PopAlert(string Msg, int time)
         {
@@ -57,22 +57,22 @@ namespace PEC
             switch (button.Tag)
             {
                 case "Provincial":
-                    Global.PageType = "Provincial";
+                    Global.Related.PageType = "Provincial";
                     Content = new LoginPage();
                     Pages();
                     break;
                 case "ProvincialLYG"://连云港要求替换省信用部分代码
-                    Global.PageType = "ProvincialLYG";
+                    Global.Related.PageType = "ProvincialLYG";
                     Content = new HomePage((string)button.Tag);
                     Pages();
                     break;
                 case "QRCode":
-                    Global.PageType = "QRCode";
+                    Global.Related.PageType = "QRCode";
                     Content = new QRCode();
                     Pages();
                     break;
                 case "ProvincialPeople"://省信用
-                    Global.PageType = "ProvincialPeople";
+                    Global.Related.PageType = "ProvincialPeople";
                     Content = new IDCardPage();
                     Pages();
                     break;

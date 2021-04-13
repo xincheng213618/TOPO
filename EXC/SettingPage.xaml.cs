@@ -184,10 +184,7 @@ namespace EXC
                 case "Drag":
 
                     break;
-                case "NoHomeSpeed":
-                    Global.configData.PrintOptimize = !Global.configData.PrintOptimize;
-                    button.Content = Global.configData.PrintOptimize? "允许" : "禁止";
-                    break;
+
                 case "Log":
                     //GlobalData.configData.PrintOptimize = !GlobalData.configData.PrintOptimize;
                     //btn.Content = GlobalData.configData.PrintOptimize ? "允许" : "禁止";
@@ -215,7 +212,7 @@ namespace EXC
                     break;
                 case "QingDaoReport":
                 case "TopoSearch":
-                    Global.PageType = button.Tag.ToString();
+                    Global.Related.PageType = button.Tag.ToString();
                     Content = new SearchPage();
                     break;
                 case "PDF":
@@ -228,11 +225,7 @@ namespace EXC
                 case "OutOfServicePage":
                     Content = new OutOfServicePage();
                     break;
-                case "NoHomePages":
-                case "OwnerShipPages":
-                case "HomeCountPages":
-                case "NoHomeChild":
-                case "SZHQArchivePages":
+
                 case "ReportNingYang":
                 case "ReportGRNingYang":
                 case "ReportNanJing":
@@ -240,7 +233,7 @@ namespace EXC
                 case "ReportNingYangAll":
                 case "ReportXinTai":
                 case "ReportGRXinTai":
-                    Global.PageType = button.Tag.ToString();
+                    Global.Related.PageType = button.Tag.ToString();
                     Content = new IDCardPage();
                     break;
                 default:
@@ -252,24 +245,24 @@ namespace EXC
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
+            Global.Related.PageType = button.Tag.ToString();
             switch ((string)button.Tag)
             {
                 case "ReportNingYang":
                 case "ReportGRNingYang":
                 case "ReportNingYangAll":
-                    IDCardData = new IDCardData { Name = "", IDCardNo = "37092119790520542x" };
-                    Content = new Report(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "", IDCardNo = "37092119790520542x" };
+                    Content = new Report();
                     break;
                 case "ReportNanJing":
                 case "ReportGRNanJing":
-                    IDCardData = new IDCardData { Name = "陈信成", IDCardNo = "320323199712213618" };
-                    Content = new Report(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "陈信成", IDCardNo = "320323199712213618" };
+                    Content = new Report();
                     break;
                 case "ReportXinTai":
                 case "ReportGRXinTai":
-                    IDCardData = new IDCardData { Name = "李玉", IDCardNo = "370982198006245273" };
-                    Content = new Report(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "李玉", IDCardNo = "370982198006245273" };
+                    Content = new Report();
                     break;
                 default:
                     break;

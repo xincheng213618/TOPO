@@ -19,24 +19,24 @@ namespace EXC
         //南京
         public static class NingYang
         {
-            private static readonly System.ServiceModel.EndpointAddress NingYangAddresss = new System.ServiceModel.EndpointAddress(Global.configData.NingYangWebservicesUrl);
+            private static readonly System.ServiceModel.EndpointAddress NingYangAddresss = new System.ServiceModel.EndpointAddress(Global.Config.NingYangWebservicesUrl);
             private static readonly NingYangWebservices.CreditreportDelegateClient NingYangclient = new NingYangWebservices.CreditreportDelegateClient(binding, NingYangAddresss);
 
             public static string GetReportGR(string IDCardNo = null)
             {
-                return NingYangclient.getreportGR(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "1");
+                return NingYangclient.getreportGR(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "1");
             }
 
             public static string GetReportList(string IDCardNo = null)
             {
-                return NingYangclient.getreportlist(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "1");
+                return NingYangclient.getreportlist(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "1");
             }
 
             public static string GetReport(string FileName = null, string USCCode = null, string type = "0")
             {
                 try
                 {
-                    return NingYangclient.getreport(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, FileName, USCCode, type);
+                    return NingYangclient.getreport(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, FileName, USCCode, type);
                 }
                 catch (Exception ex)
                 {
@@ -60,7 +60,7 @@ namespace EXC
 
             public static string GetReportList(string IDCardNo = null)
             {
-                return NanJingclient.getreportlist(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "1");
+                return NanJingclient.getreportlist(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "1");
             }
             /// <summary>
             /// 企业信用报告
@@ -69,22 +69,22 @@ namespace EXC
             /// <returns></returns>
             public static string GetReport(string ReportID = null)
             {
-                return NanJingclient.getreport(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, ReportID, null, "1");
+                return NanJingclient.getreport(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, ReportID, null, "1");
             }
 
             //自然人结果信息
             public static string NaturalPerson(string Name = null, string IDCardNo = null, string Type = null)
             {
-                return NanJingclient.getZrrxyxxList(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, Name, IDCardNo, Type);
+                return NanJingclient.getZrrxyxxList(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, Name, IDCardNo, Type);
             }
 
             public static string NaturalPersonDetail(string Name = null, string IDCardNo = null, string Type = null)
             {
-                return NanJingclient.getZrrxyxx(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, Type);
+                return NanJingclient.getZrrxyxx(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, Type);
             }
             public static string PersonReport(string Name = null, string IDCardNo = null, string Type = null)
             {
-                return NanJingclient.getZrrxyxx(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, Type);
+                return NanJingclient.getZrrxyxx(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, Type);
             }
 
         }
@@ -94,14 +94,14 @@ namespace EXC
         /// </summary>
         public static class XinTai
         {
-            private static readonly System.ServiceModel.EndpointAddress XinTaiAddress = new System.ServiceModel.EndpointAddress(Global.configData.XinTaiWebserviecsUrl);
+            private static readonly System.ServiceModel.EndpointAddress XinTaiAddress = new System.ServiceModel.EndpointAddress(Global.Config.XinTaiWebserviecsUrl);
             private static XinTaiWebServices.CreditreportDelegateClient XinTaiclient = new XinTaiWebServices.CreditreportDelegateClient(binding, XinTaiAddress);
 
             public static string GetReportList(string IDCardNo = null)
             {
                 try
                 {
-                    return XinTaiclient.getreportlist(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "1");
+                    return XinTaiclient.getreportlist(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "1");
                 }
                 catch (Exception ex)
                 {
@@ -114,7 +114,7 @@ namespace EXC
             {
                 try
                 {
-                    return XinTaiclient.getreport(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, FileName, USCCode, "0");
+                    return XinTaiclient.getreport(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, FileName, USCCode, "0");
                 }
                 catch (Exception ex)
                 {
@@ -127,7 +127,7 @@ namespace EXC
             {
                 try
                 {
-                    return XinTaiclient.getreportGR(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "2");
+                    return XinTaiclient.getreportGR(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "2");
                 }
                 catch (Exception ex)
                 {
@@ -144,7 +144,7 @@ namespace EXC
         public static class WeiFang
         {
 
-            private static readonly System.ServiceModel.EndpointAddress WeiFangAddress = new System.ServiceModel.EndpointAddress(Global.configData.WeiFangWebserviecsUrl);
+            private static readonly System.ServiceModel.EndpointAddress WeiFangAddress = new System.ServiceModel.EndpointAddress(Global.Config.WeiFangWebserviecsUrl);
             private static XinTaiWebServices.CreditreportDelegateClient WeiFangclient = new XinTaiWebServices.CreditreportDelegateClient(binding, WeiFangAddress);
 
             /// <summary>
@@ -154,11 +154,11 @@ namespace EXC
             /// <returns></returns>
             public static string GetPersonInfo(string IDCardNo = null)
             {
-                return WeiFangclient.getZrrxyxx(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "2");
+                return WeiFangclient.getZrrxyxx(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "2");
             }
             public static string GetReportList(string IDCardNo = null)
             {
-                return WeiFangclient.getreportGR(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "2");
+                return WeiFangclient.getreportGR(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "2");
             }
 
         }
@@ -200,7 +200,7 @@ namespace EXC
         //黄石接口调用
         public static class HuangShi
         {
-            private static readonly System.ServiceModel.EndpointAddress HuangShiAddress = new System.ServiceModel.EndpointAddress(Global.configData.HuangShiWebserviecsUrl);
+            private static readonly System.ServiceModel.EndpointAddress HuangShiAddress = new System.ServiceModel.EndpointAddress(Global.Config.HuangShiWebserviecsUrl);
             private static XinTaiWebServices.CreditreportDelegateClient HuangShiclient = new XinTaiWebServices.CreditreportDelegateClient(binding, HuangShiAddress);
 
             /// <summary>
@@ -210,18 +210,18 @@ namespace EXC
             /// <returns></returns>
             public static string ComPanyList(string CompanyName = null)
             {
-                return HuangShiclient.getQyxyxx(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, CompanyName, "");
+                return HuangShiclient.getQyxyxx(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, CompanyName, "");
             }
             public static string ComPanyInfo(string CompanyName = null)
             {
-                string response = HuangShiclient.getQyjbxx(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, CompanyName, "");
+                string response = HuangShiclient.getQyjbxx(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, CompanyName, "");
                 return response;
             }
             public static string GetReportList(string IDCardNo = null)
             {
                 try
                 {
-                    return HuangShiclient.getreportlist(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "1");
+                    return HuangShiclient.getreportlist(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "1");
                 }
                 catch (Exception ex)
                 {
@@ -233,7 +233,7 @@ namespace EXC
             {
                 try
                 {
-                    return HuangShiclient.getreport(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, FileName, USCCode, "0");
+                    return HuangShiclient.getreport(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, FileName, USCCode, "0");
                 }
                 catch (Exception ex)
                 {
@@ -246,7 +246,7 @@ namespace EXC
             {
                 try
                 {
-                    return HuangShiclient.getreportGR(Global.configData.WebRequestUser, Global.configData.WebRequestPassword, IDCardNo, "2");
+                    return HuangShiclient.getreportGR(Global.Config.WebRequestUser, Global.Config.WebRequestPassword, IDCardNo, "2");
                 }
                 catch (Exception ex)
                 {

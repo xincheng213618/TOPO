@@ -44,7 +44,7 @@ namespace PEC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            if (Global.PageType == "ProvincialPeople")
+            if (Global.Related.PageType == "ProvincialPeople")
             {
                 string response =  Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
                 Dispatcher.BeginInvoke(new Action(() => ProvincialPeoplePhrase(response)));
@@ -104,11 +104,6 @@ namespace PEC
             pdfControl.LoadFile(filePath);
             pdfControl.printAllFit(true);
             PrintAlready = true;
-        }
-        private void LoadPDFFile(string pdfPath)
-        {
-
-
         }
       
 

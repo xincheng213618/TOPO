@@ -13,15 +13,16 @@ namespace REC
     public class Related
     {
         public string UUID ;
-        public IDCardData IDCardData;
-
+        public string PageType;
         public string transtionId;
+        public IDCardData IDCardData;
 
         public void Initialized()
         {
             UUID = Guid.NewGuid().ToString();
             IDCardData = new IDCardData();
             transtionId = "";
+            PageType = "";
         }
     }
 

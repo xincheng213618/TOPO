@@ -19,9 +19,9 @@ namespace PEC
     {
         public QRCode()
         {
-
             InitializeComponent();
         }
+
         private Thread DecodeThread = null;
         private bool bIsLoop = true;
 

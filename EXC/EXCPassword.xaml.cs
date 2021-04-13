@@ -57,7 +57,7 @@ namespace EXC
                 PassErrorLabel.Visibility = Visibility.Visible;
             }
 
-            else if (passwordbox.Password == Global.configData.Adminpassword)
+            else if (passwordbox.Password == Global.Config.Adminpassword)
             {
                 Content = new SettingPage();
                 Pages();

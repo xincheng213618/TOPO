@@ -33,16 +33,7 @@ namespace EXC
         private void Page_Initialized(object sender, EventArgs e)
         {
             timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(async () => await TimeRunAsync(PrintPageNo, true))), null, 0, 500);
-            //Thread thread = new Thread(new ThreadStart(() =>
-            //{
-            //    Thread.Sleep(3000);
-            //    System.Windows.Forms.SendKeys.SendWait("{Tab}");
-            //    System.Windows.Forms.SendKeys.SendWait("{Tab}");
-            //    System.Windows.Forms.SendKeys.SendWait("{Tab}");
-            //    System.Windows.Forms.SendKeys.SendWait(" ");
-            //    System.Windows.Forms.SendKeys.SendWait("{Enter}");
-            //}));
-            //thread.Start();
+
         }
 
         Timer timer; //打印用
@@ -77,7 +68,7 @@ namespace EXC
             }
 
 
-            if (PrintTimeNo > 20+PageAllNum)
+            if (PrintTimeNo > 20+PageAllNum*2)
             {
                 Ostatue = 0;
                 Close();
