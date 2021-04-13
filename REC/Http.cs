@@ -19,7 +19,7 @@ namespace REC
         /// <param name="idCardData">身份证</param>
         /// <param name="TranstionId">流水号</param>
         /// <returns></returns>
-        public static string GetInfo(IDCardData idCardData, string TranstionId)
+        public static string GetInfo(string IDCardNo,string Name, string TranstionId)
         {
             //string url = "http://192.200.200.75:8089/RealEstateSZXQBDC/fangchan/list";
             string url = Global.Config.GetInfoUrl;
@@ -27,8 +27,8 @@ namespace REC
                 {
                     {"ip", Global.IP},
                     {"mac", Global.MAC},
-                    {"idNo", idCardData.IDCardNo},
-                    {"strPersonName", idCardData.Name},
+                    {"idNo", IDCardNo},
+                    {"strPersonName", Name},
                     {"transtionId",TranstionId},//流水号
                     {"zzjId",Global.Config.MachineCode}//设备代号
                 };
@@ -73,7 +73,7 @@ namespace REC
                 string url = Global.Config.UploadUrl;
                 Dictionary<string, object> dic = new Dictionary<string, object>
                 {
-                    {"id",Global.UUID },
+                    {"id",Global.Related.UUID },
                     {"ipaddress", Global.IP},
                     {"macaddress", Global.MAC},
                     {"marchineid",Global.Config.MachineCode},//设备代号
@@ -139,7 +139,7 @@ namespace REC
                 string url = Global.Config.UploadUrl+ "qm";
                 Dictionary<string, object> dic = new Dictionary<string, object>
                 {
-                    {"id",Global.UUID },
+                    {"id",Global.Related.UUID },
                     {"marchineid",Global.Config.MachineCode},//设备代号
                     {"uptime",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") },
                     {"idcard",IDCardNo },
@@ -203,7 +203,7 @@ namespace REC
                 string url = Global.Config.UploadUrl+ "rlsb";
                 Dictionary<string, object> dic = new Dictionary<string, object>
                 {
-                    {"id",Global.UUID },
+                    {"id",Global.Related.UUID},
                     {"ipaddress", Global.IP},
                     {"macaddress", Global.MAC},
                     {"marchineid",Global.Config.MachineCode},//设备代号

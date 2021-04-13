@@ -13,14 +13,8 @@ namespace REC
     /// </summary>
     public partial class FunctionPage : Page
     {
-        /// <summary>
-        /// 身份证信息
-        /// </summary>
-        IDCardData iDCardData;
-
-        public FunctionPage(IDCardData iDCardData)
+        public FunctionPage()
         {
-            this.iDCardData = iDCardData;
             InitializeComponent();
         }
 
@@ -57,11 +51,11 @@ namespace REC
             switch (button.Tag)
             {
                 case "Peroson":
-                    Content = new QRCode(iDCardData);
+                    Content = new QRCode();
                     Pages();
                     break;
                 case "Commission":
-                    Content = new QRCode(iDCardData);
+                    Content = new QRCode();
                     Pages();
                     break;
                 case "HomePage":

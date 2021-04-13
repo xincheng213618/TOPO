@@ -48,13 +48,11 @@ namespace RECSuzhou
 
 
 
-        private IDCardData idcardData = new IDCardData();
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            idcardData.Name = Account.Text;
-            idcardData.IDCardNo = IDCardNoText.Text;
+
             
-            if (idcardData.Name.Length == 0 || idcardData.IDCardNo.Length == 0)
+            if (Account.Text.Length == 0 || IDCardNoText.Text.Length == 0)
             {
                 ErrorLabel.Visibility = Visibility.Visible;
                 ErrorLabel.Content = "请输入姓名和身份证号";
@@ -62,19 +60,25 @@ namespace RECSuzhou
             }
             else
             {
-                if (Check.CheckIDCardNo(idcardData.IDCardNo))
+                Global.Related.IDCardData.Name = Account.Text;
+                Global.Related.IDCardData.IDCardNo = IDCardNoText.Text;
+
+                if (Check.CheckIDCardNo(Global.Related.IDCardData.IDCardNo))
                 {
                     try
                     {
-                        TimeSpan sp = DateTime.Now.Subtract(DateTime.ParseExact(idcardData.IDCardNo.Substring(6, 8), "yyyyMMdd", null));
+                        TimeSpan sp = DateTime.Now.Subtract(DateTime.ParseExact(Global.Related.IDCardData.IDCardNo.Substring(6, 8), "yyyyMMdd", null));
                         if (sp.Days / 365 > 18)
                         {
                             Content = new HomePage("请选择成年人无房证明打印！");
                             Pages();
-                            return;
                         }
-                        Content = new NoHomePages(idcardData);
-                        Pages();
+                        else
+                        {
+                            Content = new NoHomePages();
+                            Pages();
+                        }
+
                     }
                     catch
                     {

@@ -268,7 +268,6 @@ namespace REC
 
             document.Close();
 
-
             pdfWriter.Close();
             pdfReader.Close();
         }

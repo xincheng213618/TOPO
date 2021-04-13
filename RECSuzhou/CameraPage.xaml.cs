@@ -16,10 +16,8 @@ namespace RECSuzhou
         private static bool ShootSucess = false;
         private static double b, c;
 
-        private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
+        public CameraPage()
         {
-            this.idcardData = idcardData;
             InitializeComponent();
             Media.Player(4);
         }
@@ -51,10 +49,10 @@ namespace RECSuzhou
         {
             string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
             string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
-            if (idcardData.PhotoFileName == null)
+            if (Global.Related.IDCardData.PhotoFileName == null)
                 return;
-            b = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths);
-            c = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths_black);
+            b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
+            c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
 
             ShootSucess = false;
 
@@ -77,34 +75,32 @@ namespace RECSuzhou
         }
         private void SwitchPage()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "HomeCountPages":
-                    Global.PageType = null;
-                    Content = new HomeCountPages(idcardData);
+                    Content = new HomeCountPages();
+                    Pages();
                     break;
                 case "NoHomeChild":
                     Content = new IDcardInputPage();
+                    Pages();
                     break;
                 case "OwnerShipPages":
-                    Content = new OwnerShipPages(idcardData);
+                    Content = new OwnerShipPages();
+                    Pages();
                     break;
                 case "SZWZArchivePages":
                 case "SZHQArchivePages":
-                    Content = new SZArchivePage(idcardData);
-                    break;
-               
+                    Content = new SZArchivePage();
+                    Pages();
+                    break;         
                 default:
                     Content = new HomePage("没有配置进入页面,人脸对比成功");
+                    Pages();
                     break;
             }
-            Pages();
         }
-        private void Return_Click(object sender, RoutedEventArgs e)
-        {
-            Content = new HomePage();
-            Pages();
-        }
+
         //倒计时模块
         private DispatcherTimer pageTimer = null;
 
@@ -147,7 +143,7 @@ namespace RECSuzhou
             File.Delete(paths);
             File.Delete(paths_black);
 
-            IDcard.DeleteIDcardImages(idcardData);
+            IDcard.DeleteIDcardImages(Global.Related.IDCardData);
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
