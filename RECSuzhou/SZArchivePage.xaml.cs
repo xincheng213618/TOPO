@@ -29,22 +29,11 @@ namespace RECSuzhou
     /// </summary>
     public partial class SZArchivePage : Page
     {
-        private IDCardData idcardData;
         private string SZArchiveListPageNo = "1";
         //定义一页有多少条数据
         private string PageSize = "8";
         public SZArchivePage()
         {
-            idcardData.Name = Global.IDCardInfo.Name;
-            idcardData.IDCardNo = Global.IDCardInfo.IDCardNo;
-            InitializeComponent();
-        }
-
-        public SZArchivePage(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            Global.IDCardInfo.Name = idcardData.Name;
-            Global.IDCardInfo.IDCardNo = idcardData.IDCardNo;
             InitializeComponent();
         }
 
@@ -62,7 +51,7 @@ namespace RECSuzhou
 
         private void ArchiveList()
         {
-            string response = Http.SZArchiveList(idcardData.Name, idcardData.IDCardNo, SZArchiveListPageNo, PageSize);
+            string response = Http.SZArchiveList(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, SZArchiveListPageNo, PageSize);
             Dispatcher.BeginInvoke(new Action(() => ParseList(response)));
         }
 
@@ -143,7 +132,7 @@ namespace RECSuzhou
             {
                 Time.Countdown = 180;
                 string Archivecode = SZArchiveListItem.ElementAt(SZArchiveListView.SelectedIndex).archivecode.ToString();
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "SZHQArchivePages":
                         WaitShow.Visibility = Visibility.Visible;
@@ -172,15 +161,15 @@ namespace RECSuzhou
 
         private void Archive(string Archievcode)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
 
                 case "SZHQArchivePages":
-                    string response = Http.SZArchive(idcardData.IDCardNo, Archievcode);
+                    string response = Http.SZArchive(Global.Related.IDCardData.IDCardNo, Archievcode);
                     Dispatcher.BeginInvoke(new Action(() => HQArchiveParse(response, Archievcode)));
                     break;
                 case "SZWZArchivePages":
-                    response = Http.SZArchiveMenu(idcardData.IDCardNo, Archievcode);
+                    response = Http.SZArchiveMenu(Global.Related.IDCardData.IDCardNo, Archievcode);
                     Dispatcher.BeginInvoke(new Action(() => WZArchiveParse(response)));
                     break;
             }
@@ -226,7 +215,7 @@ namespace RECSuzhou
                                 Log.Write("图片转pdf成功");
                                 PDF.PDFMark(FileName, "苏州市不动产登记中心虎丘分中心", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
                                 Log.Write("正在添加图片水印");
-                                Http.AddAction(idcardData.Name, idcardData.IDCardNo, "dayinquanshu");
+                                Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinquanshu");
                                 for (int j = 0; j < fileNameList.ToArray().Length; j++)
                                     File.Delete(@fileNameList.ToArray()[j]);
 
@@ -256,7 +245,7 @@ namespace RECSuzhou
         private int SZArchiveMenuNum = 0;
         private ObservableCollection<SZArchiveMenuItem> SZArchiveMenuItems;
 
-        private void download(string response)
+        private void DownloaderPhoto(string response)
         {
             List<string> MeanList = new List<string>();
             try
@@ -335,7 +324,6 @@ namespace RECSuzhou
                 else
                 {
                     Dispatcher.BeginInvoke(new Action(() => SZArchiveMenuMsg.Visibility = Visibility.Visible));
-
                 }
 
             }
@@ -370,8 +358,10 @@ namespace RECSuzhou
                 {
                     PopTips.Text = "正在下载图片";
 
-                    Thread thread1 = new Thread(() => download( response));
-                    thread1.IsBackground = true;
+                    Thread thread1 = new Thread(() => DownloaderPhoto(response))
+                    {
+                        IsBackground = true
+                    };
                     thread1.Start();
 
 

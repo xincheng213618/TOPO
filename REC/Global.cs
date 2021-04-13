@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,21 @@ using System.Xml.Serialization;
 
 namespace REC
 {
+    public class Related
+    {
+        public string UUID ;
+        public IDCardData IDCardData;
+
+        public string transtionId;
+
+        public void Initialized()
+        {
+            UUID = Guid.NewGuid().ToString();
+            IDCardData = new IDCardData();
+            transtionId = "";
+        }
+    }
+
     public static class Global
     {
         public static string PageType = null;
@@ -16,7 +32,7 @@ namespace REC
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
 
-        public static string UUID = "";
+        public static Related Related = new Related();
 
         public static string[] OcrRegion;
 

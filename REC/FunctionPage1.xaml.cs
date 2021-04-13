@@ -20,15 +20,8 @@ namespace REC
     public partial class FunctionPage1 : Page
     {
 
-        IDCardData idCardData ;
-        /// <summary>
-        /// 流水号
-        /// </summary>
-        string TranstionId;
-        public FunctionPage1(IDCardData idCardData,string TranstionId)
+        public FunctionPage1()
         {
-            this.idCardData = idCardData;
-            this.TranstionId = TranstionId;
             InitializeComponent();
         }
 
@@ -46,12 +39,13 @@ namespace REC
             };
             worker.Start();
         }
+
         private void Requests()
         {
-            string response = Http.GetInfo(idCardData, TranstionId);
-            //Thread.Sleep(500);//这里在后台写好之后要去掉
+            string response = Http.GetInfo(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, Global.Related.transtionId);
             Dispatcher.BeginInvoke(new Action(() => GetPhrase(response)));
         }
+
         /// <summary>
         /// 房屋信息
         /// </summary>
@@ -92,8 +86,8 @@ namespace REC
                                 Item.QT = (string)result.GetValue("QT");
                                 Item.FJ = (string)result.GetValue("FJ");
                                 Item.HandlingStatus = (string)result.GetValue("SFZT");
-                                Item.HST = (string)result.GetValue("HST");
-                                Item.HSTSucess= Covert.Base64ToJpeg(Item.HST, "Temp\\HST.jpg");
+                                //Item.HST = (string)result.GetValue("HST");
+                                //Item.HSTSucess= Covert.Base64ToJpeg(Item.HST, "Temp\\HST.jpg");
                                 Item.SLBH = (string)result.GetValue("SLBH");
                                 Item.PROID = (string)result.GetValue("PROID");
                                 Item.ZSID = (string)result.GetValue("ZSID");
@@ -182,7 +176,7 @@ namespace REC
                     Pages();
                     break;
                 case "Return":
-                    Content = new FunctionPage(idCardData);
+                    Content = new FunctionPage();
                     Pages();
                     break;
                 default:
@@ -199,7 +193,7 @@ namespace REC
         {
             if (ListView.SelectedIndex>=0)
             {
-                Content = new FunctionPage2(idCardData, RECListViewItem[ListView.SelectedIndex]);
+                Content = new FunctionPage2( RECListViewItem[ListView.SelectedIndex]);
                 Pages();
             }
         }

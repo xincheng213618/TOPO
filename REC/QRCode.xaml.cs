@@ -15,17 +15,9 @@ namespace REC
     /// </summary>
     public partial class QRCode : Page
     {
-        /// <summary>
-        /// 身份证信息
-        /// </summary>
-        IDCardData iDCardData;
-        /// <summary>
-        /// 构造函数2
-        /// </summary>
-        /// <param name="iDCardData">人脸识别后的身份证</param>
-        public QRCode(IDCardData iDCardData)
+
+        public QRCode()
         {
-            this.iDCardData = iDCardData;
             InitializeComponent();
         }
 
@@ -33,16 +25,10 @@ namespace REC
         /// 构造函数1
         /// </summary>
        
-        public QRCode( )
-        {
-            InitializeComponent();
-        }
 
         private Thread DecodeThread = null;
         private bool bIsLoop = true;
-        /// <summary>
-        /// 存储扫描到的数据
-        /// </summary>
+
         private string Msg = null; 
         private bool Sucess=false;
 
@@ -76,7 +62,7 @@ namespace REC
             {
                 if (--timeCount.Countdown <= 0)
                 {
-                    Content = new FunctionPage(iDCardData);
+                    Content = new FunctionPage();
                     Pages();
                 }
                 if (timeCount.Countdown % 8 == 3 && !Sucess)
@@ -127,14 +113,15 @@ namespace REC
                     Pages();
                     break;
                 case "Return":
-                    Content = new FunctionPage(iDCardData);
+                    Content = new FunctionPage();
                     Pages();
                     break;
                 case "Search":
                     string Text;
                     if (DetectMsg(out Text))
                     {
-                        Content = new FunctionPage1(iDCardData ,Text);
+                        Global.Related.transtionId = Text;
+                        Content = new FunctionPage1();
                         Pages();
                     }
                     else

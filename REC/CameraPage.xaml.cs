@@ -15,11 +15,9 @@ namespace REC
     {
         private static bool ShootSucess = false;
         private static double b, c;
-        IDCardData iDCardData = new IDCardData();
 
-        public CameraPage(IDCardData iDCardData) 
+        public CameraPage() 
         {
-            this.iDCardData = iDCardData;
             InitializeComponent();
         }
 
@@ -54,16 +52,16 @@ namespace REC
 
         private void Comparison()
         {
-            if (iDCardData.PhotoFileName != null)
+            if (Global.Related.IDCardData.PhotoFileName != null)
             {
-                b = AmLivingBodyApi.AmVerify(iDCardData.PhotoFileName, paths);
-                c = AmLivingBodyApi.AmVerify(iDCardData.PhotoFileName, paths_black);
+                b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
+                c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
 
                 ShootSucess = false;
 
                 if (b > 0.7 && c > 0.7)
                 {
-                    Requests.Camer_Upload(iDCardData.IDCardNo, iDCardData.Name, b.ToString(), paths, iDCardData.PhotoFileName);
+                    Requests.Camer_Upload(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, b.ToString(), paths, Global.Related.IDCardData.PhotoFileName);
                     SwitchPage();
                 }
                 else if (b < 0)
@@ -124,7 +122,7 @@ namespace REC
         {
             File.Delete(paths);
             File.Delete(paths_black);
-            IDcard.DeleteIDcardImages(iDCardData);
+            IDcard.DeleteIDcardImages(Global.Related.IDCardData);
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
@@ -137,7 +135,7 @@ namespace REC
             switch (Global.PageType)
             {
                 default:
-                    Content = new FunctionPage(iDCardData);
+                    Content = new FunctionPage();
                     Pages();
                     break;
             }

@@ -16,13 +16,11 @@ namespace REC
     {
         private int PageAllNum = 0;
         private string FilePath;
-        IDCardData iDCardData;
         RECData rECListView;
 
-        public FunctionPage2(IDCardData iDCardData, RECData rECListView)
+        public FunctionPage2(RECData rECListView)
         {
             this.FilePath = rECListView.FileName;
-            this.iDCardData = iDCardData;
             this.rECListView = rECListView;
             InitializeComponent();
             OpenPDF(FilePath);
@@ -105,7 +103,7 @@ namespace REC
                     Pages();
                     break;
                 case "Return":
-                    Content = new FunctionPage(iDCardData);
+                    Content = new FunctionPage();
                     Pages();
                     break;
                 case "NextPDF":
@@ -174,7 +172,7 @@ namespace REC
             PrintBorder.Background =(Brush)Use1.ConvertFrom("#60d0ff");
             PrintBorder.BorderBrush = Brushes.HotPink;
             InkBorder.BorderBrush = Brushes.White;
-            Requests.Ink_Upload(iDCardData.IDCardNo, iDCardData.Name, "Temp//ink.png");
+            Requests.Ink_Upload(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, "Temp//ink.png");
         }
 
     }

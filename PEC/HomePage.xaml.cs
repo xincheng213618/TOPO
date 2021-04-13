@@ -6,6 +6,7 @@ using System.Windows.Threading;
 using BaseUtil;
 using BaseDLL;
 using System.Printing;
+using System.Collections.Generic;
 
 namespace PEC
 {
@@ -23,16 +24,20 @@ namespace PEC
             InitializeComponent();
             PopAlert(Msg, 3);
         }
+
+        private DispatcherTimer pageTimer = null;
         private void Page_Initialized(object sender, EventArgs e)
         {
-            Countdown_timer();
-            Global.PageType = null;
+            //图片轮换的另一种简单的写法
+            int Countdown = 0;
+            List<Image> images = new List<Image> { imageLogout1, imageLogout2, imageLogout3 };
+            pageTimer = new DispatcherTimer() { IsEnabled = true, Interval = TimeSpan.FromSeconds(10)};
+            pageTimer.Tick += new EventHandler((sender1, e1) => { Panel.SetZIndex(images[Countdown % 3], Countdown += 1); }); Global.PageType = "";
+       
         }
-        private DispatcherTimer pageTimer = null;
-        int Countdown = 0;
-        int Imagepath = 1;
         private async void PopAlert(string Msg, int time)
         {
+
             Log.Write("HomePagePOP:" + Msg);
 
             PopTips.Text = Msg;
@@ -46,142 +51,38 @@ namespace PEC
         {
             POP.Visibility = Visibility.Hidden;
         }
-        PrintServer m_PrintServer = new PrintServer();
         private void PageChange_Click(object sender, RoutedEventArgs e)
         {
-            PrintUtil printFunction = new PrintUtil();
-            bool b=printFunction.IsOfforNo();
-            if (b)
+            Button button = sender as Button;
+            switch (button.Tag)
             {
-                Button button = sender as Button;
-                switch (button.Tag)
-                {
-                    case "Provincial":
-                        Global.PageType = "Provincial";
-                        Content = new LoginPage();
-                        Pages();
-                        break;
-                    case "ProvincialLYG"://连云港要求替换省信用部分代码
-                        Global.PageType = "ProvincialLYG";
-                        Content = new HomePage((string)button.Tag);
-                        Pages();
-                        break;
-                    case "QRCode":
-                        Global.PageType = "QRCode";
-                        Content = new QRCode();
-                        Pages();
-                        break;
-                    case "ProvincialPeople"://省信用
-                        Global.PageType = "ProvincialPeople";
-
-                        IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
-                        Content = new ReportPage(iDCardData, @"E:\仓库\PEC\bin\Debug\1.pdf");
-
-                        Pages();
-                        break;
-                }
-
+                case "Provincial":
+                    Global.PageType = "Provincial";
+                    Content = new LoginPage();
+                    Pages();
+                    break;
+                case "ProvincialLYG"://连云港要求替换省信用部分代码
+                    Global.PageType = "ProvincialLYG";
+                    Content = new HomePage((string)button.Tag);
+                    Pages();
+                    break;
+                case "QRCode":
+                    Global.PageType = "QRCode";
+                    Content = new QRCode();
+                    Pages();
+                    break;
+                case "ProvincialPeople"://省信用
+                    Global.PageType = "ProvincialPeople";
+                    Content = new IDCardPage();
+                    Pages();
+                    break;
             }
-            else
-            {
-                Content = new HomePage("对列中有正在打印的任务或者打印机脱机，请推出软件后检查打印机后再试");
-                Pages();
-            }
-           
-            //PrintQueue queues = null;
-            //foreach (PrintQueue queue in m_PrintServer.GetPrintQueues())
-            //{
-            //    if ((queue.Name.ToString() == "NPIC20576 (HP LaserJet M506)"))
-            //    {
-            //        queues = queue;
-            //        //Console.WriteLine("正在打印：" + queue.IsPrinting);//卡纸
-            //        //Console.WriteLine("卡纸：" + queue.IsPaperJammed);//卡纸
-            //        //Console.WriteLine("墨粉：" + queue.IsTonerLow);//墨粉
-            //        //Console.WriteLine("队列：" + queue.NumberOfJobs);//墨粉
-            //        //Console.WriteLine("脱机：" + queue.IsOffline);//脱机
-            //    }
-
-            //}
-            //if (queues.IsOffline==false&& queues.NumberOfJobs<1)
-            //{
-            //    Button button = sender as Button;
-            //    switch (button.Tag)
-            //    {
-            //        case "Provincial":
-            //            Global.PageType = "Provincial";
-            //            Content = new LoginPage();
-            //            Pages();
-            //            break;
-            //        case "ProvincialLYG"://连云港要求替换省信用部分代码
-            //            Global.PageType = "ProvincialLYG";
-            //            Content = new HomePage((string)button.Tag);
-            //            Pages();
-            //            break;
-            //        case "QRCode":
-            //            Global.PageType = "QRCode";
-            //            Content = new QRCode();
-            //            Pages();
-            //            break;
-            //        case "ProvincialPeople"://省信用
-            //                                //IDCardData iDCardData = new IDCardData() { Name = "陈信成", IDCardNo = "222222" };
-            //                                //Content = new ReportPage(iDCardData, @"E:\仓库\PEC\bin\Debug\1.pdf");
-            //            Content = new HomePage("个人信用暂不开放");
-            //            Pages();
-            //            break;
-            //    }
-            //}
-            //else
-            //{
-            //    Content = new HomePage("对列中有正在打印的任务："+ queues.NumberOfJobs+"个，打印机是否脱机："+ (queues.IsOffline==true?"是":"否")+"。请检查打印机后再试");
-            //    Pages();
-            //}
         }
         private void Pages()
         {
+            pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-
-        private void Countdown_timer()
-        {
-            this.DataContext = this;
-            pageTimer = new DispatcherTimer()
-            {
-                IsEnabled = true,
-                Interval = TimeSpan.FromSeconds(1),
-            };
-            pageTimer.Tick += new EventHandler((sender, e) =>
-            {
-                Countdown = Countdown + 1;
-                if (Countdown > 3600)
-                {
-                    Countdown = 1;
-                }
-                if (Countdown % 10 == 0)
-                {
-                    if (Imagepath == 1)
-                    {
-                        imageLogout1.Visibility = Visibility.Visible;
-                        imageLogout2.Visibility = Visibility.Hidden;
-                        imageLogout3.Visibility = Visibility.Hidden;
-                        Imagepath = 2;
-                        return;
-                    }
-                    if (Imagepath == 2)
-                    {
-                        imageLogout2.Visibility = Visibility.Visible;
-                        imageLogout3.Visibility = Visibility.Hidden;
-                        Imagepath = 3;
-                        return;
-                    }
-                    if (Imagepath == 3)
-                    {
-                        imageLogout3.Visibility = Visibility.Visible;
-                        Imagepath = 1;
-                        return;
-                    }
-                }
-            });
-        }
     }
 }
