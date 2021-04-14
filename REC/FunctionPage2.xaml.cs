@@ -37,7 +37,6 @@ namespace REC
             AcrobatHelper.pdfControl.BeginInit();
             formsHost.Child = AcrobatHelper.pdfControl;
             AcrobatHelper.pdfControl.EndInit();
-
         }
 
         private void OpenPDF(string PDFpath)
@@ -85,11 +84,13 @@ namespace REC
             });
         }
 
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
+
 
         int CurrentNum = 1;
         private BrushConverter Use1 = new BrushConverter();

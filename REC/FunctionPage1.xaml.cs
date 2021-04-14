@@ -92,11 +92,13 @@ namespace REC
                                 Item.PROID = (string)result.GetValue("PROID");
                                 Item.ZSID = (string)result.GetValue("ZSID");
                                 bool show = false;
+
                                 //重读字段不显示
                                 foreach (RECData items in RECListViewItem)
                                 {
                                     show = Item.BDCQZH == items.BDCQZH;
                                 }
+
                                 //证明字段不显示
                                 if ((string)result.GetValue("ZSTYPE") == "证明")
                                 {
@@ -107,7 +109,6 @@ namespace REC
                                 {
                                     Item.FileName = "Temp\\" + Item.QLR + RECListNo.ToString() + "show.pdf";
                                     Item.PrintName = "Temp\\Print" + RECListNo.ToString() + ".pdf"; 
-
                                     RECListViewItem.Add(Item);
                                 }
                             }
