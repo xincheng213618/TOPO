@@ -173,13 +173,17 @@ namespace EXCYiXing
                 else
                 {
                     //MessageBox.Show("PDF打开失败请检查PDF文档是否正确","Mr.Xin",MessageBoxButton.OK,MessageBoxImage.Error);
-                    Content = new HomePage("PDF打开失败请检查PDF文档是否正确");
+                    Global.HomeError = "PDF打开失败请检查PDF文档是否正确";
+
+                    Content = new HomePage();
                     Pages();
                 }
             }
             catch
             {
-                Content = new HomePage("PDF打开失败请检查PDF文档是否正确");
+                    Global.HomeError = "PDF打开失败请检查PDF文档是否正确";
+                Content = new HomePage();
+
                 Pages();
             }
         }

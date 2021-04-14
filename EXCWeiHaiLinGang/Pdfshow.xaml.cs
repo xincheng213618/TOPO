@@ -189,13 +189,15 @@ namespace EXC
                 }
                 else
                 {
-                    Content = new HomePage("PDF打开失败请检查PDF文档是否正确");
+                    Global.HomeErrorText = "PDF打开失败请检查PDF文档是否正确";
+                    Content = new HomePage();
                     Pages();
                 }
             }
             catch
             {
-                Content = new HomePage("PDF打开失败请检查PDF文档是否正确");
+                    Global.HomeErrorText = "PDF打开失败请检查PDF文档是否正确";
+                Content = new HomePage();
                 Pages();
             }
 

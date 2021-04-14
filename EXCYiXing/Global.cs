@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,9 @@ namespace EXCYiXing
             public static string IP = Info.IPAdress()[0];
             public static string MAC = Info.MACAdress()[0];
 
+
+        public static string HomeError = null;
+        public static IDCardData iDCard = new IDCardData();
 
             public static void Initialized()
             {

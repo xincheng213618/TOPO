@@ -171,13 +171,15 @@ namespace EXC
                 }
                 else
                 {
-                    Content = new HomePage((string)jObject.GetValue("reason"));
+                    Global.HomeErrorText = (string)jObject.GetValue("reason");
+                    Content = new HomePage();
                     Pages();
                 }
             }
             catch
             {
-                Content = new HomePage("接口解析错误");
+                    Global.HomeErrorText = "接口解析错误";
+                Content = new HomePage();
                 Pages();
             }
 
@@ -243,8 +245,10 @@ namespace EXC
             {
                 switch (Global.PageType)
                 {
+             
                     case "ReportWeiHai":
-                        Content = new CompayQueryDetailPage( CompayQueryListItem.ElementAt(listView.SelectedIndex));
+                        Global.cl = CompayQueryListItem.ElementAt(listView.SelectedIndex);
+                        Content = new CompayQueryDetailPage();
                         Pages();
                         break;
                     default:

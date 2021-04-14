@@ -62,20 +62,24 @@ namespace EXC
                     }
                     else
                     {
-                        Content = new HomePage("接口内容为空");
+                        Global.LoadDatas.HomePageError = "接口内容为空";
+                        Content = new HomePage();
                         Pages();
                     }
                 }
                 else
                 {
                     string Msg = (string)@object.GetValue("msg");
-                    Content = new HomePage(Msg);
+                    Global.LoadDatas.HomePageError = Msg;
+                    Content = new HomePage();
                 }
 
             }
             catch
             {
-                Content = new HomePage("接口解析错误，请联系开发人员");
+                Global.LoadDatas.HomePageError = "接口解析错误，请联系开发人员";
+
+                Content = new HomePage();
                 Pages();
             }
         }

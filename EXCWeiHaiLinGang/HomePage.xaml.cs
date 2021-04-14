@@ -23,15 +23,16 @@ namespace EXC
             InitializeComponent();
         }
 
-        public HomePage(string Msg)
-        {
-            InitializeComponent();
-            PopAlert(Msg, 3);
-        }
+     
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-           
+            if (Global.HomeErrorText!=null)
+            {
+                PopAlert(Global.HomeErrorText, 3);
+                Global.HomeErrorText = null;
+            }
+
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
@@ -123,7 +124,7 @@ namespace EXC
                         Name = "胡洪珂",
                         IDCardNo = "411327200103063136",
                     };
-                    Content = new Report(iDCardData);
+                    Content = new Report();
                     //Content = new IDCardPage();
                     Pages();
 

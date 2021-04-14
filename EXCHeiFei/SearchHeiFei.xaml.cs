@@ -234,7 +234,8 @@ namespace EXC
             }
             catch 
             {
-                Content = new HomePage("接口解析错误，请联系开发人员");
+                Global.LoadDatas.HomePageError = "接口解析错误，请联系开发人员";
+                Content = new HomePage();
                 Pages();
             }
 
@@ -405,7 +406,9 @@ namespace EXC
             }
             catch
             {
-                Content = new HomePage("接口解析错误，请联系开发人员");
+                Global.LoadDatas.HomePageError = "接口解析错误，请联系开发人员";
+
+                Content = new HomePage();
                 Pages();
             }
 

@@ -103,7 +103,8 @@ namespace EXC
                 }
                 else
                 {
-                    Content = new HomePage("读卡器没有正确连接");
+                    Global.LoadDatas.HomePageError = "读卡器没有正确连接";
+                    Content = new HomePage();
                     Pages();
                 }
             });
@@ -119,7 +120,8 @@ namespace EXC
                     //Content = new NoHomePages(idcardData);
                     //break;
                 default:
-                    Content = new CameraPage(idcardData);
+                    Global.LoadDatas.CameraIdcard = idcardData;
+                    Content = new CameraPage( );
                     break;
             }
             Pages();

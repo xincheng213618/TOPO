@@ -27,16 +27,17 @@ namespace EXC
         private string CompanyID = null;
         private CompayQueryListItem compayQueryListItem;
 
-        public CompayQueryDetailPage(CompayQueryListItem compayQueryListItem)
+        public CompayQueryDetailPage(   )
         {
-            this.compayQueryListItem = compayQueryListItem;
-            this.CompanyName = compayQueryListItem.CompanyName;
-            this.CompanyID = compayQueryListItem.CompanyID;
+   
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.compayQueryListItem = Global.cl;
+            this.CompanyName = compayQueryListItem.CompanyName;
+            this.CompanyID = compayQueryListItem.CompanyID;
             DataContext = Time;
             Countdown_timer();
             labelscpoe.Text = compayQueryListItem.BusinessScope;
@@ -204,7 +205,8 @@ namespace EXC
                 else
                 {
                     string Msg = (string)@object.GetValue("msg");
-                    Content = new HomePage(Msg);
+                    Global.HomeErrorText = Msg;
+                    Content = new HomePage();
                     Pages();
                 }
 

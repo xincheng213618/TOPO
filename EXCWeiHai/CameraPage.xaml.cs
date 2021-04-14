@@ -18,14 +18,15 @@ namespace EXC
         private static double b, c;
 
         private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
+        public CameraPage( )
         {
-            this.idcardData = idcardData;
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.WHDatas.CameraIdcard;
+
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
@@ -81,13 +82,14 @@ namespace EXC
             switch (Global.PageType)
             {
                 case "ReportGRWeiHai":
-                    Content = new VersionPage(idcardData);
+                    Content = new VersionPage();
                     break;
                 case "ReportWeiHai":
-                    Content = new SearchPage(idcardData);
+                    Content = new SearchPage();
                     break; 
                 default:
-                    Content = new HomePage("没有配置进入页面,人脸对比成功");
+                    Global.WHDatas.HomeError = "没有配置进入页面,人脸对比成功";
+                    Content = new HomePage();
                     break;
             }
             Pages();
@@ -123,7 +125,8 @@ namespace EXC
                 }
                 else
                 {
-                    Content = new HomePage("超时自动返回");
+                    Global.WHDatas.HomeError = "超时自动返回";
+                    Content = new HomePage();
                     Pages();
                 }
             });

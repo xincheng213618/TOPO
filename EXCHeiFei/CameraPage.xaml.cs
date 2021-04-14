@@ -13,24 +13,23 @@ namespace EXC
     /// CameraPage.xaml 的交互逻辑
     /// </summary>
     public partial class CameraPage : Page
-    {
-        int ret;
+    {//
+       // int ret;
         private static bool ShootSucess = false;
         private static double b, c;
 
         private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
+        public CameraPage( )
         {
-            this.idcardData = idcardData;
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.LoadDatas.CameraIdcard;
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
-
             DataContext = Time;
             Countdown_timer();
         }
@@ -71,7 +70,9 @@ namespace EXC
             }
             if (tryCount > 2)
             {
-                Content = new HomePage("人脸对比失败，请重试");
+                Global.LoadDatas.CameraIdcard = new IDCardData();
+                Global.LoadDatas.HomePageError = "人脸对比失败，请重试";
+                Content = new HomePage();
                 Pages();
             }
         }
@@ -84,10 +85,11 @@ namespace EXC
                 case "ReportHeFei":
                 case "ReportHeFei1":
                 case "ReportGRHeFei":
-                    Content = new Report(idcardData);
+                    Content = new Report();
                     break;
                 default:
-                    Content = new HomePage("没有配置进入页面,人脸对比成功");
+                    Global.LoadDatas.HomePageError = "没有配置进入页面,人脸对比成功";
+                    Content = new HomePage();
                     break;
             }
             Pages();
@@ -121,7 +123,8 @@ namespace EXC
                 }
                 else
                 {
-                    Content = new HomePage("超时自动返回");
+                    Global.LoadDatas.HomePageError = "超时自动返回";
+                    Content = new HomePage();
                     Pages();
                 }
             });

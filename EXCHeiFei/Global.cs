@@ -1,19 +1,45 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.IO;
 using System.Xml.Serialization;
 
 namespace EXC
 {
+    public struct LoadData
+    {
+        /// <summary>
+        /// 从刷身份证开始读取到的身份证信息，流程完成自动清理
+        /// </summary>
+        public   IDCardData CameraIdcard ;
+        /// <summary>
+        /// 需要跳转至homepage显示的报错信息，流程完成自动清理
+        /// </summary>
+        public string HomePageError ;
+        /// <summary>
+        /// PDF的路径，流程完成自动清理
+        /// </summary>
+        public string PdfShowPath  ;
+    }
     public static class Global
     {
         public static ConfigData Config = new ConfigData();
         public static UserDate UserDate = new UserDate();
+        public static LoadData LoadDatas = new LoadData();
 
         public static string PageType = null;
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
+        // summar
 
+
+     
+
+
+
+
+
+        // summary
 
         public static void Initialized()
         {

@@ -34,29 +34,17 @@ namespace EXC
             InitializeComponent();
         }
 
-        public Report(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
+ 
 
         //WeihaiGR
-        public Report(IDCardData idcardData, string TemplateID)
-        {
-            this.TemplateID = TemplateID;
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
-        public Report(IDCardData idcardData, string TemplateID, string CompanyID)
-        {
-            this.CompanyID = CompanyID;
-            this.TemplateID = TemplateID;
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
+      
+      
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.CompanyID = Global.WHDatas.  CompanyID;
+            this.TemplateID = Global.WHDatas. TemplateID;
+            this.idcardData = Global.WHDatas.CameraIdcard;
             Countdown_timer();
             PopLabel.Content = "正在查询报告中";
             PopBorder.Visibility = Visibility.Visible;
@@ -120,7 +108,8 @@ namespace EXC
             }
             else
             {
-                Content = new HomePage((string)response.GetValue("msg"));
+                Global.WHDatas.HomeError = (string)response.GetValue("msg");
+                Content = new HomePage();
                 Pages();
             }
         }
@@ -149,7 +138,9 @@ namespace EXC
             }
             else
             {
-                Content = new HomePage("PDF下载失败");
+                
+                Global.WHDatas.HomeError = "PDF下载失败";
+                Content = new HomePage();
             }
             Pages();
         }

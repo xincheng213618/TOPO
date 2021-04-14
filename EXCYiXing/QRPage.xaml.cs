@@ -128,19 +128,22 @@ namespace EXCYiXing
                     }
                     else
                     {
-                        Content = new HomePage((string)jsons.GetValue("Message"));
+                        Global.HomeError = (string)jsons.GetValue("Message");
+                        Content = new HomePage();
                         Pages();
                     }
                 }
                 catch
                 {
-                    Content = new HomePage("该接口解析错误");
+                        Global.HomeError = "该接口解析错误";
+                    Content = new HomePage( );
                     Pages();
                 }
             }
             else
             {
-                Content = new HomePage("该接口连接错误");
+                        Global.HomeError = "该接口解析错误";
+                Content = new HomePage();
                 Pages();
             }
 
@@ -168,7 +171,8 @@ namespace EXCYiXing
                 {
                     Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        Content = new HomePage("暂无信息");
+                        Global.HomeError = "暂无信息";
+                        Content = new HomePage();
                         Pages();
                     }));
 
@@ -180,7 +184,8 @@ namespace EXCYiXing
 
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    Content = new HomePage("暂无信息");
+                        Global.HomeError = "暂无信息";
+                    Content = new HomePage();
                     Pages();
                 }));
             }
@@ -208,7 +213,8 @@ namespace EXCYiXing
                 {
                     Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        Content = new HomePage("暂无信息");
+                        Global.HomeError = "暂无信息";
+                        Content = new HomePage();
                         Pages();
                     }));
 
@@ -219,7 +225,8 @@ namespace EXCYiXing
 
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    Content = new HomePage("暂无信息");
+                        Global.HomeError = "暂无信息";
+                    Content = new HomePage();
                     Pages();
                 }));
             }
