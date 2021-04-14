@@ -58,26 +58,28 @@ namespace EXC
             switch (Global.PageType)
             {
                 case "ReportGRWeiHai":
-                    IDCardData idcarddata = new IDCardData()
-                    {
-                        Name = "毕明宇",
-                        IDCardNo = "371081198706050050"
-                    };
-
-                    Content = new VersionPage(idcarddata);
-                    //  Content = new IDCardPage();
+                    //        IDCardData idcarddata = new IDCardData()
+                    //        {
+                    //            Name = "毕明宇",
+                    //           IDCardNo = "371081198706050050"
+                    //      };
+                    //     Global.WHDatas.CameraIdcard = idcarddata;
+                    //      Content = new VersionPage();
+                    Content = new IDCardPage();
                     Pages();
 
                     break;
                 case "ReportWeiHai":
-                    IDCardData iDCardData = new IDCardData()
-                    {
-                        Name = "胡洪珂",
-                        IDCardNo = "411327200103063136"
-                    };
-                    Content = new SearchPage(iDCardData);
+                    //      IDCardData iDCardData = new IDCardData()
+                    //        {
+                    //            Name = "胡洪珂",
+                    //            //            IDCardNo = "411327200103063136"
+                    //        };
+                    //       Global.WHDatas.CameraIdcard = iDCardData;
 
-                    //Content = new IDCardPage();
+                    //Content = new SearchPage();
+
+                    Content = new IDCardPage();
                     Pages();
                     break;
 

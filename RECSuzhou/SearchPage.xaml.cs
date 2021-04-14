@@ -29,7 +29,7 @@ namespace RECSuzhou
         private void Page_Initialized(object sender, EventArgs e)
         {         
             Countdown_timer();
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
              
                 case "SZHQMoney":
@@ -83,7 +83,7 @@ namespace RECSuzhou
         private void SearchRequests()
         {
             string response = null;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
               
                 case "SZHQMoney":

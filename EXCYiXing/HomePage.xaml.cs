@@ -23,14 +23,16 @@ namespace EXCYiXing
         {
             InitializeComponent();
         }
-        public HomePage(string Msg)
-        {
-            InitializeComponent();
-            PopAlert(Msg, 3);//吉林 原本为3
-        }
+     
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            if (Global.HomeError != null)
+            {
+                PopAlert(Global.HomeError, 3);//吉林 原本为3
+                Global.HomeError = null;
+            }
+
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
@@ -72,8 +74,9 @@ namespace EXCYiXing
             {
                 case "YiXingPerson":
                 case "YiXingBanch":
-                 //   Content = new IDCardPage();
-                    Content = new Report(new IDCardData() { Name = "沈华兵", IDCardNo = "342423198910188616" });
+                    //   Content = new IDCardPage();
+                    Global.iDCard = new IDCardData() { Name = "沈华兵", IDCardNo = "342423198910188616" };
+                    Content = new Report();
                     //Content = new Report(new IDCardData() { Name = "钱丽丽", IDCardNo = "320223198002115220" });
                     //Content = new Report(new IDCardData() { Name = "吴国中", IDCardNo = "320223196402215416" });
                     break;
@@ -96,31 +99,31 @@ namespace EXCYiXing
                 case "ReportGRNingYang":
                 case "ReportNingYangAll":
                     Global.PageType = button.Tag.ToString();
-                    IDCardData = new IDCardData { Name = "杨洋", IDCardNo = "37092119790520542x" };
-                    Content = new Report(IDCardData);
+                    Global.iDCard   = new IDCardData { Name = "杨洋", IDCardNo = "37092119790520542x" };
+                    Content = new Report( );
                     break;
                 case "ReportNanJing":
                 case "ReportGRNanJing":
                     Global.PageType = button.Tag.ToString();
-                    IDCardData = new IDCardData { Name = "任正非", IDCardNo = "1231465789789" };
-                    Content = new Report(IDCardData);
+                    Global.iDCard   = new IDCardData { Name = "任正非", IDCardNo = "1231465789789" };
+                    Content = new Report( );
                     break;
                 case "ReportXinTai":
                 case "ReportGRXinTai":
                 case "ReportGRWeiFang":
-                    IDCardData = new IDCardData { Name = "曹丽梅", IDCardNo = "370724199105292614" };
-                    Content = new Report(IDCardData);
+                    Global.iDCard = new IDCardData { Name = "曹丽梅", IDCardNo = "370724199105292614" };
+                    Content = new Report( );
                     break;
                 case "ReportHeFei":
                 case "ReportHeFei1":
                 case "ReportGRHeFei":
-                    IDCardData = new IDCardData { Name = "宋志磊", IDCardNo = "340122199210252875" };
-                    Content = new Report(IDCardData);
+                    Global.iDCard =   new IDCardData { Name = "宋志磊", IDCardNo = "340122199210252875" };
+                    Content = new Report( );
                     break;
                 case "YiXingPerson":
                 case "YiXingBanch":
-                    IDCardData = new IDCardData { Name = "毕明宇", IDCardNo = "371081198706050050" };
-                    Content = new Report(IDCardData);
+                    Global.iDCard   = new IDCardData { Name = "毕明宇", IDCardNo = "371081198706050050" };
+                    Content = new Report( );
                     break;
                 case "HeiFeiEnterprise":
                     break;

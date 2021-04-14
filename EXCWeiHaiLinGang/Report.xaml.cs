@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using BaseDLL;
 using System.Net;
 using BaseUtil;
- 
+
 using System.Windows.Threading;
 using TimeCount = BaseUtil.TimeCount;
 
@@ -33,11 +33,7 @@ namespace EXC
             InitializeComponent();
         }
 
-        public Report(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
+
 
         CompayQueryListItem compayQueryListItem;
 
@@ -56,6 +52,7 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.iDCard;
             Countdown_timer();
             PopLabel.Content = "正在查询报告中";
             PopBorder.Visibility = Visibility.Visible;
@@ -77,7 +74,7 @@ namespace EXC
             };
             pageTimer.Tick += new EventHandler((sender, e) =>
             {
-              
+
                 if (--Time.Countdown <= 0)
                 {
                     Content = new HomePage();
@@ -105,13 +102,13 @@ namespace EXC
 
                 case "sss":
                     break;
-            } 
+            }
         }
 
 
         private ObservableCollection<CompanyReportItem> CompanyReportItem = new ObservableCollection<CompanyReportItem>();
-       
-        private void ReportGRWeiHai(string  response)
+
+        private void ReportGRWeiHai(string response)
         {
             try
             {
@@ -134,18 +131,18 @@ namespace EXC
                 }
                 else
                 {
-                    Content = new HomePage((string)jObject.GetValue("msg"));
+                    Global.HomeErrorText = (string)jObject.GetValue("msg");
+                    Content = new HomePage();
                     Pages();
                 }
             }
             catch
             {
-                Content = new HomePage("接口解析错误");
+                Global.HomeErrorText = "接口解析错误";
+                Content = new HomePage();
                 Pages();
             }
         }
-
-
         private void ReportWeiHai(string response)
         {
             try
@@ -168,18 +165,20 @@ namespace EXC
                 }
                 else
                 {
-                    Content = new HomePage((string)jObject.GetValue("msg"));
+                    Global.HomeErrorText = (string)jObject.GetValue("msg");
+                    Content = new HomePage();
                     Pages();
                 }
             }
             catch
             {
-                Content = new HomePage("接口解析错误");
+                Global.HomeErrorText = "接口解析错误";
+                Content = new HomePage();
                 Pages();
             }
         }
 
-        private void HomeClcik(object sender, RoutedEventArgs e) 
+        private void HomeClcik(object sender, RoutedEventArgs e)
         {
             Content = new HomePage();
             Pages();

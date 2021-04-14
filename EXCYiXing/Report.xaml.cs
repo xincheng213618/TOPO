@@ -25,18 +25,14 @@ namespace EXCYiXing
 
         public Report()
         {
-            idcardData.IDCardNo = IDCardInfo.IDCardNo;
-            idcardData.Name = IDCardInfo.Name;
+           
             InitializeComponent();
         }
 
-        public Report(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.iDCard;
+
             WaitShow.Visibility = Visibility.Visible;
             switch (Global.PageType)
             {
@@ -92,7 +88,8 @@ namespace EXCYiXing
 
             if (response == null)
             {
-                Content = new HomePage("接口连接错误，返回值为null");
+                Global.HomeError = "接口连接错误，返回值为null";
+                Content = new HomePage();
                 Pages();
                 return;
             }
@@ -119,19 +116,22 @@ namespace EXCYiXing
                     }
                     if (CompanyReportItem.Count == 0)
                     {
-                        Content = new HomePage("暂无数据");
+                Global.HomeError = "暂无数据";
+                        Content = new HomePage();
                         Pages();
                     }
                 }
                 else
                 {
-                    Content = new HomePage((string)resObjs.GetValue("msg"));
+                Global.HomeError = (string)resObjs.GetValue("msg");
+                    Content = new HomePage();
                     Pages();
                 }
             }
             catch
             {
-                Content = new HomePage("暂无数据");
+                Global.HomeError = "暂无数据";
+                Content = new HomePage( );
                 Pages();
             }
            

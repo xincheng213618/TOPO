@@ -155,14 +155,16 @@ namespace EXC
                 else
                 {
                     string Msg = (string)@object.GetValue("msg");
-                    Content = new HomePage(Msg);
+                    Global.LoadDatas.HomePageError = Msg;
+                    Content = new HomePage();
                     Pages();
                 }
 
             }
             catch
             {
-                Content = new HomePage("接口解析错误，请联系开发人员");
+                Global.LoadDatas.HomePageError = "接口解析错误，请联系开发人员";
+                Content = new HomePage();
                 Pages();
             }
         }

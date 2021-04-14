@@ -231,8 +231,8 @@ namespace RECSuzhou
         {
             Stamp.Close();
         }
-        private AxAcroPDFLib.AxAcroPDF pdfc;
-        private int PageAllNumNew = 0;
+      //  private AxAcroPDFLib.AxAcroPDF pdfc;
+     //   private int PageAllNumNew = 0;
         private void PrintPDFAll_Click(object sender, RoutedEventArgs e)
         {
             if (!PrintRun)

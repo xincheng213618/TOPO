@@ -32,14 +32,11 @@ namespace EXC
             InitializeComponent();
         }
 
-        public SearchPage(IDCardData iDCardData)
-        {
-            this.iDCardData = iDCardData;
-            InitializeComponent();
-        }
+    
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            iDCardData = Global.WHDatas.CameraIdcard;
             Countdown_timer();
             switch (Global.PageType)
             {
@@ -182,7 +179,8 @@ namespace EXC
             }
             else
             {
-                Content = new HomePage((string)response.GetValue("msg"));
+                Global.WHDatas.HomeError = (string)response.GetValue("msg");
+                Content = new HomePage();
                 Pages();
             }
         }
@@ -250,7 +248,10 @@ namespace EXC
                 {
                     case "ReportWeiHai":
                         string CompanyID = CompayQueryListItem.ElementAt(listView.SelectedIndex).CompanyID.ToString();
-                        Content = new VersionPage(iDCardData, CompanyID);
+                        Global.WHDatas.CompanyID = CompanyID;
+                        Global.WHDatas.CameraIdcard   = iDCardData;
+
+                        Content = new VersionPage();
                         Pages();
                         break;
                     default:
