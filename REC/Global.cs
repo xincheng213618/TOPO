@@ -19,10 +19,15 @@ namespace REC
 
         public void Initialized()
         {
+            Clear();
             UUID = Guid.NewGuid().ToString();
             IDCardData = new IDCardData();
             transtionId = "";
             PageType = "";
+        }
+        public void Clear()
+        {
+            IDcard.DeleteIDcardImages(Global.Related.IDCardData);
         }
     }
 

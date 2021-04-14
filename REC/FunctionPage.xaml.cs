@@ -25,7 +25,8 @@ namespace REC
             TopGrid.DataContext = timeCount;
             Countdown();
         }
-        
+
+
         private void Countdown()
         {  
             pageTimer = new DispatcherTimer() { IsEnabled = true, Interval = TimeSpan.FromSeconds(1), };

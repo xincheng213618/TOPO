@@ -109,12 +109,10 @@ namespace REC
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 600, 500, 0);//附记
 
-
             pdfContentByte.SetFontAndSize(HeiTi, 8);
 
             pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 490, 490, 0,13, 40);
             pdfContentByte.SetFontAndSize(HeiTi, 10);
-
             pdfContentByte.EndText();
             #endregion
 
@@ -253,13 +251,13 @@ namespace REC
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 63 + PageChaneX, 244 + PageChaneY, 0);//面积
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 63+ PageChaneX, 205 + PageChaneY, 0);//使用期限
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 63, 166, 0);//权力其他情况
-            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 63+ PageChaneX, 166 + PageChaneY , 0, 17,20);
+
+            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 63 + PageChaneX, 166 + PageChaneY, 0, 17, 24);
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 500, 500, 0);//附记
             pdfContentByte.SetFontAndSize(HeiTi, 10);
-            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 500 + PageChaneX, 505 + PageChaneY, 0, 14, 30);
+            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 500 + PageChaneX, 505 + PageChaneY, 0, 14, 35);
             pdfContentByte.SetFontAndSize(HeiTi, 12);
-
 
             pdfContentByte.EndText();
             #endregion

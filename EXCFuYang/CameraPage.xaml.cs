@@ -20,7 +20,6 @@ namespace XinHua
         public CameraPage()
         {           
             InitializeComponent();
-            Media.Player(4);
         }
 
         private void Page_Initialized(object sender, EventArgs e)
