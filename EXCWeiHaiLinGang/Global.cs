@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,8 +18,16 @@ namespace EXC
      
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
+        /// <summary>
+        /// HomePage弹框信息
+        /// </summary>
+        public static string HomeErrorText = null;
+        /// <summary>
+        /// 身份证信息
+        /// </summary>
+        public static IDCardData iDCard = new IDCardData();
 
-
+        public static CompayQueryListItem cl = null;
         public static void Initialized()
         {
             if (File.Exists("Config"))

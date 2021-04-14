@@ -81,7 +81,7 @@ namespace RECSuzhou
         {
             if (Global.Config.SettingOptimiz == "0")
             {
-                if (Global.PageType == null)
+                if (Global.Related.PageType == null)
                     Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new EXCPassword())));
             }
 

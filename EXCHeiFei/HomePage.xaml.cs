@@ -21,14 +21,16 @@ namespace EXC
             InitializeComponent();
         }
 
-        public HomePage(string Msg)
-        {
-            InitializeComponent();
-            PopAlert(Msg, 6);//吉林 原本为3
-        }
+
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            if (Global.LoadDatas.HomePageError != null)
+            {
+                PopAlert(Global.LoadDatas.HomePageError, 6);//吉林 原本为3
+                Global.LoadDatas.HomePageError = null;
+
+            }
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
@@ -49,7 +51,6 @@ namespace EXC
             POP.Visibility = Visibility.Visible;
 
             await Task.Delay(TimeSpan.FromSeconds(time));
-
             POP.Visibility = Visibility.Hidden;
         }
 
@@ -86,7 +87,7 @@ namespace EXC
                     }
                     else
                     {
-                        PopAlert("该功能暂时无法使用",3);
+                        PopAlert("该功能暂时无法使用", 3);
                     }
 
                     break;
@@ -117,7 +118,8 @@ namespace EXC
                 case "ReportHeFei1":
                 case "ReportGRHeFei":
                     IDCardData = new IDCardData { Name = "宋志磊", IDCardNo = "340122199210252875" };
-                    Content = new Report(IDCardData);
+                    Global.LoadDatas.CameraIdcard = IDCardData;
+                    Content = new Report();
                     break;
                 default:
                     break;

@@ -22,15 +22,13 @@ namespace EXC
         {
             InitializeComponent();
         }
-
-        public HomePage(string Msg)
-        {
-            InitializeComponent();
-            PopAlert(Msg, 3);
-        }
-
         private void Page_Initialized(object sender, EventArgs e)
         {
+            if (Global.WHDatas.HomeError!=null)
+            {
+                PopAlert(Global.WHDatas.HomeError, 3);
+                Global.WHDatas.HomeError = null;
+            }
 
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)

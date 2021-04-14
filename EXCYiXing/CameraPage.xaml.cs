@@ -19,14 +19,15 @@ namespace EXCYiXing
         private static double b, c;
 
         private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
+        public CameraPage(   )
         {
-            this.idcardData = idcardData;
+          
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.iDCard;
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
@@ -71,7 +72,9 @@ namespace EXCYiXing
             }
             if (tryCount > Global.configData.CameraTryCount)
             {
-                Content = new HomePage("人脸对比失败，请重试");
+                Global.iDCard = new IDCardData();
+               Global.HomeError=  "人脸对比失败，请重试";
+                Content = new HomePage();
                 Pages();
             }
         }
@@ -102,11 +105,13 @@ namespace EXCYiXing
                 case "YiXingPerson":
                 case "YiXingBanch":
                     IDCardInfo.Name = idcardData.Name;
-                    Content = new Report(idcardData);
+                    Global.iDCard = idcardData;
+                    Content = new Report( );
                     break;
 
                 default:    
-                    Content = new HomePage("没有配置进入页面,人脸对比成功");
+               Global.HomeError= "没有配置进入页面,人脸对比成功";
+                    Content = new HomePage();
                     break;
             }
             Pages();
@@ -140,7 +145,8 @@ namespace EXCYiXing
                 }
                 else
                 {
-                    Content = new HomePage("超时自动返回");
+               Global.HomeError= "超时自动返回";
+                    Content = new HomePage();
                     Pages();
                 }
             });

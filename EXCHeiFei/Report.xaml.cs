@@ -23,19 +23,19 @@ namespace EXC
         private IDCardData idcardData;
 
 
-        public Report(IDCardData idcardData)
+        public Report()
         {
-            this.idcardData = idcardData;
-            //缓存数据
-            Global.UserDate.Name = idcardData.Name;
-            Global.UserDate.IDCardNo = idcardData.IDCardNo;
-
             InitializeComponent();
         }
 
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.LoadDatas.CameraIdcard;
+            //缓存数据
+            Global.UserDate.Name = idcardData.Name;
+            Global.UserDate.IDCardNo = idcardData.IDCardNo;
+
             WaitShow.Visibility = Visibility.Visible;
             switch (Global.PageType)
             {
@@ -64,7 +64,7 @@ namespace EXC
                     break;
                 case "ReportGRHeFei":
                     Global.UserDate.Type = "1";
-                    response = Http.HeFei.GetGRReport(idcardData.IDCardNo, idcardData.Name);   
+                    response = Http.HeFei.GetGRReport(idcardData.IDCardNo, idcardData.Name);
                     string filePath = "Temp\\" + idcardData.Name + ".pdf";
                     Dispatcher.BeginInvoke(new Action(() => GetReportGRHeiFei(response, filePath)));
                     break;
@@ -109,7 +109,8 @@ namespace EXC
                         }
                         if (CompanyReportItem.Count == 0)
                         {
-                            Content = new HomePage("暂无数据");
+                            Global.LoadDatas.HomePageError = "暂无数据";
+                            Content = new HomePage();
                             Pages();
                         }
                     }
@@ -131,25 +132,30 @@ namespace EXC
 
                         if (CompanyReportItem.Count == 0)
                         {
-                            Content = new HomePage("暂无数据");
+                            Global.LoadDatas.HomePageError = "暂无数据";
+                            Content = new HomePage();
                             Pages();
                         }
                     }
                     else
                     {
-                        Content = new HomePage(resObjs["msg"].ToString());
+                        Global.LoadDatas.HomePageError = resObjs["msg"].ToString();
+
+                        Content = new HomePage();
                         Pages();
                     }
                 }
                 catch
-                { 
-                    Content = new HomePage("暂无数据");
+                {
+                    Global.LoadDatas.HomePageError = "暂无数据";
+                    Content = new HomePage();
                     Pages();
                 }
             }
             else
             {
-                Content = new HomePage("接口连接错误，请检查网络连接或者后台服务");
+                Global.LoadDatas.HomePageError = "接口连接错误，请检查网络连接或者后台服务";
+                Content = new HomePage();
                 Pages();
             }
         }
@@ -221,25 +227,29 @@ namespace EXC
                         }
                         else
                         {
-                            Content = new HomePage("报告下载失败：" + Environment.NewLine + url);
+                            Global.LoadDatas.HomePageError = "报告下载失败：" + Environment.NewLine + url;
+                            Content = new HomePage();
                             Pages();
                         }
                     }
                     else
                     {
-                        Content = new HomePage((string)resObjs.GetValue("msg"));
+                        Global.LoadDatas.HomePageError = (string)resObjs.GetValue("msg");
+                        Content = new HomePage();
                         Pages();
                     }
                 }
                 catch
                 {
-                    Content = new HomePage("暂无数据");
+                    Global.LoadDatas.HomePageError = "暂无数据";
+                    Content = new HomePage();
                     Pages();
                 }
             }
             else
             {
-                Content = new HomePage("接口连接错误，请检查网络连接或者后台服务");
+                Global.LoadDatas.HomePageError = "接口连接错误，请检查网络连接或者后台服务";
+                Content = new HomePage();
                 Pages();
             }
         }
@@ -321,36 +331,45 @@ namespace EXC
                             if (Sucess)
                             {
                                 Global.PageType = null;
-                                Content = new Pdfshow(FilePath);
+                                Global.LoadDatas.PdfShowPath = FilePath;
+                                Content = new Pdfshow();
                                 Pages();
                             }
                             else
                             {
-                                Content = new HomePage("报告下载失败：" + Environment.NewLine + url);
+                                Global.LoadDatas.HomePageError = "报告下载失败：" + Environment.NewLine + url;
+                                Content = new HomePage();
                                 Pages();
                             }
                         }
                         else
                         {
-                            Content = new HomePage((string)data.GetValue("msg"));
+                            Global.LoadDatas.HomePageError = (string)data.GetValue("msg");
+                            Content = new HomePage();
                             Pages();
                         }
                     }
                     else
                     {
-                        Content = new HomePage(resObjs["msg"].ToString());
+                        Global.LoadDatas.HomePageError = resObjs["msg"].ToString();
+
+                        Content = new HomePage();
                         Pages();
                     }
                 }
                 catch
                 {
-                    Content = new HomePage("暂无数据");
+                    Global.LoadDatas.HomePageError = "暂无数据";
+
+                    Content = new HomePage();
                     Pages();
                 }
             }
             else
             {
-                Content = new HomePage("接口连接错误,请检查网络连接");
+                Global.LoadDatas.HomePageError = "接口连接错误,请检查网络连接";
+
+                Content = new HomePage();
                 Pages();
             }
 

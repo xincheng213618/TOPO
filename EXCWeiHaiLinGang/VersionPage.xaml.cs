@@ -100,14 +100,16 @@ namespace EXC
                 }
                 if (cGrid.Children.Count<1)
                 {
-                    Content = new HomePage("暂无可显示的报告");
+                    Global.HomeErrorText = "暂无可显示的报告";
+                    Content = new HomePage();
                     Pages();
                 }
              
             }
             else
             {
-                Content = new HomePage((string)response.GetValue("msg"));
+                Global.HomeErrorText = (string)response.GetValue("msg");
+                Content = new HomePage();
                 Pages();
             }
         }

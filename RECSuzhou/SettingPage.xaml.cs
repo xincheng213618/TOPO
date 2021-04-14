@@ -94,7 +94,7 @@ namespace RECSuzhou
                     break;
             }
         }
-        private IDCardData IDCardData;
+  //      private IDCardData IDCardData;
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;

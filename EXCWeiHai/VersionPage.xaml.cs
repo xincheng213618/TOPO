@@ -19,29 +19,17 @@ namespace EXC
     public partial class VersionPage : Page
     {
         IDCardData iDCardData;
-        string CompanyID;
+        
         public VersionPage()
         {
             InitializeComponent();
         }
 
-        public VersionPage(IDCardData iDCardData)
-        {
-            this.iDCardData = iDCardData;
-           
-            InitializeComponent();
-        }
-        public VersionPage(IDCardData iDCardData, string CompanyID)
-        {
-            this.iDCardData = iDCardData;
-            this.CompanyID = CompanyID;
-            InitializeComponent();
-        }
-
-
-
         private void Page_Initialized(object sender, EventArgs e)
         {
+
+   
+            iDCardData = Global.WHDatas.CameraIdcard;
             Countdown_timer();
             PopBorder.Visibility = Visibility.Visible;
             InfoLabel.Content = "获取模板中";
@@ -130,14 +118,16 @@ namespace EXC
                 }
                 if (cGrid.Children.Count<1)
                 {
-                    Content = new HomePage("暂无可显示的报告");
+                    Global.WHDatas.HomeError = "暂无可显示的报告";
+                    Content = new HomePage();
                     Pages();
                 }
              
             }
             else
             {
-                Content = new HomePage((string)response.GetValue("msg"));
+                    Global.WHDatas.HomeError = (string)response.GetValue("msg");
+                Content = new HomePage();
                 Pages();
             }
         }
@@ -146,15 +136,15 @@ namespace EXC
         {
             Button button = sender as Button;
             string TemplateID = VersionItem[int.Parse(button.Tag.ToString())].TemplateID; //这里正常应该做报错检测，但是由于数据时自动生成，因此不会出错
-
+            Global.WHDatas.TemplateID= TemplateID;
             switch (Global.PageType)
             {
                 case "ReportWeiHai":
-                    Content = new Report(iDCardData, TemplateID, CompanyID);
+                    Content = new Report( );
                     Pages();
                     break;
                 case "ReportGRWeiHai":
-                    Content = new Report(iDCardData, TemplateID);
+                    Content = new Report( );
                     Pages();
                     break;
             }
