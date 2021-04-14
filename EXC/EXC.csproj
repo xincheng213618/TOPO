@@ -269,9 +269,6 @@
     <Compile Include="IDCardPage.xaml.cs">
       <DependentUpon>IDCardPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InputPage.xaml.cs">
-      <DependentUpon>InputPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="OutOfServicePage.xaml.cs">
       <DependentUpon>OutOfServicePage.xaml</DependentUpon>
     </Compile>
@@ -331,10 +328,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IDCardPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InputPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,6 +1,8 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -102,14 +104,15 @@ namespace REC
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 125, 282, 0);//面积
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 125, 252, 0);//使用期限
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 125, 222, 0);//其他
-            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 125, 222, 0, 16);
+
+            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 125, 222, 0, 16,23);
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 600, 500, 0);//附记
 
 
             pdfContentByte.SetFontAndSize(HeiTi, 8);
 
-            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 490, 490, 0,13);
+            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 490, 490, 0,13, 40);
             pdfContentByte.SetFontAndSize(HeiTi, 10);
 
             pdfContentByte.EndText();
@@ -133,20 +136,36 @@ namespace REC
             pdfWriter.Close();
             pdfReader.Close();
         }
-        public static PdfContentByte DrawMul(PdfContentByte pdfContentByte ,string Content,int x,int y,int roxy,int length)
+
+        public static PdfContentByte DrawMul(PdfContentByte pdfContentByte ,string Content,int x,int y,int roxy,int length,int ChangeLength)
         {
             //2021.2.25 更新 空格也有可能出现
             string[] stringSeparators = new string[] { "\r\n" ," "};
 
             foreach (var item in Content.Split(stringSeparators, StringSplitOptions.None))
             {
-                pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, item, x, y, roxy);//附记
-                y = y - length;
+                foreach(var temp in SplitLength(item, ChangeLength))
+                {
+                    pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, temp, x, y, roxy);//附记
+                    y = y - length;
+                }
             }
-
             return pdfContentByte;
         }
 
+        public static  List<string> SplitLength(string SourceString, int Length)
+        {
+            List<string> DestString = new List<string>();
+            //ArrayList list = new ArrayList();
+            for (int i = 0; i < SourceString.Trim().Length; i += Length)
+            {
+                if ((SourceString.Trim().Length - i) >= Length)
+                    DestString.Add(SourceString.Trim().Substring(i, Length));
+                else
+                    DestString.Add(SourceString.Trim().Substring(i, SourceString.Trim().Length - i));
+            }
+            return DestString;
+        }
 
 
 
@@ -234,11 +253,11 @@ namespace REC
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 63 + PageChaneX, 244 + PageChaneY, 0);//面积
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 63+ PageChaneX, 205 + PageChaneY, 0);//使用期限
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 63, 166, 0);//权力其他情况
-            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 63+ PageChaneX, 166 + PageChaneY , 0, 17);
+            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 63+ PageChaneX, 166 + PageChaneY , 0, 17,20);
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 500, 500, 0);//附记
             pdfContentByte.SetFontAndSize(HeiTi, 10);
-            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 500 + PageChaneX, 505 + PageChaneY, 0, 14);
+            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 500 + PageChaneX, 505 + PageChaneY, 0, 14, 30);
             pdfContentByte.SetFontAndSize(HeiTi, 12);
 
 

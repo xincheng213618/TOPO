@@ -45,7 +45,7 @@ namespace EXC
             //    Process.Start("SystemKeyBoard.exe");
 
             Countdown_timer();
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "TOPOPunish":
                 case "TOPOAllow":
@@ -116,7 +116,7 @@ namespace EXC
         private void SearchRequests()
         {
             string response = null;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "TopoSearch":
                     response = Http.TOPO.CompanySearch(SearchContent, pageNo);
@@ -550,7 +550,7 @@ namespace EXC
                 SearchContent = CompayQueryListItem.ElementAt(listView.SelectedIndex).CompanyName.ToString();
 
 
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "TopoSearch":
                         Content = new CompayQueryDetailPage(SearchContent);

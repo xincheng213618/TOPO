@@ -60,7 +60,7 @@ namespace REC
 
         private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(Global.PageType == null)
+            if(Global.Related.PageType == "")
                 Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new SettingPage())));
 
         }

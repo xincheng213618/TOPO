@@ -35,7 +35,7 @@ namespace RECSuzhou
 
 
             BackgroundItem.Kind = false;
-            BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            //BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
 
             BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
             BackgroundItem.Picture.Auto = true;

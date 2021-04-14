@@ -92,7 +92,7 @@ namespace EXC
             //CSQLite.Insert.CreatUseTabel();
 
             //获取屏幕数量
-            BackgroundItem.Screens = Global.configData.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.configData.BackgroundWindow;
+            BackgroundItem.Screens = Global.Config.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.Config.BackgroundWindow;
 
         }
 

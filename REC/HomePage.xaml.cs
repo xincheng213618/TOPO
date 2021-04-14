@@ -46,9 +46,11 @@ namespace REC
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //这里是测试开放的部分
-            //Content = new FunctionPage1(new IDCardData() { Name = "", IDCardNo = "" }, "2");
-            //Pages();
-            //return;
+
+            Global.Related.IDCardData = new IDCardData() { Name = "", IDCardNo = "" };
+            Content = new FunctionPage1();
+            Pages();
+            return;
 
             if (MainWindow.WindowsData.Status1 == "翻页：正常" && MainWindow.WindowsData.Status2 == "盖章：正常")
             {

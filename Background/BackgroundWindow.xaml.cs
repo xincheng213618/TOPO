@@ -115,7 +115,10 @@ namespace Background
     public static class BackgroundItem
     {
         public static int Screens = 1;
-        public static bool Kind = true; //true 为视频，false 为图片
+        /// <summary>
+        /// true 为视频，false 为图片
+        /// </summary>
+        public static bool Kind = true; 
 
         public static class Video
         {

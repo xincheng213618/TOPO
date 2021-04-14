@@ -91,7 +91,6 @@ namespace REC
                                 Item.SLBH = (string)result.GetValue("SLBH");
                                 Item.PROID = (string)result.GetValue("PROID");
                                 Item.ZSID = (string)result.GetValue("ZSID");
-
                                 bool show = false;
                                 //重读字段不显示
                                 foreach (RECData items in RECListViewItem)
@@ -107,9 +106,7 @@ namespace REC
                                 if (!show)
                                 {
                                     Item.FileName = "Temp\\" + Item.QLR + RECListNo.ToString() + "show.pdf";
-                                    PDF.DrawPDF(Item.FileName, Item);
-                                    Item.PrintName = "Temp\\Print" + RECListNo.ToString() + ".pdf";
-                                    PDF.DrawPrintPDF(Item.PrintName, Item);
+                                    Item.PrintName = "Temp\\Print" + RECListNo.ToString() + ".pdf"; 
 
                                     RECListViewItem.Add(Item);
                                 }
@@ -119,7 +116,6 @@ namespace REC
                                 Content = new HomePage("查询到已经被过滤到的信息，请联系C13号窗口工作人员");
                                 Pages();
                             }
-
                             Media.Play("Base\\Media\\请选择您要打印的证书.mp3");
                         }
                         else
@@ -193,6 +189,8 @@ namespace REC
         {
             if (ListView.SelectedIndex>=0)
             {
+                PDF.DrawPDF(RECListViewItem[ListView.SelectedIndex].FileName, RECListViewItem[ListView.SelectedIndex]);
+                PDF.DrawPrintPDF(RECListViewItem[ListView.SelectedIndex].PrintName, RECListViewItem[ListView.SelectedIndex]);
                 Content = new FunctionPage2( RECListViewItem[ListView.SelectedIndex]);
                 Pages();
             }

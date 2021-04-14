@@ -61,13 +61,11 @@ namespace RECSuzhou
         public string UUID;
         public string PageType;
         public IDCardData IDCardData;
-        public string transtionId;
 
         public void Initialized()
         {
             UUID = Guid.NewGuid().ToString();
             IDCardData = new IDCardData();
-            transtionId = "";
             PageType = "";
         }
     }

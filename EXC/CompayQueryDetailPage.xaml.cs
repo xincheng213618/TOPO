@@ -1151,13 +1151,8 @@ namespace EXC
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
-            Global.PageType = "XinHuaPrint";
-            CompanyInfo.CompanyName = companyName;
-            CompanyInfo.CompanyID = CompanyID;
-
-
-            Content = new Report();
-            //Content = new IDCardPage();
+            //Content = new Report();
+            Content = new IDCardPage();
             Pages();
         }
 

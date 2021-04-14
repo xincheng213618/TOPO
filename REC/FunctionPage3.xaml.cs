@@ -26,7 +26,6 @@ namespace REC
     {
         private string FileName;
         RECData recdata;
-
         public FunctionPage3(string FileName, RECData recdata)
         {
             this.FileName = FileName;
