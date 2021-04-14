@@ -189,10 +189,7 @@ namespace REC
                 }
             }
 
-            bool success = Requests.File_Upload("Temp\\ocr_result1.jpg", math.Value, math.Success, recdata.QLR, recdata.QLRZJH, recdata.BDCQZH);
-            if (!success)
-                Log.Write("文件上传失败");
-
+            Requests.File_Upload("Temp\\ocr_result1.jpg", math.Value, math.Success, recdata.QLR, recdata.QLRZJH, recdata.BDCQZH);
             Dispatcher.BeginInvoke(new Action(() => OCRover(math.Success)));
         }
         private string FixYZH(string yzh)
@@ -303,7 +300,6 @@ namespace REC
 
         private void Pages()
         {
-
             vispShoot.SignalToStop();
             vispShoot.WaitForStop();
             vispShoot.VideoSource = null;

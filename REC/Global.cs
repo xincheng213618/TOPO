@@ -17,13 +17,19 @@ namespace REC
         public string transtionId;
         public IDCardData IDCardData;
 
+        public string OCR_Data;
+        public string Fix_OCR_Data;
+
         public void Initialized()
         {
             Clear();
             UUID = Guid.NewGuid().ToString();
+            PageType = "";
             IDCardData = new IDCardData();
             transtionId = "";
-            PageType = "";
+
+            OCR_Data = "";
+            Fix_OCR_Data = "";
         }
         public void Clear()
         {

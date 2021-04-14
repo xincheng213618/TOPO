@@ -47,7 +47,9 @@ namespace REC
 
 
         private int tryCount = 0;
+
         string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
+
         string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
 
         private void Comparison()
@@ -127,7 +129,7 @@ namespace REC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
-            AmLivingBodyApi.AmCloseDevice();
+            AmLivingBodyApi.AmCloseDevice(); 
         }
         private void SwitchPage()
         {
