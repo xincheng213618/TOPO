@@ -16,21 +16,22 @@ namespace EXC
     /// </summary>
     public partial class HomePage : Page
     {
-        public HomePage()
+ 
+
+        public HomePage(string msg)
         {
+            PopAlert(msg, 6);//吉林 原本为3
             InitializeComponent();
         }
 
+        public HomePage()
+        {
 
-
+            InitializeComponent();
+        }
         private void Page_Initialized(object sender, EventArgs e)
         {
-            if (Global.LoadDatas.HomePageError != null)
-            {
-                PopAlert(Global.LoadDatas.HomePageError, 6);//吉林 原本为3
-                Global.LoadDatas.HomePageError = null;
-
-            }
+            Global.RelatedClear();
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;

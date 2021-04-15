@@ -52,7 +52,7 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.idcardData = Global.iDCard;
+            this.idcardData = Global.related.iDCard;
             Countdown_timer();
             PopLabel.Content = "正在查询报告中";
             PopBorder.Visibility = Visibility.Visible;
@@ -131,15 +131,15 @@ namespace EXC
                 }
                 else
                 {
-                    Global.HomeErrorText = (string)jObject.GetValue("msg");
-                    Content = new HomePage();
+                    
+                    Content = new HomePage((string)jObject.GetValue("msg"));
                     Pages();
                 }
             }
             catch
             {
-                Global.HomeErrorText = "接口解析错误";
-                Content = new HomePage();
+                
+                Content = new HomePage("接口解析错误");
                 Pages();
             }
         }
@@ -165,15 +165,15 @@ namespace EXC
                 }
                 else
                 {
-                    Global.HomeErrorText = (string)jObject.GetValue("msg");
-                    Content = new HomePage();
+                    
+                    Content = new HomePage((string)jObject.GetValue("msg"));
                     Pages();
                 }
             }
             catch
             {
-                Global.HomeErrorText = "接口解析错误";
-                Content = new HomePage();
+                   
+                Content = new HomePage("接口解析错误");
                 Pages();
             }
         }

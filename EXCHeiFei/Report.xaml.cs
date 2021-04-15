@@ -109,8 +109,7 @@ namespace EXC
                         }
                         if (CompanyReportItem.Count == 0)
                         {
-                            Global.LoadDatas.HomePageError = "暂无数据";
-                            Content = new HomePage();
+                            Content = new HomePage("暂无数据");
                             Pages();
                         }
                     }
@@ -132,30 +131,25 @@ namespace EXC
 
                         if (CompanyReportItem.Count == 0)
                         {
-                            Global.LoadDatas.HomePageError = "暂无数据";
-                            Content = new HomePage();
+                            Content = new HomePage("暂无数据");
                             Pages();
                         }
                     }
                     else
                     {
-                        Global.LoadDatas.HomePageError = resObjs["msg"].ToString();
-
-                        Content = new HomePage();
+                        Content = new HomePage(resObjs["msg"].ToString());
                         Pages();
                     }
                 }
                 catch
                 {
-                    Global.LoadDatas.HomePageError = "暂无数据";
-                    Content = new HomePage();
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }
             else
             {
-                Global.LoadDatas.HomePageError = "接口连接错误，请检查网络连接或者后台服务";
-                Content = new HomePage();
+                Content = new HomePage("接口连接错误，请检查网络连接或者后台服务");
                 Pages();
             }
         }
@@ -227,29 +221,25 @@ namespace EXC
                         }
                         else
                         {
-                            Global.LoadDatas.HomePageError = "报告下载失败：" + Environment.NewLine + url;
-                            Content = new HomePage();
+                            Content = new HomePage("报告下载失败：" + Environment.NewLine + url);
                             Pages();
                         }
                     }
                     else
                     {
-                        Global.LoadDatas.HomePageError = (string)resObjs.GetValue("msg");
-                        Content = new HomePage();
+                        Content = new HomePage((string)resObjs.GetValue("msg"));
                         Pages();
                     }
                 }
                 catch
                 {
-                    Global.LoadDatas.HomePageError = "暂无数据";
-                    Content = new HomePage();
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }
             else
             {
-                Global.LoadDatas.HomePageError = "接口连接错误，请检查网络连接或者后台服务";
-                Content = new HomePage();
+                Content = new HomePage("接口连接错误，请检查网络连接或者后台服务");
                 Pages();
             }
         }
@@ -331,45 +321,37 @@ namespace EXC
                             if (Sucess)
                             {
                                 Global.PageType = null;
-                                Global.LoadDatas.PdfShowPath = FilePath;
-                                Content = new Pdfshow();
+                                Content = new Pdfshow(FilePath);
                                 Pages();
                             }
                             else
                             {
-                                Global.LoadDatas.HomePageError = "报告下载失败：" + Environment.NewLine + url;
-                                Content = new HomePage();
+                                Content = new HomePage("报告下载失败：" + Environment.NewLine + url);
                                 Pages();
                             }
                         }
                         else
                         {
-                            Global.LoadDatas.HomePageError = (string)data.GetValue("msg");
-                            Content = new HomePage();
+                           
+                            Content = new HomePage((string)data.GetValue("msg"));
                             Pages();
                         }
                     }
                     else
                     {
-                        Global.LoadDatas.HomePageError = resObjs["msg"].ToString();
-
-                        Content = new HomePage();
+                        Content = new HomePage(resObjs["msg"].ToString());
                         Pages();
                     }
                 }
                 catch
                 {
-                    Global.LoadDatas.HomePageError = "暂无数据";
-
-                    Content = new HomePage();
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }
             else
             {
-                Global.LoadDatas.HomePageError = "接口连接错误,请检查网络连接";
-
-                Content = new HomePage();
+                Content = new HomePage("接口连接错误,请检查网络连接");
                 Pages();
             }
 

@@ -71,8 +71,8 @@ namespace EXC
             if (tryCount > 2)
             {
                 Global.LoadDatas.CameraIdcard = new IDCardData();
-                Global.LoadDatas.HomePageError = "人脸对比失败，请重试";
-                Content = new HomePage();
+          
+                Content = new HomePage("人脸对比失败，请重试");
                 Pages();
             }
         }
@@ -88,8 +88,8 @@ namespace EXC
                     Content = new Report();
                     break;
                 default:
-                    Global.LoadDatas.HomePageError = "没有配置进入页面,人脸对比成功";
-                    Content = new HomePage();
+             
+                    Content = new HomePage("没有配置进入页面,人脸对比成功");
                     break;
             }
             Pages();
@@ -123,8 +123,7 @@ namespace EXC
                 }
                 else
                 {
-                    Global.LoadDatas.HomePageError = "超时自动返回";
-                    Content = new HomePage();
+                    Content = new HomePage("超时自动返回");
                     Pages();
                 }
             });

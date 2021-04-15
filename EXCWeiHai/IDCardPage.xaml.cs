@@ -95,8 +95,8 @@ namespace EXC
                 }
                 else
                 {
-                    Global.WHDatas.HomeError = "读卡器没有正确连接";
-                    Content = new HomePage();
+                    
+                    Content = new HomePage("读卡器没有正确连接");
                     Pages();
                 }
             });

@@ -21,18 +21,17 @@ namespace EXC
         public HomePage()
         {
             InitializeComponent();
+        } public HomePage(string msg)
+        {
+                PopAlert(msg, 3);
+            InitializeComponent();
         }
 
      
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            if (Global.HomeErrorText!=null)
-            {
-                PopAlert(Global.HomeErrorText, 3);
-                Global.HomeErrorText = null;
-            }
-
+            Global.RelatedClear();
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;

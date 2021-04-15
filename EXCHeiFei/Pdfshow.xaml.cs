@@ -43,9 +43,9 @@ namespace EXC
         int PrintAllNum;
 
 
-        public Pdfshow(int PrintAllNum =200,bool AllowPrint =true)
+        public Pdfshow(string filePath, int PrintAllNum =200,bool AllowPrint =true)
         {
-            this.filePath = Global.LoadDatas.PdfShowPath;
+          
             this.PrintAllNum = PrintAllNum;
             this.AllowPrint = AllowPrint;
             InitializeComponent();
@@ -194,15 +194,13 @@ namespace EXC
                 }
                 else
                 {
-                    Global.LoadDatas.HomePageError = "PDF打开失败请检查PDF文档是否正确";
-                    Content = new HomePage();
+                    Content = new HomePage("PDF打开失败请检查PDF文档是否正确");
                     Pages();
                 }
             }
             catch
             {
-                Global.LoadDatas.HomePageError = "PDF打开失败请检查PDF文档是否正确";
-                Content = new HomePage();
+                Content = new HomePage("PDF打开失败请检查PDF文档是否正确");
                 Pages();
             }
 
@@ -236,8 +234,7 @@ namespace EXC
         private void PrintOver(object sender, EventArgs e)
         {
             PDFShow.Visibility = Visibility.Hidden;
-            Global.LoadDatas.CameraIdcard = new IDCardData();
-            Global.LoadDatas.PdfShowPath = null;
+            Global.RelatedClear();
             Content = new PrintTips();
             Pages();
         }

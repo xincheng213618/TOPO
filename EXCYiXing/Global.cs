@@ -13,16 +13,31 @@ using System.Xml.Serialization;
 
 namespace EXCYiXing
 {
+
+    public class Related
+    {
+        public   IDCardData iDCard  ;
+
+        public Guid UUID;
+
+        public Related() { 
+        UUID=Guid.NewGuid();
+        }
+    }
         public class Global
         {
             //页面状态，用来判断转跳s
             public static string PageType = null;
             public static string IP = Info.IPAdress()[0];
             public static string MAC = Info.MACAdress()[0];
+        public static Related related = new Related();
 
 
-        public static string HomeError = null;
-        public static IDCardData iDCard = new IDCardData();
+        public static void RelatedClear() {
+
+            related = new Related();
+        }
+
 
             public static void Initialized()
             {

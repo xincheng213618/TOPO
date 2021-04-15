@@ -101,11 +101,11 @@ namespace EXCYiXing
 
         string response = "";
 
- 
 
- 
 
-     
+
+
+
         private void GetReportYiXing(string response)
         {
             WaitShow.Visibility = Visibility.Hidden;
@@ -128,22 +128,19 @@ namespace EXCYiXing
                     }
                     else
                     {
-                        Global.HomeError = (string)jsons.GetValue("Message");
-                        Content = new HomePage();
+                        Content = new HomePage((string)jsons.GetValue("Message"));
                         Pages();
                     }
                 }
                 catch
                 {
-                        Global.HomeError = "该接口解析错误";
-                    Content = new HomePage( );
+                    Content = new HomePage("该接口解析错误");
                     Pages();
                 }
             }
             else
             {
-                        Global.HomeError = "该接口解析错误";
-                Content = new HomePage();
+                Content = new HomePage("该接口解析错误");
                 Pages();
             }
 
@@ -171,8 +168,7 @@ namespace EXCYiXing
                 {
                     Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        Global.HomeError = "暂无信息";
-                        Content = new HomePage();
+                        Content = new HomePage("暂无信息");
                         Pages();
                     }));
 
@@ -184,8 +180,7 @@ namespace EXCYiXing
 
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                        Global.HomeError = "暂无信息";
-                    Content = new HomePage();
+                    Content = new HomePage("暂无信息");
                     Pages();
                 }));
             }
@@ -213,8 +208,7 @@ namespace EXCYiXing
                 {
                     Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        Global.HomeError = "暂无信息";
-                        Content = new HomePage();
+                        Content = new HomePage("暂无信息");
                         Pages();
                     }));
 
@@ -225,8 +219,8 @@ namespace EXCYiXing
 
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                        Global.HomeError = "暂无信息";
-                    Content = new HomePage();
+                  
+                    Content = new HomePage("暂无信息");
                     Pages();
                 }));
             }

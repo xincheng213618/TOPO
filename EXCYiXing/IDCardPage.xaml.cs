@@ -34,9 +34,8 @@ namespace EXCYiXing
         }
         private void Msg(string msg)
         {
-            Global.HomeError = msg;
 
-            Content = new HomePage();
+            Content = new HomePage(msg);
             Pages();
         }
 
@@ -114,8 +113,7 @@ namespace EXCYiXing
                 }
                 else
                 {
-                    Global.HomeError = "读卡器没有正确连接";
-                    Content = new HomePage();
+                    Content = new HomePage("读卡器没有正确连接");
                     Pages();
                 }
             });
@@ -132,7 +130,7 @@ namespace EXCYiXing
             {
                 
                 default:
-                    Global.iDCard = idcardData;
+                    Global.related. iDCard = idcardData;
                     Content = new CameraPage();
                     break;
             }

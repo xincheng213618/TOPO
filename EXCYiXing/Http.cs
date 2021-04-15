@@ -94,7 +94,6 @@ namespace EXCYiXing
                 return response;
             }
             //5.10抵押查询
-           static int i = 0;
             public static string DYCX(string BDCZMH)
             {
 

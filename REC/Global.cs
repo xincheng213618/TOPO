@@ -22,12 +22,12 @@ namespace REC
 
         public void Initialized()
         {
+
             Clear();
             UUID = Guid.NewGuid().ToString();
             PageType = "";
             IDCardData = new IDCardData();
             transtionId = "";
-
             OCR_Data = "";
             Fix_OCR_Data = "";
         }

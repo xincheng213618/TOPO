@@ -88,8 +88,7 @@ namespace EXC
                     Content = new SearchPage();
                     break; 
                 default:
-                    Global.WHDatas.HomeError = "没有配置进入页面,人脸对比成功";
-                    Content = new HomePage();
+                    Content = new HomePage("没有配置进入页面,人脸对比成功");
                     break;
             }
             Pages();
@@ -125,8 +124,7 @@ namespace EXC
                 }
                 else
                 {
-                    Global.WHDatas.HomeError = "超时自动返回";
-                    Content = new HomePage();
+                    Content = new HomePage("超时自动返回");
                     Pages();
                 }
             });

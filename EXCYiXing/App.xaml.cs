@@ -103,8 +103,8 @@ namespace EXCYiXing
                 e.Handled = true;
                 if (MainWindow.IsActive)
                 {
-                    Global.HomeError = e.Exception.Message;
-                    (Current.MainWindow as MainWindow).frame.Navigate(new HomePage());
+                 
+                    (Current.MainWindow as MainWindow).frame.Navigate(new HomePage(e.Exception.Message));
                 }
             }
             else

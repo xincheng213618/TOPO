@@ -10,24 +10,37 @@ using System.Xml.Serialization;
 
 namespace EXC
 {
+
+
+    public class Related
+    {
+        /// <summary>
+        /// 身份证信息
+        /// </summary>
+        public   IDCardData iDCard ;
+
+        public   CompayQueryListItem cl  ;
+
+        public Guid UUID;
+
+        public Related() {
+            UUID = Guid.NewGuid();
+        }
+    }
     public static class Global
     {
         public static string PageType = null;
         public static bool CameraPass = false;
         public static ConfigData Config = new ConfigData();
-     
+        public static Related related = new Related();
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
-        /// <summary>
-        /// HomePage弹框信息
-        /// </summary>
-        public static string HomeErrorText = null;
-        /// <summary>
-        /// 身份证信息
-        /// </summary>
-        public static IDCardData iDCard = new IDCardData();
 
-        public static CompayQueryListItem cl = null;
+
+        public static void RelatedClear() {
+
+            related = new Related();
+        }
         public static void Initialized()
         {
             if (File.Exists("Config"))

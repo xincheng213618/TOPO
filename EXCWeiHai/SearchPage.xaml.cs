@@ -179,8 +179,7 @@ namespace EXC
             }
             else
             {
-                Global.WHDatas.HomeError = (string)response.GetValue("msg");
-                Content = new HomePage();
+                Content = new HomePage((string)response.GetValue("msg"));
                 Pages();
             }
         }

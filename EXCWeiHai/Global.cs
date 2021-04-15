@@ -11,33 +11,35 @@ using System.Xml.Serialization;
 namespace EXC
 {
  
-    public struct WHData
+    public class Related
     {
         /// <summary>
         /// 从刷身份证开始读取到的身份证信息，流程完成自动清理
         /// </summary>
         public IDCardData CameraIdcard;
-        /// <summary>
-        /// 需要跳转至homepage显示的报错信息，流程完成自动清理
-        /// </summary>
-        public string HomeError;
-        /// <summary>
-        /// PDF的路径，流程完成自动清理
-        /// </summary>
-        public string PdfShowPath;
-        public string CompanyID;
         public string TemplateID;
+        public string CompanyID;
+        public Guid UUID;
+       public Related()
+        {
+            UUID = Guid.NewGuid();
+        }
     }
     public static class Global
     {
         public static string PageType = null;
         public static bool CameraPass = false;
         public static ConfigData Config = new ConfigData();
-        public static WHData WHDatas = new WHData();
+        public static Related WHDatas = new Related();
      
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
 
+
+        public static void RelatedClear()
+        {
+            WHDatas = new Related();
+        }
 
         public static void Initialized()
         {

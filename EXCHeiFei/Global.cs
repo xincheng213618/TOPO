@@ -6,26 +6,25 @@ using System.Xml.Serialization;
 
 namespace EXC
 {
-    public struct LoadData
+    public class Related
     {
         /// <summary>
         /// 从刷身份证开始读取到的身份证信息，流程完成自动清理
         /// </summary>
         public   IDCardData CameraIdcard ;
-        /// <summary>
-        /// 需要跳转至homepage显示的报错信息，流程完成自动清理
-        /// </summary>
-        public string HomePageError ;
-        /// <summary>
-        /// PDF的路径，流程完成自动清理
-        /// </summary>
-        public string PdfShowPath  ;
+
+        public Guid UUID;
+
+        public Related()
+        {
+            UUID = Guid.NewGuid();
+        }
     }
     public static class Global
     {
         public static ConfigData Config = new ConfigData();
         public static UserDate UserDate = new UserDate();
-        public static LoadData LoadDatas = new LoadData();
+        public static Related LoadDatas = new Related();
 
         public static string PageType = null;
         public static string IP = Info.IPAdress()[0];
@@ -33,14 +32,11 @@ namespace EXC
         // summar
 
 
-     
-
-
-
-
-
         // summary
-
+        public static void RelatedClear()
+        {
+            LoadDatas = new Related();
+        }
         public static void Initialized()
         {
             if (File.Exists("Config"))

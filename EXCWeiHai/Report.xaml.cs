@@ -42,8 +42,8 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.CompanyID = Global.WHDatas.  CompanyID;
-            this.TemplateID = Global.WHDatas. TemplateID;
+            this.CompanyID = Global.WHDatas.CompanyID;
+            this.TemplateID = Global.WHDatas.TemplateID;
             this.idcardData = Global.WHDatas.CameraIdcard;
             Countdown_timer();
             PopLabel.Content = "正在查询报告中";
@@ -108,8 +108,7 @@ namespace EXC
             }
             else
             {
-                Global.WHDatas.HomeError = (string)response.GetValue("msg");
-                Content = new HomePage();
+                Content = new HomePage((string)response.GetValue("msg"));
                 Pages();
             }
         }
@@ -139,8 +138,7 @@ namespace EXC
             else
             {
                 
-                Global.WHDatas.HomeError = "PDF下载失败";
-                Content = new HomePage();
+                Content = new HomePage("PDF下载失败");
             }
             Pages();
         }

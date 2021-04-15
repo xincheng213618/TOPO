@@ -118,16 +118,14 @@ namespace EXC
                 }
                 if (cGrid.Children.Count<1)
                 {
-                    Global.WHDatas.HomeError = "暂无可显示的报告";
-                    Content = new HomePage();
+                    Content = new HomePage("暂无可显示的报告");
                     Pages();
                 }
              
             }
             else
             {
-                    Global.WHDatas.HomeError = (string)response.GetValue("msg");
-                Content = new HomePage();
+                Content = new HomePage((string)response.GetValue("msg"));
                 Pages();
             }
         }
@@ -136,7 +134,7 @@ namespace EXC
         {
             Button button = sender as Button;
             string TemplateID = VersionItem[int.Parse(button.Tag.ToString())].TemplateID; //这里正常应该做报错检测，但是由于数据时自动生成，因此不会出错
-            Global.WHDatas.TemplateID= TemplateID;
+            Global.WHDatas.TemplateID = TemplateID;
             switch (Global.PageType)
             {
                 case "ReportWeiHai":

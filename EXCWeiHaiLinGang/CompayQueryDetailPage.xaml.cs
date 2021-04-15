@@ -35,7 +35,7 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.compayQueryListItem = Global.cl;
+            this.compayQueryListItem = Global.related.cl;
             this.CompanyName = compayQueryListItem.CompanyName;
             this.CompanyID = compayQueryListItem.CompanyID;
             DataContext = Time;
@@ -205,8 +205,7 @@ namespace EXC
                 else
                 {
                     string Msg = (string)@object.GetValue("msg");
-                    Global.HomeErrorText = Msg;
-                    Content = new HomePage();
+                    Content = new HomePage(Msg);
                     Pages();
                 }
 

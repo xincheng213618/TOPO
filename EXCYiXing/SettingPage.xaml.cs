@@ -237,17 +237,17 @@ namespace EXCYiXing
                 case "ReportNingYang":
                 case "ReportGRNingYang":
                 case "ReportNingYangAll":
-                    Global.iDCard = new IDCardData { Name = "", IDCardNo = "37092119790520542x" };
+                    Global.related. iDCard = new IDCardData { Name = "", IDCardNo = "37092119790520542x" };
                     Content = new Report( );
                     break;
                 case "ReportNanJing":
                 case "ReportGRNanJing":
-                    Global.iDCard = new IDCardData { Name = "陈信成", IDCardNo = "320323199712213618" };
+                    Global.related.iDCard = new IDCardData { Name = "陈信成", IDCardNo = "320323199712213618" };
                     Content = new Report( );
                     break;
                 case "ReportXinTai":
                 case "ReportGRXinTai":
-                    Global.iDCard  = new IDCardData { Name = "李玉", IDCardNo = "370982198006245273" };
+                    Global.related.iDCard  = new IDCardData { Name = "李玉", IDCardNo = "370982198006245273" };
                     Content = new Report( );
                     break;
                 default:
