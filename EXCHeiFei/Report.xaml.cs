@@ -31,13 +31,13 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.idcardData = Global.LoadDatas.CameraIdcard;
+            this.idcardData = Global.Related.IDCardData;
             //缓存数据
             Global.UserDate.Name = idcardData.Name;
             Global.UserDate.IDCardNo = idcardData.IDCardNo;
 
             WaitShow.Visibility = Visibility.Visible;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 default:
                     InfoLabel.Content = "正在下载报告";
@@ -50,7 +50,7 @@ namespace EXC
         private void RequestUrl()
         {
             string response;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
                     Global.UserDate.Type = "1";
@@ -165,7 +165,7 @@ namespace EXC
             WaitShow.Visibility = Visibility.Visible;
             if (ReportListView.SelectedIndex > -1)
             {
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "ReportHeFei":
                     case "ReportHeFei1":
@@ -215,7 +215,7 @@ namespace EXC
                         Log.Write(url);
                         if (File.Exists(FilePath))
                         {
-                            Global.PageType = null;
+                            Global.Related.PageType = null;
                             Content = new Pdfshow(FilePath);
                             Pages();
                         }
@@ -320,7 +320,7 @@ namespace EXC
                             hintLabel.Content = "正在下载报告文件";
                             if (Sucess)
                             {
-                                Global.PageType = null;
+                                Global.Related.PageType = null;
                                 Content = new Pdfshow(FilePath);
                                 Pages();
                             }

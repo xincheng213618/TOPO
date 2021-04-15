@@ -88,24 +88,7 @@ namespace EXCYiXing
         }
 
 
-       private void Update(string url = null)
-        {
-            if (url == null)
-            {
-                url = "http://xincheng.ddns.net:9090/s/2019.10.22.rar";
 
-            }
-            string[] str = url.Split('/');
-            string filename = str.Last();
-            WebClient myWebClient = new WebClient();
-            myWebClient.DownloadFile(url, filename);
-        }
-
-
-        private void Submit_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("提交成功");
-        }
 
 
         private int Index = 0;
@@ -203,7 +186,7 @@ namespace EXCYiXing
                     break;
             }
         }
-        private IDCardData IDCardData;
+
         //Page 跳转
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {
@@ -231,29 +214,12 @@ namespace EXCYiXing
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
-            switch ((string)button.Tag)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
-                case "ReportNingYang":
-                case "ReportGRNingYang":
-                case "ReportNingYangAll":
-                    Global.related. iDCard = new IDCardData { Name = "", IDCardNo = "37092119790520542x" };
-                    Content = new Report( );
-                    break;
-                case "ReportNanJing":
-                case "ReportGRNanJing":
-                    Global.related.iDCard = new IDCardData { Name = "陈信成", IDCardNo = "320323199712213618" };
-                    Content = new Report( );
-                    break;
-                case "ReportXinTai":
-                case "ReportGRXinTai":
-                    Global.related.iDCard  = new IDCardData { Name = "李玉", IDCardNo = "370982198006245273" };
-                    Content = new Report( );
-                    break;
                 default:
                     break;
             }
-            Pages();
         }
     }
 }

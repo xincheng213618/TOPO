@@ -102,10 +102,10 @@ namespace PEC
 
         private void SwitchPage()
         {
-            switch (PEC.Global.PageType)
+            switch (PEC.Global.Related.PageType)
             {
                 default:
-                    Content = new CameraPage(idcardData);
+                    Content = new CameraPage();
                     break;
             }
             Pages();

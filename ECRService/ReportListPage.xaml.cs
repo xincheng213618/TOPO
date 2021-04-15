@@ -47,7 +47,7 @@ namespace ECRService
         public bool isPageTimer = false;
         private int downloadCount;
         private int printCount;
-        private Timer timer;
+        
 
         IDCardData iDCardData = new IDCardData();
 

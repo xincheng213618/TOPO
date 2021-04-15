@@ -31,15 +31,7 @@ namespace EXC
         private bool PrintRun =false;
         private bool AllowPrint = true;
 
-        public Pdfshow(string filePath, int PrintAllNum =10000)
-        {
-            this.PrintAllNum = PrintAllNum;
-            InitializeComponent();
-
-            list = new List<Border>() { Button8 };
-            for (int i = 0; i < list.Count; i++)
-                list[i].Visibility = Visibility.Hidden;
-        }
+       
         int PrintAllNum;
 
 
@@ -51,7 +43,7 @@ namespace EXC
             InitializeComponent();
 
             list = new List<Border>() { Button0, Button8 };
-            if (Global.PageType != null)
+            if (Global.Related.PageType != null)
             {
                 list = new List<Border>() { Button0 };
             }
@@ -73,7 +65,7 @@ namespace EXC
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {  
                 default:
                     Content = new HomePage();
@@ -234,7 +226,7 @@ namespace EXC
         private void PrintOver(object sender, EventArgs e)
         {
             PDFShow.Visibility = Visibility.Hidden;
-            Global.RelatedClear();
+             
             Content = new PrintTips();
             Pages();
         }

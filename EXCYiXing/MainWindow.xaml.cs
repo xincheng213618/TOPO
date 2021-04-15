@@ -73,30 +73,10 @@ namespace EXCYiXing
             Environment.Exit(0);
         }
         private int ExitNum = 0;
-        private void CloseWindows(object sender, RoutedEventArgs e)
-        {
-            if (Global.configData.SettingOptimiz == "0")
-                if (Global.PageType == null)
-                {
-                    ExitNum += 1;
-                    if (ExitNum == 4)
-                        MessageBox.Show("再点击一次即将退出程序");
-                    if (ExitNum > 5)
-                    {
-                        DoubleAnimation daV = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromSeconds(1)));
-                        Storyboard sb = new Storyboard();
-                        sb.Children.Add(daV);
-                        Storyboard.SetTargetProperty(daV, new PropertyPath(OpacityProperty));
-                        sb.Completed += (s, ee) => base.Close();
-                        sb.Begin(this, true);
-                        this.Close();
-                    }
-                }
-        }
         private void Setting_Click(object sender, MouseButtonEventArgs e)
         {
             if (Global.configData.SettingOptimiz == "0")
-                if (Global.PageType == null)
+                if (Global.Related.PageType == "")
                     Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new EXCPassword())));
         }
         private void KeyBoardOpen(object sender, RoutedEventArgs e)

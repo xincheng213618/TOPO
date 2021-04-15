@@ -36,9 +36,9 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            iDCardData = Global.WHDatas.CameraIdcard;
+            iDCardData = Global.Related.IDCardData;
             Countdown_timer();
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     SearchTitleLabel.Content = "请输入本市企业名称或者统一社会信用代码";
@@ -84,7 +84,7 @@ namespace EXC
 
         private void SearchRequests()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     JObject jObject = WebService.GetLegalPersonPage(SearchContent, pageNo, 10);
@@ -243,12 +243,12 @@ namespace EXC
 
             if (listView.SelectedIndex > -1)
             {
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "ReportWeiHai":
                         string CompanyID = CompayQueryListItem.ElementAt(listView.SelectedIndex).CompanyID.ToString();
-                        Global.WHDatas.CompanyID = CompanyID;
-                        Global.WHDatas.CameraIdcard   = iDCardData;
+                        Global.Related.CompanyID = CompanyID;
+                        Global.Related.IDCardData   = iDCardData;
 
                         Content = new VersionPage();
                         Pages();

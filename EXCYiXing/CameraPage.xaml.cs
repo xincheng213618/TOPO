@@ -18,8 +18,7 @@ namespace EXCYiXing
         private static bool ShootSucess = false;
         private static double b, c;
 
-        private IDCardData idcardData;
-        public CameraPage(   )
+        public CameraPage()
         {
           
             InitializeComponent();
@@ -27,7 +26,6 @@ namespace EXCYiXing
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.idcardData = Global.related.iDCard;
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
@@ -51,10 +49,10 @@ namespace EXCYiXing
         {
             string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
             string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
-            if (idcardData.PhotoFileName == null)
+            if (Global.Related.IDCardData.PhotoFileName == null)
                 return;
-            b = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths);
-            c = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths_black);
+            b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
+            c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
 
             ShootSucess = false;
 
@@ -71,9 +69,7 @@ namespace EXCYiXing
                 tryCount += 1;
             }
             if (tryCount > Global.configData.CameraTryCount)
-            {
-                Global.related.iDCard = new IDCardData();
-             
+            {          
                 Content = new HomePage("人脸对比失败，请重试");
                 Pages();
             }
@@ -88,7 +84,7 @@ namespace EXCYiXing
 
         private void SwitchPage()
         { 
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportNanJing":
                 case "ReportGRNanJing":
@@ -104,9 +100,7 @@ namespace EXCYiXing
                 case "ReportGRHeFei":
                 case "YiXingPerson":
                 case "YiXingBanch":
-                    IDCardInfo.Name = idcardData.Name;
-                    Global.related.iDCard = idcardData;
-                    Content = new Report( );
+                    Content = new Report();
                     break;
 
                 default:    
@@ -161,7 +155,7 @@ namespace EXCYiXing
             File.Delete(paths);
             File.Delete(paths_black);
 
-            IDcard.DeleteIDcardImages(idcardData);
+            IDcard.DeleteIDcardImages(Global.Related.IDCardData);
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));

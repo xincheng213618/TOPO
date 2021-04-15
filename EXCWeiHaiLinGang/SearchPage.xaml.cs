@@ -34,7 +34,7 @@ namespace EXC
         private void Page_Initialized(object sender, EventArgs e)
         {
             Countdown_timer();
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     SearchTitleLabel.Content = "请输入本市企业名称或者统一社会信用代码";
@@ -79,7 +79,7 @@ namespace EXC
 
         private void SearchRequests()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     string  response = Http.HeFei.GetQyList(SearchContent, pageNo.ToString());
@@ -241,11 +241,11 @@ namespace EXC
 
             if (listView.SelectedIndex > -1)
             {
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
              
                     case "ReportWeiHai":
-                        Global.related.cl = CompayQueryListItem.ElementAt(listView.SelectedIndex);
+                        Global.Related.cl = CompayQueryListItem.ElementAt(listView.SelectedIndex);
                         Content = new CompayQueryDetailPage();
                         Pages();
                         break;

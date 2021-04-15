@@ -31,7 +31,7 @@ namespace EXC
             Countdown_timer();
             WaitShow.Visibility = Visibility.Visible;
 
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "HeiFeiRed":
                     InfoTitleLabel.Content = XdrMc + "红名单详情";
@@ -62,7 +62,7 @@ namespace EXC
         private void Requests()
         {
             string response;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "HeiFeiRed":
                     response = Http.HeFei.GetRedListByNameAndCode(XdrMc, ID);
@@ -105,7 +105,7 @@ namespace EXC
                     {
                         foreach (JObject result in jArray)
                         {
-                            switch (Global.PageType)
+                            switch (Global.Related.PageType)
                             {
                                 case "HeiFeiRed":
                                     HeiFeiDetail item = new HeiFeiDetail();

@@ -1,26 +1,11 @@
 ﻿using BaseDLL;
 using BaseUtil;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 
@@ -43,8 +28,6 @@ namespace EXCYiXing
             DataContext = Time;
             Countdown_timer();
         }
-
-
         private DispatcherTimer pageTimer = null;
         private bool bIsLoop = true;
         private Thread DecodeThread = null;
@@ -68,8 +51,6 @@ namespace EXCYiXing
             }
             while (bIsLoop);
         }
-
-
         private void ShowMsg()
         {
             ShowText.Text = Msg;
@@ -77,7 +58,6 @@ namespace EXCYiXing
             TitleLabel.Content = "扫码成功";
 
         }
-
 
         //倒计时模块
         private void Countdown_timer()
@@ -99,52 +79,8 @@ namespace EXCYiXing
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-        string response = "";
 
 
-
-
-
-
-        private void GetReportYiXing(string response)
-        {
-            WaitShow.Visibility = Visibility.Hidden;
-
-            if (response != null)
-            {
-                try
-                {
-                    JObject jsons = (JObject)JsonConvert.DeserializeObject(response);
-                    string code = (string)jsons.GetValue("code");
-
-                    if (code == "0")
-                    {
-                        string pdfbs4 = (string)jsons.GetValue("report");
-                        string filePath = "Temp//" + (string)jsons.GetValue("filename");
-                        Covert.Base64ToFile(pdfbs4, filePath);
-
-                        Content = new Pdfshow(filePath);
-                        Pages();
-                    }
-                    else
-                    {
-                        Content = new HomePage((string)jsons.GetValue("Message"));
-                        Pages();
-                    }
-                }
-                catch
-                {
-                    Content = new HomePage("该接口解析错误");
-                    Pages();
-                }
-            }
-            else
-            {
-                Content = new HomePage("该接口解析错误");
-                Pages();
-            }
-
-        }
 
         private string CQHD = "";
         private void cqzh()
@@ -224,10 +160,6 @@ namespace EXCYiXing
                     Pages();
                 }));
             }
-
-          
-          
-
         }
         private void PDFShow(string FileName)
         {
@@ -283,10 +215,7 @@ namespace EXCYiXing
                             };
                             worker22.Start();
                         }
-
-
                     }
-
                     break;
             }
         }

@@ -170,7 +170,7 @@ namespace ECRService
                     Dispatcher.BeginInvoke(new Action(() => GetNaturalPersonListCompleted(response)));
                 }
             }
-            catch (Exception ex)
+            catch (Exception  )
             {
 
             }

@@ -17,11 +17,11 @@ namespace EXC
         private static bool ShootSucess = false;
         private static double b, c;
 
-        private IDCardData idcardData;
+        
  
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.idcardData = Global.related. iDCard;
+         
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
@@ -44,10 +44,10 @@ namespace EXC
         {
             string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
             string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
-            if (idcardData.PhotoFileName == null)
+            if (Global.Related.IDCardData.PhotoFileName == null)
                 return;
-            b = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths);
-            c = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths_black);
+            b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
+            c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
 
             ShootSucess = false;
 
@@ -78,8 +78,8 @@ namespace EXC
 
         private void SwitchPage(bool b)
         {
-            Global.CameraPass = b;
-            switch (Global.PageType)
+            Global.Related. CameraPass = b;
+            switch (Global.Related.PageType)
             {
                 case "ReportGRWeiHai":
                 case "ReportGRWeiHaiHBF":
@@ -142,7 +142,7 @@ namespace EXC
             File.Delete(paths);
             File.Delete(paths_black);
 
-            //IDcard.DeleteIDcardImages(idcardData);// 因为后面有用到，这里去掉
+            //IDcard.DeleteIDcardImages(Global.Related.IDCardData);// 因为后面有用到，这里去掉
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));

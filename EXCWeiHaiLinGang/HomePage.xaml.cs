@@ -31,12 +31,12 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            Global.RelatedClear();
+           
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-            Global.PageType = null;
+            Global.Related.PageType = null;
 
             BackgroundItem.Kind = true;
             BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
@@ -74,8 +74,8 @@ namespace EXC
         {
             Button button = sender as Button;
 
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "ReportGRWeiHai":
                     //IDCardData iDCardData = new IDCardData()
@@ -113,7 +113,7 @@ namespace EXC
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
+            Global.Related.PageType = button.Tag.ToString();
 
             switch ((string)button.Tag)
             {

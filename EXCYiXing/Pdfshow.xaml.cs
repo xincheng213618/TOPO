@@ -44,7 +44,7 @@ namespace EXCYiXing
             this.AllowPrint = AllowPrint;
             InitializeComponent();
             list = new List<Border>() { Button0, Button8 };
-            if (Global.PageType != null)
+            if (Global.Related.PageType != null)
             {
                 list = new List<Border>() { Button0 };
             }
@@ -64,7 +64,7 @@ namespace EXCYiXing
         }
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {  
             
                 case "YiXingBanch":
@@ -86,7 +86,6 @@ namespace EXCYiXing
         {
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
-            //pdfControl.Dispose();  //问题1  比较年代久远的机器扛不住，容易出现白屏的情况
         }
         private void Prepdfpage_Click(object sender, RoutedEventArgs e)
         {

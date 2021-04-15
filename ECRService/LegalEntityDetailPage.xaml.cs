@@ -248,7 +248,7 @@ namespace ECRService
                 */
                 Dispatcher.BeginInvoke(new Action(() => GetLegalEntityDetailCompleted(response)));
             }
-            catch (Exception ex)
+            catch (Exception  )
             {
 
             }

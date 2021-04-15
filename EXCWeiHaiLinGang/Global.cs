@@ -17,30 +17,28 @@ namespace EXC
         /// <summary>
         /// 身份证信息
         /// </summary>
-        public   IDCardData iDCard ;
+        public   IDCardData IDCardData ;
 
         public   CompayQueryListItem cl  ;
 
         public Guid UUID;
+        public   string PageType = "";
+        public   bool CameraPass = false;
 
-        public Related() {
+
+        public void Initialized  () {
             UUID = Guid.NewGuid();
         }
     }
     public static class Global
     {
-        public static string PageType = null;
-        public static bool CameraPass = false;
         public static ConfigData Config = new ConfigData();
-        public static Related related = new Related();
+        public static Related Related = new Related();
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
 
 
-        public static void RelatedClear() {
-
-            related = new Related();
-        }
+ 
         public static void Initialized()
         {
             if (File.Exists("Config"))

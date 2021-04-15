@@ -21,20 +21,16 @@ namespace EXCYiXing
     /// </summary>
     public partial class Report : Page
     {
-        private IDCardData idcardData;
 
         public Report()
         {
-           
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.idcardData = Global.related. iDCard;
-
             WaitShow.Visibility = Visibility.Visible;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "YiXingBanch":
                 case "YiXingPerson":
@@ -53,16 +49,15 @@ namespace EXCYiXing
         {
             string response;
            
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
           
                 case "YiXingNew":
                 case "YiXingPerson":
-                    response = Http.YinXingNew.DJZL(idcardData.Name, idcardData.IDCardNo);
+                    response = Http.YinXingNew.DJZL(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
                 
                     Dispatcher.BeginInvoke(new Action(() => ReportPersonYinXing(response)));
-                  
-                   
+                             
                     break;
 
             }
@@ -181,11 +176,9 @@ namespace EXCYiXing
         {
             string FileName = "1.pdf";
             Log.Write("Report 536 line");
-            if (PDF.DrawYiXing1(FileName, idcardData, CQZH))
-            {
-                
+            if (PDF.DrawYiXing1(FileName, Global.Related.IDCardData, CQZH))
+            {   
                 Dispatcher.BeginInvoke(new Action(() => PDFShow(FileName)));
-
             }
             else
             {

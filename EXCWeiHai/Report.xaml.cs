@@ -42,9 +42,9 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.CompanyID = Global.WHDatas.CompanyID;
-            this.TemplateID = Global.WHDatas.TemplateID;
-            this.idcardData = Global.WHDatas.CameraIdcard;
+            this.CompanyID = Global.Related.CompanyID;
+            this.TemplateID = Global.Related.TemplateID;
+            this.idcardData = Global.Related.IDCardData;
             Countdown_timer();
             PopLabel.Content = "正在查询报告中";
             PopBorder.Visibility = Visibility.Visible;
@@ -75,7 +75,7 @@ namespace EXC
         private void RequestUrl()
         {
             
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     JObject jObject = WebService.ExportLegalPersonalPdf(idcardData, CompanyID, TemplateID);
@@ -126,11 +126,11 @@ namespace EXC
             {
                 PDF.PDFWeiHaiMark(FilePath, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
 
-                if (Global.PageType == "ReportWeiHai")
+                if (Global.Related.PageType == "ReportWeiHai")
                 {
                     Content = new Pdfshow(FilePath, AllowPrint: false);
                 }
-                else if (Global.PageType == "ReportGRWeiHai")
+                else if (Global.Related.PageType == "ReportGRWeiHai")
                 {
                     Content = new Pdfshow(FilePath);
                 }

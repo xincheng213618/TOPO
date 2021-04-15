@@ -29,7 +29,7 @@ namespace EXC
         {
 
    
-            iDCardData = Global.WHDatas.CameraIdcard;
+            iDCardData = Global.Related.IDCardData;
             Countdown_timer();
             PopBorder.Visibility = Visibility.Visible;
             InfoLabel.Content = "获取模板中";
@@ -55,7 +55,7 @@ namespace EXC
         {
             PopBorder.Visibility = Visibility.Hidden;
             Media.Player(1);
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     InfoLabel.Content = "请选择企业信用报告模板";
@@ -67,8 +67,8 @@ namespace EXC
                 default:
                     break;
             }
-            Global.CameraPass = true;
-            if (!Global.CameraPass)
+            Global.Related.CameraPass = true;
+            if (!Global.Related.CameraPass)
             {
                 InfoLabel.Content = "人脸对比失败，仅提供简易模板";
             }
@@ -91,8 +91,8 @@ namespace EXC
                         item.TemplateID = (string)result.GetValue("templateid");
                         item.TemplateName = (string)result.GetValue("templatename");
                         //失败时，仅提供设定的基础模板，成功时排除不需要的模板，不设定时自动时全部，分成个人和企业两个部分
-                        if ((Global.PageType== "ReportWeiHai"&&((Global.CameraPass && !ENShow.Contains(item.TemplateName)) || (!Global.CameraPass && ELShow.Contains(item.TemplateName))))
-                            ||(Global.PageType == "ReportGRWeiHai"&&((Global.CameraPass && !GRNShow.Contains(item.TemplateName)) || (!Global.CameraPass && GRLShow.Contains(item.TemplateName)))))
+                        if ((Global.Related.PageType == "ReportWeiHai"&&((Global.Related.CameraPass && !ENShow.Contains(item.TemplateName)) || (!Global.Related.CameraPass && ELShow.Contains(item.TemplateName))))
+                            ||(Global.Related.PageType == "ReportGRWeiHai"&&((Global.Related.CameraPass && !GRNShow.Contains(item.TemplateName)) || (!Global.Related.CameraPass && GRLShow.Contains(item.TemplateName)))))
                         {
                             item.ListNo = VersionNo++;
                             VersionItem.Add(item);
@@ -134,8 +134,8 @@ namespace EXC
         {
             Button button = sender as Button;
             string TemplateID = VersionItem[int.Parse(button.Tag.ToString())].TemplateID; //这里正常应该做报错检测，但是由于数据时自动生成，因此不会出错
-            Global.WHDatas.TemplateID = TemplateID;
-            switch (Global.PageType)
+            Global.Related.TemplateID = TemplateID;
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     Content = new Report( );

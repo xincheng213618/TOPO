@@ -26,7 +26,7 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.idcardData = Global.LoadDatas.CameraIdcard;
+            this.idcardData = Global.Related.IDCardData;
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
@@ -70,7 +70,7 @@ namespace EXC
             }
             if (tryCount > 2)
             {
-                Global.LoadDatas.CameraIdcard = new IDCardData();
+                Global.Related.IDCardData = new IDCardData();
           
                 Content = new HomePage("人脸对比失败，请重试");
                 Pages();
@@ -80,7 +80,7 @@ namespace EXC
 
         private void SwitchPage()
         { 
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
                 case "ReportHeFei1":

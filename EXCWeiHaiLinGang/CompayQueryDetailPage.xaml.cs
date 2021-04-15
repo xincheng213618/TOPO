@@ -35,7 +35,7 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.compayQueryListItem = Global.related.cl;
+            this.compayQueryListItem = Global.Related.cl;
             this.CompanyName = compayQueryListItem.CompanyName;
             this.CompanyID = compayQueryListItem.CompanyID;
             DataContext = Time;

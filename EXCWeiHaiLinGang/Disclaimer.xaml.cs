@@ -55,7 +55,7 @@ namespace EXC
         //同意之后   进行转跳
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportGRWeiHai":
                     IDCardData iDCardData = new IDCardData()

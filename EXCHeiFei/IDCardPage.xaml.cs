@@ -111,7 +111,7 @@ namespace EXC
 
         private void SwitchPage()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "NoHome":
                     //CSQLite.Insert.WriteIDCardData(idcardData);
@@ -119,7 +119,7 @@ namespace EXC
                     //Content = new NoHomePages(idcardData);
                     //break;
                 default:
-                    Global.LoadDatas.CameraIdcard = idcardData;
+                    Global.Related.IDCardData = idcardData;
                     Content = new CameraPage( );
                     break;
             }

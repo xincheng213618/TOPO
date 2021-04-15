@@ -25,7 +25,7 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.idcardData = Global.WHDatas.CameraIdcard;
+            this.idcardData = Global.Related.IDCardData;
 
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
@@ -78,8 +78,8 @@ namespace EXC
 
         private void SwitchPage(bool b)
         {
-            Global.CameraPass = b;
-            switch (Global.PageType)
+            Global.Related. CameraPass = b;
+            switch (Global.Related.PageType)
             {
                 case "ReportGRWeiHai":
                     Content = new VersionPage();

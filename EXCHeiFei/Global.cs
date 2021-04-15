@@ -11,32 +11,25 @@ namespace EXC
         /// <summary>
         /// 从刷身份证开始读取到的身份证信息，流程完成自动清理
         /// </summary>
-        public   IDCardData CameraIdcard ;
-
+        public   IDCardData IDCardData ;
         public Guid UUID;
+        public   string PageType = "";
 
-        public Related()
+        public void Initialized()
         {
             UUID = Guid.NewGuid();
         }
+     
     }
     public static class Global
     {
         public static ConfigData Config = new ConfigData();
-        public static UserDate UserDate = new UserDate();
-        public static Related LoadDatas = new Related();
+        public static Related Related = new Related();
+        public static UserDate UserDate= new UserDate();
 
-        public static string PageType = null;
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
-        // summar
-
-
-        // summary
-        public static void RelatedClear()
-        {
-            LoadDatas = new Related();
-        }
+   
         public static void Initialized()
         {
             if (File.Exists("Config"))

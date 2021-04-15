@@ -52,7 +52,7 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            this.idcardData = Global.related.iDCard;
+            this.idcardData = Global.Related.IDCardData;
             Countdown_timer();
             PopLabel.Content = "正在查询报告中";
             PopBorder.Visibility = Visibility.Visible;
@@ -85,7 +85,7 @@ namespace EXC
         private void RequestUrl()
         {
             string response;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportGRWeiHai":
                     response = Http.HeFei.GetGRReport(idcardData.Name, idcardData.IDCardNo, Covert.FileToBase64(idcardData.PhotoFileName));
