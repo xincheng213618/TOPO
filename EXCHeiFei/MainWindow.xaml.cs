@@ -46,7 +46,6 @@ namespace EXC
 
         private void Setting_Click(object sender, MouseButtonEventArgs e)
         {
-
         }
 
         private void KeyBoardOpen(object sender, RoutedEventArgs e)

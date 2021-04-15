@@ -36,7 +36,7 @@ namespace EXC
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-            Global.Related.PageType = "";
+            Global.Related.Initialized();
 
             BackgroundItem.Kind = true;
             BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
