@@ -15,8 +15,7 @@ namespace XinHua
     {
         private static bool ShootSucess = false;
         private static double b, c;
-        
-
+       
         public CameraPage()
         {           
             InitializeComponent();

@@ -25,14 +25,11 @@ namespace RECSuzhou
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            Global.PageType = null;
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-
-            Global.PageType = null;
-            Global.IDCardInfo = new SaveInfo();
+            Global.Related.Initialized();
         }
 
 
@@ -59,9 +56,8 @@ namespace RECSuzhou
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Log.Write(Global.PageType);
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "NoHome":
                     Content = new IDcardInputPage();
@@ -93,50 +89,6 @@ namespace RECSuzhou
             }
         }
 
-        private void TestButton_click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            Log.Write(Global.PageType);
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
-            {
-                case "NoHome":
-                    IDCardData = new IDCardData { Name = "陈信成", IDCardNo = "320323199712213618" };
-                    Content = new NoHomePages(IDCardData);
-                    Pages();
-                    break;
-                case "OwnerShipPages":
-                    IDCardData = new IDCardData { Name = "王留英", IDCardNo = "320502196312122544" };
-                    Content = new OwnerShipPages(IDCardData);
-                    Pages();
-                    break;
-                case "HomeCountPages":
-                    IDCardData = new IDCardData { Name = "奚玉远", IDCardNo = "152322198703291816" };
-                    Content = new HomeCountPages(IDCardData);
-                    Pages();
-                    break;
-                case "NoHomeChild":
-                    Content = new IDcardInputPage();
-                    Pages();
-                    break;
-                case "SZHQArchivePages":
-                    IDCardData = new IDCardData { Name = "杨洋", IDCardNo = "140108198708253219" };
-                    Content = new SZArchivePage(IDCardData);
-                    Pages();
-                    break;
-                case "SZWZArchivePages":
-                    IDCardData = new IDCardData { Name = "杨洋", IDCardNo = "140108198708253219" };
-                    Content = new SZArchivePage(IDCardData);
-                    Pages();
-                    break;
-                case "SZMoneyPages":
-                    Content = new SZMoneyPage();
-                    Pages();
-                    break;
-                default:
-                    break;
-            }
-        }
         private void Pages()
         {
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));

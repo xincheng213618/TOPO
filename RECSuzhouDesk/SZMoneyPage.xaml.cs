@@ -1,18 +1,7 @@
 ﻿using BaseUtil;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace RECSuzhou
@@ -34,17 +23,18 @@ namespace RECSuzhou
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            switch ((string)button.Tag)
+            Global.Related.PageType = button.Tag.ToString();
+
+            switch (Global.Related.PageType)
             {
-               
                 case "SZHQMoney":
                 case "SZHQProgress":
-                    Global.PageType = button.Tag.ToString();
                     Content = new SearchPage();
+                    Pages();
                     break;
                
             }
-            Pages();
+
 
         }
         //倒计时模块

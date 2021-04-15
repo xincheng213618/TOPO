@@ -37,9 +37,6 @@ namespace EXC
         }
 
 
-
-
-
         private static void WriteConfigFile(string sFile)
         {
             XmlSerializer ser = new XmlSerializer(typeof(ConfigData), typeof(ConfigData).GetNestedTypes());
@@ -47,6 +44,7 @@ namespace EXC
             ser.Serialize(fs, Config);
             fs.Close();
         }
+
 
         //更新数据
         private static void UpdateConfigFile(string sFile)
@@ -91,6 +89,7 @@ namespace EXC
         public string UUID;
         public string PageType;
         public IDCardData IDCardData;
+
 
         public string CompanyID;
         public string CompanyName;

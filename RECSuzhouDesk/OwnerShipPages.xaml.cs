@@ -1,24 +1,13 @@
-﻿using BaseDLL;
-using BaseUtil;
+﻿using BaseUtil;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing.Printing;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace RECSuzhou
@@ -30,23 +19,13 @@ namespace RECSuzhou
     {
         public OwnerShipPages()
         {
-            idcardData.IDCardNo = Global.IDCardInfo.IDCardNo;
-            idcardData.Name = Global.IDCardInfo.Name;
             InitializeComponent();
         }
-        private IDCardData idcardData;
         string FileName;
-        public OwnerShipPages(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            Global.IDCardInfo.Name = idcardData.Name;
-            Global.IDCardInfo.IDCardNo = idcardData.IDCardNo;
-            InitializeComponent();
-        }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            TotalLabel.Content = idcardData.Name + TotalLabel.Content;
+            TotalLabel.Content = Global.Related.IDCardData.Name + TotalLabel.Content;
             DataContext = Time;
             Countdown_timer();
             WaitShow.Visibility = Visibility.Visible;
@@ -59,7 +38,7 @@ namespace RECSuzhou
         }
         private void OwnerShip()
         {
-            string response = Http.OwnerShip(idcardData.Name.Trim(), idcardData.IDCardNo.Trim());
+            string response = Http.OwnerShip(Global.Related.IDCardData.Name.Trim(), Global.Related.IDCardData.IDCardNo.Trim());
             Dispatcher.BeginInvoke(new Action(() => Parse(response)));
         }
 
@@ -158,9 +137,8 @@ namespace RECSuzhou
             {
                 if (HouseItem.ElementAt(OwnerShipListView.SelectedIndex).Visible == "Visible")
                 {
-                    Http.AddAction(idcardData.Name, idcardData.IDCardNo, "dayinquanshu");
+                    Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinquanshu");
                     FileName = HouseItem.ElementAt(OwnerShipListView.SelectedIndex).FilePath.ToString();
-
                     Content = new Pdfshow(FileName);
                     Pages();
 

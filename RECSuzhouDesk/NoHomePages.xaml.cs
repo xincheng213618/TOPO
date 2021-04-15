@@ -19,12 +19,9 @@ namespace RECSuzhou
     public partial class NoHomePages : Page
     {
         string FileName="";
-
-        private IDCardData idcardData;
         //无房页面 
-        public NoHomePages(IDCardData idcardData)
+        public NoHomePages()
         {
-            this.idcardData = idcardData;
             InitializeComponent();
         }
 
@@ -34,7 +31,7 @@ namespace RECSuzhou
             formsHost.Child = AcrobatHelper.pdfControl;
             AcrobatHelper.pdfControl.EndInit();
 
-            TotalLabel.Content = idcardData.Name.Replace(" ", "") + TotalLabel.Content;
+            TotalLabel.Content = Global.Related.IDCardData.Name.Replace(" ", "") + TotalLabel.Content;
 
             CoutLabel.DataContext = Time;
             Countdown_timer();
@@ -49,7 +46,7 @@ namespace RECSuzhou
         }
         private void NoHomeRequests()
         {
-            string response = Http.NoHome(idcardData.Name, idcardData.IDCardNo);
+            string response = Http.NoHome(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
             Dispatcher.BeginInvoke(new Action(() => Parse(response)));
         }
 

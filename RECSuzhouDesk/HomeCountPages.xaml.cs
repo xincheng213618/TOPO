@@ -3,22 +3,13 @@ using BaseUtil;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace RECSuzhou
@@ -34,12 +25,6 @@ namespace RECSuzhou
         {
             InitializeComponent();
         }
-        private IDCardData idcardData;
-        public HomeCountPages(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
@@ -47,7 +32,7 @@ namespace RECSuzhou
             formsHost.Child = AcrobatHelper.pdfControl;
             AcrobatHelper.pdfControl.EndInit();
 
-            TotalLabel.Content = idcardData.Name.Replace(" ", "") + TotalLabel.Content;
+            TotalLabel.Content = Global.Related.IDCardData.Name.Replace(" ", "") + TotalLabel.Content;
             DataContext = Time;
             Countdown_timer();
             Thread worker2 = new Thread(() => HomeCount());
@@ -64,7 +49,7 @@ namespace RECSuzhou
 
         private void HomeCount()
         {
-            string response = Http.HomeCount(idcardData.Name, idcardData.IDCardNo);
+            string response = Http.HomeCount(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
 
             Dispatcher.BeginInvoke(new Action(() => Parse(response)));
         }

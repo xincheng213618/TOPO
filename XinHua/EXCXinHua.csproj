@@ -98,6 +98,9 @@
     <Compile Include="Pdfshow.xaml.cs">
       <DependentUpon>Pdfshow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PersonalCertificate.xaml.cs">
+      <DependentUpon>PersonalCertificate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrintTips.xaml.cs">
       <DependentUpon>PrintTips.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
     <Page Include="Pdfshow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalCertificate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrintTips.xaml">
       <SubType>Designer</SubType>
