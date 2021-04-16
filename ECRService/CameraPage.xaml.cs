@@ -121,7 +121,6 @@ namespace ECRService
         {
             File.Delete(paths);
             File.Delete(paths_black);
-            IDcard.DeleteIDcardImages(iDCardData);
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));

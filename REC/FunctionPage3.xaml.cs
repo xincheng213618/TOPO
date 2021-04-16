@@ -35,11 +35,12 @@ namespace REC
         PrintDate printDate = new PrintDate();
         private void Page_Initialized(object sender, EventArgs e)
         {
+            Log.Write(FileName);
+
             //添加委托事件
             ESerialPort.DevMsg += RealEstate_Dev_devMsg;
             WaitShow.DataContext = printDate;
-            printDate.StatusCode = "初始化打印机";
-            WaitShow.Visibility = Visibility.Visible;
+            printDate.StatusCode = "正在初始化打印机";
 
             foreach (FilterInfo device in VideoHelper.VideoDevices)
                 if (device.Name == "USB2.0 Camera")
@@ -62,7 +63,6 @@ namespace REC
             if (ESerialPort.CheckDevice2() == 0 && ESerialPort.CheckDevice1() == 0)
             {
                 printDate.StatusCode = "初始化完成，正在上证";
-                Log.Write(FileName);
                 AcrobatHelper.pdfControl.LoadFile(FileName);
                 AcrobatHelper.pdfControl.printAll();
             }
@@ -227,7 +227,7 @@ namespace REC
         }
         private void RequestOCR()
         {
-            string response = Http.OCR_Upload(recdata.SLBH, recdata.QLRZJH, recdata.fzrq, recdata.ZSID, recdata.OCRresult);
+            string response = Http.OCR_Upload(recdata.SLBH, recdata.QLRZJH, DateTime.Now.ToString("yyyyMMdd"), recdata.ZSID, recdata.OCRresult);
             Dispatcher.BeginInvoke(new Action(() => GetPhrase(response)));
         }
 

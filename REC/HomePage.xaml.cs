@@ -26,15 +26,10 @@ namespace REC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            //要增加一个全局参数，作为整体流程的参数，参数变动标动流程变动
             Global.Related.Initialized();
-            Global.PageType = null;
-            //读取内容
-            string text = System.IO.File.ReadAllText("Base\\打证须知.txt");
-            DisclaimerContent.Text = text;
+            DisclaimerContent.Text = Global.DisclaimerContent;
             VbarAll.Backlight(false);
-
-            timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => TimeRun())), null, 0, 1000);
+            timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => TimeRun())), null, 0, 10000);// 修改为10s检测一次
 
         }
         private void TimeRun()

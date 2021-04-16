@@ -1,0 +1,34 @@
+﻿<Page x:Class="REC.FunctionPage4"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:REC"
+      xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="FunctionPage4">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="799*"/>
+            <RowDefinition Height="81*"/>
+        </Grid.RowDefinitions>
+        <Grid Visibility="Visible">
+            <Border Style="{StaticResource ButtonBorder1}"  Margin="60">
+                <Button Style="{StaticResource hiddenButton}" Click="Button_Click" Tag="HomePage"  >
+                    <Label Content="首 页" Foreground="White" FontSize="35" FontFamily="黑体" FontWeight="Bold" />
+                </Button>
+            </Border>
+            <Label Content="{Binding Path=Show}" Foreground="#f4f7c7" FontSize="30" FontFamily="黑体" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,5" />
+        </Grid>
+
+        <Grid  Grid.Row="1"  Background="#c4cce7">
+            <Border  Margin="50"  CornerRadius="20" Background="White"/>
+        </Grid>
+        <Image Grid.Row="1" Height="300" Width="300" Margin="209,113,1411,386">
+        </Image>
+        <TextBox  HorizontalAlignment="Left" Height="163" Margin="761,196,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="629"/>
+
+    </Grid>
+</Page>

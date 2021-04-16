@@ -117,7 +117,14 @@ namespace REC
                                 Content = new HomePage("查询到已经被过滤到的信息，请联系C13号窗口工作人员");
                                 Pages();
                             }
-                            Media.Play("Base\\Media\\请选择您要打印的证书.mp3");
+                            if (RECListViewItem.Count == 1)
+                            {
+                                ListView.SelectedIndex = 0;
+                            }
+                            else
+                            {
+                                Media.Play("Base\\Media\\请选择您要打印的证书.mp3");
+                            }
                         }
                         else
                         {
@@ -143,6 +150,8 @@ namespace REC
                 Content = new HomePage("查询接口异常，请联系C13号窗口工作人员");
                 Pages();
             }
+
+            
         }
 
         private void Countdown()
@@ -157,6 +166,8 @@ namespace REC
                 }
             });
         }
+
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
