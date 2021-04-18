@@ -148,10 +148,6 @@
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Ink, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Common Files\microsoft shared\ink\Microsoft.Ink.dll</HintPath>
-    </Reference>
     <Reference Include="MyLoadingLib">
       <HintPath>..\DLL\MyLoadingLib.dll</HintPath>
     </Reference>
@@ -244,9 +240,6 @@
     </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Http.cs" />
-    <Compile Include="InkWindow.xaml.cs">
-      <DependentUpon>InkWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PDF.cs" />
     <Compile Include="PrintTips.xaml.cs">
       <DependentUpon>PrintTips.xaml</DependentUpon>
@@ -288,10 +281,6 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="CameraPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

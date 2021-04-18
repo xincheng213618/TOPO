@@ -1,0 +1,104 @@
+﻿<Window x:Class="BaseInk.InkWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BaseInk"
+        mc:Ignorable="d"
+        Height="400" Width="800" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Initialized="Window_Initialized">
+    <Border Background="#DADADA" Margin="5,0,5,5" Focusable="False" >
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.8"/>
+        </Border.Effect>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="53" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="53" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="1" Click="Exit" Margin="4,0,0,4">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Background="White">
+                            <Label Content="X" Foreground="Black" FontSize="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="移动" Foreground="Black" Background="White" Margin="4,0,0,2"  MouseLeftButtonDown="Window_MouseDrag" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" />
+                <Button Grid.Row="1" Grid.Column="1" Focusable="False"  Click="Fun_Click" Margin="4,2,0,2" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Background="White" >
+                                <Label Content="中"  Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="2" Focusable="False" Click="Clear_Click" Margin="4,2,0,2" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Background="White" >
+                                <Label Content="清空"  Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+                <Button Grid.Row="3" Grid.Column="3" Focusable="False"   Click="Delete_Click" Margin="4,2,0,0" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Background="White" >
+                                <Label Content="删除"  Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <ListView  x:Name="ListVierew"  Background="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,-20,0,0"  SelectionChanged="ListVierew_SelectionChanged">
+                <ListView.ItemContainerStyle >
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Width" Value="70" />
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal" ></VirtualizingStackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate  >
+                                    <Grid Width="40">
+                                        <Label Content="{Binding Path=Content111}" HorizontalAlignment="Center"   FontSize="20"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+
+
+            <Border Grid.Row="1">
+                <InkCanvas x:Name="inkCanvas" Focusable="False"  StrokeCollected="InkCanvas_StrokeCollected" Background="#f5f6f7" Margin="0,0,0,0" />
+            </Border>
+        </Grid>
+
+    </Border>
+
+</Window>

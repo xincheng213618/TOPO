@@ -98,9 +98,6 @@
     <Compile Include="Pdfshow.xaml.cs">
       <DependentUpon>Pdfshow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PersonalCertificate.xaml.cs">
-      <DependentUpon>PersonalCertificate.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PrintTips.xaml.cs">
       <DependentUpon>PrintTips.xaml</DependentUpon>
     </Compile>
@@ -165,10 +162,6 @@
     <Page Include="Pdfshow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PersonalCertificate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrintTips.xaml">
       <SubType>Designer</SubType>
@@ -316,6 +309,10 @@
     <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>
       <Name>BaseDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseInk\BaseInk.csproj">
+      <Project>{2677c005-0e6a-4726-8763-ae7c137986e1}</Project>
+      <Name>BaseInk</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseKeyBoard\HeBianGu.Product.KeyBoard.csproj">
       <Project>{fe7393f0-6487-430c-9e70-133f2c6abbd6}</Project>

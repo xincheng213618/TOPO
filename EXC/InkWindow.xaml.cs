@@ -66,9 +66,6 @@ namespace EXC
             Button button = sender as Button;
             if (button.Content != null)
             {
-                //CompanySearchBox.Text = CompanySearchBox.Text.ToString() + button.Content.ToString();
-                //TextBox focus = FocusManager.GetFocusedElement(this) as TextBox;
-                //focus.Select(CompanySearchBox.Text.Length, 0);
                 Clear_ink();
             }
         }
@@ -142,6 +139,9 @@ namespace EXC
         {
             User32dll.KeyHelper.HotKey(new List<byte>() { User32dll.KeyHelper.KeyCode.WinL, User32dll.KeyHelper.KeyCode.SPACE });
         }
+
+
+
 
     }
 }
