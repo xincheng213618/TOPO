@@ -39,11 +39,32 @@ namespace REC
             switch (button.Tag)
             {
                 case "Login":
-                    Login();
+                    if (PassWord.Password == Global.Config.AdminPassword)
+                    {
+                        Content = new HomePage();
+                        Pages();
+                    }
+                    else
+                    {
+                        PopAlert("密码错误" + Environment.NewLine + "如果忘记密码，联系维修人员",1);
+                    }
+                    break;
 
+                case "OCR":
+                    if (PassWord.Password == Global.Config.AdminPassword)
+                    {
+                        Content = new FunctionPage4();
+                        Pages();
+                    }
+                    else
+                    {
+                        PopAlert("密码错误" + Environment.NewLine + "如果忘记密码，联系维修人员", 1);
+                    }
                     break;
                 default:
                     MessageBox.Show("未自定义功能的按钮，请重启软件");
+                    PopAlert("未自定义功能的按钮，请重启软件", 1);
+
                     break;
             }
         }
@@ -57,8 +78,24 @@ namespace REC
             }
             else
             {
-                MessageBox.Show("密码错误" + Environment.NewLine + "如果忘记密码，联系维修人员");
+                PopAlert("密码错误" + Environment.NewLine + "如果忘记密码，联系维修人员", 1);
             }
+
+        }
+
+        private void POP_Button(object sender, RoutedEventArgs e)
+        {
+            POP.Visibility = Visibility.Hidden;
+        }
+
+        private async void PopAlert(string Msg, int time)
+        {
+            PopTips.Text = Msg;
+            POP.Visibility = Visibility.Visible;
+
+            await Task.Delay(TimeSpan.FromSeconds(time));
+
+            POP.Visibility = Visibility.Hidden;
 
         }
 

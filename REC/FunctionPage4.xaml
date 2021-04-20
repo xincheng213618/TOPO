@@ -7,7 +7,7 @@
       xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="FunctionPage4">
+      Title="FunctionPage4" Initialized="Page_Initialized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200*"/>
@@ -26,9 +26,40 @@
         <Grid  Grid.Row="1"  Background="#c4cce7">
             <Border  Margin="50"  CornerRadius="20" Background="White"/>
         </Grid>
-        <Image Grid.Row="1" Height="300" Width="300" Margin="209,113,1411,386">
-        </Image>
-        <TextBox  HorizontalAlignment="Left" Height="163" Margin="761,196,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="629"/>
+        <Image x:Name="ImageOCR" Grid.Row="1" Margin="583,379,466,57.667"/>
+        <Border Grid.Row="1" Height="100" Background="AliceBlue" CornerRadius="30" Margin="200,100,200,100" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TexBox0" Tag="0" Grid.Column="0" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="0,0,5,0" />
+                <TextBox x:Name="TexBox1" Tag="1" Grid.Column="1" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox2" Tag="2" Grid.Column="2" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox3" Tag="3" Grid.Column="3" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox4" Tag="4" Grid.Column="4" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox5" Tag="5" Grid.Column="5" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox6" Tag="6" Grid.Column="6" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox7" Tag="7" Grid.Column="7" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox8" Tag="8" Grid.Column="8" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox9" Tag="9" Grid.Column="9" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,5,0" />
+                <TextBox x:Name="TexBox10" Tag="10" Grid.Column="10" Text="" TextChanged="TextChanged" GotFocus="TexBox0_GotFocus" Style="{StaticResource TexBox111}" Margin="5,0,0,0" />
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Style="{StaticResource ButtonBorder1}"  HorizontalAlignment="Center" Width="250" Height="80" Margin="0,0,0,200">
+            <Button Style="{StaticResource hiddenButton}" Click="Button_Click" Tag="BackYinZhiHao"  >
+                <Label Content="手 动 回 填" Foreground="White" FontSize="35" FontFamily="黑体" FontWeight="Bold" />
+            </Button>
+        </Border>
 
     </Grid>
 </Page>

@@ -5,8 +5,18 @@
 
     <!--声明静态资源-->
     <ImageBrush x:Key="BackGround" ImageSource="Images/Base/1.png" />
-   
-    
+
+    <Style x:Key="TexBox111" TargetType="TextBox">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="HotPink"/>
+        <Setter Property="BorderThickness" Value="10"/>
+        <Setter Property="FontSize" Value="50"/>
+        <Setter Property="MaxLength" Value="2"/>
+
+    </Style>
+
+
     <!--Border-->
     <Style x:Key="HomePageButtonBorder" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="White" />

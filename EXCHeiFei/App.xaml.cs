@@ -73,7 +73,7 @@ namespace EXC
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            //Log.WriteException(e.ExceptionObject as Exception);
+            Log.WriteException(e.ExceptionObject as Exception);
         }
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
@@ -93,8 +93,8 @@ namespace EXC
         private void App_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
             ////修正 winforms 报错不显示
-            //if (e.Exception.Source != "System.Windows.Forms")
-            //    Log.WriteException(e.Exception);
+            if (e.Exception.Source != "System.Windows.Forms")
+                Log.WriteException(e.Exception);
         }
 
 

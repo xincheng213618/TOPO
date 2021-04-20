@@ -55,12 +55,12 @@ namespace BaseInk
         {
             DragMove();
         }
+
         private void Window_Initialized(object sender, EventArgs e)
         {
             ListVierew.ItemsSource = selectionsLists;
-
         }
-        public static event Delegate_Ink_Msg delegate_Ink_Msg;
+
 
 
 
@@ -175,5 +175,7 @@ namespace BaseInk
                 inkCanvas.Strokes.Clear();
             }
         }
+
+
     }
 }
