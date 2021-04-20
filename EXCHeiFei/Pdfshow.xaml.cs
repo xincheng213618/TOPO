@@ -35,11 +35,6 @@ namespace EXC
         int PrintAllNum;
 
 
-        public Pdfshow()
-        {
-            InitializeComponent();
-        }
-
         public Pdfshow(string filePath, int PrintAllNum =200,bool AllowPrint =true)
         {
           
@@ -138,9 +133,6 @@ namespace EXC
                 AcrobatHelper.pdfControl.LoadFile(PDFpath);
                 AcrobatHelper.pdfControl.setShowScrollbars(false);
                 AcrobatHelper.pdfControl.setShowToolbar(false);
-
-                //PageAllNum = 8;
-                //PDFShowGrid.Width = new GridLength(683.09090909090912);
 
                 PdfReader reader = new PdfReader(PDFpath);
                 PageAllNum = reader.NumberOfPages;

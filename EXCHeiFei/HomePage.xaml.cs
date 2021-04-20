@@ -113,15 +113,13 @@ namespace EXC
             Button button = sender as Button;
             Global.Related.PageType = button.Tag.ToString();
 
-            switch (Global.Related.PageType)
+            switch ((string)button.Tag)
             {
                 case "ReportHeFei":
-                    Content = new Pdfshow();
-                    Pages();
-                    break;
                 case "ReportHeFei1":
                 case "ReportGRHeFei":
-                    Global.Related.IDCardData = new IDCardData { Name = "宋志磊", IDCardNo = "340122199210252875" };
+                    IDCardData = new IDCardData { Name = "宋志磊", IDCardNo = "340122199210252875" };
+                    Global.Related.IDCardData = IDCardData;
                     Content = new Report();
                     break;
                 default:

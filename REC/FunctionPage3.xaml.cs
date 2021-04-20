@@ -30,7 +30,6 @@ namespace REC
         {
             this.FileName = FileName;
             this.recdata = recdata;
-            Global.Related.RECData = recdata;
             InitializeComponent();
         }
         PrintDate printDate = new PrintDate();

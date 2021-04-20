@@ -65,7 +65,7 @@
                     </Button.Template>
                 </Button>
             </Grid>
-            <ListView  x:Name="ListVierew"  Background="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,-20,0,4"  SelectionChanged="ListVierew_SelectionChanged">
+            <ListView  x:Name="ListVierew"  Background="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,-20,0,0"  SelectionChanged="ListVierew_SelectionChanged">
                 <ListView.ItemContainerStyle >
                     <Style TargetType="{x:Type ListBoxItem}">
                         <Setter Property="Width" Value="70" />
