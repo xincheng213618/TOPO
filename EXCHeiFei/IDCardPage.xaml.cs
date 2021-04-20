@@ -113,11 +113,6 @@ namespace EXC
         {
             switch (Global.Related.PageType)
             {
-                case "NoHome":
-                    //CSQLite.Insert.WriteIDCardData(idcardData);
-                    //IDcard.DeleteIDcardImages(idcardData);
-                    //Content = new NoHomePages(idcardData);
-                    //break;
                 default:
                     Global.Related.IDCardData = idcardData;
                     Content = new CameraPage( );

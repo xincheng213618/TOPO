@@ -33,8 +33,7 @@ namespace EXC
         {
             this.idcardData = Global.Related.IDCardData;
             //缓存数据
-            Global.UserDate.Name = idcardData.Name;
-            Global.UserDate.IDCardNo = idcardData.IDCardNo;
+
 
             WaitShow.Visibility = Visibility.Visible;
             switch (Global.Related.PageType)
@@ -53,17 +52,14 @@ namespace EXC
             switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
-                    Global.UserDate.Type = "1";
-                    response = Http.HeFei.GetReportList(idcardData.IDCardNo, idcardData.Name, "0");
+                    response = Http.HeFei.GetReportList(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, "0");
                     Dispatcher.BeginInvoke(new Action(() => ReportHeFei(response)));
                     break;
                 case "ReportHeFei1":
-                    Global.UserDate.Type = "1";
-                    response = Http.HeFei.GetReportList(idcardData.IDCardNo, idcardData.Name, "1");
+                    response = Http.HeFei.GetReportList(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, "1");
                     Dispatcher.BeginInvoke(new Action(() => ReportHeFei(response)));
                     break;
                 case "ReportGRHeFei":
-                    Global.UserDate.Type = "1";
                     response = Http.HeFei.GetGRReport(idcardData.IDCardNo, idcardData.Name);
                     string filePath = "Temp\\" + idcardData.Name + ".pdf";
                     Dispatcher.BeginInvoke(new Action(() => GetReportGRHeiFei(response, filePath)));
@@ -171,10 +167,6 @@ namespace EXC
                     case "ReportHeFei1":
                         string CompanyName = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).CompanyName.ToString();
                         string USCI = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).USCI.ToString();
-
-                        Global.UserDate.CompanyName = CompanyName;
-                        Global.UserDate.CompanyID = USCI;
-
                         string filePath = "Temp\\" + USCI + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
 
                         Thread worker11 = new Thread(() => GetReportHeiFei(USCI, filePath))
@@ -215,7 +207,6 @@ namespace EXC
                         Log.Write(url);
                         if (File.Exists(FilePath))
                         {
-                            Global.Related.PageType = null;
                             Content = new Pdfshow(FilePath);
                             Pages();
                         }
@@ -320,7 +311,6 @@ namespace EXC
                             hintLabel.Content = "正在下载报告文件";
                             if (Sucess)
                             {
-                                Global.Related.PageType = null;
                                 Content = new Pdfshow(FilePath);
                                 Pages();
                             }
