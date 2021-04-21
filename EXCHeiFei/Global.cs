@@ -8,12 +8,10 @@ namespace EXC
 {
     public class Related
     {
-        /// <summary>
-        /// 从刷身份证开始读取到的身份证信息，流程完成自动清理
-        /// </summary>
-        public   IDCardData IDCardData ;
         public Guid UUID;
-        public   string PageType = "";
+        public string PageType = "";
+        public IDCardData IDCardData ;
+
 
         public void Initialized()
         {
@@ -25,7 +23,6 @@ namespace EXC
     {
         public static ConfigData Config = new ConfigData();
         public static Related Related = new Related();
-        public static UserDate UserDate= new UserDate();
 
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
@@ -71,22 +68,6 @@ namespace EXC
         }
     }
 
-    public class UserDate
-    {
-        public void  Initialized()
-        {
-            Name = "";
-            IDCardNo = "";
-            CompanyName = "";
-            CompanyID = "";
-            Type = "";
-        }
-        public string Name ="";
-        public string IDCardNo = "";
-        public string CompanyName = "";
-        public string CompanyID = "";
-        public string Type = "";
-    }
 
     //http://10.33.1.210:8800/xycx-web/creditSearch/pdfDownloadTUser.do
 

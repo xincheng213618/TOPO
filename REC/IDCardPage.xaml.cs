@@ -99,7 +99,7 @@ namespace REC
         private void SwitchPage()
         {
             Global.Related.IDCardData = idcardData;
-            switch (Global.PageType)//可以在这里进行定义判定这里可以直接跳转
+            switch (Global.Related.PageType)//可以在这里进行定义判定这里可以直接跳转
             {
                 case "Commission":
                     Content = new QRCode();

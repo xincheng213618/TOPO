@@ -169,7 +169,7 @@ namespace REC
         {
             InkPage inkPage = sender as InkPage;
             InkImage.Source = inkPage.InkBitmapImage;
-            InkButtonLabel.Content = "重新签字";
+            InkButtonLabel.Content = "重  签";
             PrintBorder.Background =(Brush)Use1.ConvertFrom("#60d0ff");
             PrintBorder.BorderBrush = Brushes.HotPink;
             InkBorder.BorderBrush = Brushes.White;

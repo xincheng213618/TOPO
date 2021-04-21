@@ -39,6 +39,7 @@ namespace REC
                 }
             });
         }
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
@@ -48,8 +49,8 @@ namespace REC
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
-            switch (button.Tag)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "Peroson":
                     Content = new QRCode();

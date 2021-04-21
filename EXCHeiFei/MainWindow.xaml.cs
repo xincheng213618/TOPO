@@ -26,6 +26,7 @@ namespace EXC
             Log.LogInput();// 每个一秒刷新一次日志
             if (DateTime.Now.Hour == 14 && DateTime.Now.Minute == 0 && DateTime.Now.Second == 0)
             {
+
             }
         }
         private EXCDate data = new EXCDate();
@@ -46,7 +47,6 @@ namespace EXC
 
         private void Setting_Click(object sender, MouseButtonEventArgs e)
         {
-
         }
 
         private void KeyBoardOpen(object sender, RoutedEventArgs e)

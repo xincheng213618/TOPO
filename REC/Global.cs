@@ -12,39 +12,51 @@ namespace REC
 {
     public class Related
     {
-        public string UUID ;
+        public Guid UUID ;
         public string PageType;
         public string transtionId;
         public IDCardData IDCardData;
+        public CameraData CameraData;
 
         public string OCR_Data;
         public string Fix_OCR_Data;
 
         public void Initialized()
         {
-
             Clear();
-            UUID = Guid.NewGuid().ToString();
+            UUID = Guid.NewGuid();
             PageType = "";
             IDCardData = new IDCardData();
+            CameraData = new CameraData();
             transtionId = "";
             OCR_Data = "";
             Fix_OCR_Data = "";
         }
         public void Clear()
         {
-            IDcard.DeleteIDcardImages(Global.Related.IDCardData);
+            try
+            {
+                File.Delete(IDCardData.PhotoFileName);
+                File.Delete(IDCardData.szPath);
+                File.Delete(CameraData.ImageName);
+                File.Delete(CameraData.ImageName1);
+            }
+            catch
+            {
+
+            }
         }
     }
 
     public static class Global
     {
-        public static string PageType = null;
         public static ConfigData Config = new ConfigData() { };
+        public static Related Related = new Related();
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
 
-        public static Related Related = new Related();
+        public static string DisclaimerContent = File.ReadAllText("Base\\打证须知.txt");
+
 
         public static string[] OcrRegion;
 
@@ -71,7 +83,6 @@ namespace REC
                 FileStream stream = File.OpenRead(sFile);
                 XmlSerializer serializer = new XmlSerializer(typeof(ConfigData), typeof(ConfigData).GetNestedTypes());
                 Config = serializer.Deserialize(stream) as ConfigData;
-
             }
             catch
             {

@@ -68,6 +68,7 @@ namespace PEC
             PageType = "";
             IDCardData = new IDCardData();
         }
+
     }
 
 

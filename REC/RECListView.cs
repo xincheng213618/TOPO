@@ -5,15 +5,8 @@ using System;
 namespace REC
 {
 
-    /// <summary>
-    /// 证书里基本内容
-    /// </summary>
-    public class RECData : ListItem
+    public class Certificate: ListItem
     {
-        /// <summary>
-        /// 打印的证书名称
-        /// </summary>
-        public string PrintName { get; set; } = "";
         /// <summary>
         /// 权利人名称
         /// </summary>
@@ -22,6 +15,14 @@ namespace REC
         /// 权利人证件号
         /// </summary>
         public string QLRZJH { get; set; } = "";
+        /// <summary>
+        /// 不动产单元号
+        /// </summary>
+        public string BDCDYH { get; set; } = "";
+        /// <summary>
+        /// 不动产权证号
+        /// </summary>
+        public string BDCQZH { get; set; } = "";
         /// <summary>
         /// 用途
         /// </summary>
@@ -34,12 +35,6 @@ namespace REC
         /// 权力其他情况
         /// </summary>
         public string QLQTZK { get; set; } = "";
-        /// <summary>
-        /// 其他 附记
-        /// </summary>
-        public string FJ { get; set; } = "";
-
-
 
         /// <summary>
         /// 权利类型
@@ -54,21 +49,6 @@ namespace REC
         /// 使用期限
         /// </summary>
         public string SYQX { get; set; } = "";
-
-        /// <summary>
-        /// DJLX
-        /// </summary>
-        public string DJLX { get; set; } = "";
-
-        /// <summary>
-        /// 不动产单元号
-        /// </summary>
-        public string BDCDYH { get; set; } = "";
-        /// <summary>
-        /// 不动产权证号
-        /// </summary>
-        public string BDCQZH { get; set; } = "";
-
         /// <summary>
         /// 共有情况
         /// </summary>
@@ -87,6 +67,28 @@ namespace REC
         /// 户型图
         /// </summary>
         public string HST { get; set; } = "";
+        /// <summary>
+        /// 其他 附记
+        /// </summary>
+        public string FJ { get; set; } = "";
+        /// <summary>
+        /// DJLX
+        /// </summary>
+        public string DJLX { get; set; } = "";
+    }
+    
+
+
+    /// <summary>
+    /// 证书里基本内容
+    /// </summary>
+    public class RECData : Certificate
+    {
+        /// <summary>
+        /// 打印的证书名称
+        /// </summary>
+        public string PrintName { get; set; } = "";
+
         public bool HSTSucess { get; set; } = false;
         /// <summary>
         /// 办理状态
@@ -108,11 +110,6 @@ namespace REC
         /// 印制号
         /// </summary>
         public string OCRresult { get; set; }
-        /// <summary>
-        /// 发证日期
-        /// </summary>
-        public string fzrq { get; set; } = DateTime.Now.ToString("yyyyMMdd");
-
 
     }
 }

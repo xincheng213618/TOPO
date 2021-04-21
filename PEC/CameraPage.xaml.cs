@@ -48,27 +48,33 @@ namespace PEC
         {
             string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
             string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
-            if (Global.Related.IDCardData.PhotoFileName == null)
-                return;
-            b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
-            c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
-
-            ShootSucess = false;
-
-            Log.Write("人脸比对相似度:"+ Environment.NewLine + b.ToString() + Environment.NewLine + c.ToString());
-           
-            if (b > 0.7 && c > 0.7)
+            if (Global.Related.IDCardData.PhotoFileName != null)
             {
-                SwitchPage();
+                b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
+                c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
+
+                ShootSucess = false;
+
+                Log.Write("人脸比对相似度:" + Environment.NewLine + b.ToString() + Environment.NewLine + c.ToString());
+
+                if (b > 0.7 && c > 0.7)
+                {
+                    SwitchPage();
+                }
+                else
+                {
+                    AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
+                    tryCount += 1;
+                }
+                if (tryCount > 3)
+                {
+                    Content = new HomePage("人脸对比失败，请重试");
+                    Pages();
+                }
             }
             else
             {
-                AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
-                tryCount += 1;
-            }
-            if (tryCount >  3)
-            {
-                Content = new HomePage("人脸对比失败，请重试");
+                Content = new HomePage("找不到身份证上的图片信息");
                 Pages();
             }
         }

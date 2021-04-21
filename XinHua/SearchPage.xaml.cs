@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseInk;
+using BaseUtil;
 using HeBianGu.Product.UserControls.SystemKeyBoard;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,14 @@ namespace XinHua
             InitializeComponent();
             PopAlert(Msg, 3);
         }
-
         private void Page_Initialized(object sender, EventArgs e)
         {
             FocusManager.SetFocusedElement(this, CompanySearchBox);
+            App.InkWindows.Show();
+            InkPut.delegate_Ink_Msg += Input;
+
             Countdown_timer();
-            switch(Global.Related.PageType)
+            switch (Global.Related.PageType)
             {
                 case ("QiYeXinXi"):
                     searchTitle.Content = "企业信息查询";
@@ -52,6 +55,12 @@ namespace XinHua
                     searchTitle.Content = "企业名称查询页面";
                     break;
             }
+        }
+
+        private void Input(string Msg)
+        {
+            CompanySearchBox.Text += Msg;
+            CompanySearchBox.Select(CompanySearchBox.Text.Length, 0);
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)

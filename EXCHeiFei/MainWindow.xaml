@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EXC"
+        
         mc:Ignorable="d"
         Title="MainWindow" Background="{StaticResource background}" Width="1280" Height="1024" WindowStyle="None" ResizeMode="NoResize" Left="0" Top="0" Initialized="Window_Initialized" Closed="Window_Closed">
 
