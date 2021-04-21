@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using BaseDLL;
 using BaseUtil;
+using System.IO;
 
 namespace REC
 {
@@ -15,15 +16,13 @@ namespace REC
     public partial class FunctionPage2 : Page
     {
         private int PageAllNum = 0;
-        private string FilePath;
         RECData rECListView;
 
         public FunctionPage2(RECData rECListView)
         {
-            this.FilePath = rECListView.FileName;
             this.rECListView = rECListView;
             InitializeComponent();
-            OpenPDF(FilePath);
+            OpenPDF(rECListView.FileName);
         }
 
         private DispatcherTimer pageTimer = null;
@@ -43,7 +42,7 @@ namespace REC
         {
             try
             {
-                PdfReader reader = new PdfReader(Environment.CurrentDirectory +"//"+ FilePath);
+                PdfReader reader = new PdfReader(Environment.CurrentDirectory +"//"+ PDFpath);
                 PageAllNum = reader.NumberOfPages;
                 reader.Close();
                 reader.Dispose();
@@ -149,6 +148,8 @@ namespace REC
                 case "Print":
                     if (Signed)
                     {
+                        try {  File.Delete(rECListView.FileName); }
+                        catch { }
                         Content = new FunctionPage3(rECListView.PrintName, rECListView);
                         Pages();
                     }

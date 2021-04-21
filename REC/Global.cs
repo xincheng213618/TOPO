@@ -13,13 +13,19 @@ namespace REC
     public class Related
     {
         public Guid UUID ;
+
         public string PageType;
+
         public string transtionId;
+
         public IDCardData IDCardData;
         public CameraData CameraData;
 
         public string OCR_Data;
+
         public string Fix_OCR_Data;
+
+        public RECData RECData;
 
         public void Initialized()
         {
@@ -28,6 +34,7 @@ namespace REC
             PageType = "";
             IDCardData = new IDCardData();
             CameraData = new CameraData();
+            RECData = new RECData();
             transtionId = "";
             OCR_Data = "";
             Fix_OCR_Data = "";

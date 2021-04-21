@@ -16,7 +16,7 @@
             <RowDefinition Height="799*"/>
             <RowDefinition Height="81*"/>
         </Grid.RowDefinitions>
-        <Grid Visibility="Visible">
+        <Grid Visibility="Hidden">
             <Border Style="{StaticResource ButtonBorder1}"  Margin="60">
                 <Button Style="{StaticResource hiddenButton}" Click="Button_Click" Tag="HomePage"  >
                     <Label Content="首 页" Foreground="White" FontSize="35" FontFamily="黑体" FontWeight="Bold" />
@@ -45,23 +45,6 @@
                 <AForgeControls:VideoSourcePlayer x:Name="vispShoot" />
             </WindowsFormsHost>
         </Grid>
-
-
-        <!--消息弹出框-->
-        <Grid x:Name="POP" Grid.Row="1" Visibility="Hidden">
-            <Border  Background="Black" Opacity="0.13"/>
-            <Border Height="360" Width="600"  Background="White" CornerRadius="20" BorderBrush="#dee1e4" BorderThickness="5">
-                <Grid>
-                    <Button   Style="{StaticResource hiddenButton}"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Click="POP_Button">
-                        <Image Source="images/Base/Error_X.png" Stretch="Uniform" Width="50"/>
-                    </Button>
-                    <Label HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="25" Foreground="Black" Margin="20" >
-                        <TextBlock  x:Name="PopTips" Text="" TextWrapping="WrapWithOverflow"/>
-                    </Label>
-                </Grid>
-            </Border>
-        </Grid>
-
 
     </Grid>
 </Page>
