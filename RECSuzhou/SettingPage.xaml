@@ -95,7 +95,7 @@
                             </Border>
                         </Grid>
                     </Grid>
-                    <Grid x:Name="TestScrollViewer" Grid.Column="1" Visibility="Hidden" >
+                    <Grid x:Name="TestScrollViewer" Grid.Column="1" Visibility="Visible" >
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
@@ -108,6 +108,8 @@
                                
                                 <Grid>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="50"/>
                                         <RowDefinition Height="50"/>
                                         <RowDefinition Height="50"/>
                                         <RowDefinition Height="50"/>
@@ -159,6 +161,12 @@
                                         <Grid Margin="20,0,20,0">
                                             <Label Content="档案查询页面(苏州吴中区)" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                             <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="SZWZArchivePages"  Click="TestButton_Click"/>
+                                        </Grid>
+                                    </Border>
+                                    <Border Grid.Row="6"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,0" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                                        <Grid Margin="20,0,20,0">
+                                            <Label Content="学位证明页面" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="DegreePages"  Click="TestButton_Click"/>
                                         </Grid>
                                     </Border>
                                 </Grid>

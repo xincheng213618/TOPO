@@ -136,6 +136,10 @@ namespace RECSuzhou
                     Content = new SZMoneyPage();
                     Pages();
                     break;
+                case "DegreePages":
+                    Content = new SZMoneyPage();
+                    Pages();
+                    break;
                 default:
                     break;
             }
