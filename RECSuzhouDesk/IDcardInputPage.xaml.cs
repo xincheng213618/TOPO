@@ -16,13 +16,14 @@ namespace RECSuzhou
         public IDcardInputPage()
         {
             InitializeComponent();
-
+            Account.Text = Global.PageName;
+            IDCardNoText.Text = Global.PageIDCard;
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            Account.Text = Global.Related.IDCardData.Name;
-            IDCardNoText.Text = Global.Related.IDCardData.IDCardNo;
+           // Account.Text = Global.Related.IDCardData.Name;
+           // IDCardNoText.Text = Global.Related.IDCardData.IDCardNo;
             FocusManager.SetFocusedElement(this, Account);
             CoutLabel.DataContext = Time;
             Countdown_timer();
@@ -46,6 +47,8 @@ namespace RECSuzhou
 
             Global.Related.IDCardData.Name = Account.Text;
             Global.Related.IDCardData.IDCardNo = IDCardNoText.Text;
+            Global.PageName = Account.Text;
+            Global.PageIDCard = IDCardNoText.Text;
             if (Account.Text.Length == 0 || Account.Text.Length == 0)
             {
                 ErrorLabel.Visibility = Visibility.Visible;
@@ -122,6 +125,8 @@ namespace RECSuzhou
 
         private void ClearText_Click(object sender, RoutedEventArgs e)
         {
+            Global.PageName = null;
+            Global.PageIDCard = null;
             Account.Text = "";
             IDCardNoText.Text = "";
         }

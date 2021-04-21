@@ -316,7 +316,7 @@ namespace EXC
         //Designed By Mr.Xin 2020.4.23
         //Change By Mr.Xin 2020.5.6 解决缓存问题，引入缓存数据库  (只限于GET结构,POST 和其他数据结构另外进行添加)
         //BUG Fix By Mr.Xin 2020.5.7 禁止返回信息未空的数据
-        public static string Get(string url, Dictionary<string, object> dic = null, int timeout = 10000, string UserAgent = null)
+        public static string Get(string url, Dictionary<string, object> dic = null, int timeout = 30000, string UserAgent = null)
         {
             url = DicAndUrl(url, dic);
             string response = Request("GET", url, dic: dic, Timeout: timeout);

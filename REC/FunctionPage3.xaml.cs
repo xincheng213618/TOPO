@@ -30,6 +30,7 @@ namespace REC
         {
             this.FileName = FileName;
             this.recdata = recdata;
+            Global.Related.RECData = recdata;
             InitializeComponent();
         }
         PrintDate printDate = new PrintDate();
@@ -54,7 +55,7 @@ namespace REC
             //下面为异步操作，分开
             Print();
         }
-        private async void Print() 
+        private async void Print()
         {
             ESerialPort.RunStart();
             //这里不做设置会导致问题  防止没有证本还要发送盖章数据 
@@ -68,7 +69,7 @@ namespace REC
             }
             else
             {
-                await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("上证失败，请联系C13号窗口工作人员")));
+                await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("缺证，请联系C13号窗口工作人员")));
             }
         }
         private async void RealEstate_Dev_devMsg(int Code, string data)
@@ -108,9 +109,9 @@ namespace REC
                 //准备拍照;
                 OCR();
             }
-            else if(Code ==-1)
+            else if (Code == -1)
             {
-                 await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("打印状态更新超时，请联系C13号窗口工作人员")));
+                await Dispatcher.BeginInvoke(new Action(() => ErrorMsg("打印状态更新超时，请联系C13号窗口工作人员")));
             }
         }
 
@@ -141,7 +142,7 @@ namespace REC
             EmguHelper.PreOCR("Temp\\ocr.jpg");
             await Task.Delay(300);
 
-            printDate.StatusCode="正在识别编号";
+            printDate.StatusCode = "正在识别编号";
             //旋转并识别
             await Task.Delay(500);
 
@@ -152,57 +153,89 @@ namespace REC
             thread.Start();
 
         }
-        
+
+        List<int> lisocr = new List<int>() { 0,-1,1,-2,2,3,-3,4,-4};
         //识别角度不能设置太高
         private void Rorc()
         {
-            Match math = null;
-
-            for (int i = 0; i < 5; i++)
+            string YinZhihao="";
+            bool Sucess =false;
+            foreach (var i in lisocr)
             {
-                Mat mat = new Mat("Temp\\ocr_result.jpg", ImreadModes.Color);
-                Mat mat1 = EmguHelper.Rotate(mat, i);
-                mat1.Save("Temp\\ocr_result1.jpg");
-                var text = ParseText("Temp\\ocr.jpg", "eng");
-                math = Regex.Match(text, @"(\d{11})");
-                if (math.Success)
+                printDate.StatusCode = "印制号识别中："+i.ToString();
+
+                if (OCRMath("Temp\\ocr_result1.jpg", i, out YinZhihao))
                 {
-                    printDate.StatusCode = i.ToString() + "识别成功" + Environment.NewLine + math.Value + Environment.NewLine;
-                    recdata.OCRresult = math.Value;
+                    printDate.StatusCode = i.ToString() + "识别成功" + Environment.NewLine + YinZhihao;
+                    recdata.OCRresult = YinZhihao;
+                    Global.Related.Fix_OCR_Data = YinZhihao;
+                    Requests.File_Upload("Temp\\ocr_result1.jpg", YinZhihao, true, recdata.QLR, recdata.QLRZJH, recdata.BDCQZH);
+                    Sucess = true;
                     break;
                 }
-
-                if (i > 0)
-                {
-                    mat1 = EmguHelper.Rotate(mat, -i);
-                    mat1.Save("Temp\\ocr_result1.jpg");
-                    text = ParseText("Temp\\ocr_result1.jpg", "eng");
-
-                    math = Regex.Match(text, @"(\d{11})");
-                    if (math.Success)
-                    {
-                        printDate.StatusCode = (-i).ToString() + "识别成功" + Environment.NewLine + math.Value + Environment.NewLine;
-                        recdata.OCRresult = math.Value;
-
-                        break;
-                    }
-                }
             }
-
-            Requests.File_Upload("Temp\\ocr_result1.jpg", math.Value, math.Success, recdata.QLR, recdata.QLRZJH, recdata.BDCQZH);
-            Dispatcher.BeginInvoke(new Action(() => OCRover(math.Success)));
+            Dispatcher.BeginInvoke(new Action(() => OCRover(Sucess)));
         }
-        private string FixYZH(string yzh)
+
+        private bool OCRMath(string FileName,int i,out string YinZhiHao)
         {
-            string provice = "320"; //江苏省内，这里写成配置类,后续.
+            YinZhiHao = "";
+            Mat mat = new Mat("Temp\\ocr_result.jpg", ImreadModes.Color);
+            Mat mat1 = EmguHelper.Rotate(mat, i);
+            mat1.Save("Temp\\ocr_result1.jpg");
+            var text = ParseText("Temp\\ocr_result1.jpg", "eng");
 
-            if (yzh.Substring(0, 3) != provice)
+
+            Match math = Regex.Match(text, @"(\d{11})");
+            Match math1 = Regex.Match(text, @"(\d{10})");
+            Match math2 = Regex.Match(text, @"(\d{9})");
+            Match math3 = Regex.Match(text, @"(\d{8})");
+
+
+            if (math.Success)
             {
-                yzh = provice + yzh.Substring(3, yzh.Length - 3);
-                Log.Write("执行印制号修正:"+ yzh);
+                YinZhiHao = math.Value;
+                if (YinZhiHao.Substring(0, 3) != "320")
+                {
+                    YinZhiHao = "320" + YinZhiHao.Substring(3, math.Value.Length - 3);
+                    Log.Write("执行印制号修正:" + YinZhiHao);
+                }
+                return true;
             }
-            return yzh;
+            else if (math1.Success)
+            {
+                YinZhiHao = math1.Value;
+                if (YinZhiHao.Substring(0, 3) != "20")
+                {
+                    YinZhiHao = "320" + YinZhiHao.Substring(2, math1.Value.Length - 2);
+                    Log.Write("执行印制号修正:" + YinZhiHao);
+                }
+                return true;
+            }
+            else if (math2.Success)
+            {
+                YinZhiHao = math2.Value;
+                if (YinZhiHao.Substring(0, 3) != "320")
+                {
+                    YinZhiHao = "0" + YinZhiHao.Substring(1, math2.Value.Length - 1);
+                    Log.Write("执行印制号修正:" + YinZhiHao);
+                }
+                return true;
+            }
+            else if (math3.Success)
+            {
+                YinZhiHao = math3.Value;
+                YinZhiHao = "0" + YinZhiHao.Substring(0, math3.Value.Length - 0);
+                Log.Write("执行印制号修正:" + YinZhiHao);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
+
 
 
         private void OCRover(bool Success)
@@ -210,8 +243,6 @@ namespace REC
             if (Success)
             {
                 Log.Write("编号上传：" + Success.ToString());
-                recdata.OCRresult = FixYZH(recdata.OCRresult);
-
                 printDate.StatusCode = "印制号回填中";
                 Thread thread1 = new Thread(() => RequestOCR())
                 {
@@ -274,28 +305,12 @@ namespace REC
             switch (button.Tag)
             {
                 case "HomePage":
-                    PopAlert("打印期间不允许主动返回，请耐心等待",3);
+                    //PopAlert("打印期间不允许主动返回，请耐心等待",3);
                     break;
             }
 
         }
 
-
-
-
-        private void POP_Button(object sender, RoutedEventArgs e)
-        {
-            POP.Visibility = Visibility.Hidden;
-        }
-
-        private async void PopAlert(string Msg, int time)
-        {
-            Log.Write("HomePagePOP:" + Msg);
-            PopTips.Text = Msg;
-            POP.Visibility = Visibility.Visible;
-            await Task.Delay(TimeSpan.FromSeconds(time));
-            POP.Visibility = Visibility.Hidden;
-        }
                                                        
 
         private void Pages()

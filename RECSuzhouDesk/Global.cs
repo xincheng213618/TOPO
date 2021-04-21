@@ -12,6 +12,10 @@ namespace RECSuzhou
 {
     public static class Global
     {
+        //记录身份信息
+        public static string PageName = null;
+        public static string PageIDCard = null;
+
         public static Config Config = new Config();
         public static Related Related = new Related();
 

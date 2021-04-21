@@ -49,7 +49,7 @@ namespace REC
         {
             Global.Related.CameraData.ShootSucess = code == 0;
         }
-
+        int TryCount =0;
         private void Comparison()
         {
             if (Global.Related.IDCardData.PhotoFileName != null)
@@ -57,6 +57,7 @@ namespace REC
                 Global.Related.CameraData.Similarity = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, Global.Related.CameraData.ImageName);
                 Global.Related.CameraData.Similarity1 = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, Global.Related.CameraData.ImageName1);
 
+                Log.Write("身份都对比度：" + Global.Related.CameraData.Similarity.ToString());
                 if (Global.Related.CameraData.Similarity > 0.7)
                 {
                     Requests.Camer_Upload(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, Global.Related.CameraData.Similarity.ToString(), Global.Related.CameraData.ImageName, Global.Related.IDCardData.PhotoFileName);
@@ -71,10 +72,10 @@ namespace REC
                 {
                     Global.Related.CameraData.ShootSucess = false;
                     AmLivingBodyApi.AmCaptureImage(Global.Related.CameraData.ImageName, 20000);
-                    Global.Related.CameraData.TryCount += 1;
+                    TryCount += 1;
                 }
 
-                if (Global.Related.CameraData.TryCount > 2)//在这里设置错误验证次数
+                if (TryCount >Global.Related.CameraData.TryCount )//在这里设置错误验证次数
                 {
                     Content = new HomePage("人脸对比失败，请重试");
                     Pages();
