@@ -37,10 +37,6 @@ namespace REC
                     textBoxes[i].Text = Global.Related.Fix_OCR_Data.Substring(i, 1);
                 }
             }
-            textBoxes[3].Focus();
-            textBoxes[3].Select(textBoxes[3].Text.Length, 0);
-
-
             try
             {
                 ImageOCR.Source = new BitmapImage(new Uri(Environment.CurrentDirectory+ "\\Temp\\ocr_result1.jpg")); ;
@@ -97,7 +93,7 @@ namespace REC
                     }
                     else
                     {
-                        MessageBox.Show((string)RECResponse.GetValue("msg"));
+                        MessageBox.Show("回填失败： " + (string)RECResponse.GetValue("msg"));
                     }
                 }
                 catch

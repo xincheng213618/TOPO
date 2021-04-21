@@ -26,7 +26,7 @@
         <Grid  Grid.Row="1"  Background="#c4cce7">
             <Border  Margin="50"  CornerRadius="20" Background="White"/>
         </Grid>
-        <Image x:Name="ImageOCR" Grid.Row="1" Margin="583,379,466,57.667"/>
+        <Image x:Name="ImageOCR" Grid.Row="1" Margin="46,235,1114,410.667"/>
         <Border Grid.Row="1" Height="100" Background="AliceBlue" CornerRadius="30" Margin="200,100,200,100" VerticalAlignment="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
