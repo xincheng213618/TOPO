@@ -24,11 +24,13 @@ namespace XinHua
         public SearchPage()
         {
             InitializeComponent();
+            BaseInk.InkPut.t = CompanySearchBox;
         }
         public SearchPage(string Msg)
         {
             InitializeComponent();
             PopAlert(Msg, 3);
+
         }
         private void Page_Initialized(object sender, EventArgs e)
         {

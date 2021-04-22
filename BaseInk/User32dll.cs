@@ -40,6 +40,128 @@ namespace BaseUtil
         }
         public class KeyCode
         {
+            public byte this[string index]
+            {
+                // get 访问器
+                get
+                {
+                    // 返回 index 指定的值
+                    switch (index)
+                    {
+                        case "a":
+                        case "A":
+                            return A;
+                        case "b":
+                        case "B":
+                            return B;
+                        case "C":
+                        case "c":
+                            return C;
+
+                        case "d":
+                        case "D":
+                            return D;
+
+                        case "E":
+                        case "e":
+                            return E;
+                        case "f":
+                        case "F":
+                            return F;
+                        case "G":
+                        case "g":
+                            return G;
+                        case "H":
+                        case "h":
+                            return H;
+                        case "I":
+                        case "i":
+                            return I;
+                        case "J":
+                        case "j":
+                            return J;
+                        case "K":
+                        case "k":
+                            return K;
+                        case "L":
+                        case "l":
+                            return L;
+                        case "M":
+                        case "m":
+                            return M;
+                        case "N":
+                        case "n":
+                            return N;
+                        case "O":
+                        case "o":
+                            return O;
+                        case "P":
+                        case "p":
+                            return P;
+                        case "Q":
+                        case "q":
+                            return Q;
+                        case "R":
+                        case "r":
+                            return R;
+                        case "S":
+                        case "s":
+                            return S;
+                        case "T":
+                        case "t":
+                            return T;
+                        case "U":
+                        case "u":
+                            return U;
+                        case "V":
+                        case "v":
+                            return V;
+                        case "W":
+                        case "w":
+                            return W;
+                        case "X":
+                        case "x":
+                            return X;
+                        case "Y":
+                        case "y":
+                            return Y;
+                        case "Z":
+                        case "z":
+                            return Z;
+                        case "1":
+                            return one;
+                        case "2":
+                            return two;
+                        case "3":
+                            return three;
+                        case "4":
+                            return four;
+                        case "5":
+                            return five;
+                        case "6":
+                            return six;
+                        case "7":
+                            return seven;
+                        case "8":
+                            return eight;
+                        case "9":
+                            return nine;
+                        case "0":
+                            return zero;
+                        case "shift":
+                            return SHIFT;
+                        default:
+                            return 1;
+
+                    }
+                }
+
+                // set 访问器
+                set
+                {
+                    // 设置 index 指定的值
+                }
+            }
             public static byte SELECT = 0x29;
             public static byte DEL = 0x2E;
             public static byte HELP = 0x2F;
@@ -55,6 +177,17 @@ namespace BaseUtil
             public static byte SPACE = 0x20;
             public static byte END = 0x23;
             public static byte HOME = 0x24;
+
+            public static byte zero = 0x30;
+            public static byte one = 0x31;
+            public static byte two = 0x32;
+            public static byte three = 0x33;
+            public static byte four = 0x34;
+            public static byte five = 0x35;
+            public static byte six = 0x36;
+            public static byte seven = 0x37;
+            public static byte eight = 0x38;
+            public static byte nine = 0x39;
 
 
             public static byte A = 0x41;
