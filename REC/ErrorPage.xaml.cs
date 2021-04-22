@@ -106,8 +106,8 @@ namespace REC
 
         private void PassWord_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-                Login();
+            //if (e.Key == Key.Enwter)
+            //    Login();
         }
     }
 }
