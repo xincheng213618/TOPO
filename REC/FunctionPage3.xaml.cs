@@ -169,11 +169,11 @@ namespace REC
                     printDate.StatusCode = i.ToString() + "识别成功" + Environment.NewLine + YinZhihao;
                     recdata.OCRresult = YinZhihao;
                     Global.Related.Fix_OCR_Data = YinZhihao;
-                    Requests.File_Upload("Temp\\ocr_result1.jpg", YinZhihao, true, recdata.QLR, recdata.QLRZJH, recdata.BDCQZH);
                     Sucess = true;
                     break;
                 }
             }
+            Requests.File_Upload("Temp\\ocr_result1.jpg", YinZhihao, true, recdata.QLR, recdata.QLRZJH, recdata.BDCQZH);
             Dispatcher.BeginInvoke(new Action(() => OCRover(Sucess)));
         }
 
