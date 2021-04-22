@@ -66,7 +66,7 @@ namespace RECSuzhou
         {
             UUID = Guid.NewGuid().ToString();
             IDCardData = new IDCardData();
-            PageType = "";
+            PageType = null;
         }
     }
 
@@ -110,6 +110,9 @@ namespace RECSuzhou
         public string MoneryUrl { get; set; } = "http://10.5.0.232:8500/RealEstateSZGSBDC/app/moneyProgress/progress.do";
         //进程管理
         public string ProcessUrl { get; set; } = "http://10.5.0.232:8500/RealEstateSZGSBDC/app/sc/chaxjindu.do";
+        //学位证明
+        public string DegreeListUrl { get; set; }
+        public string DegreeUrl { get; set; }
         //档案列表
         public string SZArchiveListUrl { get; set; } = "http://10.5.0.232:8500/RealEstateSZGSBDC/app/sc/chaxdanganlist.do";
         //档案内容

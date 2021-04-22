@@ -74,7 +74,7 @@ namespace RECSuzhou
         private void Return_Click(object sender, RoutedEventArgs e)
         {
             switch (Global.Related.PageType)
-            {               
+            {                 
                 case "OwnerShipPages":
                     Content = new OwnerShipPages();
                     break;
@@ -245,15 +245,15 @@ namespace RECSuzhou
                     PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
                     printUtil.Closed += PrintOver;
                     printUtil.Show();
-                //Stamp.Start(PageAllNum);
-                int run = Stamp.Start(PageAllNum);
-                Log.Write("启动盖章机：" + run);
-                if (!"0".Equals(run.ToString()))
-                {
-                    Content = new HomePage("盖章机启动失败，请重启盖章机");
-                    Pages();
-                    return;
-                }
+                Stamp.Start(PageAllNum);
+                //int run = Stamp.Start(PageAllNum);
+                //Log.Write("启动盖章机：" + run);
+                //if (!"0".Equals(run.ToString()))
+                //{
+                //    Content = new HomePage("盖章机启动失败，请重启盖章机");
+                //    Pages();
+                //    return;
+                //}
                 AcrobatHelper.pdfControl.printAllFit(true);
                     return;
                 //}

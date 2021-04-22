@@ -82,6 +82,9 @@
     <Compile Include="CameraPage.xaml.cs">
       <DependentUpon>CameraPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DegreePage.xaml.cs">
+      <DependentUpon>DegreePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeCountPages.xaml.cs">
       <DependentUpon>HomeCountPages.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
     </Compile>
     <Compile Include="ValueToProcessConverter.cs" />
     <Page Include="CameraPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DegreePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
