@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseInk;
+using BaseUtil;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -35,6 +36,8 @@ namespace XinHua
         Thread thread;
         private void Page_Initialized(object sender, EventArgs e)
         {
+            InkPut.delegates();
+            App.InkWindows.Hide();
             WaitShow.Visibility = Visibility.Visible;
             Countdown_timer();
             thread = new Thread(() => SearchRequests())

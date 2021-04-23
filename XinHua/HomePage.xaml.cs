@@ -1,4 +1,5 @@
 ﻿using Background;
+using BaseInk;
 using BaseUtil;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,8 @@ namespace XinHua
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
+            App.InkWindows.Hide();
+            InkPut.delegates();
             Global.Related.Initialized();          
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)

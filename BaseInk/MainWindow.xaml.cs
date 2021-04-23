@@ -22,31 +22,28 @@ using System.Windows.Shapes;
 namespace BaseInk
 {
     public delegate void Delegate_Ink_Msg(string Msg);
+    public delegate void Delegate();
 
     public static class InkPut
     {
         public static event Delegate_Ink_Msg delegate_Ink_Msg;
+        public static Delegate  delegates  ;
         public static TextBox t;
         public static void Invoke(string Msg)
         {
             delegate_Ink_Msg?.Invoke(Msg);
         }
     }
-
-
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
     public partial class InkWindows : Window
     {
-
         public class SelectionsList
         {
             public string Content111 { get; set; }
         }
-
         private ObservableCollection<SelectionsList> selectionsLists = new ObservableCollection<SelectionsList>();
-
         public InkWindows()
         {
             Topmost = true;
@@ -59,20 +56,14 @@ namespace BaseInk
         private void Window_Initialized(object sender, EventArgs e)
         {
             ListVierew.ItemsSource = selectionsLists;
-
+            InkPut.delegates += new Delegate( clearText);
         }
         public static event Delegate_Ink_Msg delegate_Ink_Msg;
-
-
-
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             selectionsLists.Clear();
             inkCanvas.Strokes.Clear();
         }
-        
-
-
         //修正不直接对页面负责对窗口负责
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -118,7 +109,7 @@ namespace BaseInk
                         }
                         else
                         {
-                            
+
                             lastcout = ink.Strokes.Count;
                         }
                         if (ink.Strokes.Count > 0 && ink.Strokes.Count < 40)
@@ -162,7 +153,7 @@ namespace BaseInk
         private void Exit(object sender, RoutedEventArgs e)
         {
             selectionsLists.Clear();
-            inkCanvas.Strokes.Clear(); 
+            inkCanvas.Strokes.Clear();
             Hide();
         }
 
@@ -185,7 +176,7 @@ namespace BaseInk
         string[] ss3 = new string[] { "z", "x", "c", "v", "b", "n", "m" };
         bool l = true;
         Button Buttones = null;
-        KeyHelper.KeyCode B = new  KeyHelper.KeyCode();
+        KeyHelper.KeyCode B = new KeyHelper.KeyCode();
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             sk.Children.Clear();
@@ -196,7 +187,7 @@ namespace BaseInk
                 add(ss1, ss2, ss3);
                 if (Console.CapsLock)
                 {
-                  KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
+                    KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
                     ((System.Windows.Controls.Button)sender).Content = "小写";
                 }
                 l = false;
@@ -226,7 +217,7 @@ namespace BaseInk
             {
                 ((System.Windows.Controls.Button)sender).Content = "中";
                 btn1.Content = "小写";
-             
+
             }
             else
             {
@@ -236,13 +227,13 @@ namespace BaseInk
             if (Console.CapsLock)
             {
 
-                KeyHelper.OnKeyPress( KeyHelper.KeyCode.CAPS_LOCK);
+                KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
             }
 
 
-            
 
-             KeyHelper.OnKeyPress( KeyHelper.KeyCode.SHIFT);
+
+            KeyHelper.OnKeyPress(KeyHelper.KeyCode.SHIFT);
         }
         private void Button_Clicks(object sender, RoutedEventArgs e)
         {
@@ -250,12 +241,12 @@ namespace BaseInk
             string indexy = ((System.Windows.Controls.Button)sender).Content.ToString();
             switch (indexy)
             {
-                
+
                 case "=":
                     break;
                 default:
 
-                   
+
                     KeyHelper.OnKeyPress(B[indexy]);
                     break;
 
@@ -290,6 +281,10 @@ namespace BaseInk
             }
 
         }
+      public    void clearText()
+            {
+            tx.Text = "";
+            }
         void num()
         {
             TextBlock textBlock = new TextBlock();

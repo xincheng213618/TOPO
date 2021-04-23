@@ -29,11 +29,14 @@ namespace XinHua
         public SearchPage(string Msg)
         {
             InitializeComponent();
+            BaseInk.InkPut.t = CompanySearchBox;
             PopAlert(Msg, 3);
 
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
+           
+            
             FocusManager.SetFocusedElement(this, CompanySearchBox);
             App.InkWindows.Show();
             InkPut.delegate_Ink_Msg += Input;
@@ -67,6 +70,8 @@ namespace XinHua
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
+           
+
             Content = new HomePage();
             Pages();
         }
@@ -87,6 +92,7 @@ namespace XinHua
 
                 if (--Time.Countdown <= 0)
                 {
+
                     Content = new HomePage();
                     Pages();
                 }
@@ -101,6 +107,7 @@ namespace XinHua
 
         private void Query_Click(object sender, RoutedEventArgs e)
         {
+            
             Search();
         }
 

@@ -57,11 +57,9 @@ namespace BaseUtil
                         case "C":
                         case "c":
                             return C;
-
                         case "d":
                         case "D":
                             return D;
-
                         case "E":
                         case "e":
                             return E;
@@ -152,10 +150,8 @@ namespace BaseUtil
                             return SHIFT;
                         default:
                             return 1;
-
                     }
                 }
-
                 // set 访问器
                 set
                 {
