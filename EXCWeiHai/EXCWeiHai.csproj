@@ -54,19 +54,18 @@
     <Reference Include="AxAcroPDFLib">
       <HintPath>..\DLL\AxAcroPDFLib.dll</HintPath>
     </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Ink, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64" />
     <Reference Include="MyLoadingLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\MyLoadingLib.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -247,9 +246,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Background\Background.csproj">
+    <ProjectReference Include="..\Background\BaseBackground.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>Background</Name>
+      <Name>BaseBackground</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>
@@ -259,9 +258,9 @@
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Register\Register.csproj">
+    <ProjectReference Include="..\Register\BaseRegister.csproj">
       <Project>{acd7acd3-8241-4f45-9761-baf5c9bf50b2}</Project>
-      <Name>Register</Name>
+      <Name>BaseRegister</Name>
     </ProjectReference>
     <ProjectReference Include="..\Startup\BaseStartup.csproj">
       <Project>{0d3f1343-afda-45a6-a166-fdf54e77f273}</Project>
@@ -422,6 +421,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="主页 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="箭头 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="箭头 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="打印.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

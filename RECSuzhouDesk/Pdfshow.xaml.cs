@@ -50,7 +50,7 @@ namespace RECSuzhou
             InitializeComponent();
 
             list = new List<Border>() { Button0, Button8 };
-            if (Global.PageType != null)
+            if (Global.Related.PageType != null)
                 list = new List<Border>() { Button0 };
 
             
@@ -63,7 +63,7 @@ namespace RECSuzhou
         private void Page_Initialized(object sender, EventArgs e)
         {
             this.DataContext = Time;
-            //Countdown_timer();
+            Countdown_timer();
 
             AcrobatHelper.pdfControl = new AxAcroPDFLib.AxAcroPDF();
             AcrobatHelper.pdfControl.BeginInit();
@@ -73,7 +73,7 @@ namespace RECSuzhou
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {               
                 case "OwnerShipPages":
                     Content = new OwnerShipPages();
@@ -186,7 +186,7 @@ namespace RECSuzhou
                     PDFListView.SelectedIndex = 0;
 
                     PDFListView.Visibility =  Visibility.Visible;
-                    Button1.Visibility = AllowPrint && Global.PageType != "SZWZArchivePages" ? Visibility.Visible : Visibility.Hidden;
+                    Button1.Visibility = AllowPrint && Global.Related.PageType != "SZWZArchivePages" ? Visibility.Visible : Visibility.Hidden;
                     Button2.Visibility = AllowPrint ? Visibility.Visible : Visibility.Hidden;
                     Button3.Visibility = PageAllNum <= 1 ? Visibility.Hidden : Visibility.Visible;
                     Button7.Visibility = PageAllNum <= 3 ? Visibility.Hidden : Visibility.Visible;
@@ -218,8 +218,6 @@ namespace RECSuzhou
             AcrobatHelper.pdfControl.printPagesFit(PageNum, PageNum, true);
         }
 
-        private AxAcroPDFLib.AxAcroPDF pdfc;
-        private int PageAllNumNew = 0;
         private void PrintPDFAll_Click(object sender, RoutedEventArgs e)
         {
             if (!PrintRun)

@@ -1,4 +1,5 @@
 ﻿using Background;
+using BaseInk;
 using BaseUtil;
 using System;
 using System.Collections.Generic;
@@ -45,8 +46,9 @@ namespace XinHua
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
-
-            Global.PageType = null;
+            App.InkWindows.Hide();
+            InkPut.delegates();
+            Global.Related.Initialized();          
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
@@ -66,9 +68,9 @@ namespace XinHua
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
-            Log.Write(Global.PageType);
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            Log.Write(Global.Related.PageType);
+            switch (Global.Related.PageType)
             {
                 case "QiYeXinXi":
                 case "NaShuiXinYongA":
@@ -91,15 +93,6 @@ namespace XinHua
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-        private void SSLabel_Loaded(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("1");
-        }
-
-        private void SSLabel_Initialized(object sender, EventArgs e)
-        {
-            MessageBox.Show("2");
-
-        }
+     
     }
 }

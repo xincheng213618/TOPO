@@ -19,13 +19,11 @@ namespace HeBianGu.Product.KeyBoard
         public App()
         {
             DispatcherUnhandledException += App_DispatcherUnhandledException;
-
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         }
 
         void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-
             Application.Current.Dispatcher.Invoke(() => MessageBox.Show(e.Exception.Message));
 
             e.Handled = true;
@@ -48,11 +46,8 @@ namespace HeBianGu.Product.KeyBoard
             if (p.Length > 1)
             {
                 Environment.Exit(0);
-
                 return;
             }
-
-
             KeyBoardWindow.ShowDefault(()=> Environment.Exit(0));
         }
     }

@@ -15,17 +15,17 @@
         </Grid.RowDefinitions>
         <Grid x:Name="HeFei" Grid.Row="1"  Visibility="Visible"  Grid.RowSpan="1">
             <Border Height="250" Width="250" Margin="0,0,800,550"  >
-                <Button Template="{StaticResource imageButtonTemplate}" Click="TestButton_Click" Tag="ReportHeFei">
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportHeFei">
                     <Image Source="images/HeiFei/企业信用报告法人打印.png" Stretch="Uniform" />
                 </Button>
             </Border>
             <Border Height="250" Width="250" Margin="0,0,0,550" >
-                <Button Template="{StaticResource imageButtonTemplate}" Click="TestButton_Click" Tag="ReportHeFei1">
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportHeFei1">
                     <Image Source="images/HeiFei/企业信用报告申请打印.png" Stretch="Uniform" />
                 </Button>
             </Border>
             <Border Height="250" Width="250" Margin="800,0,0,550">
-                <Button Template="{StaticResource imageButtonTemplate}" Click="TestButton_Click" Tag="ReportGRHeFei" >
+                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportGRHeFei" >
                     <Grid>
                         <Image Source="images/HeiFei/个人信用报告打印.png" Stretch="Uniform" />
                     </Grid>

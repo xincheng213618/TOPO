@@ -28,7 +28,6 @@ namespace RECSuzhou
         ///// 端口号
         public static int m_iPort;
         public static int read_success = -1;
-        IDCardData idcardData = new IDCardData();
         
 
         public IDCardPage()
@@ -38,23 +37,18 @@ namespace RECSuzhou
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            IDcardContent.Content = Global.PageType != "NoHomeChild" ? IDcardContent.Content : "请放入监护人身份证";
+            IDcardContent.Content = Global.Related.PageType != "NoHomeChild" ? IDcardContent.Content : "请放入监护人身份证";
             DataContext = Time;
-
             Countdown_timer();
-
             m_iPort = IDcard.IDcardSet();
         }
-        private void Msg(string msg)
-        {
-            Content = new HomePage(msg);
-            Pages();
-        }
+
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             Content = new HomePage();
             Pages();
         }
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
@@ -62,34 +56,28 @@ namespace RECSuzhou
         }
         private void IDcard_reader()
         {
-            read_success = IDcard.IDcardRead(m_iPort, ref idcardData);
+            read_success = IDcard.IDcardRead(m_iPort, ref Global.Related.IDCardData);
 
             if (read_success == 1 || read_success == 0)
             {
                 Media.Player(15);//读取成功
 
-                OtherIDcardShow();
-                //Function.IDCardDataToImage(idcardData);
+                IDcardPicture.Visibility = Visibility.Hidden;
+                IDcard_info.Visibility = Visibility.Visible;
+
+                Global.Related.IDCardData.Name = Global.Related.IDCardData.Name.Trim();
+                Global.Related.IDCardData.IDCardNo = Global.Related.IDCardData.IDCardNo.Trim();
+                name.Content = "*" + Global.Related.IDCardData.Name.Substring(1);
+                cardNo.Content = Global.Related.IDCardData.IDCardNo.Substring(0, 10) + "******" + Global.Related.IDCardData.IDCardNo.Substring(16);
+                idcardPicture.Source = Covert.FileToImage(Global.Related.IDCardData.PhotoFileName);
+                sex.Content = Global.Related.IDCardData.Sex;
+                bir.Content = Global.Related.IDCardData.Born;
+                placesOfIssue.Content = Global.Related.IDCardData.GrantDept;
+                validDate.Content = Global.Related.IDCardData.UserLifeBegin + " - " + Global.Related.IDCardData.UserLifeEnd;
+
             }
         }
 
-        private void OtherIDcardShow()
-        {
-            //ReturnButton.Visibility = Visibility.Hidden;//此时拒绝返回操作
-            IDcardPicture.Visibility = Visibility.Hidden;
-            IDcard_info.Visibility = Visibility.Visible;
-
-
-            idcardData.Name = idcardData.Name.Trim();
-            idcardData.IDCardNo = idcardData.IDCardNo.Trim();
-            name.Content = "*" + idcardData.Name.Substring(1);
-            cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
-            idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-            sex.Content = idcardData.Sex;
-            bir.Content = idcardData.Born;
-            placesOfIssue.Content = idcardData.GrantDept;
-            validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
-        }
         //倒计时模块
         private DispatcherTimer pageTimer = null;
         public TimeCount Time = new TimeCount();
@@ -115,7 +103,6 @@ namespace RECSuzhou
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
                             SwitchPage();
                         }
                         else
@@ -139,15 +126,17 @@ namespace RECSuzhou
 
         private void SwitchPage()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "NoHome":
-                    IDcard.DeleteIDcardImages(idcardData);
-                    Content = new NoHomePages(idcardData);
+                    Thread.Sleep(1000);
+                    IDcard.DeleteIDcardImages(Global.Related.IDCardData);
+                    Content = new NoHomePages();
                     break;
              
                 default:
-                    Content = new CameraPage(idcardData);
+                    AmLivingBodyApi.AmOpenDevice();
+                    Content = new CameraPage();
                     break;
             }
             Pages();

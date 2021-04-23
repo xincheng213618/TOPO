@@ -78,7 +78,7 @@ namespace PEC
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
+                            AmLivingBodyApi.AmOpenDevice();
                             SwitchPage();
                         }
                         else
@@ -102,10 +102,10 @@ namespace PEC
 
         private void SwitchPage()
         {
-            switch (PEC.Global.PageType)
+            switch (PEC.Global.Related.PageType)
             {
                 default:
-                    Content = new CameraPage(idcardData);
+                    Content = new CameraPage();
                     break;
             }
             Pages();

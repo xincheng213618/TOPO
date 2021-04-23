@@ -75,6 +75,7 @@ namespace EXC
             }
             catch
             {
+
                 Content = new HomePage("接口解析错误，请联系开发人员");
                 Pages();
             }

@@ -22,15 +22,17 @@ namespace EXCYiXing
         public HomePage()
         {
             InitializeComponent();
-        }
-        public HomePage(string Msg)
+        }    public HomePage( string msg)
         {
+                PopAlert(msg, 3);//吉林 原本为3
             InitializeComponent();
-            PopAlert(Msg, 3);//吉林 原本为3
         }
+     
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+
+            Global.Related.Initialized();
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
@@ -39,9 +41,7 @@ namespace EXCYiXing
             //BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
             //BackgroundItem.Picture.Auto = true;
             App.backgroundWindow.Updated();
-            IDCardInfo.Initialized();
-            CompanyInfo.Initialized();
-            Global.PageType = null;
+
             Stamp.Close();
         }
 
@@ -61,70 +61,41 @@ namespace EXCYiXing
         {
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
-        private IDCardData IDCardData;
         //Page 跳转 所有的逻辑从这里进行转跳
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Log.Write(Global.PageType);//PageType 收集是有用的
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "YiXingPerson":
                 case "YiXingBanch":
-                 //   Content = new IDCardPage();
-                    Content = new Report(new IDCardData() { Name = "沈华兵", IDCardNo = "342423198910188616" });
-                    //Content = new Report(new IDCardData() { Name = "钱丽丽", IDCardNo = "320223198002115220" });
-                    //Content = new Report(new IDCardData() { Name = "吴国中", IDCardNo = "320223196402215416" });
+                    Content = new IDCardPage();
+                    Pages();
+
+                    //Content = new Report();
                     break;
                 case "YiXingNew":
                     Content = new YiXingNew();
+                    Pages();
+
                     break;
                 default:
                     break;
             }
-            Pages();
         }
         //样例初始化
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
-            switch ((string)button.Tag)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
-                case "ReportNingYang":
-                case "ReportGRNingYang":
-                case "ReportNingYangAll":
-                    Global.PageType = button.Tag.ToString();
-                    IDCardData = new IDCardData { Name = "杨洋", IDCardNo = "37092119790520542x" };
-                    Content = new Report(IDCardData);
-                    break;
-                case "ReportNanJing":
-                case "ReportGRNanJing":
-                    Global.PageType = button.Tag.ToString();
-                    IDCardData = new IDCardData { Name = "任正非", IDCardNo = "1231465789789" };
-                    Content = new Report(IDCardData);
-                    break;
-                case "ReportXinTai":
-                case "ReportGRXinTai":
-                case "ReportGRWeiFang":
-                    IDCardData = new IDCardData { Name = "曹丽梅", IDCardNo = "370724199105292614" };
-                    Content = new Report(IDCardData);
-                    break;
-                case "ReportHeFei":
-                case "ReportHeFei1":
-                case "ReportGRHeFei":
-                    IDCardData = new IDCardData { Name = "宋志磊", IDCardNo = "340122199210252875" };
-                    Content = new Report(IDCardData);
-                    break;
                 case "YiXingPerson":
                 case "YiXingBanch":
-                    IDCardData = new IDCardData { Name = "毕明宇", IDCardNo = "371081198706050050" };
-                    Content = new Report(IDCardData);
+                    Global.Related.IDCardData = new IDCardData() { Name = "沈华兵", IDCardNo = "342423198910188616" };
+                    Content = new Report( );
                     break;
-                case "HeiFeiEnterprise":
-                    break;
-
                 default:
                     break;
             }

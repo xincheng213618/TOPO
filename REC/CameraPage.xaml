@@ -20,8 +20,8 @@
         </Grid>
         
         <Grid  Grid.Row="1" Background="#c5cce8">
-            <Border Background="White" Margin="50" CornerRadius="50" >
-                <WindowsFormsHost x:Name="formhost" Width="900" Background="Transparent" >
+            <Border Background="White" Margin="50" CornerRadius="20" >
+                <WindowsFormsHost x:Name="formhost" Width="900" Height="675" Background="Transparent" >
                     <winf:PictureBox x:Name="picturebox"   SizeMode="StretchImage"  Dock="Fill"></winf:PictureBox>
                 </WindowsFormsHost>
             </Border> 

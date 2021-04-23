@@ -23,21 +23,20 @@ namespace EXC
         private IDCardData idcardData;
 
 
-        public Report(IDCardData idcardData)
+        public Report()
         {
-            this.idcardData = idcardData;
-            //缓存数据
-            Global.UserDate.Name = idcardData.Name;
-            Global.UserDate.IDCardNo = idcardData.IDCardNo;
-
             InitializeComponent();
         }
 
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.Related.IDCardData;
+            //缓存数据
+
+
             WaitShow.Visibility = Visibility.Visible;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 default:
                     InfoLabel.Content = "正在下载报告";
@@ -50,21 +49,18 @@ namespace EXC
         private void RequestUrl()
         {
             string response;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
-                    Global.UserDate.Type = "1";
-                    response = Http.HeFei.GetReportList(idcardData.IDCardNo, idcardData.Name, "0");
+                    response = Http.HeFei.GetReportList(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, "0");
                     Dispatcher.BeginInvoke(new Action(() => ReportHeFei(response)));
                     break;
                 case "ReportHeFei1":
-                    Global.UserDate.Type = "1";
-                    response = Http.HeFei.GetReportList(idcardData.IDCardNo, idcardData.Name, "1");
+                    response = Http.HeFei.GetReportList(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, "1");
                     Dispatcher.BeginInvoke(new Action(() => ReportHeFei(response)));
                     break;
                 case "ReportGRHeFei":
-                    Global.UserDate.Type = "1";
-                    response = Http.HeFei.GetGRReport(idcardData.IDCardNo, idcardData.Name);   
+                    response = Http.HeFei.GetGRReport(idcardData.IDCardNo, idcardData.Name);
                     string filePath = "Temp\\" + idcardData.Name + ".pdf";
                     Dispatcher.BeginInvoke(new Action(() => GetReportGRHeiFei(response, filePath)));
                     break;
@@ -143,7 +139,7 @@ namespace EXC
                 }
                 catch
                 {
-                    Content = new HomePage("接口解析错误");
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }
@@ -165,16 +161,12 @@ namespace EXC
             WaitShow.Visibility = Visibility.Visible;
             if (ReportListView.SelectedIndex > -1)
             {
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "ReportHeFei":
                     case "ReportHeFei1":
                         string CompanyName = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).CompanyName.ToString();
                         string USCI = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).USCI.ToString();
-
-                        Global.UserDate.CompanyName = CompanyName;
-                        Global.UserDate.CompanyID = USCI;
-
                         string filePath = "Temp\\" + USCI + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
 
                         Thread worker11 = new Thread(() => GetReportHeiFei(USCI, filePath))
@@ -215,7 +207,6 @@ namespace EXC
                         Log.Write(url);
                         if (File.Exists(FilePath))
                         {
-                            Global.PageType = null;
                             Content = new Pdfshow(FilePath);
                             Pages();
                         }
@@ -233,7 +224,7 @@ namespace EXC
                 }
                 catch
                 {
-                    Content = new HomePage("接口解析错误");
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }
@@ -320,7 +311,6 @@ namespace EXC
                             hintLabel.Content = "正在下载报告文件";
                             if (Sucess)
                             {
-                                Global.PageType = null;
                                 Content = new Pdfshow(FilePath);
                                 Pages();
                             }
@@ -332,6 +322,7 @@ namespace EXC
                         }
                         else
                         {
+                           
                             Content = new HomePage((string)data.GetValue("msg"));
                             Pages();
                         }
@@ -344,7 +335,7 @@ namespace EXC
                 }
                 catch
                 {
-                    Content = new HomePage("接口解析错误");
+                    Content = new HomePage("暂无数据");
                     Pages();
                 }
             }

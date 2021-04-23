@@ -21,43 +21,15 @@ namespace EXC
     /// </summary>
     public partial class Report : Page
     {
-        private IDCardData idcardData;
-        private string CompanyID;
-        private string TemplateID = "";
-
         public Report()
         {
-            idcardData.IDCardNo = IDCardInfo.IDCardNo;
-            idcardData.Name = IDCardInfo.Name;
-            InitializeComponent();
-        }
-
-        public Report(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            IDCardInfo.Name = idcardData.Name;
-            IDCardInfo.IDCardNo = idcardData.IDCardNo;
-            InitializeComponent();
-        }
-        //WeihaiGR
-        public Report(IDCardData idcardData, string TemplateID)
-        {
-            this.TemplateID = TemplateID;
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
-        public Report(IDCardData idcardData, string TemplateID, string CompanyID)
-        {
-            this.CompanyID = CompanyID;
-            this.TemplateID = TemplateID;
-            this.idcardData = idcardData;
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
             WaitShow.Visibility = Visibility.Visible;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "YiXingBanch":
                 case "YiXingPerson":
@@ -79,24 +51,24 @@ namespace EXC
         {
             string response;
            
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportNingYang":
-                    response = Webservice.NingYang.GetReportList(idcardData.IDCardNo);
+                    response = Webservice.NingYang.GetReportList(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportNingYang(response)));
                     break;
                 case "ReportGRNanJing":
-                    Global.PageType = null;
-                    response = Webservice.NanJing.GetReport(idcardData.IDCardNo);
+                    Global.Related.PageType = "";
+                    response = Webservice.NanJing.GetReport(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportGRNanJing(response)));
                     break;
                 case "ReportNanJing":
-                    response = Webservice.NanJing.GetReportList(idcardData.IDCardNo);
+                    response = Webservice.NanJing.GetReportList(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportNanJing(response)));
                     break;
                 case "ReportGRNingYang":
-                    Global.PageType = null;
-                    response = Webservice.NingYang.GetReportGR(idcardData.IDCardNo);
+                    Global.Related.PageType = "";
+                    response = Webservice.NingYang.GetReportGR(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportGRNingYang(response)));
                     break;
                 case "ReportNingYangAll":
@@ -104,18 +76,18 @@ namespace EXC
                     Dispatcher.BeginInvoke(new Action(() => ReportNingYang(response)));
                     break;
                 case "ReportXinTai":
-                    response = Webservice.XinTai.GetReportList(idcardData.IDCardNo);
+                    response = Webservice.XinTai.GetReportList(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportXinTai(response)));
                     break;
                 case "ReportGRXinTai":
-                    Global.PageType = null;
-                    response = Webservice.XinTai.GetReportGR(idcardData.IDCardNo);
+                    Global.Related.PageType = "";
+                    response = Webservice.XinTai.GetReportGR(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportGRXinTai(response)));
                     break;
                 case "ReportGRWeiFang":
                     try
                     {
-                        response = Webservice.WeiFang.GetReportList(idcardData.IDCardNo);
+                        response = Webservice.WeiFang.GetReportList(Global.Related.IDCardData.IDCardNo);
                     }
                     catch
                     {
@@ -124,16 +96,14 @@ namespace EXC
                     Dispatcher.BeginInvoke(new Action(() => ReportGRXinTai(response)));
                     break;
                 case "ReportHuangShi":
-                    response = Webservice.HuangShi.GetReportList(idcardData.IDCardNo);
+                    response = Webservice.HuangShi.GetReportList(Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportHuangShi(response)));
                     break;
                 case "YiXingNew":
                 case "YiXingPerson":
-                    response = Http.YinXingNew.DJZL(idcardData.Name, idcardData.IDCardNo);
-                
+                    response = Http.YinXingNew.DJZL(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
                     Dispatcher.BeginInvoke(new Action(() => ReportPersonYinXing(response)));
-                  
-                   
+                      
                     break;
 
             }
@@ -460,10 +430,7 @@ namespace EXC
                     if (report != "")
                     {
                         Covert.Base64ToFile(report, FileName);
-
-                        Global.PageType = null;
-                        Content = new Pdfshow(Directory.GetCurrentDirectory() + "\\" + FileName);
-                        Log.Write(Directory.GetCurrentDirectory() + "\\" + FileName);
+                        Content = new Pdfshow(FileName);
                         Pages();
                     }
                     else
@@ -501,7 +468,7 @@ namespace EXC
             WaitShow.Visibility = Visibility.Visible;
             try
             {
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "YiXingPerson":
                     case "YiXingBanch":
@@ -546,17 +513,13 @@ namespace EXC
         private void RequestsYiXing(string CQZH)
         {
             string FileName = "1.pdf";
-            Log.Write("Report 536 line");
-            if (PDF.DrawYiXing1(FileName, idcardData, CQZH))
+            if (PDF.DrawYiXing1(FileName, Global.Related.IDCardData, CQZH))
             {
-                
                 Dispatcher.BeginInvoke(new Action(() => PDFShow(FileName)));
-
             }
             else
             {
-                Dispatcher.BeginInvoke(new Action(() => { WaitShow.Visibility = Visibility.Hidden; }));
-                
+                Dispatcher.BeginInvoke(new Action(() => { WaitShow.Visibility = Visibility.Hidden; })); 
             }
 
         }
@@ -574,9 +537,7 @@ namespace EXC
         private void RequestUrl1(string FileName, string filePath = null)
         {
             string response;
-            IDCardInfo.IDCardNo = idcardData.IDCardNo;
-            IDCardInfo.Name = idcardData.Name;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportNingYang":
                     response = Webservice.NingYang.GetReport(FileName);
@@ -587,11 +548,11 @@ namespace EXC
                     Dispatcher.BeginInvoke(new Action(() => GetReportNanJing(response)));
                     break;
                 case "YiXingPerson":
-                    response = Http.YiXing.GetPersonPDF(idcardData,FileName);
+                    response = Http.YiXing.GetPersonPDF(Global.Related.IDCardData,FileName);
                     Dispatcher.BeginInvoke(new Action(() => GetReportYiXing(response)));
                     break;
                 case "YiXingBanch":
-                    response = Http.YiXing.GetBankPDF(idcardData.Name,idcardData.IDCardNo, FileName);
+                    response = Http.YiXing.GetBankPDF(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, FileName);
                     Dispatcher.BeginInvoke(new Action(() => GetReportYiXing(response)));
                     break;
                 case "ReportXinTai":

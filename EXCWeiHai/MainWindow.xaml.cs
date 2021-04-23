@@ -57,7 +57,7 @@ namespace EXC
         private int ExitNum = 0;
         private void CloseWindows(object sender, RoutedEventArgs e)
         {
-            if (Global.PageType == null)
+            if (Global.Related.PageType == null)
             {
                 ExitNum += 1;
                 if (ExitNum == 4)
@@ -77,7 +77,7 @@ namespace EXC
 
         private void Setting_Click(object sender, MouseButtonEventArgs e)
         {
-            if (Global.PageType == null)
+            if (Global.Related.PageType == null)
                 Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new SettingPage())));
         }
 

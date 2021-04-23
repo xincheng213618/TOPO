@@ -77,7 +77,7 @@
                             </Grid.RowDefinitions>
                             <DockPanel Grid.Row="0">
                                 <Label Content="姓       名：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Center"  />
-                                <Label Style="{StaticResource contentLabel}" Content="{Binding Path=Name}"/>
+                                <Label x:Name="name" Style="{StaticResource contentLabel}" Content=""/>
                             </DockPanel>
                             <DockPanel  Grid.Row="1">
                                 <Label  Content="证件号码：" Style="{StaticResource contentLabel}" HorizontalAlignment="Center" />
@@ -85,16 +85,16 @@
                             </DockPanel>
                             <DockPanel  Grid.Row="2">
                                 <Label Content="性       别：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Center" />
-                                <Label  Style="{StaticResource contentLabel}" Content="{Binding Path=Sex}"/>
+                                <Label  x:Name="sex" Style="{StaticResource contentLabel}" Content=""/>
                             </DockPanel>
                             <DockPanel  Grid.Row="3">
                                 <Label Content="出生日期：" Style="{StaticResource contentLabel}"  HorizontalAlignment="Center" />
-                                <Label Style="{StaticResource contentLabel}" Content="{Binding Path=Born}"/>
+                                <Label x:Name="bir" Style="{StaticResource contentLabel}" Content=""/>
                             </DockPanel>
 
                             <DockPanel  Grid.Row="4">
                                 <Label Content="签发单位：" Style="{StaticResource contentLabel}" HorizontalAlignment="Center"  />
-                                <Label Style="{StaticResource contentLabel}" Content="{Binding Path=GrantDept}" />
+                                <Label x:Name="placesOfIssue" Style="{StaticResource contentLabel}" Content="" />
                             </DockPanel>
                             <DockPanel  Grid.Row="5">
                                 <Label  Content="有效期限：" Style="{StaticResource contentLabel}" HorizontalAlignment="Center" />

@@ -1,19 +1,9 @@
 ﻿using BaseDLL;
 using BaseUtil;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace RECSuzhou
@@ -29,7 +19,6 @@ namespace RECSuzhou
             DataContext = Time;
             Countdown_timer();
         }
-
 
         private void Border_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
@@ -105,27 +94,26 @@ namespace RECSuzhou
                     break;
             }
         }
-        private IDCardData IDCardData;
+  //      private IDCardData IDCardData;
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Log.Write(Global.PageType);
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "NoHome":
-                    IDCardData = new IDCardData { Name = "陈信成", IDCardNo = "320323199712213618" };
-                    Content = new NoHomePages(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "陈信成", IDCardNo = "320323199712213618" };
+                    Content = new NoHomePages();
                     Pages();
                     break;
                 case "OwnerShipPages":
-                    IDCardData = new IDCardData { Name = "王留英", IDCardNo = "320502196312122544" };
-                    Content = new OwnerShipPages(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "王留英", IDCardNo = "320502196312122544" };
+                    Content = new OwnerShipPages();
                     Pages();
                     break;
                 case "HomeCountPages":
-                    IDCardData = new IDCardData { Name = "施丽华", IDCardNo = "320524197706045222" };
-                    Content = new HomeCountPages(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "施丽华", IDCardNo = "320524197706045222" };
+                    Content = new HomeCountPages();
                     Pages();
                     break;
                 case "NoHomeChild":
@@ -133,19 +121,24 @@ namespace RECSuzhou
                     Pages();
                     break;
                 case "SZHQArchivePages":
-                    IDCardData = new IDCardData { Name = "杨洋", IDCardNo = "140108198708253219" };
-                    Content = new SZArchivePage(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "杨洋", IDCardNo = "140108198708253219" };
+                    Content = new SZArchivePage();
                     Pages();
                     break;
                 case "SZWZArchivePages":
-                    IDCardData = new IDCardData { Name = "张林", IDCardNo = "320823198102244241" };
-                    //IDCardData = new IDCardData { Name = "施丽华", IDCardNo = "320524197706045222" };
-                    //IDCardData = new IDCardData { Name = "陈东鸣", IDCardNo = "320504198411091255" };
-                    Content = new SZArchivePage(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "张林", IDCardNo = "320823198102244241" };
+                    //Global.Related.IDCardData = new IDCardData { Name = "施丽华", IDCardNo = "320524197706045222" };
+                    //Global.Related.IDCardData = new IDCardData { Name = "陈东鸣", IDCardNo = "320504198411091255" };
+                    Content = new SZArchivePage();
                     Pages();
                     break;
                 case "SZMoneyPages":
                     Content = new SZMoneyPage();
+                    Pages();
+                    break;
+                case "DegreePages":
+                    Global.Related.IDCardData = new IDCardData { Name = "张林", IDCardNo = "320823198102244241" };
+                    Content = new DegreePage();
                     Pages();
                     break;
                 default:
@@ -157,13 +150,10 @@ namespace RECSuzhou
         {
             Button button = sender as Button;
             switch ((string)button.Tag)
-            {
-               
+            {            
                 case "PDF":
                     Content = new Pdfshow();
                     break;
-
-             
                 default:
                     break;
             }
@@ -177,7 +167,6 @@ namespace RECSuzhou
             {
               
                 case "Close":
-                    //(Application.Current.MainWindow as MainWindow).Close();
                     Environment.Exit(0);
                     break;
               

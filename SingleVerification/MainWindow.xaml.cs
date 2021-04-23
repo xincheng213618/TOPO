@@ -194,7 +194,7 @@ namespace SingleVerification
         }
         private void Camer_Initialized()
         {
-            int i = AmLivingBodyApi.AmOpenDevice(true);
+            int i = AmLivingBodyApi.AmOpenDevice();
             singleGlobal.Msg = i != 0 ? $"摄像头打开错误：{AmLivingBodyApi.Ecode[i]}" : "摄像头DLL正常加载";
 
             if (i == 0)
@@ -203,13 +203,14 @@ namespace SingleVerification
                 formhost.Height = 400;
                 AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 640, 480);
                 AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
-                AmLivingBodyApi.AmOpenDevice();
                 CameraOpen = true;
             }
             
             CanCamera = i == 0;
-
         }
+
+
+
 
 
 
@@ -430,6 +431,8 @@ namespace SingleVerification
             }
         }
     }
+
+
 
     //本页面全局函数在这里进行定义
     public class SingleGlobal : INotifyPropertyChanged

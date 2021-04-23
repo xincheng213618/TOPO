@@ -20,15 +20,8 @@ namespace REC
     public partial class FunctionPage1 : Page
     {
 
-        IDCardData idCardData ;
-        /// <summary>
-        /// 流水号
-        /// </summary>
-        string TranstionId;
-        public FunctionPage1(IDCardData idCardData,string TranstionId)
+        public FunctionPage1()
         {
-            this.idCardData = idCardData;
-            this.TranstionId = TranstionId;
             InitializeComponent();
         }
 
@@ -46,12 +39,13 @@ namespace REC
             };
             worker.Start();
         }
+
         private void Requests()
         {
-            string response = Http.GetInfo(idCardData, TranstionId);
-            //Thread.Sleep(500);//这里在后台写好之后要去掉
+            string response = Http.GetInfo(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, Global.Related.transtionId);
             Dispatcher.BeginInvoke(new Action(() => GetPhrase(response)));
         }
+
         /// <summary>
         /// 房屋信息
         /// </summary>
@@ -92,18 +86,19 @@ namespace REC
                                 Item.QT = (string)result.GetValue("QT");
                                 Item.FJ = (string)result.GetValue("FJ");
                                 Item.HandlingStatus = (string)result.GetValue("SFZT");
-                                Item.HST = (string)result.GetValue("HST");
-                                Item.HSTSucess= Covert.Base64ToJpeg(Item.HST, "Temp\\HST.jpg");
+                                //Item.HST = (string)result.GetValue("HST");
+                                //Item.HSTSucess= Covert.Base64ToJpeg(Item.HST, "Temp\\HST.jpg");
                                 Item.SLBH = (string)result.GetValue("SLBH");
                                 Item.PROID = (string)result.GetValue("PROID");
                                 Item.ZSID = (string)result.GetValue("ZSID");
-
                                 bool show = false;
+
                                 //重读字段不显示
                                 foreach (RECData items in RECListViewItem)
                                 {
                                     show = Item.BDCQZH == items.BDCQZH;
                                 }
+
                                 //证明字段不显示
                                 if ((string)result.GetValue("ZSTYPE") == "证明")
                                 {
@@ -113,10 +108,7 @@ namespace REC
                                 if (!show)
                                 {
                                     Item.FileName = "Temp\\" + Item.QLR + RECListNo.ToString() + "show.pdf";
-                                    PDF.DrawPDF(Item.FileName, Item);
-                                    Item.PrintName = "Temp\\Print" + RECListNo.ToString() + ".pdf";
-                                    PDF.DrawPrintPDF(Item.PrintName, Item);
-
+                                    Item.PrintName = "Temp\\Print" + RECListNo.ToString() + ".pdf"; 
                                     RECListViewItem.Add(Item);
                                 }
                             }
@@ -125,8 +117,14 @@ namespace REC
                                 Content = new HomePage("查询到已经被过滤到的信息，请联系C13号窗口工作人员");
                                 Pages();
                             }
-
-                            Media.Play("Base\\Media\\请选择您要打印的证书.mp3");
+                            if (RECListViewItem.Count == 1)
+                            {
+                                ListView.SelectedIndex = 0;
+                            }
+                            else
+                            {
+                                Media.Play("Base\\Media\\请选择您要打印的证书.mp3");
+                            }
                         }
                         else
                         {
@@ -152,6 +150,8 @@ namespace REC
                 Content = new HomePage("查询接口异常，请联系C13号窗口工作人员");
                 Pages();
             }
+
+            
         }
 
         private void Countdown()
@@ -166,6 +166,8 @@ namespace REC
                 }
             });
         }
+
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
@@ -182,7 +184,7 @@ namespace REC
                     Pages();
                     break;
                 case "Return":
-                    Content = new FunctionPage(idCardData);
+                    Content = new FunctionPage();
                     Pages();
                     break;
                 default:
@@ -199,7 +201,9 @@ namespace REC
         {
             if (ListView.SelectedIndex>=0)
             {
-                Content = new FunctionPage2(idCardData, RECListViewItem[ListView.SelectedIndex]);
+                PDF.DrawPDF(RECListViewItem[ListView.SelectedIndex].FileName, RECListViewItem[ListView.SelectedIndex]);
+                PDF.DrawPrintPDF(RECListViewItem[ListView.SelectedIndex].PrintName, RECListViewItem[ListView.SelectedIndex]);
+                Content = new FunctionPage2( RECListViewItem[ListView.SelectedIndex]);
                 Pages();
             }
         }

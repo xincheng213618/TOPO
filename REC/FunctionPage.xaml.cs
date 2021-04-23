@@ -13,14 +13,8 @@ namespace REC
     /// </summary>
     public partial class FunctionPage : Page
     {
-        /// <summary>
-        /// 身份证信息
-        /// </summary>
-        IDCardData iDCardData;
-
-        public FunctionPage(IDCardData iDCardData)
+        public FunctionPage()
         {
-            this.iDCardData = iDCardData;
             InitializeComponent();
         }
 
@@ -31,7 +25,8 @@ namespace REC
             TopGrid.DataContext = timeCount;
             Countdown();
         }
-        
+
+
         private void Countdown()
         {  
             pageTimer = new DispatcherTimer() { IsEnabled = true, Interval = TimeSpan.FromSeconds(1), };
@@ -44,6 +39,7 @@ namespace REC
                 }
             });
         }
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
@@ -53,15 +49,15 @@ namespace REC
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
-            switch (button.Tag)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "Peroson":
-                    Content = new QRCode(iDCardData);
+                    Content = new QRCode();
                     Pages();
                     break;
                 case "Commission":
-                    Content = new QRCode(iDCardData);
+                    Content = new QRCode();
                     Pages();
                     break;
                 case "HomePage":

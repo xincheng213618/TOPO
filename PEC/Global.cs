@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,55 +13,14 @@ using System.Xml.Serialization;
 
 namespace PEC
 {
-    public static class Time
-    {
-        public static int Timeout = 59;
-        public static int IDCardTimeout = 24;
-        public static int CameraTimeout = 24;
-        public static int NoHomeTimeout = 30;
-        public static string Propertyname = "Countdown";
-    }
-
-
-    public struct CameraData
-    {
-        public static int CameraTryCount =3;
-    }
 
     public static class Global
     {
-        public static string PageType = null;
-        public static ConfigData Config = new ConfigData();
-
-        public static bool Loaded = Convert.ToBoolean(Config.LoadAnimation);
-
-        
+        public static ConfigData Config = new ConfigData();        
         public static string IP = Info.IPAdress()[0];
-
         public static string MAC = Info.MACAdress()[0];
+        public static Related Related = new Related();
 
-
-
-        private static DoubleAnimation d = new DoubleAnimation();
-
-        public static DoubleAnimation DoubleAnimationList(bool boole)
-        {
-            d.Duration = new TimeSpan(0, 0, 0, 0, 500);
-
-            switch (boole)
-            {
-                case true:
-                    d.From = 1;
-                    d.To = 0;
-                    break;
-                default:
-                    d.From = 0;
-                    d.To = 1;
-                    break;
-            }
-
-            return d;
-        }
 
         public static void Initialized()
         {
@@ -72,10 +32,6 @@ namespace PEC
             {
                 WriteConfigFile("Config");
             }
-        }
-        public static void PageLoading(Page page)
-        {
-
         }
         public static void ReadConfigFile(string sFile)
         {
@@ -99,6 +55,24 @@ namespace PEC
             fs.Close();
         }
     }
+
+    public class Related
+    {
+        public string UUID;
+        public string PageType;
+        public IDCardData IDCardData;
+
+        public void Initialized()
+        {
+            UUID = Guid.NewGuid().ToString();
+            PageType = "";
+            IDCardData = new IDCardData();
+        }
+
+    }
+
+
+
 
     [Serializable]
     public class ConfigData

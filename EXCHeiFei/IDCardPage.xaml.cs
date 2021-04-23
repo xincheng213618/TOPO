@@ -87,7 +87,7 @@ namespace EXC
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
+                            AmLivingBodyApi.AmOpenDevice();
                             SwitchPage();
                         }
                         else
@@ -111,15 +111,11 @@ namespace EXC
 
         private void SwitchPage()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
-                case "NoHome":
-                    //CSQLite.Insert.WriteIDCardData(idcardData);
-                    //IDcard.DeleteIDcardImages(idcardData);
-                    //Content = new NoHomePages(idcardData);
-                    //break;
                 default:
-                    Content = new CameraPage(idcardData);
+                    Global.Related.IDCardData = idcardData;
+                    Content = new CameraPage( );
                     break;
             }
             Pages();

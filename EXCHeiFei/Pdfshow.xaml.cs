@@ -31,27 +31,24 @@ namespace EXC
         private bool PrintRun =false;
         private bool AllowPrint = true;
 
-        public Pdfshow(int PrintAllNum =10000)
-        {
-            this.PrintAllNum = PrintAllNum;
-            InitializeComponent();
-
-            list = new List<Border>() { Button8 };
-            for (int i = 0; i < list.Count; i++)
-                list[i].Visibility = Visibility.Hidden;
-        }
+       
         int PrintAllNum;
 
 
-        public Pdfshow(string filePath,int PrintAllNum =200,bool AllowPrint =true)
+        public Pdfshow()
         {
-            this.filePath = filePath;
+            InitializeComponent();
+        }
+
+        public Pdfshow(string filePath, int PrintAllNum =200,bool AllowPrint =true)
+        {
+          
             this.PrintAllNum = PrintAllNum;
             this.AllowPrint = AllowPrint;
             InitializeComponent();
 
             list = new List<Border>() { Button0, Button8 };
-            if (Global.PageType != null)
+            if (Global.Related.PageType != null)
             {
                 list = new List<Border>() { Button0 };
             }
@@ -73,7 +70,7 @@ namespace EXC
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {  
                 default:
                     Content = new HomePage();
@@ -141,6 +138,9 @@ namespace EXC
                 AcrobatHelper.pdfControl.LoadFile(PDFpath);
                 AcrobatHelper.pdfControl.setShowScrollbars(false);
                 AcrobatHelper.pdfControl.setShowToolbar(false);
+
+                //PageAllNum = 8;
+                //PDFShowGrid.Width = new GridLength(683.09090909090912);
 
                 PdfReader reader = new PdfReader(PDFpath);
                 PageAllNum = reader.NumberOfPages;
@@ -234,6 +234,7 @@ namespace EXC
         private void PrintOver(object sender, EventArgs e)
         {
             PDFShow.Visibility = Visibility.Hidden;
+             
             Content = new PrintTips();
             Pages();
         }

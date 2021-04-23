@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,14 +10,13 @@ using System.Xml.Serialization;
 
 namespace RECSuzhou
 {
+
     public static class Global
     {
-        public static string PageType = null;
         public static Config Config = new Config();
-
-        public static SaveInfo IDCardInfo = new SaveInfo();
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
+        public static Related Related = new Related();
 
 
         public static void Initialized()
@@ -56,11 +56,20 @@ namespace RECSuzhou
         }
 
     }
-    public class SaveInfo 
+    public class Related
     {
-        public string Name = null;      //姓名   
-        public string IDCardNo = null;  //身份证号
+        public string UUID;
+        public string PageType;
+        public IDCardData IDCardData;
+
+        public void Initialized()
+        {
+            UUID = Guid.NewGuid().ToString();
+            IDCardData = new IDCardData();
+            PageType = null;
+        }
     }
+
 
     [Serializable]
     public class Config
@@ -101,6 +110,9 @@ namespace RECSuzhou
         public string MoneryUrl { get; set; } = "http://10.5.0.232:8500/RealEstateSZGSBDC/app/moneyProgress/progress.do";
         //进程管理
         public string ProcessUrl { get; set; } = "http://10.5.0.232:8500/RealEstateSZGSBDC/app/sc/chaxjindu.do";
+        //学位证明
+        public string DegreeListUrl { get; set; }
+        public string DegreeUrl { get; set; }
         //档案列表
         public string SZArchiveListUrl { get; set; } = "http://10.5.0.232:8500/RealEstateSZGSBDC/app/sc/chaxdanganlist.do";
         //档案内容

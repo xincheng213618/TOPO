@@ -51,7 +51,7 @@ namespace REC
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
+                            AmLivingBodyApi.AmOpenDevice();
                             SwitchPage();
                         }
                         else
@@ -83,27 +83,30 @@ namespace REC
                 Media.Player(15);//读取成功
                 idcardData.Name = idcardData.Name.Trim();
                 idcardData.IDCardNo = idcardData.IDCardNo.Trim();
-                name.Content = "*" + idcardData.Name.Substring(1);
-                cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
+                NameLabel.Content += "*" + idcardData.Name.Substring(1);
+                IDCardNo.Content += idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
                 idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-                sex.Content = idcardData.Sex;
-                bir.Content = idcardData.Born;
-                placesOfIssue.Content = idcardData.GrantDept;
-                validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
+                Sex.Content += idcardData.Sex;
+                Born.Content += idcardData.Born;
+                GrantDept.Content += idcardData.GrantDept;
+                validDate.Content += idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
+                Singed.Visibility = Visibility.Visible;
             }
+
         }
 
 
         private void SwitchPage()
         {
-            switch (Global.PageType)//可以在这里进行定义判定这里可以直接跳转
+            Global.Related.IDCardData = idcardData;
+            switch (Global.Related.PageType)//可以在这里进行定义判定这里可以直接跳转
             {
                 case "Commission":
-                    Content = new QRCode(idcardData);
+                    Content = new QRCode();
                     Pages();
                     break;
                 default:
-                    Content = new CameraPage(idcardData);
+                    Content = new CameraPage();
                     Pages();
                     break;
             }

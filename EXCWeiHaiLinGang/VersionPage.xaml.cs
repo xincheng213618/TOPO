@@ -54,7 +54,7 @@ namespace EXC
         }
 
         private ObservableCollection<VersionItem> VersionItem = new ObservableCollection<VersionItem>();
-        private int VersionNo = 0;
+        //private int VersionNo = 0;
         private void RequestsUrl()
         {
             //WebService.GetPersonInfo(iDCardData);//只是上传不做处理
@@ -67,7 +67,7 @@ namespace EXC
         {
             PopBorder.Visibility = Visibility.Hidden;
             Media.Player(1);
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     InfoLabel.Content = "请选择企业信用报告模板";
@@ -79,8 +79,8 @@ namespace EXC
                 default:
                     break;
             }
-            Global.CameraPass = true;
-            if (!Global.CameraPass)
+            Global.Related.CameraPass = true;
+            if (!Global.Related.CameraPass)
             {
                 InfoLabel.Content = "人脸对比失败，仅提供简易模板";
             }
@@ -117,7 +117,7 @@ namespace EXC
             Button button = sender as Button;
             string TemplateID = VersionItem[int.Parse(button.Tag.ToString())].TemplateID; //这里正常应该做报错检测，但是由于数据时自动生成，因此不会出错
 
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai":
                     Content = new Report(iDCardData, TemplateID, CompanyID);

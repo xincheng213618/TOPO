@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,11 @@ namespace EXC
 {
     public class Global
     {
+        // 调用数据
+        public static ConfigData Config = new ConfigData();
+        public static Related Related = new Related();
+
         //页面状态，用来判断转跳s
-        public static string PageType = null;
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
 
@@ -33,17 +37,14 @@ namespace EXC
         }
 
 
-
-        // 调用数据
-        public static ConfigData configData = new ConfigData();
-
         private static void WriteConfigFile(string sFile)
         {
             XmlSerializer ser = new XmlSerializer(typeof(ConfigData), typeof(ConfigData).GetNestedTypes());
             FileStream fs = File.Create(sFile);
-            ser.Serialize(fs, configData);
+            ser.Serialize(fs, Config);
             fs.Close();
         }
+
 
         //更新数据
         private static void UpdateConfigFile(string sFile)
@@ -69,7 +70,7 @@ namespace EXC
                 using (var stream = File.OpenRead(sFile))
                 {
                     XmlSerializer serializer = new XmlSerializer(typeof(ConfigData), typeof(ConfigData).GetNestedTypes());
-                    configData = serializer.Deserialize(stream) as ConfigData;
+                    Config = serializer.Deserialize(stream) as ConfigData;
                 }
             }
             catch
@@ -83,65 +84,26 @@ namespace EXC
         public static readonly string RequestPassword = "e10adc3949ba59abbe56e057f20f883e";
     }
 
-    public static class IDCardInfo
+    public class Related
     {
-        public static string Name = null;      //姓名   
-        public static string Sex = null;       //性别
-        public static string Nation = null;    //民族
-        public static string Born = null;      //出生日期
-        public static string Address = null;   //住址
-        public static string IDCardNo = null;  //身份证号
-        public static string GrantDept = null; //发证机关
-        public static string UserLifeBegin = null; // 有效开始日期
-        public static string UserLifeEnd = null;   // 有效截止日期
-        public static string PassID = null;        //通行证号码
-        public static string IssuesTimes = null;   //签发次数
-        public static string reserved = null;      // 保留
-        public static string PhotoFileName = null;// 照片路径   
-        public static string CardType = null;// 证件类型     
-        public static string EngName = null;// 英文名      
-        public static string CertVol = null;// 证件版本号                
-        public static string szPath = null;// 证件版本号  
+        public string UUID;
+        public string PageType;
+        public IDCardData IDCardData;
 
-        public static string Update = null;
-        public static byte IDCardPicture;
-        public static byte Picture1;
-        public static byte Picture2;
 
-        public static void Initialized()
+        public string CompanyID;
+        public string CompanyName;
+
+
+        public void Initialized()
         {
-            Name = null;
-            Sex = null;
-            Nation = null;
-            Born = null;
-            Address = null;
-            IDCardNo = null;
-            GrantDept = null;
-            UserLifeBegin = null;
-            UserLifeEnd = null;
-            PassID = null;
-            IssuesTimes = null;
-            reserved = null;
-            PhotoFileName = null;
-            CardType = null;
-            EngName = null;
-            CertVol = null;
-            szPath = null;
-            Update = null;
+            UUID = Guid.NewGuid().ToString();
+            IDCardData = new IDCardData();
+            CompanyID = "";
+            CompanyName = "";
+            PageType = "";
         }
     }
-    public static class CompanyInfo
-    {
-        public static string CompanyID = null;
-        public static string CompanyName = null;
-        public static void Initialized()
-        {
-            CompanyID = null;
-            CompanyName = null;
-        }
-
-    }
-
 
     [Serializable]
     [XmlSerializerAssembly("EXCResources.XmlSerializers")]

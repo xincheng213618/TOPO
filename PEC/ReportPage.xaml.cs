@@ -44,9 +44,9 @@ namespace PEC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            if (Global.PageType == "ProvincialPeople")
+            if (Global.Related.PageType == "ProvincialPeople")
             {
-                string response = null;// Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
+                string response =  Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
                 Dispatcher.BeginInvoke(new Action(() => ProvincialPeoplePhrase(response)));
             }
             else
@@ -74,8 +74,8 @@ namespace PEC
                 if (resultCode != "1")
                 {
 
-                    PDF.DrawYiXing1("1.pdf", new IDCardData() { Name = "胡洪珂", IDCardNo = "411327200103063136", Address = "住址", CardType = "类别", Sex = "男" });
-                    // PrintStart("sample.pdf");
+                    PDF.DrawYiXing1("1.pdf", iDCardData);
+                     PrintStart("sample.pdf");
 
                     return;
                 }
@@ -104,11 +104,6 @@ namespace PEC
             pdfControl.LoadFile(filePath);
             pdfControl.printAllFit(true);
             PrintAlready = true;
-        }
-        private void LoadPDFFile(string pdfPath)
-        {
-
-
         }
       
 

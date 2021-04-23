@@ -1,23 +1,13 @@
 ﻿using BaseUtil;
-using Microsoft.Ink;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace RECSuzhou
@@ -27,7 +17,6 @@ namespace RECSuzhou
     /// </summary>
     public partial class SearchPage : Page
     {
-        private Timer timer = null;
         //查询
         private bool querying = false;
         private int pageNo = 1;
@@ -40,7 +29,7 @@ namespace RECSuzhou
         private void Page_Initialized(object sender, EventArgs e)
         {         
             Countdown_timer();
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
              
                 case "SZHQMoney":
@@ -94,7 +83,7 @@ namespace RECSuzhou
         private void SearchRequests()
         {
             string response = null;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
               
                 case "SZHQMoney":

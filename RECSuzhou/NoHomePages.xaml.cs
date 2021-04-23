@@ -20,11 +20,9 @@ namespace RECSuzhou
     {
         string FileName="";
 
-        private IDCardData idcardData;
         //无房页面 
-        public NoHomePages(IDCardData idcardData)
+        public NoHomePages()
         {
-            this.idcardData = idcardData;
             InitializeComponent();
         }
 
@@ -34,7 +32,7 @@ namespace RECSuzhou
             formsHost.Child = AcrobatHelper.pdfControl;
             AcrobatHelper.pdfControl.EndInit();
 
-            TotalLabel.Content = idcardData.Name.Replace(" ", "") + TotalLabel.Content;
+            TotalLabel.Content = Global.Related.IDCardData.Name.Replace(" ", "") + TotalLabel.Content;
 
             CoutLabel.DataContext = Time;
             Countdown_timer();
@@ -49,7 +47,7 @@ namespace RECSuzhou
         }
         private void NoHomeRequests()
         {
-            string response = Http.NoHome(idcardData.Name, idcardData.IDCardNo);
+            string response = Http.NoHome(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
             Dispatcher.BeginInvoke(new Action(() => Parse(response)));
         }
 
@@ -72,13 +70,13 @@ namespace RECSuzhou
 
                         WaitShow.Visibility = Visibility.Hidden;
                         List<Label> AreaList = new List<Label>() { resLabel0, resLabel1, resLabel2, resLabel3, resLabel4, resLabel5, resLabel6, resLabel7, resLabel8, resLabel9 };
-                        bool have = false;
+                        //bool have = false;
                         for (int i = 0; i < AreaList.Count; i++)
                         {
                             string count = (string)jsons["body"][i]["count"];
                             AreaList[i].Content = count != "0" ? jsons["body"][i]["qxmc"] + "：" + count + "套房子" : jsons["body"][i]["qxmc"] + "：" + "无房";
-                            if (count != "0")
-                                have = true;
+                            //if (count != "0")
+                                //have = true;
                         }
                         PrintButton.Visibility = Visibility.Visible; //不管如何都提供打印功能  (原版设计不满足条件不提供打印)
                     }
@@ -117,7 +115,15 @@ namespace RECSuzhou
             pageTimer.IsEnabled = false;
             Time.ButtonClor = "#60d0ff";
             AcrobatHelper.pdfControl.LoadFile(FileName);
-            int I = Stamp.Start(1);
+            //int I = Stamp.Start(1);
+            int run = Stamp.Start(5);
+            Log.Write("启动盖章机：" + run);
+            if (!"0".Equals(run.ToString()))
+            {
+                Content = new HomePage("盖章机启动失败，请重启盖章机");
+                Pages();
+                return;
+            }
             timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(async () => await TimeRunAsync(5))), null, 0, 500);
 
             AcrobatHelper.pdfControl.printAll();

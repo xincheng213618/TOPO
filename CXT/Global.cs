@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,12 +11,11 @@ using System.Xml.Serialization;
 namespace XinHua
 {
     public static class Global
-    {
-        public static string PageType = null;
+    {       
         public static ConfigData Config = new ConfigData();
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
-
+        public static Related Related = new Related();
 
         public static void Initialized()
         {
@@ -56,17 +56,31 @@ namespace XinHua
         }
 
     }
+    public class Related
+    {
+        public string UUID;
+        public string PageType;
+        public IDCardData IDCardData;
+        public string transtionId;
 
+        public void Initialized()
+        {
+            UUID = Guid.NewGuid().ToString();
+            IDCardData = new IDCardData();
+            transtionId = "";
+            PageType = "";
+        }
+    }
     [Serializable]
     public class ConfigData
     {
         //使用单位信息
-        public string LocateUser { get; set; }
+        public string LocateUser { get; set; } 
         //终端名称
-        public string TerminalName { get; set; }
+        public string TerminalName { get; set; } = "1号机";
         // 技术支持人员和电话
-        public string Technica { get; set; }
-        public string Technicamail { get; set; } 
+        public string Technica { get; set; } = "技术支持：江苏同袍信息科技有限公司";
+        public string Technicamail { get; set; } = "联系电话：025—*****";
 
 
         public string AdminPassword { get; set; } = "admin";

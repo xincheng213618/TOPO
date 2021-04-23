@@ -1,22 +1,9 @@
-﻿using BaseDLL;
-using BaseUtil;
+﻿using BaseUtil;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RECSuzhou
 {
@@ -28,7 +15,6 @@ namespace RECSuzhou
         
         private Timer timer;
         SuZhouDate Time = new SuZhouDate();
-        private int ExitNum = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -38,10 +24,7 @@ namespace RECSuzhou
         {
             Time.Date = DateTime.Now.ToString("MM月dd日 HH:mm:ss");
             Log.LogInput();// 每个一秒刷新一次日志
-            if (DateTime.Now.Second == 0)
-            {
-                ExitNum = 0; //让计数归零，防止用户误触退出程序
-            }
+
             //规定的时间内删除缓存
             if (DateTime.Now.Hour == 14 && DateTime.Now.Minute == 0 && DateTime.Now.Second == 0)
             {
@@ -73,12 +56,13 @@ namespace RECSuzhou
         {
             if (Global.Config.SettingOptimiz == "0")
             {
-                if (Global.PageType == null)
+                if (Global.Related.PageType == "")
                     Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new EXCPassword())));
             }
 
         }
     }
+
 
     public class SuZhouDate : INotifyPropertyChanged
     {

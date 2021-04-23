@@ -15,17 +15,20 @@
             <RowDefinition Height="799*"/>
             <RowDefinition Height="81*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="TopGrid" Grid.Row="0" >
-            <Label Content="{Binding Path=Show}" Foreground="#f4f7c7" FontSize="30" FontFamily="黑体" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,5" />
-        </Grid>
-        
-        <Grid  Grid.Row="1" >
-            <Border  Margin="50" CornerRadius="50" >
-                <WindowsFormsHost x:Name="formhost" Width="640" Height="470" Background="Transparent" >
-                    <winf:PictureBox x:Name="picturebox"   SizeMode="StretchImage"  Dock="Fill"></winf:PictureBox>
-                </WindowsFormsHost>
-            </Border> 
+        <Grid x:Name="TopGrid" Grid.Row="0" />
 
+
+        <Grid  Grid.Row="1" >
+            <WindowsFormsHost x:Name="formhost" Width="640" Height="480" Background="Transparent" >
+                <winf:PictureBox x:Name="picturebox"   SizeMode="StretchImage"  Dock="Fill"></winf:PictureBox>
+            </WindowsFormsHost>
+            <ProgressBar Grid.Column="0" Margin="0,30,94,488" HorizontalAlignment="Right" Width="50" Height="50" Minimum="0" Maximum="100" Value="{Binding Show}" RenderTransformOrigin="0.45,1.01">
+                <ProgressBar.Template>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Border Background="{TemplateBinding Value, ConverterParameter=90, Converter={StaticResource ValueToProcessConverter}}"/>
+                    </ControlTemplate>
+                </ProgressBar.Template>
+            </ProgressBar>
         </Grid>
 
     </Grid>

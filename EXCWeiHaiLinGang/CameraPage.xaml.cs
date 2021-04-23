@@ -14,19 +14,14 @@ namespace EXC
     /// </summary>
     public partial class CameraPage : Page
     {
-        int ret;
         private static bool ShootSucess = false;
         private static double b, c;
 
-        private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            InitializeComponent();
-        }
-
+        
+ 
         private void Page_Initialized(object sender, EventArgs e)
         {
+         
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
@@ -49,10 +44,10 @@ namespace EXC
         {
             string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
             string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
-            if (idcardData.PhotoFileName == null)
+            if (Global.Related.IDCardData.PhotoFileName == null)
                 return;
-            b = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths);
-            c = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths_black);
+            b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
+            c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
 
             ShootSucess = false;
 
@@ -64,6 +59,7 @@ namespace EXC
             }
             else
             {
+                AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
                 tryCount += 1;
             }
             if (tryCount > 2)
@@ -82,17 +78,18 @@ namespace EXC
 
         private void SwitchPage(bool b)
         {
-            Global.CameraPass = b;
-            switch (Global.PageType)
+            Global.Related. CameraPass = b;
+            switch (Global.Related.PageType)
             {
                 case "ReportGRWeiHai":
                 case "ReportGRWeiHaiHBF":
-                    Content = new Report(idcardData);
+                    Content = new Report();
                     break;
                 case "ReportWeiHai":
                     Content = new SearchPage();
                     break; 
                 default:
+                      
                     Content = new HomePage("没有配置进入页面,人脸对比成功");
                     break;
             }
@@ -129,6 +126,7 @@ namespace EXC
                 }
                 else
                 {
+                 
                     Content = new HomePage("超时自动返回");
                     Pages();
                 }
@@ -144,12 +142,14 @@ namespace EXC
             File.Delete(paths);
             File.Delete(paths_black);
 
-            //IDcard.DeleteIDcardImages(idcardData);// 因为后面有用到，这里去掉
+            //IDcard.DeleteIDcardImages(Global.Related.IDCardData);// 因为后面有用到，这里去掉
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
+            AmLivingBodyApi.AmCloseDevice();
+
         }
     }
 

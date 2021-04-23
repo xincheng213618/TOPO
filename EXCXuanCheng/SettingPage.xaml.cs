@@ -108,12 +108,12 @@ namespace EXCXuanCheng
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Log.Write(Global.PageType);
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
-            {
-               //
-            }
+            Log.Write(Global.Related.PageType);
+            Global.Related.PageType = button.Tag.ToString();
+            //switch (Global.Related.PageType)
+            //{
+            //   //
+            //}
         }
 
         private void PageButton_Click(object sender, RoutedEventArgs e)

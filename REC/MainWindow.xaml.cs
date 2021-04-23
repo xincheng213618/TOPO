@@ -60,14 +60,13 @@ namespace REC
 
         private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(Global.PageType == null)
+            if(Global.Related.PageType == "")
                 Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new SettingPage())));
-
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Log.Write("关机：" + DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss"));
+            Log.Write("软件关闭：" + DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss"));
             Environment.Exit(0);
         }
     }

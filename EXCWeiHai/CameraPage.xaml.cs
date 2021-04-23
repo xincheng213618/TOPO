@@ -14,19 +14,19 @@ namespace EXC
     /// </summary>
     public partial class CameraPage : Page
     {
-        int ret=0;
         private static bool ShootSucess = false;
         private static double b, c;
 
         private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
+        public CameraPage( )
         {
-            this.idcardData = idcardData;
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.Related.IDCardData;
+
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
@@ -64,6 +64,7 @@ namespace EXC
             }
             else
             {
+                AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
                 tryCount += 1;
             }
             if (tryCount > 2)
@@ -77,14 +78,14 @@ namespace EXC
 
         private void SwitchPage(bool b)
         {
-            Global.CameraPass = b;
-            switch (Global.PageType)
+            Global.Related. CameraPass = b;
+            switch (Global.Related.PageType)
             {
                 case "ReportGRWeiHai":
-                    Content = new VersionPage(idcardData);
+                    Content = new VersionPage();
                     break;
                 case "ReportWeiHai":
-                    Content = new SearchPage(idcardData);
+                    Content = new SearchPage();
                     break; 
                 default:
                     Content = new HomePage("没有配置进入页面,人脸对比成功");
@@ -144,6 +145,8 @@ namespace EXC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
+            AmLivingBodyApi.AmCloseDevice();
+
         }
     }
 

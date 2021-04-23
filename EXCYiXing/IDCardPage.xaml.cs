@@ -17,8 +17,6 @@ namespace EXCYiXing
         ///// 端口号
         public static int m_iPort;
         public static int read_success = -1;
-        IDCardData idcardData = new IDCardData();
-
         public IDCardPage()
         {
             InitializeComponent();
@@ -26,21 +24,17 @@ namespace EXCYiXing
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            IDcardContent.Content = Global.PageType != "NoHomeChild" ? IDcardContent.Content : "请放入监护人身份证";
+            IDcardContent.Content = Global.Related.PageType != "NoHomeChild" ? IDcardContent.Content : "请放入监护人身份证";
             DataContext = Time;
             Countdown_timer();
             m_iPort = IDcard.IDcardSet();
 
         }
-        private void Msg(string msg)
-        {
-            Content = new HomePage(msg);
-            Pages();
-        }
+
 
         private void IDcard_reader()    
         {
-            read_success=IDcard.IDcardRead(m_iPort, ref idcardData);
+            read_success=IDcard.IDcardRead(m_iPort, ref Global.Related.IDCardData);
 
             if (read_success == 1 || read_success == 0)
             {
@@ -59,15 +53,15 @@ namespace EXCYiXing
             IDcard_info.Visibility = Visibility.Visible;
 
 
-            idcardData.Name = idcardData.Name.Trim();
-            idcardData.IDCardNo = idcardData.IDCardNo.Trim();
-            name.Content = "*" + idcardData.Name.Substring(1);
-            cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
-            idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-            sex.Content = idcardData.Sex;
-            bir.Content = idcardData.Born;  
-            placesOfIssue.Content = idcardData.GrantDept;
-            validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
+            Global.Related.IDCardData.Name = Global.Related.IDCardData.Name.Trim();
+            Global.Related.IDCardData.IDCardNo = Global.Related.IDCardData.IDCardNo.Trim();
+            name.Content = "*" + Global.Related.IDCardData.Name.Substring(1);
+            cardNo.Content = Global.Related.IDCardData.IDCardNo.Substring(0, 10) + "******" + Global.Related.IDCardData.IDCardNo.Substring(16);
+            idcardPicture.Source = Covert.FileToImage(Global.Related.IDCardData.PhotoFileName);
+            sex.Content = Global.Related.IDCardData.Sex;
+            bir.Content = Global.Related.IDCardData.Born;  
+            placesOfIssue.Content = Global.Related.IDCardData.GrantDept;
+            validDate.Content = Global.Related.IDCardData.UserLifeBegin + " - " + Global.Related.IDCardData.UserLifeEnd;
         }
 
 
@@ -96,7 +90,7 @@ namespace EXCYiXing
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
+                            AmLivingBodyApi.AmOpenDevice();
                             SwitchPage();
                         }
                         else
@@ -121,15 +115,10 @@ namespace EXCYiXing
         private void SwitchPage()
         {
             // 2020/12/25  因为个人要三个接口，就在这赋值到时候好取
-            IDCardInfo.Name = idcardData.Name;
-            IDCardInfo.IDCardNo = idcardData.IDCardNo;
-
-
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
-                
                 default:
-                    Content = new CameraPage(idcardData);
+                    Content = new CameraPage();
                     break;
             }
             Pages();

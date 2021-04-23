@@ -88,7 +88,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click" >
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Return_Click" >
                     <Image Source="Images/return.png" Stretch="Uniform" Margin="8"/>
                 </Button>
 

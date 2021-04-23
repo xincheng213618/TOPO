@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using BaseDLL;
 using BaseUtil;
+using System.IO;
 
 namespace REC
 {
@@ -15,17 +16,13 @@ namespace REC
     public partial class FunctionPage2 : Page
     {
         private int PageAllNum = 0;
-        private string FilePath;
-        IDCardData iDCardData;
         RECData rECListView;
 
-        public FunctionPage2(IDCardData iDCardData, RECData rECListView)
+        public FunctionPage2(RECData rECListView)
         {
-            this.FilePath = rECListView.FileName;
-            this.iDCardData = iDCardData;
             this.rECListView = rECListView;
             InitializeComponent();
-            OpenPDF(FilePath);
+            OpenPDF(rECListView.FileName);
         }
 
         private DispatcherTimer pageTimer = null;
@@ -39,16 +36,14 @@ namespace REC
             AcrobatHelper.pdfControl.BeginInit();
             formsHost.Child = AcrobatHelper.pdfControl;
             AcrobatHelper.pdfControl.EndInit();
-
         }
 
         private void OpenPDF(string PDFpath)
         {
             try
             {
-                PdfReader reader = new PdfReader(Environment.CurrentDirectory +"//"+ FilePath);
+                PdfReader reader = new PdfReader(Environment.CurrentDirectory +"//"+ PDFpath);
                 PageAllNum = reader.NumberOfPages;
-                formsHost.Width = 700 * reader.GetPageSize(1).Width / reader.GetPageSize(1).Height;
                 reader.Close();
                 reader.Dispose();
                 if (PageAllNum > 0)
@@ -56,7 +51,11 @@ namespace REC
                     AcrobatHelper.pdfControl.LoadFile(PDFpath);
                     AcrobatHelper.pdfControl.setShowScrollbars(false);
                     AcrobatHelper.pdfControl.setShowToolbar(false);
+
                     AcrobatHelper.pdfControl.gotoNextPage();
+                    CurrentNum =2;
+                    NextPDFBorder.Background = (Brush)Use1.ConvertFrom("#60d0ff");
+                    PrePDFBorder.Background = (Brush)Use1.ConvertFrom("#60d0ff");
                 }
                 else
                 {
@@ -84,11 +83,13 @@ namespace REC
             });
         }
 
+
         private void Pages()
         {
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
+
 
         int CurrentNum = 1;
         private BrushConverter Use1 = new BrushConverter();
@@ -102,7 +103,7 @@ namespace REC
                     Pages();
                     break;
                 case "Return":
-                    Content = new FunctionPage(iDCardData);
+                    Content = new FunctionPage();
                     Pages();
                     break;
                 case "NextPDF":
@@ -147,6 +148,8 @@ namespace REC
                 case "Print":
                     if (Signed)
                     {
+                        try {  File.Delete(rECListView.FileName); }
+                        catch { }
                         Content = new FunctionPage3(rECListView.PrintName, rECListView);
                         Pages();
                     }
@@ -167,9 +170,11 @@ namespace REC
         {
             InkPage inkPage = sender as InkPage;
             InkImage.Source = inkPage.InkBitmapImage;
-            InkButtonLabel.Content = "重新签字";
+            InkButtonLabel.Content = "重  签";
             PrintBorder.Background =(Brush)Use1.ConvertFrom("#60d0ff");
-            Requests.Ink_Upload(iDCardData.IDCardNo, iDCardData.Name, "Temp//ink.png");
+            PrintBorder.BorderBrush = Brushes.HotPink;
+            InkBorder.BorderBrush = Brushes.White;
+            Requests.Ink_Upload(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, "Temp//ink.png");
         }
 
     }

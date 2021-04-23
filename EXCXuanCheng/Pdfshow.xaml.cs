@@ -51,7 +51,7 @@ namespace EXCXuanCheng
             InitializeComponent();
 
             list = new List<Border>() { Button0, Button8 };
-            if (Global.PageType != null)
+            if (Global.Related.PageType != null)
             {
                 list = new List<Border>() { Button0 };
             }
@@ -74,7 +74,7 @@ namespace EXCXuanCheng
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 default:
                     Content = new HomePage();

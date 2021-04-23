@@ -33,7 +33,6 @@ namespace XinHua
     public partial class XinHuaCompanyDetailPage : Page
     {
         private string companyName = null;
-        private string CompanyID = null;
         private CompayQueryDetailItem item;
         public XinHuaCompanyDetailPage(string companyName = null)
         {
@@ -893,7 +892,8 @@ namespace XinHua
                 {
 
                     JObject data = (JObject)PartnersResponse["data"];
-                    JArray resultArray = (JArray)data["list"];
+                    JObject cpartners = (JObject)data["cpartners"];
+                    JArray resultArray = (JArray)cpartners["list"];
                     if (resultArray.Count != 0)
                     {
 
@@ -914,7 +914,6 @@ namespace XinHua
                             str += "{ \"name\":\""+item.stockName+"\",\"children\":[{ \"name\": \"金额："+ item.shouldMoey+"(万元)\"},{ \"name\": \"占比："+ item.stockPercent+ "\"}]},";
                             PartnersItem.Add(item);
                         }
-
 
                         str = str.Substring(0,str.Length-1);
                         StreamWriter sw = File.CreateText("Echarts/tree-basic.js"); //保存到指定路径

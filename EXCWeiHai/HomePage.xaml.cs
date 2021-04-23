@@ -21,22 +21,20 @@ namespace EXC
         public HomePage()
         {
             InitializeComponent();
-        }
-
-        public HomePage(string Msg)
+        } public HomePage(string msg)
         {
+            PopAlert(msg, 3);
             InitializeComponent();
-            PopAlert(Msg, 3);
         }
-
         private void Page_Initialized(object sender, EventArgs e)
         {
 
+       
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-            Global.PageType = null;
+            Global.Related.PageType = "";
 
             BackgroundItem.Kind = true;
             BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
@@ -74,8 +72,8 @@ namespace EXC
         {
             Button button = sender as Button;
 
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "ReportWeiHai"://威海
                 case "ReportGRWeiHai":
@@ -89,7 +87,7 @@ namespace EXC
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
+            Global.Related.PageType = button.Tag.ToString();
 
             switch ((string)button.Tag)
             {

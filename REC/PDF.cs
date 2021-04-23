@@ -1,6 +1,8 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -11,6 +13,7 @@ namespace REC
         //页面偏移函数
         public static int PageChaneX = 0;
         public static int PageChaneY = 0;
+
 
 
         //参考https://news.lianjia.com/nj/baike/0403001.html
@@ -76,6 +79,11 @@ namespace REC
             pdfContentByte.EndText();
             #endregion
 
+            Image image = Image.GetInstance(CodeHelper.QRcode(Item.BDCQZH));
+            image.ScaleAbsolute(80, 80);
+            image.SetAbsolutePosition(660 , 433 );
+            pdfContentByte.AddImage(image);
+
             #region 第二页
             document.NewPage();
 
@@ -89,8 +97,8 @@ namespace REC
             pdfContentByte.SetFontAndSize(HeiTi, 10);
             pdfContentByte.SetTextMatrix(0, 0);
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Tab0, 65, 530, 0); //苏
-            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, Tab1, 130, 530, 0); //时间
-            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, Tab2, 184, 530, 0); //时间
+            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, Tab1, 120, 530, 0); //时间
+            pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, Tab2, 170, 530, 0); //时间
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Tab3, 310, 530, 0); //编号
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QLR, 125, 492, 0); //权利人
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.GYQK, 125, 462, 0);//共有情况
@@ -102,16 +110,15 @@ namespace REC
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 125, 282, 0);//面积
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 125, 252, 0);//使用期限
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 125, 222, 0);//其他
-            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 125, 222, 0, 16);
+
+            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 125, 222, 0, 16,23);
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 600, 500, 0);//附记
 
-
             pdfContentByte.SetFontAndSize(HeiTi, 8);
 
-            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 490, 490, 0,13);
+            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 490, 490, 0,13, 40);
             pdfContentByte.SetFontAndSize(HeiTi, 10);
-
             pdfContentByte.EndText();
             #endregion
 
@@ -121,10 +128,10 @@ namespace REC
             pdfContentByte.AddTemplate(pdfImportedPage, 0, 0);
             if (Item.HSTSucess)
             {
-                Image image = Image.GetInstance("Temp\\HST.jpg");
-                image.ScaleAbsolute(300, 300 * image.Height / image.Width);
-                image.SetAbsolutePosition(60, 300);
-                pdfContentByte.AddImage(image);
+                Image image1 = Image.GetInstance("Temp\\HST.jpg");
+                image1.ScaleAbsolute(300, 300 * image.Height / image.Width);
+                image1.SetAbsolutePosition(60, 300);
+                pdfContentByte.AddImage(image1);
             }
             #endregion
 
@@ -133,20 +140,36 @@ namespace REC
             pdfWriter.Close();
             pdfReader.Close();
         }
-        public static PdfContentByte DrawMul(PdfContentByte pdfContentByte ,string Content,int x,int y,int roxy,int length)
+
+        public static PdfContentByte DrawMul(PdfContentByte pdfContentByte ,string Content,int x,int y,int roxy,int length,int ChangeLength)
         {
             //2021.2.25 更新 空格也有可能出现
             string[] stringSeparators = new string[] { "\r\n" ," "};
 
             foreach (var item in Content.Split(stringSeparators, StringSplitOptions.None))
             {
-                pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, item, x, y, roxy);//附记
-                y = y - length;
+                foreach(var temp in SplitLength(item, ChangeLength))
+                {
+                    pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, temp, x, y, roxy);//附记
+                    y = y - length;
+                }
             }
-
             return pdfContentByte;
         }
 
+        public static  List<string> SplitLength(string SourceString, int Length)
+        {
+            List<string> DestString = new List<string>();
+            //ArrayList list = new ArrayList();
+            for (int i = 0; i < SourceString.Trim().Length; i += Length)
+            {
+                if ((SourceString.Trim().Length - i) >= Length)
+                    DestString.Add(SourceString.Trim().Substring(i, Length));
+                else
+                    DestString.Add(SourceString.Trim().Substring(i, SourceString.Trim().Length - i));
+            }
+            return DestString;
+        }
 
 
 
@@ -157,8 +180,6 @@ namespace REC
         /// <param name="Item"></param>
         public static void DrawPrintPDF(string FilePath, RECData Item)
         {
-            CodeHelper.QRcode(Item.BDCQZH, "Temp\\BDCQZH.png");
-
             string Tab0, Tab1, Tab2, Tab3;
 
             Match math = Regex.Match(Item.BDCQZH, @"(?<=^).*(?=\()");
@@ -234,13 +255,13 @@ namespace REC
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.MJ, 63 + PageChaneX, 244 + PageChaneY, 0);//面积
             pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.SYQX, 63+ PageChaneX, 205 + PageChaneY, 0);//使用期限
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.QT, 63, 166, 0);//权力其他情况
-            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 63+ PageChaneX, 166 + PageChaneY , 0, 17);
+
+            pdfContentByte = DrawMul(pdfContentByte, Item.QLQTZK, 63 + PageChaneX, 166 + PageChaneY, 0, 17, 24);
 
             //pdfContentByte.ShowTextAligned(Element.ALIGN_LEFT, Item.FJ, 500, 500, 0);//附记
             pdfContentByte.SetFontAndSize(HeiTi, 10);
-            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 500 + PageChaneX, 505 + PageChaneY, 0, 14);
+            pdfContentByte = DrawMul(pdfContentByte, Item.FJ, 500 + PageChaneX, 505 + PageChaneY, 0, 14, 35);
             pdfContentByte.SetFontAndSize(HeiTi, 12);
-
 
             pdfContentByte.EndText();
             #endregion
@@ -260,14 +281,13 @@ namespace REC
             pdfContentByte.ShowTextAligned(Element.ALIGN_CENTER, DateTime.Now.ToString("dd"), 760 + PageChaneX, 141 + PageChaneY, 0);
             pdfContentByte.EndText();
 
-            Image image = Image.GetInstance("Temp\\BDCQZH.png");
+            Image image = Image.GetInstance(CodeHelper.QRcode(Item.BDCQZH));
             image.ScaleAbsolute(100, 100);
-            image.SetAbsolutePosition(697, 433);
+            image.SetAbsolutePosition(697+ PageChaneX, 433+ PageChaneY);
             pdfContentByte.AddImage(image);
             #endregion
 
             document.Close();
-
 
             pdfWriter.Close();
             pdfReader.Close();

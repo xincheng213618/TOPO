@@ -50,7 +50,7 @@ namespace RECSuzhou
             InitializeComponent();
 
             list = new List<Border>() { Button0, Button8 };
-            if (Global.PageType != null)
+            if (Global.Related.PageType != "")
                 list = new List<Border>() { Button0 };
 
             
@@ -73,8 +73,8 @@ namespace RECSuzhou
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            switch (Global.PageType)
-            {               
+            switch (Global.Related.PageType)
+            {                 
                 case "OwnerShipPages":
                     Content = new OwnerShipPages();
                     break;
@@ -186,7 +186,7 @@ namespace RECSuzhou
                     PDFListView.SelectedIndex = 0;
 
                     PDFListView.Visibility =  Visibility.Visible;
-                    Button1.Visibility = AllowPrint && Global.PageType != "SZWZArchivePages" ? Visibility.Visible : Visibility.Hidden;
+                    Button1.Visibility = AllowPrint && Global.Related.PageType != "SZWZArchivePages" ? Visibility.Visible : Visibility.Hidden;
                     Button2.Visibility = AllowPrint ? Visibility.Visible : Visibility.Hidden;
                     Button3.Visibility = PageAllNum <= 1 ? Visibility.Hidden : Visibility.Visible;
                     Button7.Visibility = PageAllNum <= 3 ? Visibility.Hidden : Visibility.Visible;
@@ -216,15 +216,23 @@ namespace RECSuzhou
             PrintUtilWindow printUtil = new PrintUtilWindow(1);
             printUtil.Closed += PrintOneOver;
             printUtil.Show();
-            Stamp.Start(1);
+            //Stamp.Start(1);
+            int run = Stamp.Start(5);
+            Log.Write("启动盖章机：" + run);
+            if (!"0".Equals(run.ToString()))
+            {
+                Content = new HomePage("盖章机启动失败，请重启盖章机");
+                Pages();
+                return;
+            }
             AcrobatHelper.pdfControl.printPagesFit(PageNum, PageNum, true);
         }
         private void PrintOneOver(object sender, EventArgs e)
         {
             Stamp.Close();
         }
-        private AxAcroPDFLib.AxAcroPDF pdfc;
-        private int PageAllNumNew = 0;
+      //  private AxAcroPDFLib.AxAcroPDF pdfc;
+     //   private int PageAllNumNew = 0;
         private void PrintPDFAll_Click(object sender, RoutedEventArgs e)
         {
             if (!PrintRun)
@@ -237,8 +245,16 @@ namespace RECSuzhou
                     PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
                     printUtil.Closed += PrintOver;
                     printUtil.Show();
-                    Stamp.Start(PageAllNum);
-                    AcrobatHelper.pdfControl.printAllFit(true);
+                Stamp.Start(PageAllNum);
+                //int run = Stamp.Start(PageAllNum);
+                //Log.Write("启动盖章机：" + run);
+                //if (!"0".Equals(run.ToString()))
+                //{
+                //    Content = new HomePage("盖章机启动失败，请重启盖章机");
+                //    Pages();
+                //    return;
+                //}
+                AcrobatHelper.pdfControl.printAllFit(true);
                     return;
                 //}
                 

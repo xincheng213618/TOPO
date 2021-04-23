@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,13 +12,15 @@ namespace RECSuzhou
 {
     public static class Global
     {
-        public static string PageType = null;
-        public static Config Config = new Config();
+        //记录身份信息
+        public static string PageName = null;
+        public static string PageIDCard = null;
 
-        public static SaveInfo IDCardInfo = new SaveInfo();
+        public static Config Config = new Config();
+        public static Related Related = new Related();
+
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
-
 
         public static void Initialized()
         {
@@ -56,10 +59,19 @@ namespace RECSuzhou
         }
 
     }
-    public class SaveInfo 
+
+    public class Related
     {
-        public string Name = null;      //姓名   
-        public string IDCardNo = null;  //身份证号
+        public string UUID;
+        public string PageType;
+        public IDCardData IDCardData;
+
+        public void Initialized()
+        {
+            UUID = Guid.NewGuid().ToString();
+            IDCardData = new IDCardData();
+            PageType = "";
+        }
     }
 
     [Serializable]

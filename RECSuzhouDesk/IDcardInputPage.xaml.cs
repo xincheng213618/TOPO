@@ -1,19 +1,9 @@
 ﻿using BaseDLL;
 using BaseUtil;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace RECSuzhou
@@ -26,10 +16,14 @@ namespace RECSuzhou
         public IDcardInputPage()
         {
             InitializeComponent();
+            Account.Text = Global.PageName;
+            IDCardNoText.Text = Global.PageIDCard;
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+           // Account.Text = Global.Related.IDCardData.Name;
+           // IDCardNoText.Text = Global.Related.IDCardData.IDCardNo;
             FocusManager.SetFocusedElement(this, Account);
             CoutLabel.DataContext = Time;
             Countdown_timer();
@@ -48,13 +42,14 @@ namespace RECSuzhou
 
 
 
-        private IDCardData idcardData = new IDCardData();
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            idcardData.Name = Account.Text;
-            idcardData.IDCardNo = IDCardNoText.Text;
-            
-            if (idcardData.Name.Length == 0 || idcardData.IDCardNo.Length == 0)
+
+            Global.Related.IDCardData.Name = Account.Text;
+            Global.Related.IDCardData.IDCardNo = IDCardNoText.Text;
+            Global.PageName = Account.Text;
+            Global.PageIDCard = IDCardNoText.Text;
+            if (Account.Text.Length == 0 || Account.Text.Length == 0)
             {
                 ErrorLabel.Visibility = Visibility.Visible;
                 ErrorLabel.Content = "请输入姓名和身份证号";
@@ -62,35 +57,37 @@ namespace RECSuzhou
             }
             else
             {
-                if (Check.CheckIDCardNo(idcardData.IDCardNo))
-                {
-                    SwitchPage();
-                }
-                else
-                {
-                    ErrorLabel.Visibility = Visibility.Visible;
-                    ErrorLabel.Content = "请输入正确的身份证号码";
-                }
+                // 输入外籍证件号也可查询
+                SwitchPage();
+                //if (Check.CheckIDCardNo(idcardData.IDCardNo))
+                //{
+                //    SwitchPage();
+                //}
+                //else
+                //{
+                //    ErrorLabel.Visibility = Visibility.Visible;
+                //    ErrorLabel.Content = "请输入正确的身份证号码";
+                //}
             }
         }
         private void SwitchPage()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "HomeCountPages":
-                    Global.PageType = null;
-                    Content = new HomeCountPages(idcardData);
+                    Global.Related.PageType = null;
+                    Content = new HomeCountPages();
                     break;
                 case "NoHome":
                 case "NoHomeChild":
-                    Content = new NoHomePages(idcardData);
+                    Content = new NoHomePages();
                     break;
                 case "OwnerShipPages":
-                    Content = new OwnerShipPages(idcardData);
+                    Content = new OwnerShipPages();
                     break;
                 case "SZWZArchivePages":
                 case "SZHQArchivePages":
-                    Content = new SZArchivePage(idcardData);
+                    Content = new SZArchivePage();
                     break;
             }
             Pages();
@@ -125,6 +122,13 @@ namespace RECSuzhou
         {
             Time.Countdown = 59;
         }
-    
+
+        private void ClearText_Click(object sender, RoutedEventArgs e)
+        {
+            Global.PageName = null;
+            Global.PageIDCard = null;
+            Account.Text = "";
+            IDCardNoText.Text = "";
+        }
     }
 }

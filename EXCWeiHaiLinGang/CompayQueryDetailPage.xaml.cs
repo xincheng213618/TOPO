@@ -27,16 +27,17 @@ namespace EXC
         private string CompanyID = null;
         private CompayQueryListItem compayQueryListItem;
 
-        public CompayQueryDetailPage(CompayQueryListItem compayQueryListItem)
+        public CompayQueryDetailPage(   )
         {
-            this.compayQueryListItem = compayQueryListItem;
-            this.CompanyName = compayQueryListItem.CompanyName;
-            this.CompanyID = compayQueryListItem.CompanyID;
+   
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.compayQueryListItem = Global.Related.cl;
+            this.CompanyName = compayQueryListItem.CompanyName;
+            this.CompanyID = compayQueryListItem.CompanyID;
             DataContext = Time;
             Countdown_timer();
             labelscpoe.Text = compayQueryListItem.BusinessScope;
@@ -100,8 +101,8 @@ namespace EXC
 
         int HeiFeiXKNo = 0;
         int HeiFeiCFNo = 0;
-        int HeiFeiRedNo = 0;
-        int HeiFeiBlackNo = 0;
+        //int HeiFeiRedNo = 0;
+        //int HeiFeiBlackNo = 0;
 
         private void HeiFeiListPhrase(string response, string Type)
         {

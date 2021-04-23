@@ -35,18 +35,9 @@ namespace RECSuzhou
         private string PageSize = "8";
         public SZArchivePage()
         {
-            idcardData.Name = Global.IDCardInfo.Name;
-            idcardData.IDCardNo = Global.IDCardInfo.IDCardNo;
             InitializeComponent();
         }
 
-        public SZArchivePage(IDCardData idcardData)
-        {
-            this.idcardData = idcardData;
-            Global.IDCardInfo.Name = idcardData.Name;
-            Global.IDCardInfo.IDCardNo = idcardData.IDCardNo;
-            InitializeComponent();
-        }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
@@ -62,7 +53,7 @@ namespace RECSuzhou
 
         private void ArchiveList()
         {
-            string response = Http.SZArchiveList(idcardData.Name, idcardData.IDCardNo, SZArchiveListPageNo, PageSize);
+            string response = Http.SZArchiveList(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, SZArchiveListPageNo, PageSize);
             Dispatcher.BeginInvoke(new Action(() => ParseList(response)));
         }
 
@@ -143,7 +134,7 @@ namespace RECSuzhou
             {
                 Time.Countdown = 180;
                 string Archivecode = SZArchiveListItem.ElementAt(SZArchiveListView.SelectedIndex).archivecode.ToString();
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "SZHQArchivePages":
                         WaitShow.Visibility = Visibility.Visible;
@@ -172,7 +163,7 @@ namespace RECSuzhou
 
         private void Archive(string Archievcode)
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
 
                 case "SZHQArchivePages":
@@ -441,25 +432,17 @@ namespace RECSuzhou
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            switch ((string)button.Tag)
-            {
-                case "Return":
-                    Content = new HomePage();
-                    Pages();
-                    break;
-                case "Home":
-                    Content = new HomePage();
-                    Pages();
-                    break;
-            }
-        }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
+            Content = new HomePage();
+            Pages();
+        }
 
+        private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new IDcardInputPage();
+            Pages();
         }
     }
 }

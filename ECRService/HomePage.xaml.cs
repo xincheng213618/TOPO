@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BaseUtil;
+using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -14,17 +16,14 @@ namespace ECRService
     /// </summary>
     public partial class HomePage : Page
     {
-        private int cornerEvent = 0;
-        private DispatcherTimer cornerEventTimer = null;
-
         public HomePage()
         {
             InitializeComponent();
         }
-
         public HomePage(string Msg)
         {
             InitializeComponent();
+            PopAlert(Msg, 3);//吉林 原本为3
         }
 
         private void Page_Initialized(object sender, EventArgs e)
@@ -54,6 +53,21 @@ namespace ECRService
         {
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
-        
+
+        private void POP_Button(object sender, RoutedEventArgs e)
+        {
+            POP.Visibility = Visibility.Hidden;
+        }
+        private async void PopAlert(string Msg, int time)
+        {
+            Log.Write("HomePagePOP:" + Msg);
+
+            PopTips.Text = Msg;
+            POP.Visibility = Visibility.Visible;
+
+            await Task.Delay(TimeSpan.FromSeconds(time));
+
+            POP.Visibility = Visibility.Hidden;
+        }
     }
 }

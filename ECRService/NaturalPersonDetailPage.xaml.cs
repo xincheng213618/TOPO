@@ -1083,7 +1083,7 @@ namespace ECRService
 
                 Dispatcher.BeginInvoke(new Action(() => GetNaturalPersonDetailCompleted(response)));
             }
-            catch (Exception ex)
+            catch (Exception  )
             {
 
             }

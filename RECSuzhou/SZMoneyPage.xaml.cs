@@ -39,7 +39,7 @@ namespace RECSuzhou
                
                 case "SZHQMoney":
                 case "SZHQProgress":
-                    Global.PageType = button.Tag.ToString();
+                    Global.Related.PageType = button.Tag.ToString();
                     Content = new SearchPage();
                     break;
                

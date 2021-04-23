@@ -13,24 +13,23 @@ namespace EXC
     /// CameraPage.xaml 的交互逻辑
     /// </summary>
     public partial class CameraPage : Page
-    {
-        int ret;
+    {//
+       // int ret;
         private static bool ShootSucess = false;
         private static double b, c;
 
         private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
+        public CameraPage( )
         {
-            this.idcardData = idcardData;
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            this.idcardData = Global.Related.IDCardData;
             AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
-
             DataContext = Time;
             Countdown_timer();
         }
@@ -60,16 +59,19 @@ namespace EXC
 
             Log.Write("人脸比对相似度:"+ Environment.NewLine + b.ToString() + Environment.NewLine + c.ToString());
 
-            if (b > 0.7 && c > 0.7)
+            if (b > 0.7 || c > 0.7)
             {
                 SwitchPage();
             }
             else
             {
+                AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
                 tryCount += 1;
             }
             if (tryCount > 2)
             {
+                Global.Related.IDCardData = new IDCardData();
+          
                 Content = new HomePage("人脸对比失败，请重试");
                 Pages();
             }
@@ -78,14 +80,15 @@ namespace EXC
 
         private void SwitchPage()
         { 
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
                 case "ReportHeFei1":
                 case "ReportGRHeFei":
-                    Content = new Report(idcardData);
+                    Content = new Report();
                     break;
                 default:
+             
                     Content = new HomePage("没有配置进入页面,人脸对比成功");
                     break;
             }
@@ -141,6 +144,8 @@ namespace EXC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
+            AmLivingBodyApi.AmCloseDevice();
+
         }
     }
 

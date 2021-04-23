@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:PEC" xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
       mc:Ignorable="d" 
       d:DesignHeight="1024" d:DesignWidth="1280"
-      Title="LoginPage" Initialized="Page_Initialized">
+      Title="LoginPage" Background="{StaticResource background}" Initialized="Page_Initialized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="93*" />
@@ -43,6 +43,7 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
                         <TextBox x:Name="account"  Text=""  FontSize="20" Height="30" MaxLength="30" Margin="60,50,20,0" VerticalAlignment="Top"  BorderThickness="0,0,0,1">
+
                             <TextBox.Resources>
                                 <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                                     <VisualBrush.Visual>
@@ -96,6 +97,7 @@
                         </Border>
                         <Image x:Name="img1" Source="Images/账号 (1).png" Margin="43,-43,384,302" />
                         <Image x:Name="img2" Source="Images/短信 (1).png" Margin="293,-45,134,304" />
+                        <Label Margin="358,252,34,6" MouseDoubleClick="Label_MouseDoubleClick" Foreground="#FFFF5500" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">身份证登录</Label>
 
                     </Grid>
                     <Grid x:Name="GridLogin1"  Grid.Row="1" Visibility="Hidden">

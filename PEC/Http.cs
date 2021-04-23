@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BaseUtil;
-using BaseDLL;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Net;
@@ -177,6 +176,24 @@ namespace PEC
                 return response;
             }
         }
+
+
+        public class SuZhou
+        {
+            public static string Upload(string FileName)
+            {
+                string Url = "http://2.32.250.162:8088/ESS/sealAutoPdfZF";
+
+                string Base64 = Covert.FileToBase64(FileName);
+                string xmlstr = "<?xml version=\"1.0\" encoding=\"utf-8\"?><SEAL_DOC_REQUEST><BASE_DATA><SYS_ID>0009</SYS_ID><SYS_PWD>123456</SYS_PWD></BASE_DATA><META_DATA><IS_MERGER>false</IS_MERGER></META_DATA><FILE_LIST><TREE_NODE><FILE_NO>hello.ofd</FILE_NO><CJ_TYPE>BASE64</CJ_TYPE><MODEL_NAME>" + Base64 + "</MODEL_NAME><IS_MERGER>false</IS_MERGER><IS_CODEBAR>false</IS_CODEBAR><DOC_TYPE>pdf</DOC_TYPE><RULE_TYPE>1</RULE_TYPE><RULE_LIST><RULE_NODE><RULE_INFO>0,27000,5,5,42000,</RULE_INFO><SEAL_CODE>32050000033282</SEAL_CODE></RULE_NODE></RULE_LIST></TREE_NODE></FILE_LIST></SEAL_DOC_REQUEST>";
+                Dictionary<string, object> dic = new Dictionary<string, object>
+                {
+                    { "xmlStr", xmlstr },
+                };
+                string response = Requests.Post(Url, dic);
+                return response;
+            }
+        }
     }
 
     public class Requests
@@ -299,4 +316,7 @@ namespace PEC
             }
         }
     }
+
+
+
 }

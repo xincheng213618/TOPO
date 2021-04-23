@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using BaseDLL;
 using BaseUtil;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 //Designed By Mr.Xin 2020.4.27 重新优化代码结构,让整体代码的复合度更高
 //Update By Mr.xin 2021.1.12  逻辑优化
@@ -15,14 +17,10 @@ namespace PEC
     /// </summary>
     public partial class CameraPage : Page
     {
-        int ret;
         private static bool ShootSucess = false;
         private static double b, c;
-
-        private IDCardData idcardData;
-        public CameraPage(IDCardData idcardData)
+        public CameraPage()
         {
-            this.idcardData = idcardData;
             InitializeComponent();
         }
 
@@ -52,27 +50,33 @@ namespace PEC
         {
             string paths = Directory.GetCurrentDirectory() + "\\capture.jpg";
             string paths_black = Directory.GetCurrentDirectory() + "\\capture_1.jpg";
-            if (idcardData.PhotoFileName == null)
-                return;
-            b = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths);
-            c = AmLivingBodyApi.AmVerify(idcardData.PhotoFileName, paths_black);
-
-            ShootSucess = false;
-
-            Log.Write("人脸比对相似度:"+ Environment.NewLine + b.ToString() + Environment.NewLine + c.ToString());
-           
-            if (b > 0.7 && c > 0.7)
+            if (Global.Related.IDCardData.PhotoFileName != null)
             {
-              
-                SwitchPage();
+                b = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths);
+                c = AmLivingBodyApi.AmVerify(Global.Related.IDCardData.PhotoFileName, paths_black);
+
+                ShootSucess = false;
+
+                Log.Write("人脸比对相似度:" + Environment.NewLine + b.ToString() + Environment.NewLine + c.ToString());
+
+                if (b > 0.7 && c > 0.7)
+                {
+                    SwitchPage();
+                }
+                else
+                {
+                    AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 30000);
+                    tryCount += 1;
+                }
+                if (tryCount > 3)
+                {
+                    Content = new HomePage("人脸对比失败，请重试");
+                    Pages();
+                }
             }
             else
             {
-                tryCount += 1;
-            }
-            if (tryCount >  CameraData.CameraTryCount)
-            {
-                Content = new HomePage("人脸对比失败，请重试");
+                Content = new HomePage("找不到身份证上的图片信息");
                 Pages();
             }
         }
@@ -86,17 +90,62 @@ namespace PEC
 
         private void SwitchPage()
         { 
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
+                case "Provincial":
+                    DAIDcrdLogin();
+                    break;
                 default:
-                    //Content = new ReportPage(idcardData);
-                    Content = new HomePage("Suceesss");
+                    Content = new ReportPage(Global.Related.IDCardData);
                     Pages();
                     break;
             }
         }
 
+        private void DAIDcrdLogin()
+        {
+            string response = Http.Provincial.DAIDcrdLogin(Global.Related.IDCardData.IDCardNo, "2");
 
+            if (response == null)
+            {
+                Dispatcher.BeginInvoke(new Action(() => HomeMsg("该接口连接错误")));
+                return;
+            }
+            Dispatcher.BeginInvoke(new Action(() => DAIDcrdLoginPrase(response)));
+        }
+        private void DAIDcrdLoginPrase(string response)
+        {
+            try
+            {
+                JObject Jsonresponse = (JObject)JsonConvert.DeserializeObject(response);
+                string resultCode = Jsonresponse["resultCode"].ToString();
+                ReportData.Success = true;
+                if (resultCode.Equals("1"))
+                {
+                    JObject data = (JObject)JsonConvert.DeserializeObject(Jsonresponse.GetValue("data").ToString());
+                    ReportData.LoginName = (string)data.GetValue("loginname");
+                    ReportData.PhoneNum = (string)data.GetValue("mobile");
+                    ReportData.Name = (string)data.GetValue("name");
+                    ReportData.IDCardNo = (string)data.GetValue("cardid");
+                    Content = new ReportPage(Global.Related.IDCardData, ReportData.LoginName);
+                    Pages();
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke(new Action(() => HomeMsg("查不到法人数据")));
+                }
+            }
+            catch (Exception ex)
+            {
+                Dispatcher.BeginInvoke(new Action(() => HomeMsg("身份证接口解析错误：" + ex.Message)));
+            }
+
+        }
+        private void HomeMsg(string msg)
+        {
+            Content = new HomePage(msg);
+            Pages();
+        }
         //倒计时模块
         private DispatcherTimer pageTimer = null;
 
@@ -140,12 +189,11 @@ namespace PEC
             File.Delete(paths);
             File.Delete(paths_black);
 
-            IDcard.DeleteIDcardImages(idcardData);
-
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
+            AmLivingBodyApi.AmCloseDevice();
         }
     }
 

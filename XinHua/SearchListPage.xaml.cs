@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseInk;
+using BaseUtil;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -35,6 +36,8 @@ namespace XinHua
         Thread thread;
         private void Page_Initialized(object sender, EventArgs e)
         {
+            InkPut.delegates();
+            App.InkWindows.Hide();
             WaitShow.Visibility = Visibility.Visible;
             Countdown_timer();
             thread = new Thread(() => SearchRequests())
@@ -71,7 +74,7 @@ namespace XinHua
         {
             string response = null;
             string companyName = SearchContent;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "QiYeXinXi":
                     response = Http.XinHuaSearch(companyName, pageNo);
@@ -348,7 +351,7 @@ namespace XinHua
             {
                 string companyName = CompayQueryListItem.ElementAt(listView.SelectedIndex).CompanyName.ToString();
                 string CompanyID = CompayQueryListItem.ElementAt(listView.SelectedIndex).CompanyID.ToString();
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "QiYeXinXi":
                         Content = new XinHuaCompanyDetailPage(CompanyID);

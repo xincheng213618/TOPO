@@ -29,7 +29,7 @@ namespace EXC
             {
                 if (companyName == null && tyxydm == null)
                     return null;
-                string url = Global.configData.QingDaoLegalPersonUrl;
+                string url = Global.Config.QingDaoLegalPersonUrl;
                 if (url == null)
                     url = "http://192.200.200.30:8080/WinHall-QinDao/frreport/frbg";
 
@@ -296,7 +296,7 @@ namespace EXC
             public static string GetPersonList(IDCardData iDCardData, string s)
             {
 
-                string url = Global.configData.YiXingListUrl;
+                string url = Global.Config.YiXingListUrl;
                 //string url = "http://192.200.200.87:8084/RealEstateYXGYBDC/app/yxglz/fclist.do";
                 Dictionary<string, object> dic = new Dictionary<string, object>
                 {
@@ -311,7 +311,7 @@ namespace EXC
 
             public static string GetPersonPDF(IDCardData iDCardData, string CQZH)
             {
-                string url = Global.configData.YiXingPersonUrl;
+                string url = Global.Config.YiXingPersonUrl;
                 //string url = "http://192.200.200.87:8084/RealEstateYXGYBDC/app/yxglz/bdcdjbzm.do";
                 Dictionary<string, object> dic = new Dictionary<string, object>
                 {
@@ -326,7 +326,7 @@ namespace EXC
             public static string GetBankPDF(string Name, string IDCardNo, string CQZH)
             {
 
-                string url = Global.configData.YiXingBankUrl;
+                string url = Global.Config.YiXingBankUrl;
                 //string url = "http://192.200.200.87:8084/RealEstateYXGYBDC/app/yxglz/txqlzm.do";
                 Dictionary<string, object> dic = new Dictionary<string, object>
                 {

@@ -150,7 +150,7 @@
 
         </Grid>
 
-        <Grid x:Name="NingYang" Grid.Row="1" Visibility="Hidden">
+        <Grid x:Name="NingYang" Grid.Row="1" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="76*" />
@@ -168,7 +168,7 @@
             </Grid.RowDefinitions>
 
             <Border  Grid.Row="2" Grid.Column="1"  >
-                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportNingYang">
+                <Button Template="{StaticResource imageButtonTemplate}" Click="TestButton_Click" Tag="ReportNingYang">
                     <Image Source="images/企业信用信息查询报告打印.png" Stretch="Uniform"/>
                 </Button>
             </Border>
@@ -179,7 +179,7 @@
             </Border>
 
             <Border  Grid.Row="2" Grid.Column="2"  >
-                <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportGRNingYang">
+                <Button Template="{StaticResource imageButtonTemplate}" Click="TestButton_Click" Tag="ReportGRNingYang">
                     <Image Source="images/个人信用报告打印.png" Stretch="Uniform"/>
                 </Button>
             </Border>
@@ -187,7 +187,7 @@
 
         </Grid>
 
-        <Grid x:Name="XinTai" Grid.Row="1"   Visibility="Visible">
+        <Grid x:Name="XinTai" Grid.Row="1"   Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="76*" />

@@ -39,9 +39,9 @@
 
             <Border Grid.Row="0"  Background="White" Margin="40,40,40,160">
                 <Grid Margin="20">
-                    <Image x:Name="imageLogout1" Stretch="Uniform" Source="Images/Show/1-核心价值观.jpg" Visibility="Visible" />
-                    <Image x:Name="imageLogout2" Stretch="Uniform" Source="Images/Show/2-珍爱信用记录.jpg"  Visibility="Visible" />
-                    <Image x:Name="imageLogout3" Stretch="Uniform" Source="Images/Show/3-信用是市场经济的基石.jpg" Visibility="Visible" />
+                    <Image x:Name="imageLogout1" Stretch="Uniform" Source="Images/Show/1-核心价值观.jpg" Panel.ZIndex="0" Visibility="Visible" />
+                    <Image x:Name="imageLogout2" Stretch="Uniform" Source="Images/Show/2-珍爱信用记录.jpg" Panel.ZIndex="0" Visibility="Visible" />
+                    <Image x:Name="imageLogout3" Stretch="Uniform" Source="Images/Show/3-信用是市场经济的基石.jpg" Panel.ZIndex="0" Visibility="Visible" />
                 </Grid>
 
             </Border>

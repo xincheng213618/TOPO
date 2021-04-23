@@ -29,9 +29,9 @@ namespace ECRService
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            formhost.Width = 900;
-            formhost.Height = 675;
-            AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 900, 675);
+            formhost.Width = 640;
+            formhost.Height = 480;
+            AmLivingBodyApi.AmSetVideoWindowHandle(picturebox.Handle, 0, 0, 640, 480);
             AmLivingBodyApi.AmSetCaptureImageCallback(capture_image_callback, IntPtr.Zero);
             AmLivingBodyApi.AmCaptureImage(Directory.GetCurrentDirectory() + $"\\capture.jpg", 20000);
 
@@ -121,12 +121,13 @@ namespace ECRService
         {
             File.Delete(paths);
             File.Delete(paths_black);
-            IDcard.DeleteIDcardImages(iDCardData);
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
+            AmLivingBodyApi.AmCloseDevice();
+
         }
         private void SwitchPage()
         {

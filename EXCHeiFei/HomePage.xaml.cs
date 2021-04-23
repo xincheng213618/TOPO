@@ -16,24 +16,27 @@ namespace EXC
     /// </summary>
     public partial class HomePage : Page
     {
+ 
+
+        public HomePage(string msg)
+        {
+            PopAlert(msg, 6);//吉林 原本为3
+            InitializeComponent();
+        }
+
         public HomePage()
         {
+
             InitializeComponent();
         }
-
-        public HomePage(string Msg)
-        {
-            InitializeComponent();
-            PopAlert(Msg, 6);//吉林 原本为3
-        }
-
         private void Page_Initialized(object sender, EventArgs e)
         {
+            
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-            Global.PageType = null;
+            Global.Related.Initialized();
 
             BackgroundItem.Kind = true;
             BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
@@ -49,7 +52,6 @@ namespace EXC
             POP.Visibility = Visibility.Visible;
 
             await Task.Delay(TimeSpan.FromSeconds(time));
-
             POP.Visibility = Visibility.Hidden;
         }
 
@@ -70,8 +72,8 @@ namespace EXC
         {
             Button button = sender as Button;
 
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
                 case "ReportHeFei1":
@@ -86,7 +88,7 @@ namespace EXC
                     }
                     else
                     {
-                        PopAlert("该功能暂时无法使用",3);
+                        PopAlert("该功能暂时无法使用", 3);
                     }
 
                     break;
@@ -109,15 +111,18 @@ namespace EXC
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
+            Global.Related.PageType = button.Tag.ToString();
 
-            switch ((string)button.Tag)
+            switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
+                    Content = new Pdfshow();
+                    Pages();
+                    break;
                 case "ReportHeFei1":
                 case "ReportGRHeFei":
-                    IDCardData = new IDCardData { Name = "宋志磊", IDCardNo = "340122199210252875" };
-                    Content = new Report(IDCardData);
+                    Global.Related.IDCardData = new IDCardData { Name = "宋志磊", IDCardNo = "340122199210252875" };
+                    Content = new Report();
                     break;
                 default:
                     break;

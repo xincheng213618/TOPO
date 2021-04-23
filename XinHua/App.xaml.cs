@@ -1,4 +1,5 @@
 ﻿using Background;
+using BaseInk;
 using BaseUtil;
 using Startup;
 using System;
@@ -74,6 +75,8 @@ namespace XinHua
         public StartWindow StartWindow;
 
         public static BackgroundWindow backgroundWindow;
+        public static InkWindows InkWindows;
+
 
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -85,6 +88,7 @@ namespace XinHua
 
             backgroundWindow = new BackgroundWindow();
             backgroundWindow.Show();
+            InkWindows = new InkWindows();
         }
         private void Application_Initialized(object sender, StartupEventArgs e)
         {

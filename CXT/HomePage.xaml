@@ -98,28 +98,28 @@
                                     </Grid>
                                 </Button>
 
-                                <Button Grid.Column="5" Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="NaShuiXinYongA"  Margin="5,120">
+                                <Button Grid.Column="5" Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="NaShuiXinYongA"  Margin="5,120" Visibility="Visible">
                                     <Grid>
                                         <Image Source="Images/TaxA3.png" Stretch="Uniform" />
                                     </Grid>
                                 </Button>
-                                <!--<Button Grid.Column="3" Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="NanJingGRReport"  Margin="25,120">
+                                <Button Grid.Column="3" Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="NanJingGRReport"  Margin="25,120">
                             <Grid>
                                 <Image Source="Images/TaxA3.png" Stretch="Uniform" />
                             </Grid>
-                        </Button>-->
+                        </Button>
                                 <Button Grid.Column="2"  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="NanJingReport"  Margin="0,120">
                                     <Grid>
                                         <Image Source="Images/public.png" Stretch="Uniform" />
                                     </Grid>
                                 </Button>
 
-                                <Button Grid.Column="3"  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="ShuiShouWeiFa"  Margin="5,120">
+                                <Button Grid.Column="3"  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="ShuiShouWeiFa"  Margin="5,120" Visibility="Visible">
                                     <Grid>
                                         <Image Stretch="Uniform" Source="Images/TaxV3.png" />
                                     </Grid>
                                 </Button>
-                                <Button Grid.Column="4"  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="ShiXinRen"   Margin="1,120">
+                                <Button Grid.Column="4"  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="ShiXinRen"   Margin="1,120" Visibility="Visible">
                                     <Grid>
                                         <Image Source="Images/Lost3.png" Stretch="Uniform" />
                                     </Grid>
@@ -129,6 +129,25 @@
                     </Canvas>
                 </Border>
 
+                <!--<Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1"  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="QiYeXinXi"  Margin="80,120">
+                        <Grid>
+                            <Image Source="Images/search3.png" Stretch="Uniform" />
+                        </Grid>
+                    </Button>
+                    <Button Grid.Column="2"  Template="{StaticResource imageButtonTemplate}" Click="Button_Click" Tag="NanJingReport"  Margin="80,120">
+                        <Grid>
+                            <Image Source="Images/public.png" Stretch="Uniform" />
+                        </Grid>
+                    </Button>
+
+                </Grid>-->
             </Grid>
 
         </Border>

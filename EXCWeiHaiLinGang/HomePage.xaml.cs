@@ -21,13 +21,13 @@ namespace EXC
         public HomePage()
         {
             InitializeComponent();
+        } public HomePage(string msg)
+        {
+                PopAlert(msg, 3);
+            InitializeComponent();
         }
 
-        public HomePage(string Msg)
-        {
-            InitializeComponent();
-            PopAlert(Msg, 3);
-        }
+     
 
         private void Page_Initialized(object sender, EventArgs e)
         {
@@ -36,7 +36,7 @@ namespace EXC
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-            Global.PageType = null;
+            Global.Related.PageType = null;
 
             BackgroundItem.Kind = true;
             BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
@@ -74,8 +74,8 @@ namespace EXC
         {
             Button button = sender as Button;
 
-            Global.PageType = button.Tag.ToString();
-            switch (Global.PageType)
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
             {
                 case "ReportGRWeiHai":
                     //IDCardData iDCardData = new IDCardData()
@@ -113,7 +113,7 @@ namespace EXC
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            Global.PageType = button.Tag.ToString();
+            Global.Related.PageType = button.Tag.ToString();
 
             switch ((string)button.Tag)
             {
@@ -123,7 +123,7 @@ namespace EXC
                         Name = "胡洪珂",
                         IDCardNo = "411327200103063136",
                     };
-                    Content = new Report(iDCardData);
+                    Content = new Report();
                     //Content = new IDCardPage();
                     Pages();
 

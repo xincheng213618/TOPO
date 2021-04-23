@@ -70,16 +70,19 @@ namespace EXC
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            if(!Directory.Exists("Temp"))
+            if (!Directory.Exists("Temp"))
             {
                 Directory.CreateDirectory("Temp");
             }
-            mainWindow = new MainWindow(); 
+            mainWindow = new MainWindow();
             StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = true });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
 
             backgroundWindow = new BackgroundWindow();
             backgroundWindow.Show();
+
+            //InkWindow inkWindow = new InkWindow();
+            //inkWindow.Show();
         }
 
         private void Application_Initialized(object sender, StartupEventArgs e)
@@ -89,7 +92,7 @@ namespace EXC
             //CSQLite.Insert.CreatUseTabel();
 
             //获取屏幕数量
-            BackgroundItem.Screens = Global.configData.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.configData.BackgroundWindow;
+            BackgroundItem.Screens = Global.Config.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.Config.BackgroundWindow;
 
         }
 

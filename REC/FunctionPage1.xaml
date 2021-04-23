@@ -28,41 +28,35 @@
             <Label Content="{Binding Path=Show}" Foreground="#f4f7c7" FontSize="30" FontFamily="黑体" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,5" />
         </Grid>
         <Grid  Grid.Row="1"  Background="#c4cce7">
-            <Border x:Name="ReportGrid"  Margin="50"  CornerRadius="50" Background="White">
-                <Grid Margin="100,50">
+            <Border x:Name="ReportGrid"  Margin="50"  CornerRadius="20" Background="White">
+                <Grid Margin="50,50">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <!--标题-->
                     <Grid Grid.Row="0" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="25*"/>
-                            <ColumnDefinition Width="103*"/>
-                            <ColumnDefinition Width="171*"/>
-                            <ColumnDefinition Width="274*"/>
-                            <ColumnDefinition Width="364*"/>
-                            <ColumnDefinition Width="359*"/>
-                            <ColumnDefinition Width="186*"/>
-                            <ColumnDefinition Width="138*"/>
-                            <ColumnDefinition Width="0*"/>
-
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="700"/>
+                            <ColumnDefinition Width="150"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="1" Style="{StaticResource Label_Centered_40}" Content="序号" />
-                        <Label Grid.Column="2" Style="{StaticResource Label_Centered_40}" Content="权利人名称"  />
-                        <Label Grid.Column="3" Style="{StaticResource Label_Centered_40}" Content="权利人证件号"  />
-                        <Label Grid.Column="4" Style="{StaticResource Label_Centered_40}" Content="不动产权证号"  />
-                        <Label Grid.Column="5" Style="{StaticResource Label_Centered_40}" Content="权利类型"  />
-                        <Label Grid.Column="6" Style="{StaticResource Label_Centered_40}" Content="办理状态"  />
-                        <!--<Label Grid.Column="7" Style="{StaticResource Label_Centered_40}" Content="费用"   />-->
+                        <Label Grid.Column="0" Style="{StaticResource Label_Centered_40}" Content="序号"   FontSize="35"/>
+                        <Label Grid.Column="1" Style="{StaticResource Label_Centered_40}" Content="权利人名称"  FontSize="35" />
+                        <Label Grid.Column="2" Style="{StaticResource Label_Centered_40}" Content="权利人证件号"  FontSize="35"  />
+                        <Label Grid.Column="3" Style="{StaticResource Label_Centered_40}" Content="不动产权证号"   FontSize="35" />
                     </Grid>
+
+
 
                     <!--list-->
                     <ListView Grid.Row="3" x:Name="ListView"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ManipulationBoundaryFeedback="ListView_ManipulationBoundaryFeedback" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0"  Visibility="Visible" SelectionChanged="ListView_SelectionChanged" >
                         <ListView.ItemContainerStyle >
                             <Style TargetType="{x:Type ListBoxItem}">
-                                <Setter Property="Height" Value="50" />
-                                <Setter Property="FontSize" Value="20" />
+                                <Setter Property="Height" Value="100" />
+                                <Setter Property="FontSize" Value="30" />
                                 <Setter Property="Background" Value="{Binding Path=Background}"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
                                 <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -78,14 +72,7 @@
                         </ListView.ItemContainerStyle>
                         <ListView.View >
                             <GridView ColumnHeaderContainerStyle="{StaticResource hideHeader}" >
-                                <GridViewColumn Width="25" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <!--<TextBlock Text="{Binding Path=ListNo}"  />-->
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="103" >
+                                <GridViewColumn Width="200" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Path=ListNo}"  />
@@ -93,7 +80,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Width="171"  >
+                                <GridViewColumn Width="200"  >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Path=QLR}" HorizontalAlignment="Left" />
@@ -101,39 +88,25 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn  Width="274">
+                                <GridViewColumn  Width="350">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Path=QLRZJH}"  />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="364" >
+                                <GridViewColumn Width="700" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Path=BDCQZH}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="359" >
+                                <GridViewColumn Width="220" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Label Content="{Binding Path=QLLX}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="186" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Label Content="{Binding Path=HandlingStatus}"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="100" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Border Background="#00a2e9" Height="30"  CornerRadius="3">
-                                                <Label Content="点击打印" Foreground="White" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="黑体" FontWeight="Bold" />
+                                            <Border Background="#00a2e9" Height="70" Width="200"  CornerRadius="10"  BorderBrush="HotPink" BorderThickness="5">
+                                                <Label Content="点击打印" Foreground="White" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="黑体" FontWeight="Bold" />
                                             </Border>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

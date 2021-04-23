@@ -63,7 +63,7 @@ namespace EXC
             Countdown_timer();
             
             Search();
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "HeiFeiRed":
                     SearchTitleLabel.Content = "红名单";
@@ -119,7 +119,7 @@ namespace EXC
         private void SearchRequests()
         {
             string response;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "HeiFeiRed":
                     response = Http.HeFei.GetRedPageInfo(PageNo.ToString(), SearchText);
@@ -172,7 +172,7 @@ namespace EXC
                         {
                             HeiFeiListItem item = new HeiFeiListItem();
 
-                            switch (Global.PageType)
+                            switch (Global.Related.PageType)
                             {
                                 case "HeiFeiImportantPerson":
                                     item.ID = (string)result.GetValue("recordId");
@@ -265,7 +265,7 @@ namespace EXC
         {
             try
             {
-                switch (Global.PageType)
+                switch (Global.Related.PageType)
                 {
                     case "HeiFeiRed":
                     case "HeiFeiBlack":
@@ -314,7 +314,7 @@ namespace EXC
         private void SearchContentRequests(string ID,string XdrMc)
         {
             string response;
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "HeiFeiRed":
                     response = Http.HeFei.GetRedListByNameAndCode(XdrMc, ID);
@@ -356,7 +356,7 @@ namespace EXC
                         {
                             if (i == 0)
                             {
-                                switch (Global.PageType)
+                                switch (Global.Related.PageType)
                                 {
                                     case "HeiFeiRed":
                                         InfoShowTitile.Text = "奖励信息";

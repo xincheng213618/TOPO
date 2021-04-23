@@ -1,20 +1,32 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.IO;
 using System.Xml.Serialization;
 
 namespace EXC
 {
+    public class Related
+    {
+        public Guid UUID;
+        public string PageType = "";
+        public IDCardData IDCardData ;
+
+
+        public void Initialized()
+        {
+            UUID = Guid.NewGuid();
+        }
+     
+    }
     public static class Global
     {
         public static ConfigData Config = new ConfigData();
-        public static UserDate UserDate = new UserDate();
+        public static Related Related = new Related();
 
-        public static string PageType = null;
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
-
-
+   
         public static void Initialized()
         {
             if (File.Exists("Config"))
@@ -56,22 +68,6 @@ namespace EXC
         }
     }
 
-    public class UserDate
-    {
-        public void  Initialized()
-        {
-            Name = "";
-            IDCardNo = "";
-            CompanyName = "";
-            CompanyID = "";
-            Type = "";
-        }
-        public string Name ="";
-        public string IDCardNo = "";
-        public string CompanyName = "";
-        public string CompanyID = "";
-        public string Type = "";
-    }
 
     //http://10.33.1.210:8800/xycx-web/creditSearch/pdfDownloadTUser.do
 

@@ -26,7 +26,7 @@ namespace EXCXuanCheng
     {
         private int m_iPort;
         private int read_success = -1;
-        IDCardData idcardData = new IDCardData();
+        
 
         public IDCardPage()
         {
@@ -43,7 +43,7 @@ namespace EXCXuanCheng
 
         private void IDcard_reader()
         {
-            read_success = IDcard.IDcardRead(m_iPort, ref idcardData);
+            read_success = IDcard.IDcardRead(m_iPort, ref Global.Related.IDCardData);
 
             if (read_success == 1 || read_success == 0)
             {
@@ -60,15 +60,15 @@ namespace EXCXuanCheng
             IDcard_info.Visibility = Visibility.Visible;
 
 
-            idcardData.Name = idcardData.Name.Trim();
-            idcardData.IDCardNo = idcardData.IDCardNo.Trim();
-            name.Content = "*" + idcardData.Name.Substring(1);
-            cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
-            idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-            sex.Content = idcardData.Sex;
-            bir.Content = idcardData.Born;
-            placesOfIssue.Content = idcardData.GrantDept;
-            validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
+            Global.Related.IDCardData.Name = Global.Related.IDCardData.Name.Trim();
+            Global.Related.IDCardData.IDCardNo = Global.Related.IDCardData.IDCardNo.Trim();
+            name.Content = "*" + Global.Related.IDCardData.Name.Substring(1);
+            cardNo.Content = Global.Related.IDCardData.IDCardNo.Substring(0, 10) + "******" + Global.Related.IDCardData.IDCardNo.Substring(16);
+            idcardPicture.Source = Covert.FileToImage(Global.Related.IDCardData.PhotoFileName);
+            sex.Content = Global.Related.IDCardData.Sex;
+            bir.Content = Global.Related.IDCardData.Born;
+            placesOfIssue.Content = Global.Related.IDCardData.GrantDept;
+            validDate.Content = Global.Related.IDCardData.UserLifeBegin + " - " + Global.Related.IDCardData.UserLifeEnd;
         }
 
 
@@ -97,7 +97,7 @@ namespace EXCXuanCheng
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
+                            
                             SwitchPage();
                         }
                         else
@@ -121,12 +121,13 @@ namespace EXCXuanCheng
 
         private void SwitchPage()
         {
-            switch (Global.PageType)
+            switch (Global.Related.PageType)
             {
                 case "":
                 
                 default:
-                    Content = new CameraPage(idcardData);
+                    AmLivingBodyApi.AmOpenDevice();
+                    Content = new CameraPage();
                     break;
             }
             Pages();

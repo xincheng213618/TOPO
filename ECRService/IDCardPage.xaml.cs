@@ -16,7 +16,6 @@ namespace ECRService
         public IDCardPage()
         {
             InitializeComponent();
-            this.DataContext = this;
         }
 
         public static int m_iPort;  //端口
@@ -29,7 +28,8 @@ namespace ECRService
         private void Page_Initialized(object sender, EventArgs e)
         {
             m_iPort = IDcard.IDcardSet();
-            this.DataContext = timeCount;
+
+            DataContext = timeCount;
             Countdown();
         }
 
@@ -52,8 +52,16 @@ namespace ECRService
                         {
                             pageTimer.IsEnabled = false;
                             read_success = -1;
-                            Thread.Sleep(1000);//给与时间去看身份证信息的正确与否
-                            SwitchPage();
+                            int code = AmLivingBodyApi.AmOpenDevice();
+
+                            if (code == 0)
+                            {
+                                SwitchPage();
+                            }
+                            else
+                            {
+                                Content = new HomePage("摄像头打开异常" +Environment.NewLine+ AmLivingBodyApi.Ecode[code]);
+                            }
                         }
                         else
                         {
@@ -82,14 +90,17 @@ namespace ECRService
             if (read_success == 1 || read_success == 0)
             {
                 Media.Player(15);//读取成功
+                Show1.Visibility = Visibility.Hidden;
+                IDCardInofShow.Visibility = Visibility.Visible;
                 idcardData.Name = idcardData.Name.Trim();
                 idcardData.IDCardNo = idcardData.IDCardNo.Trim();
-                name.Content = "*" + idcardData.Name.Substring(1);
-                cardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
+
+                NameLabel.Content += idcardData.Name;
+                IDCardNo.Content = idcardData.IDCardNo.Substring(0, 10) + "******" + idcardData.IDCardNo.Substring(16);
                 idcardPicture.Source = Covert.FileToImage(idcardData.PhotoFileName);
-                sex.Content = idcardData.Sex;
-                bir.Content = idcardData.Born;
-                placesOfIssue.Content = idcardData.GrantDept;
+                Sex.Content = idcardData.Sex;
+                Born.Content = idcardData.Born;
+                GrantDept.Content = idcardData.GrantDept;
                 validDate.Content = idcardData.UserLifeBegin + " - " + idcardData.UserLifeEnd;
             }
         }
@@ -114,7 +125,8 @@ namespace ECRService
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-
+            Content = new HomePage();
+            Pages();
         }
     }
 }

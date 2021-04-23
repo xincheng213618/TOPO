@@ -290,7 +290,7 @@ namespace XinHua
                     { "path" ,path },
                     { "chooseType", "printMachineTerminal" },
                     { "machineKey", "175D9A78D74D11E8A42C005056B4753D" },
-                }; ;
+                }; 
             return Requests.Downloade(Covert.DicAndUrl(url, dic), FilePath);
         }
 

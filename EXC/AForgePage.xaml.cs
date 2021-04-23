@@ -30,21 +30,20 @@ namespace EXC
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-                    videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);//得到机器所有接入的摄像设备
+            videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);//得到机器所有接入的摄像设备
 
-                    if (videoDevices.Count != 0)
-                    {
-                        foreach (FilterInfo device in videoDevices)
-                        {
-                            cboVideo.Items.Add(device.Name);//把摄像设备添加到摄像列表中
-                        }
-                    }
-                    else
-                    {
-                        cboVideo.Items.Add("没有找到摄像头");
-                    }
-
-                    cboVideo.SelectedIndex = 0;//默认选择第一个
+            if (videoDevices.Count != 0)
+            {
+                foreach (FilterInfo device in videoDevices)
+                {
+                    cboVideo.Items.Add(device.Name);//把摄像设备添加到摄像列表中
+                }
+            }
+            else
+            {
+                cboVideo.Items.Add("没有找到摄像头");
+            }
+            cboVideo.SelectedIndex = 0;//默认选择第一个
         }
 
         private void cboVideo_SelectionChanged(object sender, SelectionChangedEventArgs e)

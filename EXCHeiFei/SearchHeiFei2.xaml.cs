@@ -40,7 +40,7 @@ namespace EXC
             thread.Start();
         }
 
-        private int PageNo = 1;
+    //    private int PageNo = 1;
         private void Requests()
         {
 
@@ -179,12 +179,13 @@ namespace EXC
                 else
                 {
                     string Msg = (string)@object.GetValue("msg");
+                   
                     Content = new HomePage(Msg);
                     Pages();
                 }
 
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 Content = new HomePage("接口解析错误，请联系开发人员");
                 Pages();

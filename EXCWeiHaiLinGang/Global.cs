@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,16 +10,35 @@ using System.Xml.Serialization;
 
 namespace EXC
 {
+
+
+    public class Related
+    {
+        /// <summary>
+        /// 身份证信息
+        /// </summary>
+        public   IDCardData IDCardData ;
+
+        public   CompayQueryListItem cl  ;
+
+        public Guid UUID;
+        public   string PageType = "";
+        public   bool CameraPass = false;
+
+
+        public void Initialized  () {
+            UUID = Guid.NewGuid();
+        }
+    }
     public static class Global
     {
-        public static string PageType = null;
-        public static bool CameraPass = false;
         public static ConfigData Config = new ConfigData();
-     
+        public static Related Related = new Related();
         public static string IP = Info.IPAdress()[0];
         public static string MAC = Info.MACAdress()[0];
 
 
+ 
         public static void Initialized()
         {
             if (File.Exists("Config"))
