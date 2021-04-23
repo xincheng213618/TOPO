@@ -62,15 +62,13 @@
                                     </LinearGradientBrush>
                                 </PasswordBox.BorderBrush>
                             </PasswordBox>
-                            <Button Click="Button_Click"   Content="确   定" FontSize="30"   HorizontalAlignment="Left" Width="184" Margin="77,300,0,23" Foreground="#FFF38415" Background="Transparent">
-                                <Button.BorderBrush>
-                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                        <GradientStop Color="red" Offset="0"/>
-                                        <GradientStop Color="#FFF38415" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Button.BorderBrush>
-                            </Button>
-                            <Button Click="Button_Click"   Content="返   回" Background="Transparent" FontSize="30"   HorizontalAlignment="Left" BorderBrush="#FFF38415" Width="184" Margin="349,300,0,23" Foreground="#FFF38415"></Button>
+                            <Label BorderThickness="5" Tag="确定" MouseDown="Label_MouseDown" Content="确   定" FontSize="25"  Foreground="Red"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="WhiteSmoke" Margin="178,243,278,85">
+
+                            </Label>
+                            <Label  BorderThickness="5" Tag="取消" MouseDown="Label_MouseDown" Content="返   回"  FontSize="25" Foreground="Red" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="WhiteSmoke" Margin="389,243,67,85">
+
+                            </Label>
+
                         </Grid>
                     </Border>
                 </Grid>

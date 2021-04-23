@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using BaseDLL;
 using BaseUtil;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 //Designed By Mr.Xin 2020.4.27 重新优化代码结构,让整体代码的复合度更高
 //Update By Mr.xin 2021.1.12  逻辑优化
@@ -90,6 +92,9 @@ namespace PEC
         { 
             switch (Global.Related.PageType)
             {
+                case "Provincial":
+                    DAIDcrdLogin();
+                    break;
                 default:
                     Content = new ReportPage(Global.Related.IDCardData);
                     Pages();
@@ -97,7 +102,50 @@ namespace PEC
             }
         }
 
+        private void DAIDcrdLogin()
+        {
+            string response = Http.Provincial.DAIDcrdLogin(Global.Related.IDCardData.IDCardNo, "2");
 
+            if (response == null)
+            {
+                Dispatcher.BeginInvoke(new Action(() => HomeMsg("该接口连接错误")));
+                return;
+            }
+            Dispatcher.BeginInvoke(new Action(() => DAIDcrdLoginPrase(response)));
+        }
+        private void DAIDcrdLoginPrase(string response)
+        {
+            try
+            {
+                JObject Jsonresponse = (JObject)JsonConvert.DeserializeObject(response);
+                string resultCode = Jsonresponse["resultCode"].ToString();
+                ReportData.Success = true;
+                if (resultCode.Equals("1"))
+                {
+                    JObject data = (JObject)JsonConvert.DeserializeObject(Jsonresponse.GetValue("data").ToString());
+                    ReportData.LoginName = (string)data.GetValue("loginname");
+                    ReportData.PhoneNum = (string)data.GetValue("mobile");
+                    ReportData.Name = (string)data.GetValue("name");
+                    ReportData.IDCardNo = (string)data.GetValue("cardid");
+                    Content = new ReportPage(Global.Related.IDCardData, ReportData.LoginName);
+                    Pages();
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke(new Action(() => HomeMsg("查不到法人数据")));
+                }
+            }
+            catch (Exception ex)
+            {
+                Dispatcher.BeginInvoke(new Action(() => HomeMsg("身份证接口解析错误：" + ex.Message)));
+            }
+
+        }
+        private void HomeMsg(string msg)
+        {
+            Content = new HomePage(msg);
+            Pages();
+        }
         //倒计时模块
         private DispatcherTimer pageTimer = null;
 

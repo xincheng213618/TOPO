@@ -34,8 +34,8 @@ namespace PEC
         private void Page_Initialized(object sender, EventArgs e)
         {
             m_iPort = IDcard.IDcardSet();
-              t = new Thread(new ThreadStart(IDcard_reader));
-            t.Start();
+            t = new Thread(new ThreadStart(IDcard_reader));
+             
             timeCount.Countdown = 30;
             Countdown();
         }
@@ -353,6 +353,12 @@ namespace PEC
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Content = new HomePage();
+            Pages();
+        }
+
+        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Content = new IDCardPage();
             Pages();
         }
     }
