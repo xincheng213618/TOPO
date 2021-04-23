@@ -133,9 +133,18 @@ namespace PEC
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            switch (((Button)sender).Content)
+          
+        }
+        private void textpassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            switch (((Button)sender).Tag.ToString())
             {
-                case "确   定":
+                case "确定":
                     if (textpassword.Password.Equals("admin"))
                     {
                         password.Visibility = Visibility.Hidden;
@@ -151,10 +160,6 @@ namespace PEC
                     Pages();
                     break;
             }
-        }
-        private void textpassword_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

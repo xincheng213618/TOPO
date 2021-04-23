@@ -289,10 +289,8 @@ namespace BaseInk
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Height = list.Height;
-          
-                textBlock.Width = 180;
-            
-                sk4.Children.Add(textBlock);
+            textBlock.Width = 180;
+            sk4.Children.Add(textBlock);
             
             for (int i = 0; i < 10; i++)
             {
