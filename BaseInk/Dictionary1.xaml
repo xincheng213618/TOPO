@@ -4,5 +4,21 @@
     <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
         <VirtualizingStackPanel Orientation="Horizontal" VerticalAlignment="Top" />
     </ItemsPanelTemplate>
-
+    <ControlTemplate x:Key="imageButtonTemplate" TargetType="{x:Type Button}">
+        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" Name="PART_Background" Border.Background="Transparent">
+            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter Property="Border.Background" Value="Transparent" TargetName="PART_Background" />
+            </Trigger>
+            <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter Property="UIElement.Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="0" Color="White" Direction="0" Opacity="0" RenderingBias="Performance" ShadowDepth="0" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 </ResourceDictionary>
