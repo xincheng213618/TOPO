@@ -257,7 +257,7 @@ namespace ECRService
 
                 isPageTimer = true;
             }
-            catch (Exception ex)
+            catch (Exception  )
             {
 
             }

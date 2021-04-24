@@ -40,6 +40,7 @@ namespace PEC
         {
             DataContext = Global.Config;
             timeLabel.DataContext = data;
+            LabelTec.Content = Global.Config.Technica;
             Dispatcher.BeginInvoke(new Action(() => frame.Navigate(new HomePage())));
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
