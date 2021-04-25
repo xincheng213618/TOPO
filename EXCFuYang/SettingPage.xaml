@@ -37,15 +37,127 @@
         </Grid>
 
         <Grid Grid.Row="1" Margin="100">
-
-            <Label x:Name="PageTitle" VerticalAlignment="Top" HorizontalAlignment="Center"   Margin="0,60,0,0" Style="{StaticResource Label_Centered_30}" Content="设置页面" FontSize="50"  Foreground="#ff9262" FontWeight="Bold" FontFamily="微软雅黑"/>
-            <Border Grid.Row="1" Background="#ff8160" Height="80" Width="250" CornerRadius="20" >
-                <Button Style="{StaticResource hiddenButton}"  Click="Button_Click" Tag="Close">
-                    <Label Content="关闭程序" FontSize="35" FontFamily="黑体" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Button>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderBrush="White" BorderThickness="0,0,0,7">
+                <Label Content="设置页面" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="45" FontWeight="Bold"/>
             </Border>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Background="#8278d4" CornerRadius="20" Height="130" >
+                        <Button Style="{StaticResource TransparentButtonCenter}" Content="功能" Tag="Function" Click="PageChange_Click" FontSize="55" Foreground="White"/>
+                    </Border>
+                    <Border Grid.Row="1" Background="#8278d4" CornerRadius="20" Height="130" >
+                        <Button Style="{StaticResource TransparentButtonCenter}" Content="页面" Tag="Page" Click="PageChange_Click" FontSize="55" Foreground="White"/>
+                    </Border>
+                    <Border Grid.Row="2" Background="#8278d4" CornerRadius="20" Height="130" >
+                        <Button Style="{StaticResource TransparentButtonCenter}" Content="测试" Tag="Test" Click="PageChange_Click" FontSize="55" Foreground="White"/>
+                    </Border>
+                </Grid>
+                <Grid x:Name="FunctionScrollViewer" Grid.Column="1" Visibility="Visible" >
+
+
+                    <Button   Height="80"   Background="AliceBlue" Width="300" FontSize="35"   Tag="Close"  Click="Button_Click" Margin="211,55,319,469" >
+                        <Label Content="关闭程序" FontWeight="Bold"  Foreground="Red"/>
+                    </Button>
+
+
+
+
+                </Grid>
+                <Grid x:Name="PageScrollViewer" Grid.Column="1" Visibility="Hidden">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Content="自定义页面" FontSize="20"  IsEnabled="False" Foreground="red"/>
+                        <!--键盘-->
+                        <Border Grid.Row="2" Background="Transparent"  CornerRadius="10">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" >
+                                    <Grid Margin="20,0,20,0">
+                                        <Label Content="PDF查看" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="PDF"  Click="PageButton_Click"/>
+                                    </Grid>
+                                </Border>
+
+
+
+
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <Grid x:Name="TestScrollViewer" Grid.Column="1" Visibility="Hidden" >
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Content="模拟数据" FontSize="20"  IsEnabled="False"  Foreground="Red"/>
+                        <!--键盘-->
+                        <Border Grid.Row="2" Background="Transparent"  CornerRadius="10">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="27*"/>
+                                    <ColumnDefinition Width="388*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+
+
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" Grid.ColumnSpan="2" >
+                                    <Grid Margin="20,0,20,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="17*"/>
+                                            <ColumnDefinition Width="143*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="企业信用查询" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,8" />
+                                        <Button Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="qyxy"  Click="TestButton_Click" Grid.ColumnSpan="2" />
+                                    </Grid>
+                                </Border>
+
+                            </Grid>
+                        </Border>
+
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
 
     </Grid>
-    
+
 </Page>
