@@ -95,6 +95,13 @@ namespace PEC
                 case "Provincial":
                     DAIDcrdLogin();
                     break;
+                case "ProvincialPeople":
+                case "GRReportSuZhou":
+                case "ProvincialLYG":
+                    Content = new ReportGRPage();
+                    Pages();
+                    break;
+
                 default:
                     Content = new ReportPage(Global.Related.IDCardData);
                     Pages();
