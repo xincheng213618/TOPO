@@ -89,7 +89,8 @@ namespace PEC
         }
 
         private void SwitchPage()
-        { 
+        {
+            Global.Related.IDCardData = new IDCardData { Name = "孙永杰", IDCardNo = "320811198708270553" };
             switch (Global.Related.PageType)
             {
                 case "Provincial":
@@ -98,6 +99,7 @@ namespace PEC
                 case "ProvincialPeople":
                 case "GRReportSuZhou":
                 case "ProvincialLYG":
+
                     Content = new ReportGRPage();
                     Pages();
                     break;

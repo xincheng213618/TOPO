@@ -90,7 +90,7 @@ namespace PEC
         {
             ////修正 winforms 报错不显示
             //    if (e.Exception.Source != "System.Windows.Forms")
-            //    Log.WriteException(e.Exception);
+               Log.WriteException(e.Exception);
         }
 
 

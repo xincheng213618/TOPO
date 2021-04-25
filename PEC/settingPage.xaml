@@ -31,11 +31,7 @@
                     </Border>
                 </Grid>
             </Border>
-            <Border BorderBrush="Red"   Background="Transparent" Margin="-5,-1,5,1">
-                <Grid>
-
-                </Grid>
-            </Border>
+      
             <Border Background="#FFF3A352" Name="Back" MouseDown="Border_MouseDown" CornerRadius="20" Margin="70,65,1024,656">
                 <Image Source="images/返回.png"></Image>
             </Border>

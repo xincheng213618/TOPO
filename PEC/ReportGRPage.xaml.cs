@@ -113,6 +113,7 @@ namespace PEC
                         Acrobat.pdfControl.LoadFile(filePath);
                         PrintUtilWindow printUtil = new PrintUtilWindow(10);
                         printUtil.Closed += PrintOver;
+                        WaitShow.Visibility = Visibility.Hidden;
                         printUtil.Show();
                         Acrobat.pdfControl.printAll();
                     }
@@ -127,7 +128,7 @@ namespace PEC
             }
             else
             {
-                Content = new HomePage("接口连接程序");
+                Content = new HomePage("接口连接错误");
                 Pages();
             }
         }
