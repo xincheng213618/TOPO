@@ -86,23 +86,23 @@ namespace PEC
         public string AdminPassword { get; set; } = "admin";
         public string LoadAnimation { get; set; } = "true";
         public string PrintTipWindows { get; set; } = "B13";
-        public string ZzjCode { get; set; } = "3200001";
+        public string ZzjCode { get; set; } 
         //大华登录
-        public string DALoginUrl { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/authlocal/getfrdata";
-        public string DAListUrl { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/authlocal/getfrcompany";
-        public string DAIDcardLoginUrl { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/authlocal/getfrdatasfz";
-        public string DAMsgVerifyurl { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/authlocal/getfrdatamsg";
-        public string DASendMsgUrl { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/authlocal/sendmsg";
+        public string DALoginUrl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/authlocal/getfrdata";
+        public string DAListUrl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/authlocal/getfrcompany";
+        public string DAIDcardLoginUrl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/authlocal/getfrdatasfz";
+        public string DAMsgVerifyurl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/authlocal/getfrdatamsg";
+        public string DASendMsgUrl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/authlocal/sendmsg";
 
         //莱斯数据
-        public string LSReportUrl { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/report/getreport";
-        public string LSReporttemp { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/report/gettemp";
+        public string LSReportUrl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/report/getreport";
+        public string LSReporttemp { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/report/gettemp";
 
-        public string LSQRreportUrl { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/report/smreport";
+        public string LSQRreportUrl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/report/smreport";
         //扫码取报告
         public string LSScanUrl { get; set; }
         //个人信用报告
-        public string GRReport { get; set; } = "http://172.23.11.165:19090/WinHall-JSSCredit/report/getnaturalperson";
+        public string GRReport { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/report/getnaturalperson";
 
     }
 

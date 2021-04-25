@@ -262,7 +262,7 @@ namespace PEC
                         return;
                     }
                     JObject data = (JObject)JsonConvert.DeserializeObject(JsonData["data"].ToString());
-                    string filePath = "Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
+                    string filePath =  Environment.CurrentDirectory+"Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
                     Log.Write(filePath);
                     string bs64 = (string)data.GetValue("bgwj");
                     Covert.Base64ToFile(bs64, filePath);

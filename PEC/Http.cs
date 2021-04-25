@@ -169,10 +169,10 @@ namespace PEC
                     { "zzjCode", Global.Config.ZzjCode },
                     { "extendParams", "" }
                 };
-                string response = Requests.Get(url, dic, timeout: 30);
+                string response = Requests.Get(url, dic);
                 //MessageBox.Show(response);
                 // string response = "{\"resultCode\":1,\"msg\":\"查询成功\",\"data\":{\"bgbh\":\"2222222222\",\"bgwj\":\"abc\"}}";
-
+                Log.Write("个人接口：——"+response);
                 return response;
             }
         }

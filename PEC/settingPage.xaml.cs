@@ -58,7 +58,7 @@ namespace PEC
  
                     break;
                 case "Close":
-                    Environment.Exit(0);
+                    (Application.Current.MainWindow as MainWindow).Close();
                     break;
                 case "Back":
                     Content = new HomePage();
