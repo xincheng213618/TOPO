@@ -37,72 +37,26 @@ namespace PEC
             LoginName = ReportData.LoginName;
             iDCardData = new IDCardData() { 
             Name=ReportData.Name,
-            IDCardNo=ReportData.IDCardNo,
-            };
+            IDCardNo=ReportData.IDCardNo,  };
             InitializeComponent();
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            if (Global.Related.PageType == "ProvincialPeople")
-            {
-                string response =  Http.Provincial.GetGRReport(iDCardData.Name, iDCardData.IDCardNo);
-                Dispatcher.BeginInvoke(new Action(() => ProvincialPeoplePhrase(response)));
-            }
-            else
-            {
-                QiYeList.Visibility = Visibility.Visible;
-                Thread thread = new Thread(() => Requests());
-                thread.Start();
-            }
-         
+            QiYeList.Visibility = Visibility.Visible;
+            WaitShow.Visibility = Visibility.Visible;
+            Thread thread = new Thread(() => Requests1());
+            thread.Start();
         }
-        public void ProvincialPeoplePhrase(string response)
-        {
-           
-            if (response == null)
-            {
-               Content= new HomePage("接口异常");
-                Pages();
-            }
-            else
-            {
-                Dispatcher.Invoke(new Action(() => alert(null, 11)));
-                QiYeList.Visibility = Visibility.Hidden;
-                JObject JsonData = (JObject)JsonConvert.DeserializeObject(response);
-                string resultCode = JsonData["resultCode"].ToString();
-                if (resultCode != "1")
-                {
 
-                    PDF.DrawYiXing1("1.pdf", iDCardData);
-                     PrintStart("sample.pdf");
-
-                    return;
-                }
-                JObject data = (JObject)JsonConvert.DeserializeObject(JsonData["data"].ToString());
-                string filePath = "Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
-                Log.Write(filePath);
-                string bs64 = (string)data.GetValue("bgwj");
-                //要去掉👇
-                //  bs64 = Covert.FileToBase64("1.pdf");
-                //要去掉👆
-                Covert.Base64ToFile(bs64, filePath);
-                PopLabel.Content = "正在打印报告";
-                Printover = true;
-                PrintStart(filePath);
-            }
-          
-        }
         bool Printover = false;
-        private AxAcroPDFLib.AxAcroPDF pdfControl;
         public void PrintStart(string filePath)
         {
-            pdfControl = AxAcroPDFutil.pdfControl;
-            pdfControl.BeginInit();
-            formsHost.Child = pdfControl;
-            pdfControl.EndInit();
-            pdfControl.LoadFile(filePath);
-            pdfControl.printAllFit(true);
+            Acrobat.pdfControl.BeginInit();
+            formsHost.Child = Acrobat.pdfControl;
+            Acrobat.pdfControl.EndInit();
+            Acrobat.pdfControl.LoadFile(filePath);
+            Acrobat.pdfControl.printAllFit(true);
             PrintAlready = true;
         }
       
@@ -121,44 +75,26 @@ namespace PEC
             }
             PopLabel.Content = "正在打印报告中";
             await Task.Delay(TimeSpan.FromSeconds(time));
-            
-                PopLabel.Content = "打印完毕";
-                await Task.Delay(TimeSpan.FromSeconds(3));
-                PopBorder.Visibility = Visibility.Hidden;
-                if (PrintAll == 0)
-                {
-                    printnum.Content = 1;
-                }
-                else
-                {
-                    printnum.Content = PrintAll;
-                }
-                Content = new PrintTips();
-                Pages();
-            
-        }
-        public bool Base64ToFile(string Base64, string FilePath)
-        {
-            try
+            PopLabel.Content = "打印完毕";
+            await Task.Delay(TimeSpan.FromSeconds(3));
+            PopBorder.Visibility = Visibility.Hidden;
+            if (PrintAll == 0)
             {
-                FileStream fs = new FileStream(FilePath, FileMode.Create);
-                byte[] bt = Convert.FromBase64String(Base64);
-                fs.Write(bt, 0, bt.Length);
-                fs.Close();
-                return true;
+                printnum.Content = 1;
             }
-            catch
+            else
             {
-                return false;
+                printnum.Content = PrintAll;
             }
+            Content = new PrintTips();
+            Pages();
+
         }
 
-        private void Requests()
+        private void Requests1()
         {
             string response = Http.Provincial.DAList(LoginName);
-
             Dispatcher.BeginInvoke(new Action(() => Phrase(response)));
-
             string response1 = Http.Provincial.LSreporttemp(iDCardData.Name, iDCardData.IDCardNo);
             Dispatcher.BeginInvoke(new Action(() => Phrase1(response1)));
         }
@@ -167,6 +103,7 @@ namespace PEC
         {
             if (response != null)
             {
+                WaitShow.Visibility = Visibility.Hidden;
                 ReportListView.ItemsSource = CompanyReportItem;
                 try
                 {
@@ -250,6 +187,8 @@ namespace PEC
                 Content = new HomePage("莱斯模板ID接口连接错误");
                 Pages();
             }
+
+
             int idwindth = 10;
             foreach (var item in TemplateItem)
             {
@@ -282,6 +221,7 @@ namespace PEC
                 mobanlist.Children.Add(bd);
             }
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -292,22 +232,22 @@ namespace PEC
                     Pages();
                     break;
                 case "Print":
-                    No.Visibility = Visibility.Visible;
+                    MoBanList.Visibility = Visibility.Visible;
+                    break;
+                case "MouBanReturn":
+                    MoBanList.Visibility = Visibility.Hidden;
                     break;
             }
         }
 
         private void Pages()
         {
-            //pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
         static int printcount = 0;
+
         private void ProvincialPrintPdf1()
         {
-
-            No.Visibility = Visibility.Hidden;
-            Dispatcher.Invoke(new Action(() => alert(null, 11)));
             foreach (var item in CompanyReportItem)
             {
                 if (item.Ischeck)
@@ -325,7 +265,7 @@ namespace PEC
                     string filePath = "Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
                     Log.Write(filePath);
                     string bs64 = (string)data.GetValue("bgwj");
-                    Base64ToFile(bs64, filePath);
+                    Covert.Base64ToFile(bs64, filePath);
                     PopLabel.Content = "正在打印报告";
                     if (printcount > 1)
                     {
@@ -346,7 +286,12 @@ namespace PEC
 
         private void BanbenNo(object sender, RoutedEventArgs e)
         {
+            WaitShow.Visibility = Visibility.Visible;
+            MoBanList.Visibility = Visibility.Hidden;
+            alert(null, 11);
+
             mobanId = ((Button)sender).Tag.ToString();
+
             PopBorder.Visibility = Visibility.Visible;
             Dispatcher.BeginInvoke(new Action(ProvincialPrintPdf1));
             PopLabel.Content = "打印完毕";

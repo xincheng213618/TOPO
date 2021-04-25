@@ -1,6 +1,5 @@
 ﻿using BaseInk;
 using BaseUtil;
-using HeBianGu.Product.UserControls.SystemKeyBoard;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -35,8 +34,7 @@ namespace XinHua
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
-           
-            
+          
             FocusManager.SetFocusedElement(this, CompanySearchBox);
             App.InkWindows.Show();
             InkPut.delegate_Ink_Msg += Input;

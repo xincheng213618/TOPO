@@ -60,6 +60,7 @@ namespace PEC
                     Global.Related.PageType = "Provincial";
                     Content = new LoginPage();
                     Pages();
+
                     break;
                 case "ProvincialPeople"://省信用
                     Global.Related.PageType = "ProvincialPeople";

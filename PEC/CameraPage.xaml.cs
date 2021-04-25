@@ -105,50 +105,49 @@ namespace PEC
         private void DAIDcrdLogin()
         {
             string response = Http.Provincial.DAIDcrdLogin(Global.Related.IDCardData.IDCardNo, "2");
-
-            if (response == null)
-            {
-                Dispatcher.BeginInvoke(new Action(() => HomeMsg("该接口连接错误")));
-                return;
-            }
             Dispatcher.BeginInvoke(new Action(() => DAIDcrdLoginPrase(response)));
         }
         private void DAIDcrdLoginPrase(string response)
         {
-            try
+            if (response != null)
             {
-                JObject Jsonresponse = (JObject)JsonConvert.DeserializeObject(response);
-                string resultCode = Jsonresponse["resultCode"].ToString();
-                ReportData.Success = true;
-                if (resultCode.Equals("1"))
+                try
                 {
-                    JObject data = (JObject)JsonConvert.DeserializeObject(Jsonresponse.GetValue("data").ToString());
-                    ReportData.LoginName = (string)data.GetValue("loginname");
-                    ReportData.PhoneNum = (string)data.GetValue("mobile");
-                    ReportData.Name = (string)data.GetValue("name");
-                    ReportData.IDCardNo = (string)data.GetValue("cardid");
-                    Content = new ReportPage(Global.Related.IDCardData, ReportData.LoginName);
-                    Pages();
+                    JObject Jsonresponse = (JObject)JsonConvert.DeserializeObject(response);
+                    string resultCode = Jsonresponse["resultCode"].ToString();
+                    ReportData.Success = true;
+                    if (resultCode.Equals("1"))
+                    {
+                        JObject data = (JObject)JsonConvert.DeserializeObject(Jsonresponse.GetValue("data").ToString());
+                        ReportData.LoginName = (string)data.GetValue("loginname");
+                        ReportData.PhoneNum = (string)data.GetValue("mobile");
+                        ReportData.Name = (string)data.GetValue("name");
+                        ReportData.IDCardNo = (string)data.GetValue("cardid");
+                        Content = new ReportPage(Global.Related.IDCardData, ReportData.LoginName);
+                        Pages();
+                    }
+                    else
+                    {
+                        Content = new HomePage("查不到法人数据");
+                        Pages();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Content = new HomePage("查不到法人数据");
+                    Log.WriteException(ex);
+                    Content = new HomePage("大汉身份证接口解析错误");
                     Pages();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Log.WriteException(ex);
-                Content = new HomePage("大汉身份证接口解析错误");
+                Content = new HomePage("大汉身份证接口连接错误");
                 Pages();
             }
 
+
         }
-        private void HomeMsg(string msg)
-        {
-            Content = new HomePage(msg);
-            Pages();
-        }
+
 
         //倒计时模块
         private DispatcherTimer pageTimer = null;

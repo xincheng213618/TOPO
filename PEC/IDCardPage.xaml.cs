@@ -101,6 +101,7 @@ namespace PEC
 
         private void SwitchPage()
         {
+            Global.Related.IDCardData = idcardData;
             switch (Global.Related.PageType)
             {
                 default:

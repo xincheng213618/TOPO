@@ -9,8 +9,8 @@
       Title="settingPage">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="93*" />
-            <RowDefinition Height="389*" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid  Grid.Row="1" Grid.Column="0" Name="test" Visibility="Hidden"  >
@@ -62,10 +62,10 @@
                                     </LinearGradientBrush>
                                 </PasswordBox.BorderBrush>
                             </PasswordBox>
-                            <Label BorderThickness="5" Tag="确定" MouseDown="Label_MouseDown" Content="确   定" FontSize="25"  Foreground="Red"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="WhiteSmoke" Margin="178,243,278,85">
+                            <Label BorderThickness="5" Tag="确定" MouseDown="Label_MouseDown" Content="确   定" FontSize="25"  Foreground="Red"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="WhiteSmoke" Margin="178,243,278,70">
 
                             </Label>
-                            <Label  BorderThickness="5" Tag="取消" MouseDown="Label_MouseDown" Content="返   回"  FontSize="25" Foreground="Red" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="WhiteSmoke" Margin="389,243,67,85">
+                            <Label  BorderThickness="5" Tag="取消" MouseDown="Label_MouseDown" Content="返   回"  FontSize="25" Foreground="Red" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="WhiteSmoke" Margin="389,243,67,68">
 
                             </Label>
 

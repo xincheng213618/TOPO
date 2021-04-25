@@ -9,8 +9,8 @@
       Title="LoginPage" Background="{StaticResource background}" Initialized="Page_Initialized">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="93*" />
-            <RowDefinition Height="389*" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
@@ -165,24 +165,11 @@
                     </Grid>
                 </Grid>
             </Border>
-            <Border Visibility="Hidden"   Margin="1001,91,79,625" CornerRadius="20" MouseDown="Border_MouseDown">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="1,0.5" MappingMode="RelativeToBoundingBox" StartPoint="0,0">
-                        <GradientStop Color="#FFFF8200"/>
-                        <GradientStop Color="#FFFF1400" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Label Content="身份证登录"  FontWeight="Bold"  FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,-3,9,0"></Label>
-            </Border>
-
-
-
             <Label Content="*法人用户须已在江苏政务服务网注册，如未注册，可先去江苏政务服务网(www.szwfw.gov.cn)," Foreground="Red"  HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20"  Margin="0,0,0,45"/>
             <Label Content="江苏政务服务APP和信用江苏网(credit.jiangsu.gov.cn)注册法人账号。"  Foreground="Red"  HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="20" Margin="0,0,0,10"/>
         </Grid>
 
-        <Button Margin="120,88,969,634" Grid.Row="1"  Click="Button_Click">
+        <Button Margin="120,80,969,634" Grid.Row="1"  Click="Button_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Border   CornerRadius="30" >

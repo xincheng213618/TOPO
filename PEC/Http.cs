@@ -23,8 +23,8 @@ namespace PEC
                     { "password", password }
                 };
 
-                 string response = Requests.Get(url, dic);
-                // string response = " {\"resultCode\":\"1\",\"msg\":\"大汉接口-查询成功\",\"data\":{\"loginname\":\"大汉接口-登录名\",\"mobile\":\"大汉接口-手机号\",\"name\":\"大汉接口-姓名\",\"cardid\":\"大汉接口-身份证号\"}}";
+                string response = Requests.Get(url, dic);
+                //string response = " {\"resultCode\":\"1\",\"msg\":\"大汉接口-查询成功\",\"data\":{\"loginname\":\"大汉接口-登录名\",\"mobile\":\"大汉接口-手机号\",\"name\":\"大汉接口-姓名\",\"cardid\":\"大汉接口-身份证号\"}}";
                 //MessageBox.Show(response);
                 return response;
             }
@@ -83,8 +83,8 @@ namespace PEC
                 {
                     { "loginName", LoginName }
                 };
-               string response = Requests.Get(url, dic);
-                //  string response = "{\"resultCode\":\"1\",\"msg\":\"查询成功\",\"data\":[{\"pgName\":\"pgName_1\",\"creditCode\":\"creditCode_1\",\"realName\":\"realName_1\",\"cardNumber\":\"cardNumber_1\"},{\"pgName\":\"pgName_2\",\"creditCode\":\"creditCode_2\",\"realName\":\"realName_2\",\"cardNumber\":\"cardNumber_2\"}]}";
+               //string response = Requests.Get(url, dic);
+                string response = "{\"resultCode\":\"1\",\"msg\":\"查询成功\",\"data\":[{\"pgName\":\"pgName_1\",\"creditCode\":\"creditCode_1\",\"realName\":\"realName_1\",\"cardNumber\":\"cardNumber_1\"},{\"pgName\":\"pgName_2\",\"creditCode\":\"creditCode_2\",\"realName\":\"realName_2\",\"cardNumber\":\"cardNumber_2\"}]}";
                 //MessageBox.Show(response);
                 return response;
             }
@@ -99,8 +99,8 @@ namespace PEC
                     { "strPersonName", Name },
                     { "id_card_no", IDCardNo }
                 };
-               string response = Requests.Get(url, dic);
-                // string response = "{\"resultCode\":\"1\",\"msg\":\"查询成功\",\"data\":[{\"summary\":\"summary_1\",\"id\":\"id_1\",\"name\":\"模板_1\"},{\"summary\":\"summary_2\",\"id\":\"id_2\",\"name\":\"模板_2\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"}]}";
+               //string response = Requests.Get(url, dic);
+                string response = "{\"resultCode\":\"1\",\"msg\":\"查询成功\",\"data\":[{\"summary\":\"summary_1\",\"id\":\"id_1\",\"name\":\"精简版\"},{\"summary\":\"summary_2\",\"id\":\"id_2\",\"name\":\"基本版\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"完整版\"}]}";
                 // string response="{\"resultCode\":\"1\",\"msg\":\"查询成功\",\"data\":[{\"summary\":\"summary_1\",\"id\":\"id_1\",\"name\":\"模板_1\"},{\"summary\":\"summary_2\",\"id\":\"id_2\",\"name\":\"模板_2\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"},{\"summary\":\"summary_3\",\"id\":\"id_3\",\"name\":\"模板_3\"}]}";
                 return response;
             }

@@ -19,7 +19,7 @@ namespace PEC
 {
     class PDF
     {
-        public static bool DrawYiXing1(string FilePath, IDCardData IDCardData)
+        public static bool DrawPDF(string FilePath, IDCardData IDCardData)
         {
             //打印时间	   
             BaseFont bfChinwse = BaseFont.CreateFont(@"JXBS.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -113,7 +113,6 @@ namespace PEC
                 document.Add(p2);
                 document.Add(p3);
                 document.Close();
-                SetPdfBackground(FilePath);
                 return true;
             }
             catch (Exception ex)
@@ -122,11 +121,9 @@ namespace PEC
                 return false;
             }
         }
-        public static void SetPdfBackground(string pdfFilePath)
+        public static void SetPdfBackground(string pdfFilePath,string destFile)
         {
 
-            //重新生成的 PDF 的路径x
-            string destFile = @"sample.pdf";
             //create new pdf document
             FileStream stream = new FileStream(destFile, FileMode.Create, FileAccess.ReadWrite);
 
@@ -164,9 +161,5 @@ namespace PEC
             return cell;
         }
 
-    }
-    public static class AxAcroPDFutil
-    {
-      public static AxAcroPDFLib.AxAcroPDF pdfControl = new AxAcroPDFLib.AxAcroPDF();
     }
 }
