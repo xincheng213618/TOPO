@@ -144,7 +144,7 @@ namespace RECSuzhou
         }
         private void Degree(string HouseID,string ZuoLuo)
         {
-            string response = Http.Degree(Global.Related.IDCardData.Name,Global.Related.IDCardData.IDCardNo, "207", ZuoLuo);
+            string response = Http.Degree(Global.Related.IDCardData.Name,Global.Related.IDCardData.IDCardNo, HouseID, ZuoLuo);
             Dispatcher.BeginInvoke(new Action(() => DegreeParse(response)));
         }
 
