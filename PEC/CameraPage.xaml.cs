@@ -146,6 +146,7 @@ namespace PEC
             Content = new HomePage(msg);
             Pages();
         }
+
         //倒计时模块
         private DispatcherTimer pageTimer = null;
 

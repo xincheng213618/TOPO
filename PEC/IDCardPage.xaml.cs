@@ -40,7 +40,6 @@ namespace PEC
         }
         private void OtherIDcardShow()
         {
-            IDcard_info.Visibility = Visibility.Visible;
             idcardData.Name = idcardData.Name.Trim();
             idcardData.IDCardNo = idcardData.IDCardNo.Trim();
             name.Content = "*" + idcardData.Name.Substring(1);
@@ -102,13 +101,13 @@ namespace PEC
 
         private void SwitchPage()
         {
-            switch (PEC.Global.Related.PageType)
+            switch (Global.Related.PageType)
             {
                 default:
                     Content = new CameraPage();
+                    Pages();
                     break;
             }
-            Pages();
         }
         
         private void Pages()  
