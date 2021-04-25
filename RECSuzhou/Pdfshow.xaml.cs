@@ -74,7 +74,10 @@ namespace RECSuzhou
         private void Return_Click(object sender, RoutedEventArgs e)
         {
             switch (Global.Related.PageType)
-            {                 
+            {
+                case "DegreePages":
+                    Content = new DegreePage();
+                    break;
                 case "OwnerShipPages":
                     Content = new OwnerShipPages();
                     break;
