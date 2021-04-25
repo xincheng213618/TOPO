@@ -142,7 +142,7 @@ namespace PEC
 
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            switch (((Button)sender).Tag.ToString())
+            switch (((Label)sender).Tag.ToString())
             {
                 case "确定":
                     if (textpassword.Password.Equals("admin"))

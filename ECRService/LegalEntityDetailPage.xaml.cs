@@ -223,7 +223,7 @@ namespace ECRService
                     throw new Exception(returnmsg);
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
             }

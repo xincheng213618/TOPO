@@ -1,5 +1,4 @@
 ﻿using BaseUtil;
-using BaseUtil;
 using Microsoft.Ink;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,7 @@ namespace BaseInk
     public static class InkPut
     {
         public static event Delegate_Ink_Msg delegate_Ink_Msg;
-        public static Delegate  delegates  ;
+        public static Delegate delegates;
         public static TextBox t;
         public static void Invoke(string Msg)
         {
@@ -56,7 +55,7 @@ namespace BaseInk
         private void Window_Initialized(object sender, EventArgs e)
         {
             ListVierew.ItemsSource = selectionsLists;
-            InkPut.delegates += new Delegate( clearText);
+            InkPut.delegates += new Delegate(clearText);
         }
         public static event Delegate_Ink_Msg delegate_Ink_Msg;
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -176,6 +175,7 @@ namespace BaseInk
         string[] ss3 = new string[] { "z", "x", "c", "v", "b", "n", "m" };
         bool l = true;
         Button Buttones = null;
+        Border borders = null;
         KeyHelper.KeyCode B = new KeyHelper.KeyCode();
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -207,7 +207,6 @@ namespace BaseInk
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
             sk.Children.Clear();
             sk2.Children.Clear();
             sk3.Children.Clear();
@@ -217,7 +216,6 @@ namespace BaseInk
             {
                 ((System.Windows.Controls.Button)sender).Content = "中";
                 btn1.Content = "小写";
-
             }
             else
             {
@@ -237,7 +235,6 @@ namespace BaseInk
         }
         private void Button_Clicks(object sender, RoutedEventArgs e)
         {
-
             string indexy = ((System.Windows.Controls.Button)sender).Content.ToString();
             switch (indexy)
             {
@@ -245,8 +242,6 @@ namespace BaseInk
                 case "=":
                     break;
                 default:
-
-
                     KeyHelper.OnKeyPress(B[indexy]);
                     break;
 
@@ -281,54 +276,64 @@ namespace BaseInk
             }
 
         }
-      public    void clearText()
-            {
+        public void clearText()
+        {
             tx.Text = "";
-            }
+        }
         void num()
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Height = list.Height;
-            textBlock.Width = 180;
+            textBlock.Width = 10;
             sk4.Children.Add(textBlock);
-            
+
             for (int i = 0; i < 10; i++)
             {
+            
                 Buttones = new Button();
                 Buttones.Click += Button_Clicks;
-                Buttones.Width = list.Width;
+                Buttones.Background = a; ;
+                Buttones.Width = list.Width+20;
                 Buttones.Height = list.Height;
                 Buttones.BorderBrush = list.BorderBrush;
-                Buttones.Focusable = false;
-                Buttones.BorderThickness = list.BorderThickness;
+                Buttones.Focusable = true;
+                Buttones.BorderThickness = new Thickness(0, 0, 20, 0); ;
                 Buttones.FontSize = 20;
                 Buttones.Name = "aa" + i;
                 Buttones.Content = i.ToString();
-                sk4.Children.Add(Buttones);
+                sk4.Children.Add(Buttones );
             }
         }
+
+        ImageBrush a = new ImageBrush(new BitmapImage(
+                    new Uri(Directory.GetCurrentDirectory() + "\\images\\按钮1.png", UriKind.Absolute)
+                ));
+        ImageBrush b = new ImageBrush(new BitmapImage(
+                    new Uri(Directory.GetCurrentDirectory() + "\\images\\按下1.png", UriKind.Absolute)
+                ));
         void add(string[] str1, string[] str2, string[] str3)
         {
+
             int s = 10;
-            for (int j = 0; j< 3; j++)
+            for (int j = 0; j < 3; j++)
             {
                 TextBlock textBlock = new TextBlock();
                 textBlock.Height = list.Height;
                 if (j == 0)
                 {
-                    textBlock.Width = 250;
+                    textBlock.Width = 50;
                     s = 9;
                     sk2.Children.Add(textBlock);
                 }
                 else if (j == 1)
                 {
-                    textBlock.Width =200;
+                    textBlock.Width = 10;
                     s = 10;
                     sk.Children.Add(textBlock);
                 }
                 else
                 {
-                    textBlock.Width = 290;
+                    textBlock.Width = 90;
                     s = 7;
                     sk3.Children.Add(textBlock);
                 }
@@ -336,11 +341,12 @@ namespace BaseInk
                 {
                     Buttones = new Button();
                     Buttones.Click += Button_Clicks;
-                    Buttones.Width = list.Width;
+                    Buttones.Width = list.Width+20;
                     Buttones.Height = list.Height;
+                    Buttones.Background = a; ;
                     Buttones.BorderBrush = list.BorderBrush;
                     Buttones.Focusable = false;
-                    Buttones.BorderThickness = list.BorderThickness;
+                    Buttones.BorderThickness = new Thickness(0,0,20,0);
                     Buttones.FontSize = 20;
                     Buttones.Name = "a" + i;
                     if (j == 0)
@@ -377,6 +383,79 @@ namespace BaseInk
         private void Window_Activated(object sender, EventArgs e)
         {
             tx.Focus();
+        }
+        int t1 = 0;
+        int t2 = 0;
+
+        int t3 = 0;
+        WrapPanel InkWindowss = null;
+
+
+        private void key_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            switch (((Label)sender).Name.ToString())
+            {
+                case "l1":
+                    t3 = 10;
+                    InkWindowss = sk;
+                    break;
+                case "l2":
+                    t3 = 50;
+                    InkWindowss = sk2;
+                    break;
+                case "l3":
+                    t3 = 90;
+                    InkWindowss = sk3;
+                    break;
+                case "l4":
+                    t3 = 10;
+                    InkWindowss = sk4;
+                    break;
+            }
+
+            int tk =Convert.ToInt32( e.GetPosition((Label)sender).X.ToString())- t3;
+            if (tk<70)
+            {
+                if (tk<=50)
+                {
+                    tk = 0;
+                    ((Button)(InkWindowss.Children[tk + 1])).Background = b; ;
+                }
+            }
+            else
+            {
+                t1 = tk % 70;
+                t2 = tk / 70;
+
+                if (70-t1>20)
+                {
+                    ((Button)(InkWindowss.Children[t2 + 1])).Background = b; ;
+                }
+            }
+        }
+        private void Label_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            int tk = Convert.ToInt32(e.GetPosition((Label)sender).X.ToString()) - t3;
+            if (tk < 70)
+            {
+                if (tk <= 50)
+                {
+                    tk = 0;
+                    ((Button)(InkWindowss.Children[tk + 1])).Background = a; ;
+                    KeyHelper.OnKeyPress(B[((Button)(InkWindowss.Children[t2 + 1])).Content.ToString()]);
+                }
+            }
+            else
+            {
+                t1 = tk % 70;
+                t2 = tk / 70;
+
+                if (70 - t1 > 20)
+                {
+                    ((Button)(InkWindowss.Children[t2 + 1])).Background = a; ;
+                    KeyHelper.OnKeyPress(B[((Button)(InkWindowss.Children[t2 + 1])).Content.ToString()]);
+                }
+            }
         }
     }
 }
