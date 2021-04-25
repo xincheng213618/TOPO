@@ -14,8 +14,6 @@
         </Grid.RowDefinitions>
         <Label x:Name="timeLabel" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="30,30"  Foreground="red" FontSize="20" Content="{Binding Path=Date}"  Height="35" />
 
-
-
         <!--底部标识-->
         <Grid Grid.Row="2"  Margin="0,0,0,0" Background="{StaticResource MainWindowBottom}">
             <Label x:Name="LabelTec" Grid.Column="0" FontSize="23" Foreground="#FFFF" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Content="江苏同袍" MouseDoubleClick="Setting_Click" Grid.ColumnSpan="4" Margin="0,1,0,24" Width="1280" Height="40"   >

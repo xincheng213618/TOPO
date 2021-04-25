@@ -115,11 +115,5 @@ namespace PEC
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
-
-        private void Home_Click(object sender, RoutedEventArgs e)
-        {
-            Content = new HomePage();
-            Pages();      
-        }
     }
 }

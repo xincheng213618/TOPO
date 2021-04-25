@@ -64,7 +64,7 @@ namespace PEC
             {
                Content= new HomePage("接口异常");
                 Pages();
-    }
+            }
             else
             {
                 Dispatcher.Invoke(new Action(() => alert(null, 11)));
@@ -350,8 +350,6 @@ namespace PEC
             PopBorder.Visibility = Visibility.Visible;
             Dispatcher.BeginInvoke(new Action(ProvincialPrintPdf1));
             PopLabel.Content = "打印完毕";
-
-
         }
     }
 }

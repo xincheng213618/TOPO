@@ -1,14 +1,7 @@
 ﻿using BaseDLL;
 using BaseUtil;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Animation;
 using System.Xml.Serialization;
 
 namespace PEC
@@ -64,14 +57,20 @@ namespace PEC
 
         public void Initialized()
         {
+            Clear();
             UUID = Guid.NewGuid().ToString();
             PageType = "";
             IDCardData = new IDCardData();
         }
+        /// <summary>
+        /// 清除掉上一个状态
+        /// </summary>
+       public void Clear()
+        {
+            IDCardData.Clear();
+        }
 
     }
-
-
 
 
     [Serializable]

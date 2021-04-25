@@ -181,25 +181,23 @@
             <Label Content="*法人用户须已在江苏政务服务网注册，如未注册，可先去江苏政务服务网(www.szwfw.gov.cn)," Foreground="Red"  HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20"  Margin="0,0,0,45"/>
             <Label Content="江苏政务服务APP和信用江苏网(credit.jiangsu.gov.cn)注册法人账号。"  Foreground="Red"  HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="20" Margin="0,0,0,10"/>
         </Grid>
-        <Border Margin="120,88,969,634" Grid.Row="1"  CornerRadius="30" >
-            <Border.Background>
-                <LinearGradientBrush EndPoint="1,0.5" MappingMode="RelativeToBoundingBox" StartPoint="0,0">
-                    <GradientStop Color="#FFFF8200"/>
-                    <GradientStop Color="#FFFF1400" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            <Border Margin="60,180,20,48" CornerRadius="20">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="0.815,0.443" StartPoint="0.24,0.483">
-                        <GradientStop Color="#FFFF6600" Offset="0"/>
-                        <GradientStop Color="#FFFF2F00" Offset="1"/>
-                        <GradientStop Color="#FFFF5500" Offset="0.298"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Button Style="{StaticResource hiddenButton}" Content=" " FontWeight="Bold" Foreground="White"  FontSize="25" Click="Login_Click"  Tag="Out" Margin="-51,-180,-11,124" />
-            </Border>
-        </Border>
-        <Image Source="images/返回.png" Margin="134,87,988,632" MouseDown="Border_MouseDown" Name="return_left" Grid.Row="1" />
+
+        <Button Margin="120,88,969,634" Grid.Row="1"  Click="Button_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border   CornerRadius="30" >
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" MappingMode="RelativeToBoundingBox" StartPoint="0,0">
+                                <GradientStop Color="#FFFF8200"/>
+                                <GradientStop Color="#FFFF1400" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Image Source="images/返回.png" />
+                    </Border>
+
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
         <Grid x:Name="POP" Grid.Row="1" Visibility="Hidden">
             <Border  Background="Black"    Opacity="0.13"/>

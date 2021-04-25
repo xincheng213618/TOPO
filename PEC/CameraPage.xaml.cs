@@ -132,12 +132,15 @@ namespace PEC
                 }
                 else
                 {
-                    Dispatcher.BeginInvoke(new Action(() => HomeMsg("查不到法人数据")));
+                    Content = new HomePage("查不到法人数据");
+                    Pages();
                 }
             }
             catch (Exception ex)
             {
-                Dispatcher.BeginInvoke(new Action(() => HomeMsg("身份证接口解析错误：" + ex.Message)));
+                Log.WriteException(ex);
+                Content = new HomePage("大汉身份证接口解析错误");
+                Pages();
             }
 
         }
@@ -194,7 +197,7 @@ namespace PEC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
 
             AmLivingBodyApi.AmStopCapture();
-            AmLivingBodyApi.AmCloseDevice();
+            //AmLivingBodyApi.AmCloseDevice();
         }
     }
 

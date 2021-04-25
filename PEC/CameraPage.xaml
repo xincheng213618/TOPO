@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
+            <RowDefinition Height="197" />
             <RowDefinition />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
@@ -21,9 +21,6 @@
             <WindowsFormsHost x:Name="formhost" Width="900" Height="675" Background="Transparent" >
                 <winf:PictureBox x:Name="picturebox"   SizeMode="StretchImage"  Dock="Fill"></winf:PictureBox>
             </WindowsFormsHost>
-
-            <!--<Image Source="images/CameraHide.png" Width="900" Margin="190,62,190,458"/>-->
-
         </Grid>
 
 

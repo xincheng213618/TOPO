@@ -540,6 +540,19 @@ namespace BaseDLL
             Name = Name?.Trim();
             IDCardNo = IDCardNo?.Trim();
         }
+        public bool Clear()
+        {
+            try
+            {
+                File.Delete(PhotoFileName);
+                File.Delete(szPath);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 
 }
