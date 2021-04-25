@@ -25,12 +25,9 @@ namespace REC
     public partial class FunctionPage3 : Page
     {
         private string FileName;
-        RECData recdata;
-        public FunctionPage3(string FileName, RECData recdata)
+        public FunctionPage3(string FileName)
         {
             this.FileName = FileName;
-            this.recdata = recdata;
-            Global.Related.RECData = recdata;
             InitializeComponent();
         }
         PrintDate printDate = new PrintDate();
@@ -167,16 +164,22 @@ namespace REC
                 if (OCRMath("Temp\\ocr_result1.jpg", i, out YinZhihao))
                 {
                     printDate.StatusCode = i.ToString() + "识别成功" + Environment.NewLine + YinZhihao;
-                    recdata.OCRresult = YinZhihao;
                     Global.Related.Fix_OCR_Data = YinZhihao;
                     Sucess = true;
                     break;
                 }
             }
-            Requests.File_Upload("Temp\\ocr_result1.jpg", YinZhihao, true, recdata.QLR, recdata.QLRZJH, recdata.BDCQZH);
+            Requests.File_Upload("Temp\\ocr_result1.jpg", YinZhihao, true, Global.Related.RECData.QLR, Global.Related.RECData.QLRZJH, Global.Related.RECData.BDCQZH);
             Dispatcher.BeginInvoke(new Action(() => OCRover(Sucess)));
         }
 
+        /// <summary>
+        /// OCR 匹配
+        /// </summary>
+        /// <param name="FileName"></param>
+        /// <param name="i"></param>
+        /// <param name="YinZhiHao"></param>
+        /// <returns></returns>
         private bool OCRMath(string FileName,int i,out string YinZhiHao)
         {
             YinZhiHao = "";
@@ -242,8 +245,7 @@ namespace REC
         {
             if (Success)
             {
-                Log.Write("编号上传：" + Success.ToString());
-                printDate.StatusCode = "印制号回填中";
+                printDate.StatusCode = "印制号回填中:"+ Global.Related.Fix_OCR_Data;
                 Thread thread1 = new Thread(() => RequestOCR())
                 {
                     IsBackground = true
@@ -258,7 +260,7 @@ namespace REC
         }
         private void RequestOCR()
         {
-            string response = Http.OCR_Upload(recdata.SLBH, recdata.QLRZJH, DateTime.Now.ToString("yyyyMMdd"), recdata.ZSID, recdata.OCRresult);
+            string response = Http.OCR_Upload(Global.Related.RECData.SLBH, Global.Related.RECData.QLRZJH, DateTime.Now.ToString("yyyyMMdd"), Global.Related.RECData.ZSID, Global.Related.Fix_OCR_Data);
             Dispatcher.BeginInvoke(new Action(() => GetPhrase(response)));
         }
 
@@ -273,7 +275,7 @@ namespace REC
                     if (code.Equals("0"))
                     {
                         ESerialPort.Run2();
-                        Log.Write("印制号回填成功:"+ Environment.NewLine + recdata.OCRresult);
+                        Log.Write("印制号回填成功:"+ Environment.NewLine + Global.Related.Fix_OCR_Data);
                     }
                     else
                     {

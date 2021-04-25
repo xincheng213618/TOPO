@@ -89,7 +89,8 @@ namespace REC
                     string code = (string)RECResponse.GetValue("code");
                     if (code.Equals("0"))
                     {
-                        MessageBox.Show("回填成功");
+                        Content = new HomePage("回填成功");
+                        Pages();
                     }
                     else
                     {
@@ -116,13 +117,12 @@ namespace REC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-        private void TexBox0_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            TexBox0.Text = "";
-        }
 
 
         List<TextBox> textBoxes;
+        /// <summary>
+        /// 前后逻辑切换
+        /// </summary>
         private void TextChanged(object sender, TextChangedEventArgs e)
         {
 

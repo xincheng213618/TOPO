@@ -54,7 +54,6 @@ namespace REC
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-
             mainWindow = new MainWindow();
             startWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = false, VarbTest = true });//启动逻辑照旧，从启动窗口启动
             startWindow.Show();
