@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Register", "Register\Regist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleVerification", "SingleVerification\SingleVerification.csproj", "{0E93B48D-A899-4372-ADDC-ADAF966B430C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseBackground", "Background\BaseBackground.csproj", "{9EC775E3-D0D3-4F0A-ADA2-73ED74C30EE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Background", "Background\Background.csproj", "{9EC775E3-D0D3-4F0A-ADA2-73ED74C30EE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACE", "ACE\ACE.csproj", "{FB774343-20D2-4A1A-AE29-70F261D7EDBC}"
 EndProject

@@ -231,9 +231,9 @@
     <Resource Include="Images\Background.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Background\BaseBackground.csproj">
+    <ProjectReference Include="..\Background\Background.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>BaseBackground</Name>
+      <Name>Background</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>

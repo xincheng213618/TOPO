@@ -20,8 +20,8 @@ namespace EXC
         public string TemplateID;
         public string CompanyID;
         public Guid UUID;
-        public   string PageType = "";
-        public   bool CameraPass = false;
+        public string PageType = "";
+        public bool CameraPass = false;
 
 
         public void Initialized()

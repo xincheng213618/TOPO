@@ -208,9 +208,9 @@
       <Project>{fb774343-20d2-4a1a-ae29-70f261d7edbc}</Project>
       <Name>ACE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Background\BaseBackground.csproj">
+    <ProjectReference Include="..\Background\Background.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>BaseBackground</Name>
+      <Name>Background</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL1\BaseDLL1.csproj">
       <Project>{76f9a581-94dc-4c44-a165-5c4c0c371848}</Project>
