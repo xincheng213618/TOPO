@@ -251,9 +251,9 @@
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Startup\BaseStartup.csproj">
+    <ProjectReference Include="..\Startup\Startup.csproj">
       <Project>{0D3F1343-AFDA-45A6-A166-FDF54E77F273}</Project>
-      <Name>BaseStartup</Name>
+      <Name>Startup</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
