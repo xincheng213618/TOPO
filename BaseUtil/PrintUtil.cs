@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Printing;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Printing;
 
 namespace BaseUtil
 {
@@ -59,11 +54,11 @@ namespace BaseUtil
 
         public void delprint(string printName)
         {
-            //PrintQueue queues = null;
-            //foreach (PrintQueue queue in _PrintServer.GetPrintQueues())
-            //{
-            //    queue.PrintingIsCancelled;   
-        //}
+            PrintQueue queues = null;
+            foreach (PrintQueue queue in _PrintServer.GetPrintQueues())
+            {
+                //queue.PrintingIsCancelled;
+            }
         }
 
     }

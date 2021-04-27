@@ -33,14 +33,14 @@ namespace REC
             //打开翻页机
             int i = ESerialPort.Open1(Global.Config.EstatePort1);
             if (i != 0)
-                MessageBox.Show(ESerialPort.OpenCode[i]);
+                MessageBox.Show("翻页机:"+ ESerialPort.OpenCode[i]);
 
             Log.Write("翻页机连接端口："+ Global.Config.EstatePort1+Environment.NewLine +"翻页机代码状态："+i +Environment.NewLine +  "翻页机状态："+ ESerialPort.OpenCode[i]);
 
             //打开盖章机
             int j = ESerialPort.Open2(Global.Config.EstatePort2);
             if (j != 0)
-                MessageBox.Show(ESerialPort.OpenCode[j]);
+                MessageBox.Show("盖章机:" + ESerialPort.OpenCode[j]);
 
             Log.Write("盖章机连接端口：" + Global.Config.EstatePort2 + Environment.NewLine + "盖章机代码状态：" + j + Environment.NewLine + "盖章机状态：" + ESerialPort.OpenCode[j] );
 

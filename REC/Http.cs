@@ -45,7 +45,15 @@ namespace REC
 
             return response;
         }
-
+        /// <summary>
+        /// 印制号回传接口
+        /// </summary>
+        /// <param name="transtionId"></param>
+        /// <param name="lzrzjh"></param>
+        /// <param name="fzrq"></param>
+        /// <param name="zsid"></param>
+        /// <param name="zsh"></param>
+        /// <returns></returns>
         public static string OCR_Upload(string transtionId,string lzrzjh,string fzrq,string zsid,string zsh)
         {
             //string url = "http://192.200.200.75:8089/RealEstateSZXQBDC/fangchan/list";
