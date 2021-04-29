@@ -35,7 +35,6 @@ namespace XinHua
         public XinHuaCompanyDetailPage(string CompanyID = null)
         {
             this.CompanyID = CompanyID;
-
             listItems = new ObservableCollection<CompayQueryDetailItem>();
             InitializeComponent();
         }
@@ -1116,27 +1115,19 @@ namespace XinHua
                     Pages();
                     break;
                 case "Return":
-                    Content = new SearchPage();
+                    Content = new SearchListPage(companyName);
                     Pages();
                     break;
-
-                case "Print":
-                    Global.Related.PageType = "XinHuaPrint";
-                    CompanyInfo.CompanyName = companyName;
-                    CompanyInfo.CompanyID = CompanyID;
-
-                    if ((CompanyInfo.CompanyName == null) || (CompanyInfo.CompanyID == null))
-                    {
-                        Content = new HomePage("");
-                        Pages();
-                    }
-                    else
-                    {
-                        //Global.PageType = "CreditChina";
-                        //Content = new Report(listItems[0].CompanyName,"",listItems[0].USCI) ;
-                        Content = new IDCardPage();
-                        Pages();
-                    }
+                case "XinHuaPrint":
+                case "CreditChina":
+                    Global.Related.PageType =button.Tag.ToString();
+                    Global.Related.CompanyData.CompanyID = CompanyID;
+                    Global.Related.CompanyData.CompanyName = companyName;
+                    Global.Related.CompanyData.USCI = listItems[0].USCI;
+                    Content = new Report();
+                    Pages();
+                    //Content = new IDCardPage();
+                    //Pages();
                     break;
                 default:
                     break;
@@ -1297,6 +1288,7 @@ namespace XinHua
                     break;
             }
         }
+
     }
     #region 配置类型
 

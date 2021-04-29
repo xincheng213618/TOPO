@@ -294,7 +294,13 @@ namespace XinHua
             return Requests.Downloade(Covert.DicAndUrl(url, dic), FilePath);
         }
 
-
+        /// <summary>
+        /// 信用中国
+        /// </summary>
+        /// <param name="CompanyName"></param>
+        /// <param name="USCI"></param>
+        /// <param name="FileName"></param>
+        /// <returns></returns>
         public static bool GetCreditchinaReport(string CompanyName,string USCI,string FileName)
         {
             string url = "https://public.creditchina.gov.cn/credit-check/pdf/download";

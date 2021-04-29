@@ -25,28 +25,14 @@ namespace XinHua
     /// </summary>
     public partial class Report : Page
     {
-        private string CompanyName = null;
-        private string CompanyID = null;
-        private string USCI = null;
-
-        public Report(string CompanyName,string CompanyID,string USCI)
-        {
-            this.CompanyName = CompanyName;
-            this.CompanyID = CompanyID;
-            this.USCI = USCI;
-            InitializeComponent();
-        }
         public Report ()
         {
             InitializeComponent();
         }
 
-
-
         private void Page_Initialized(object sender, EventArgs e)
         {
             WaitShow.Visibility = Visibility.Visible;
-            Global.Related.PageType = "XinHuaPrint";
             switch (Global.Related.PageType)
             {
                 case "XinHuaPrint":
@@ -68,11 +54,11 @@ namespace XinHua
             switch(Global.Related.PageType)
             {
                 case "XinHuaPrint":
-                    response = Http.XinHuaReport(CompanyInfo.CompanyName, CompanyInfo.CompanyID);
+                    response = Http.XinHuaReport(Global.Related.CompanyData.CompanyName, Global.Related.CompanyData.CompanyID);
                     Dispatcher.BeginInvoke(new Action(() => ReportXinHua(response)));
                     break;
                 case "CreditChina":
-                    bool Success = Http.GetCreditchinaReport(CompanyName, USCI, "Temp//" + CompanyName + ".pdf");
+                    bool Success = Http.GetCreditchinaReport(Global.Related.CompanyData.CompanyName, Global.Related.CompanyData.USCI, "Temp//" + Global.Related.CompanyData.CompanyName + ".pdf");
                     Dispatcher.BeginInvoke(new Action(() => ReportCreditChina(Success)));
                     break;
                 default:
@@ -83,7 +69,7 @@ namespace XinHua
         {
             if (Success)
             {
-                Content = new Pdfshow("Temp//" + CompanyName + ".pdf");
+                Content = new Pdfshow("Temp//" + Global.Related.CompanyData.CompanyName + ".pdf");
                 Pages();
             }
             else
@@ -107,7 +93,7 @@ namespace XinHua
                     if ((resObj["stateCode"].ToString()).Equals("1"))
                     {
                         string FileName = resObj["data"].ToString();
-                        string Filepath = "Temp\\" + CompanyInfo.CompanyName + ".pdf";
+                        string Filepath = "Temp//" + Global.Related.CompanyData.CompanyName + ".pdf";
 
                         hintLabel.Content = "正在下载报告请稍等";
                         Thread worker1 = new Thread(() => RequestUrl1(FileName, Filepath));
@@ -172,15 +158,5 @@ namespace XinHua
             Pages();
         }
     }
-    public static class CompanyInfo
-    {
-        public static string CompanyID = null;
-        public static string CompanyName = null;
-        public static void Initialized()
-        {
-            CompanyID = null;
-            CompanyName = null;
-        }
 
-    }
 }

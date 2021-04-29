@@ -47,7 +47,7 @@ namespace REC
             try
             {
 
-                ImageOCR.Source = Covert.ByteToImage(Covert.FileToByte(Environment.CurrentDirectory + "\\Temp\\ocr_result1.jpg"));
+                ImageOCR.Source = Covert.ByteToImage(Covert.FileToByte(Environment.CurrentDirectory + "\\Temp\\ocr_result.jpg"));
             }
             catch (Exception ex)
             {
