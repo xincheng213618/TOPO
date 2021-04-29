@@ -100,6 +100,10 @@ namespace RECSuzhou
                     Content = new IDCardPage();
                     Pages();
                     break;
+                case "SZInvoiceyPages":
+                    Content = new QRPage();
+                    Pages();
+                    break;
                 default:
                     break;
             }

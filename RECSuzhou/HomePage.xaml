@@ -65,31 +65,53 @@
             </Border>
         </Grid>
 
-        <Grid x:Name="SuZhouGuSu" Grid.Row="1"  Visibility="Hidden">
-            <Border  Height="250" Width="250" Margin="120,125,910,509" >
+        <Grid x:Name="SuZhouGuSu" Grid.Row="1"  Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Border  Grid.Row="0" Grid.Column="0" Margin="20" Opacity="0.9">
                 <Button  Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="NoHome" >
-                    <Image Source="images/SuZhou/无房证明.png" />
+                    <Image Source="images/noHome.png" Stretch="Uniform" />
                 </Button>
             </Border>
-            <Border Height="250" Width="250" Margin="0,125,0,509"  >
+
+            <Border  Grid.Row="0" Grid.Column="2"  Margin="20" Opacity="0.9" >
                 <Button   Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="OwnerShipPages" >
-                    <Image Source="images/SuZhou/权属证明.png"/>
+                    <Image Source="images/ownerShip.png"/>
                 </Button>
             </Border>
-            <Border  Height="250" Width="250" Margin="910,125,120,509" >
+
+            <Border  Grid.Row="0" Grid.Column="1" Margin="20" Opacity="0.9"  >
                 <Button Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="HomeCountPages" >
-                    <Image Source="images/SuZhou/房屋套数证明.png"/>
+                    <Image Source="images/homeCount.png"/>
                 </Button>
             </Border>
-            <Border  Height="250" Width="250" Margin="120,500,910,124" >
+
+            <Border   Grid.Row="1" Grid.Column="0" Margin="20" Opacity="0.9" >
                 <Button Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="NoHomeChild" >
-                    <Image Source="images/SuZhou/无房证明儿童.png"/>
+                    <Image Source="images/childNoHome.png"/>
                 </Button>
             </Border>
+
+            <Border  Grid.Row="1" Grid.Column="1" Margin="20" Opacity="0.9"  Visibility="Visible" >
+                <Button   Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="SZInvoiceyPages">
+                    <Image Source="images/suzhou/invoice.png"/>
+                </Button>
+            </Border>
+
+           
 
         </Grid>
 
-        <Grid x:Name="SuZhouHQAll" Grid.Row="1"   Visibility="Visible" Margin="50,50,50,60">
+        <Grid x:Name="SuZhouHQAll" Grid.Row="1"   Visibility="Hidden" Margin="50,50,50,60">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
