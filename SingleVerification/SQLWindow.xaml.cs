@@ -177,8 +177,8 @@ namespace SingleVerification
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string FilePath = XFile.SaveFileDialog(iDCardData.IDCardNo + "_" + new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds(), "PDF（*.pdf）|*.pdf");
-            if (FilePath != null)
+            string FilePath;
+            if (XFile.SaveFileDialog(out FilePath, iDCardData.IDCardNo + "_" + new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds(), "PDF（*.pdf）|*.pdf"))
             {
                 PDF.DrawPDF(FilePath, iDCardData, image1, image2);
             }
