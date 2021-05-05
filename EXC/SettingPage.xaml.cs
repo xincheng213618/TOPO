@@ -200,7 +200,6 @@ namespace EXC
                     break;
             }
         }
-        private IDCardData IDCardData;
         //Page 跳转
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {

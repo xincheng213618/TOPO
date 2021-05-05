@@ -108,6 +108,7 @@ namespace ECRService
             return DrawingArcGeometry(firstpoint, secondpoint, thirdpoint, fourpoint, bigR, smallR, isLargeArc);
         }
 
+        [Obsolete]
         private void DrawingGeometry(DrawingContext drawingContext, double value, double radiusX, double radiusY, double thickness, double padding)
         {
             if (value < 60)

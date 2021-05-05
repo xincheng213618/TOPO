@@ -65,7 +65,6 @@ namespace EXC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-        private IDCardData IDCardData;
         //Page 跳转 所有的逻辑从这里进行转跳
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {
