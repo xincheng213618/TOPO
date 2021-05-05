@@ -22,27 +22,74 @@ namespace SimpleWindow
     /// </summary>
     public partial class SimpleWindows : Window
     {
-        public SimpleWindows()
-        {
-            InitializeComponent();
-        }
-
         Timer TimerUpdate;
         Timer timer;
         /// <summary>
         /// 刷新时间 /毫秒
         /// </summary>
         public int RefreshTimer = 1000;
+        BackGround backGround;
 
-        public SimpleWindows(int Screens)
+        public SimpleWindows(int Screens, string FileName,string Kinds)
         {
+            backGround = new BackGround()
+            {
+                FileName = FileName,
+                Kinds =Kinds,
+            };
+
             System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.AllScreens[Screens];
             InitializeComponent();
             Left = screen.WorkingArea.Left;
             Top = screen.WorkingArea.Top;
             Height = screen.WorkingArea.Height;
             Width = screen.WorkingArea.Width;
+
+            if (backGround.Kinds == "Video")
+            {
+                MediaPlayer.Source = new Uri(backGround.FileName);
+                MediaPlayer.Play();
+            }
+            else if (backGround.Kinds == "picture")
+            {
+                ImageShow.Source= new BitmapImage(new Uri(backGround.FileName))
+                {
+                    CacheOption = BitmapCacheOption.None
+                };
+                timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => PictureAuto())), null, 0, backGround.Intervaltime); //切换
+            }
         }
+
+        public SimpleWindows(int Screens, string Folder, string Kinds, int Intervaltime)
+        {
+            backGround = new BackGround()
+            {
+                Files = Directory.GetDirectories(Folder),
+                Kinds = Kinds,
+            };
+
+            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.AllScreens[Screens];
+            InitializeComponent();
+            Left = screen.WorkingArea.Left;
+            Top = screen.WorkingArea.Top;
+            Height = screen.WorkingArea.Height;
+            Width = screen.WorkingArea.Width;
+
+
+            if (backGround.Kinds == "Video")
+            {
+                MediaPlayer.Source = new Uri(backGround.FileName);
+                MediaPlayer.Play();
+            }
+            else if (backGround.Kinds == "picture")
+            {
+                ImageShow.Source = new BitmapImage(new Uri(backGround.FileName))
+                {
+                    CacheOption = BitmapCacheOption.None
+                };
+            }
+        }
+
         public SimpleWindows(int Screens, int RefreshTimer)
         {
             this.RefreshTimer = RefreshTimer;
@@ -55,112 +102,58 @@ namespace SimpleWindow
         }
 
 
-
         private void Window_Initialized(object sender, EventArgs e)
         {
-            if (!Directory.Exists("BackGround"))
-                Directory.CreateDirectory("BackGround");
             TimerUpdate = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => Updated())), null, 0, RefreshTimer);//本来是60，不过没必要刷新这么快，就1s1次就好
         }
 
         public string VideoFileName;
         public string PictureFileName;
 
-        private BitmapImage bmImg;
         public void Updated()
         {
-            if (timer != null)
-                timer.Dispose();
-            if (!BackgroundItem.Video.IsPlayer)
-                MediaPlayer.Close();
 
-            if (BackgroundItem.Kind)
-            {
-                if (BackgroundItem.Video.Files.Length != 0)
-                {
-                    if (!BackgroundItem.Video.IsPlayer)
-                    {
-                        VideoFileName = BackgroundItem.Video.Files[BackgroundItem.Video.VideoNum];
-                        MediaPlayer.Source = new Uri(VideoFileName);
-                        MediaPlayer.Play();
-                        BackgroundItem.Video.IsPlayer = !BackgroundItem.Video.IsPlayer;
-                    }
-                }
-            }
-            else
-            {
-                if (BackgroundItem.Picture.Files.Length != 0)
-                {
-                    if (!BackgroundItem.Picture.Auto)
-                    {
-                        PictureFileName = BackgroundItem.Picture.Files[BackgroundItem.Picture.PictureNum];
-                        bmImg = new BitmapImage(new Uri(PictureFileName))
-                        {
-                            CacheOption = BitmapCacheOption.None
-                        };
-                        ImageShow.Source = bmImg;
-                    }
-                    else
-                    {
-                        timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => TimeRun())), null, 60 - DateTime.Now.Second, BackgroundItem.Picture.Intervaltime); //切换
-                    }
-
-                }
-            }
         }
 
 
         private void MediaPlayer_MediaEnded(object sender, RoutedEventArgs e)
         {
-            BackgroundItem.Video.VideoNum++;
-            VideoFileName = BackgroundItem.Video.Files[Math.Abs(BackgroundItem.Video.VideoNum % BackgroundItem.Video.Files.Length)];
-
-            MediaPlayer.Source = new Uri(VideoFileName);
-            MediaPlayer.Play();
+            if (backGround.Kinds == "Video")
+            {
+                MediaPlayer.Play();
+            }
+            else if (backGround.Kinds =="videos")
+            {
+                MediaPlayer.Source = new Uri(backGround.Files[backGround.VideoNum++]);
+            }
         }
 
-        private void TimeRun()
+        private void PictureAuto()
         {
-            BackgroundItem.Picture.PictureNum++;
-            PictureFileName = BackgroundItem.Picture.Files[Math.Abs(BackgroundItem.Picture.PictureNum % BackgroundItem.Picture.Files.Length)];
-            bmImg = new BitmapImage(new Uri(PictureFileName))
+            ImageShow.Source = new BitmapImage(new Uri(backGround.Files[Math.Abs(backGround.PictureNum++ % backGround.Files.Length)]))
             {
                 CacheOption = BitmapCacheOption.None
-            };
-            ImageShow.Source = bmImg;
-
-
+            }; 
         }
-
-
-
-
-
     }
 
-    public static class BackgroundItem
+    public class BackGround
     {
-        public static int Screens = 1;
-        /// <summary>
-        /// true 为视频，false 为图片
-        /// </summary>
-        public static bool Kind = true;
+        public string FileName;
+        public string[] Files = { };
 
-        public static class Video
-        {
-            public static string[] Files = { };
-            public static int VideoNum = 0;
 
-            public static bool IsPlayer = false;
-        }
-        public static class Picture
-        {
-            public static string[] Files = { };
-            public static int PictureNum = 0;
+        public string Kinds;
 
-            public static bool Auto = false;
-            public static int Intervaltime = 1000;
-        }
+        public bool VideoAuto = false;
+
+        public int VideoNum = 0;
+
+        public int PictureNum = 0;
+        public bool PictureAuto = true;
+        public int Intervaltime = 1000;
+
+
     }
 
 }
