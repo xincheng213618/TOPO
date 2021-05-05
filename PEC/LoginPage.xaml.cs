@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Windows.Threading;
@@ -112,9 +104,12 @@ namespace PEC
                 item.FontSize = 20;
                 item.FontWeight = FontWeights.Normal;
             }
+
             Button button = sender as Button;
             button.FontSize = 22;
             button.FontWeight = FontWeights.Bold;
+
+
             switch (button.Name)
             {
                 case "ButtonLogin":
@@ -250,7 +245,7 @@ namespace PEC
                 }
                 catch (Exception ex)
                 {
-                    Dispatcher.BeginInvoke(new Action(() => throw new Exception("：" + ex.Message)));
+                    Log.WriteException(ex);
                     Content = new HomePage("接口解析错误");
                     Pages();
                 }
@@ -261,11 +256,18 @@ namespace PEC
                 Pages();
             }
         }
-        int Request_count = 0;
+       /// <summary>
+       /// 手机号码的验证
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void Vertify_Click(object sender, RoutedEventArgs e)
         {
-            string sTEXT = TextBoxPhoneNum.Text;
-            Thread thread = new Thread(() => RequestSendMsg(sTEXT))
+            string PhoneNum = TextBoxPhoneNum.Text;
+            Label_Login1Msg.Content = "短信验证码发送中";
+            Label_Login1Msg.Visibility = Visibility.Visible;
+
+            Thread thread = new Thread(() => RequestSendMsg(PhoneNum))
             {
                 IsBackground = true
             };
@@ -288,12 +290,11 @@ namespace PEC
                 {
                     JObject Jsonresponse = (JObject)JsonConvert.DeserializeObject(response);
                     string resultCode = Jsonresponse["resultCode"].ToString();
-                    Label_Login1Msg.Content = "短信验证码已发送，可能会有延后请耐心等待";
-                    Label_Login1Msg.Visibility = Visibility.Visible;
-
+                    Label_Login1Msg.Content = "短信验证码已经发送";
                 }
                 catch
                 {
+                    Label_Login1Msg.Content = "短信验证码发送失败";
                     Content = new HomePage("接口解析错误");
                     Pages();
                 }
@@ -305,60 +306,62 @@ namespace PEC
             }
 
         }
+
         private void DAIDcrdLogin()
         {
             string response = Http.Provincial.DAIDcrdLogin(idcard.IDCardNo, "2");
-
-            if (response == null)
-            {
-                Dispatcher.BeginInvoke(new Action(() => HomeMsg("该接口连接错误")));
-                return;
-            }
             Dispatcher.BeginInvoke(new Action(() => DAIDcrdLoginPrase(response)));
         }
         private void DAIDcrdLoginPrase(string response)
         {
-            try
+            if(response != null)
             {
-                JObject Jsonresponse = (JObject)JsonConvert.DeserializeObject(response);
-                string resultCode = Jsonresponse["resultCode"].ToString();
-                ReportData.Success = true;
-                if (resultCode.Equals("1"))
+                try
                 {
-                    JObject data = (JObject)JsonConvert.DeserializeObject(Jsonresponse.GetValue("data").ToString());
-                    ReportData.LoginName = (string)data.GetValue("loginname");
-                    ReportData.PhoneNum = (string)data.GetValue("mobile");
-                    ReportData.Name = (string)data.GetValue("name");
-                    ReportData.IDCardNo = (string)data.GetValue("cardid");
-                   Content = new ReportPage(idcard, ReportData.LoginName);
+                    JObject Jsonresponse = (JObject)JsonConvert.DeserializeObject(response);
+                    string resultCode = Jsonresponse["resultCode"].ToString();
+                    ReportData.Success = true;
+                    if (resultCode.Equals("1"))
+                    {
+                        JObject data = (JObject)JsonConvert.DeserializeObject(Jsonresponse.GetValue("data").ToString());
+                        ReportData.LoginName = (string)data.GetValue("loginname");
+                        ReportData.PhoneNum = (string)data.GetValue("mobile");
+                        ReportData.Name = (string)data.GetValue("name");
+                        ReportData.IDCardNo = (string)data.GetValue("cardid");
+
+                        Content = new ReportPage(idcard, ReportData.LoginName);
+                        Pages();
+                    }
+                    else
+                    {
+                        Content = new HomePage("查不到法人数据");
+                        Pages();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.WriteException(ex);
+                    Content = new HomePage("身份证接口解析错误");
                     Pages();
                 }
-                else
-                {
-                    Dispatcher.BeginInvoke(new Action(() => HomeMsg("查不到法人数据")));
-                }
             }
-            catch (Exception ex)
+            else
             {
-                Dispatcher.BeginInvoke(new Action(() => HomeMsg("身份证接口解析错误：" + ex.Message)));
+                Content = new HomePage("大汉获取身份证接口连接错误");
+                Pages();
             }
-
-        }
-        private void HomeMsg(string msg)
-        {
-            Content = new HomePage(msg);
-            Pages();
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Content = new HomePage();
-            Pages();
-        }
 
         private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Content = new IDCardPage();
+            Pages();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new HomePage();
             Pages();
         }
     }

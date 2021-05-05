@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseDLL;
+using BaseUtil;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -19,6 +20,11 @@ namespace REC
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 修复文件占用导致的问题
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Page_Initialized(object sender, EventArgs e)
         {
             textBoxes = new List<TextBox> { TexBox0, TexBox1, TexBox2, TexBox3, TexBox4, TexBox5, TexBox6, TexBox7, TexBox8, TexBox9, TexBox10 };
@@ -37,11 +43,13 @@ namespace REC
                     textBoxes[i].Text = Global.Related.Fix_OCR_Data.Substring(i, 1);
                 }
             }
+
             try
             {
-                ImageOCR.Source = new BitmapImage(new Uri(Environment.CurrentDirectory+ "\\Temp\\ocr_result1.jpg")); ;
+
+                ImageOCR.Source = Covert.ByteToImage(Covert.FileToByte(Environment.CurrentDirectory + "\\Temp\\ocr_result.jpg"));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -89,7 +97,9 @@ namespace REC
                     string code = (string)RECResponse.GetValue("code");
                     if (code.Equals("0"))
                     {
-                        MessageBox.Show("回填成功");
+                        ESerialPort.Run2();
+                        Content = new HomePage("回填成功");
+                        Pages();
                     }
                     else
                     {
@@ -116,13 +126,12 @@ namespace REC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-        private void TexBox0_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            TexBox0.Text = "";
-        }
 
 
         List<TextBox> textBoxes;
+        /// <summary>
+        /// 前后逻辑切换
+        /// </summary>
         private void TextChanged(object sender, TextChangedEventArgs e)
         {
 

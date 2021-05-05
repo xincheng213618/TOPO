@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Acrobat.cs" />
     <Compile Include="CameraPage.xaml.cs">
       <DependentUpon>CameraPage.xaml</DependentUpon>
     </Compile>
@@ -101,8 +102,14 @@
     <Compile Include="PrintTips.xaml.cs">
       <DependentUpon>PrintTips.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintUtilPage.xaml.cs">
+      <DependentUpon>PrintUtilPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QRCode.xaml.cs">
       <DependentUpon>QRCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportGRPage.xaml.cs">
+      <DependentUpon>ReportGRPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
@@ -145,7 +152,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrintUtilPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="QRCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportGRPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,13 +204,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ACE\BaseACE.csproj">
+    <ProjectReference Include="..\ACE\ACE.csproj">
       <Project>{fb774343-20d2-4a1a-ae29-70f261d7edbc}</Project>
-      <Name>BaseACE</Name>
+      <Name>ACE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Background\BaseBackground.csproj">
+    <ProjectReference Include="..\Background\Background.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>BaseBackground</Name>
+      <Name>Background</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL1\BaseDLL1.csproj">
       <Project>{76f9a581-94dc-4c44-a165-5c4c0c371848}</Project>
@@ -209,13 +224,13 @@
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Register\BaseRegister.csproj">
+    <ProjectReference Include="..\Register\Register.csproj">
       <Project>{acd7acd3-8241-4f45-9761-baf5c9bf50b2}</Project>
-      <Name>BaseRegister</Name>
+      <Name>Register</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Startup\BaseStartup.csproj">
+    <ProjectReference Include="..\Startup\Startup.csproj">
       <Project>{0d3f1343-afda-45a6-a166-fdf54e77f273}</Project>
-      <Name>BaseStartup</Name>
+      <Name>Startup</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

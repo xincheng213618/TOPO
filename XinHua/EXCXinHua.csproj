@@ -298,13 +298,13 @@
     <Resource Include="Images\Lost.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ACE\BaseACE.csproj">
+    <ProjectReference Include="..\ACE\ACE.csproj">
       <Project>{fb774343-20d2-4a1a-ae29-70f261d7edbc}</Project>
-      <Name>BaseACE</Name>
+      <Name>ACE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Background\BaseBackground.csproj">
+    <ProjectReference Include="..\Background\Background.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>BaseBackground</Name>
+      <Name>Background</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>
@@ -314,17 +314,13 @@
       <Project>{2677c005-0e6a-4726-8763-ae7c137986e1}</Project>
       <Name>BaseInk</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BaseKeyBoard\HeBianGu.Product.KeyBoard.csproj">
-      <Project>{fe7393f0-6487-430c-9e70-133f2c6abbd6}</Project>
-      <Name>HeBianGu.Product.KeyBoard</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BaseUtil\BaseUtil.csproj">
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Register\BaseRegister.csproj">
+    <ProjectReference Include="..\Register\Register.csproj">
       <Project>{acd7acd3-8241-4f45-9761-baf5c9bf50b2}</Project>
-      <Name>BaseRegister</Name>
+      <Name>Register</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

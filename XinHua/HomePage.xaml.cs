@@ -46,8 +46,8 @@ namespace XinHua
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
-            App.InkWindows.Hide();
-            InkPut.delegates();
+            //App.InkWindows.Hide();
+            //InkPut.delegates();z
             Global.Related.Initialized();          
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
@@ -62,7 +62,6 @@ namespace XinHua
             BackgroundItem.Picture.Intervaltime = 5000;// 千分秒
             App.backgroundWindow.Updated();
 
-            CompanyInfo.Initialized();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

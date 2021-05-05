@@ -61,9 +61,9 @@ namespace PEC
                     Content = new LoginPage();
                     Pages();
                     break;
-                case "ProvincialLYG"://连云港要求替换省信用部分代码
-                    Global.Related.PageType = "ProvincialLYG";
-                    Content = new HomePage((string)button.Tag);
+                case "ProvincialPeople"://省信用
+                    Global.Related.PageType = "ProvincialPeople";
+                    Content = new IDCardPage();
                     Pages();
                     break;
                 case "QRCode":
@@ -71,11 +71,24 @@ namespace PEC
                     Content = new QRCode();
                     Pages();
                     break;
-                case "ProvincialPeople"://省信用
-                    Global.Related.PageType = "ProvincialPeople";
+
+                case "ProvincialLYG"://连云港要求替换省信用部分代码
+                    Global.Related.PageType = "ProvincialLYG";
                     Content = new IDCardPage();
                     Pages();
                     break;
+                case "ReportSuZhou":
+                    Global.Related.PageType = "ReportSuZhou";
+                    Content = new LoginPage();
+                    Pages();
+                    break;
+                case "GRReportSuZhou"://连云港要求替换省信用部分代码
+                    Global.Related.PageType = "GRReportSuZhou";
+                    Content = new IDCardPage();
+                    Pages();
+                    break;
+
+
             }
         }
         private void Pages()

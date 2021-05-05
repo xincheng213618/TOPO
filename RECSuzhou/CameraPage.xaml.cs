@@ -89,6 +89,10 @@ namespace RECSuzhou
                     Content = new OwnerShipPages();
                     Pages();
                     break;
+                case "DegreePages":
+                    Content = new DegreePage();
+                    Pages();
+                    break;
                 case "SZWZArchivePages":
                 case "SZHQArchivePages":
                     Content = new SZArchivePage();

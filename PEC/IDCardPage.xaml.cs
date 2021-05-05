@@ -40,7 +40,6 @@ namespace PEC
         }
         private void OtherIDcardShow()
         {
-            IDcard_info.Visibility = Visibility.Visible;
             idcardData.Name = idcardData.Name.Trim();
             idcardData.IDCardNo = idcardData.IDCardNo.Trim();
             name.Content = "*" + idcardData.Name.Substring(1);
@@ -102,25 +101,21 @@ namespace PEC
 
         private void SwitchPage()
         {
-            switch (PEC.Global.Related.PageType)
+            Global.Related.IDCardData = idcardData;
+         
+            switch (Global.Related.PageType)
             {
                 default:
                     Content = new CameraPage();
+                    Pages();
                     break;
             }
-            Pages();
         }
         
         private void Pages()  
         {
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
-        }
-
-        private void Home_Click(object sender, RoutedEventArgs e)
-        {
-            Content = new HomePage();
-            Pages();      
         }
     }
 }

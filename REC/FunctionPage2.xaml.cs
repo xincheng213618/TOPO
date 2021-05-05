@@ -150,7 +150,8 @@ namespace REC
                     {
                         try {  File.Delete(rECListView.FileName); }
                         catch { }
-                        Content = new FunctionPage3(rECListView.PrintName, rECListView);
+                        Global.Related.RECData = rECListView;
+                        Content = new FunctionPage3(rECListView.PrintName);
                         Pages();
                     }
                     else

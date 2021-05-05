@@ -15,9 +15,9 @@ namespace REC
 
         public static void PreOCR(string Filename)
         {
-            Mat mat = new Mat(@Filename, ImreadModes.Color);
             Rectangle rectangle = new Rectangle(int.Parse(Global.OcrRegion[0]), int.Parse(Global.OcrRegion[1]), int.Parse(Global.OcrRegion[2]), int.Parse(Global.OcrRegion[3]));
 
+            Mat mat = new Mat(@Filename, ImreadModes.Color);
             Mat mat1 = Rotate(new Mat(mat, rectangle), Global.Config.OcrRotate);  //旋转加切割
             mat1.Save("Temp\\mat1.jpg");
 

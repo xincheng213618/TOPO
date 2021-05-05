@@ -10,8 +10,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="93*" />
-            <RowDefinition Height="389*" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1" Grid.Column="0">
@@ -47,7 +47,7 @@
             </Border>
 
         </Grid>
-        <Image Grid.Row="1"  Source="images/Tips.png" VerticalAlignment="Bottom" Margin="80,0,320,20" />
+        <Image Grid.Row="1"  Source="images/Tips.png" VerticalAlignment="Bottom" Margin="80,0,320,20" Height="115" />
 
 
         <Grid x:Name="POP" Grid.Row="1" Visibility="Hidden">

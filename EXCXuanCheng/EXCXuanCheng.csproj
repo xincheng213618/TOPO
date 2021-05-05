@@ -231,9 +231,9 @@
     <Resource Include="Images\Background.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Background\BaseBackground.csproj">
+    <ProjectReference Include="..\Background\Background.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>BaseBackground</Name>
+      <Name>Background</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>
@@ -243,9 +243,9 @@
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Startup\BaseStartup.csproj">
+    <ProjectReference Include="..\Startup\Startup.csproj">
       <Project>{0d3f1343-afda-45a6-a166-fdf54e77f273}</Project>
-      <Name>BaseStartup</Name>
+      <Name>Startup</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -9,12 +9,12 @@
       Title="QRCode" Initialized="Page_Initialized">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="93*" />
-            <RowDefinition Height="389*" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="1" Background="White" Margin="100" CornerRadius="50" BorderBrush="#f5f5f5" BorderThickness="5">
+        <Border Grid.Row="1" Background="White" Margin="100,50,100,100" CornerRadius="50" BorderBrush="#f5f5f5" BorderThickness="5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="8*"/>

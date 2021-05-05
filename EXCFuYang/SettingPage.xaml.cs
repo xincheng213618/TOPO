@@ -65,34 +65,84 @@ namespace XinHua
 
 
 
-        //功能切换
-        // 2020.11.5 修正
-        private void Button_Click(object sender, RoutedEventArgs e)
+     
+       
+
+        private void PageChange_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            switch ((string)button.Tag)
+            Button btn = sender as Button;
+            btn.Foreground = Brushes.White;
+
+
+
+            switch ((string)btn.Tag)
             {
-                case "Home":
-                    Content = new HomePage();
-                    Pages();
+                case "Function":
+                    FunctionScrollViewer.Visibility = Visibility.Visible;
+                    PageScrollViewer.Visibility = Visibility.Hidden;
+                    TestScrollViewer.Visibility = Visibility.Hidden;
+                    btn.FontWeight = FontWeights.Bold;
+                    btn.Foreground = Brushes.HotPink;
                     break;
-                case "Close":
-                    Environment.Exit(0);
+                case "Page":
+                    FunctionScrollViewer.Visibility = Visibility.Hidden;
+                    PageScrollViewer.Visibility = Visibility.Visible;
+                    TestScrollViewer.Visibility = Visibility.Hidden;
+                    btn.FontWeight = FontWeights.Bold;
                     break;
-
-                case "WinSpace":
-                    User32dll.KeyHelper.HotKey(new List<byte>() { User32dll.KeyHelper.KeyCode.CTRL, User32dll.KeyHelper.KeyCode.SHIFT });
+                case "Test":
+                    FunctionScrollViewer.Visibility = Visibility.Hidden;
+                    PageScrollViewer.Visibility = Visibility.Hidden;
+                    TestScrollViewer.Visibility = Visibility.Visible;
+                    btn.FontWeight = FontWeights.Bold;
                     break;
-                case "CtrlAltO":
-                    User32dll.KeyHelper.HotKey(new List<byte>() { User32dll.KeyHelper.KeyCode.WinL, User32dll.KeyHelper.KeyCode.CTRL, User32dll.KeyHelper.KeyCode.O });
-                    break;
-
-              
                 default:
                     break;
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            switch ((string)button.Tag)
+            {
 
+                case "Close":
+                    Environment.Exit(0);
+                    break;
+                case "Home":
+                    Content = new HomePage();
+                    Pages();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void TestButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Global.Related.PageType = button.Tag.ToString();
+            switch (Global.Related.PageType)
+            {
+               
+                   
+            }
+        }
+
+        private void PageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            switch ((string)button.Tag)
+            {            
+                case "PDF":
+                    Content = new Pdfshow();
+                    break;
+                default:
+                    break;
+            }
+            Pages();
+        }
     }
 }

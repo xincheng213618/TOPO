@@ -1,6 +1,5 @@
 ﻿using BaseInk;
 using BaseUtil;
-using HeBianGu.Product.UserControls.SystemKeyBoard;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -24,22 +23,21 @@ namespace XinHua
         public SearchPage()
         {
             InitializeComponent();
-            BaseInk.InkPut.t = CompanySearchBox;
+            //BaseInk.InkPut.t = CompanySearchBox;
         }
         public SearchPage(string Msg)
         {
             InitializeComponent();
-            BaseInk.InkPut.t = CompanySearchBox;
+            //BaseInk.InkPut.t = CompanySearchBox;
             PopAlert(Msg, 3);
 
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
-           
-            
+          
             FocusManager.SetFocusedElement(this, CompanySearchBox);
-            App.InkWindows.Show();
-            InkPut.delegate_Ink_Msg += Input;
+            //App.InkWindows.Show();
+            //InkPut.delegate_Ink_Msg += Input;
 
             Countdown_timer();
             switch (Global.Related.PageType)

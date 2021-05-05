@@ -86,7 +86,7 @@
                         </Border>
                         <Border x:Name="Button8" Grid.Row="8" Grid.Column="0" Background="White" BorderBrush="#dadada" BorderThickness="1"  Margin="0,3,0,3" CornerRadius="10">
                             <Button   Style="{StaticResource hiddenButton}" Click="Return_Click">
-                                <Label Style="{StaticResource Label_Centered_25}"  Content="返回列表"/>
+                                <Label Style="{StaticResource Label_Centered_25}"  Content="返回"/>
                             </Button>
                         </Border>
                         <Border x:Name="Button9"  Grid.Row="9" Grid.Column="0" Background="White" BorderBrush="#dadada" BorderThickness="1"  Margin="0,3,0,3" CornerRadius="10">

@@ -8,13 +8,11 @@
         Title="MainWindow" Background="{StaticResource background}" Width="1280" Height="1024" WindowStyle="None" ResizeMode="NoResize" Left="0" Top="0" Initialized="Window_Initialized"  Closing="Window_Closing">
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="93*" />
-            <RowDefinition Height="389*" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Label x:Name="timeLabel" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="30,30"  Foreground="red" FontSize="20" Content="{Binding Path=Date}"  Height="35" />
-
-
 
         <!--底部标识-->
         <Grid Grid.Row="2"  Margin="0,0,0,0" Background="{StaticResource MainWindowBottom}">
