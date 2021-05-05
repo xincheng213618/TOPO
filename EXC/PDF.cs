@@ -2003,11 +2003,6 @@ namespace EXC
         public string ZGZQQDSSHSE { get; set; } = "";
 
 
-        /// <summary>
-        ///土地抵押面积
-        /// </summary>
-        public string TDDYMJ { get; set; } = "";
-
     }
 
     //查封

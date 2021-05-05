@@ -9,7 +9,6 @@ using BaseUtil;
 using BaseDLL;
 using System.Text;
 using System.Windows.Threading;
-using Background;
 
 namespace EXC
 {
@@ -36,12 +35,12 @@ namespace EXC
 
             Global.Related.PageType = "";
 
-            BackgroundItem.Kind = true;
-            BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            //BackgroundItem.Kind = true;
+            //BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
 
-            //BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-            //BackgroundItem.Picture.Auto = true;
-            App.backgroundWindow.Updated();
+            ////BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            ////BackgroundItem.Picture.Auto = true;
+            //App.backgroundWindow.Updated();
         }
 
         private async void PopAlert(string Msg, int time)

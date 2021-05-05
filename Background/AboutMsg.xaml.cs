@@ -4,7 +4,7 @@ using System.Windows.Input;
 using System.Xml.Linq;
 
 
-namespace Background
+namespace SimpleWindow
 {
     /// <summary>
     /// AboutMsg.xaml 的交互逻辑
@@ -28,6 +28,12 @@ namespace Background
 
         private void Window_Initialized(object sender, EventArgs e)
         {
+        }
+
+        private void Button_Min_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
         }
     }
 }

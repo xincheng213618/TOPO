@@ -69,7 +69,6 @@ namespace EXCYiXing
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Stamp.Close();
-            App.taskbar.Dispose();
             Environment.Exit(0);
         }
         private int ExitNum = 0;

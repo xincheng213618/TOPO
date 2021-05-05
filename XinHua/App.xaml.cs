@@ -1,19 +1,11 @@
-﻿using Background;
-using BaseInk;
-using BaseUtil;
+﻿using BaseUtil;
 using Startup;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.IO;
-using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using static Background.BackgroundWindow;
 
 namespace XinHua
 {
@@ -74,7 +66,6 @@ namespace XinHua
 
         public StartWindow StartWindow;
 
-        public static BackgroundWindow backgroundWindow;
         //public static InkWindows InkWindows;
 
 
@@ -86,15 +77,12 @@ namespace XinHua
             StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = false, VarbTest = false });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
 
-            backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
             //InkWindows = new InkWindows();
         }
         private void Application_Initialized(object sender, StartupEventArgs e)
         {
             Global.Initialized();
             //获取屏幕数量
-            BackgroundItem.Screens = System.Windows.Forms.Screen.AllScreens.Count()-1;
             if (!Directory.Exists("Temp"))
                 Directory.CreateDirectory("Temp");
         }

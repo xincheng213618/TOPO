@@ -13,6 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+    
 
     <Border Style="{StaticResource ProgramShadow }">
         <Grid>
@@ -20,17 +21,41 @@
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
+            <Button   HorizontalAlignment="Right" Height="18" VerticalAlignment="Top"  Click="Button_Close_Click" ToolTip="关闭" Panel.ZIndex="999">
+                <Button.Template>
+                    <ControlTemplate>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Border.Background" TargetName="PART_Background"  Value="red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="PART_Background" Background="Transparent" CornerRadius="2"  >
+                            <Image Source="Images/close.png" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button  Height="18" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Min_Click" ToolTip="最小化" Margin="0,0,20,0" Panel.ZIndex="999">
+                <Button.Template>
+                    <ControlTemplate>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Border.Background" TargetName="PART_Background"  Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="PART_Background" Background="Transparent" CornerRadius="2" >
+                            <Image Source="Images/min.png" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
 
             <Border Grid.Row="0" Background="#67b8dd" BorderBrush="Azure" BorderThickness="0,0,0,1">
                 <Grid>
-                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="同袍软件环境检测" FontSize="25"/>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="运行环境检测" FontSize="30" FontWeight="Bold"/>
                     <Label Name="PromptLabel"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="" FontSize="15" Foreground="Red" />
-                    <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Close_Click" ToolTip="关闭">
-                        <Image Source="Images/close.png" Height="20"/>
-                    </Button>
-                    <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Min_Click" ToolTip="最小化" Margin="0,1,26,0">
-                        <Image Source="Images/min.png" Height="18"/>
-                    </Button>
+
                 </Grid>
             </Border>
 

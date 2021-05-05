@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using System.Threading;
-using Hardcodet.Wpf.TaskbarNotification;
 using System.Runtime.ExceptionServices;
 using System.Windows.Controls;
-using Background;
 using Startup;
 using System.IO;
 using BaseUtil;
 
 namespace EXCYiXing
 {
-    
+
     /// <summary>
     /// App.xaml 的交互逻辑
     /// </summary>
@@ -37,13 +34,8 @@ namespace EXCYiXing
 
         }
 
-        public static TaskbarIcon taskbar;
-
         protected override void OnStartup(StartupEventArgs e)
         {
-            taskbar = (TaskbarIcon)FindResource("Taskbar");
-            taskbar.ToolTipText = "Designed By Mr.Xin";
-            taskbar.Visibility = Visibility.Hidden;
             base.OnStartup(e);
         }
 
@@ -55,14 +47,12 @@ namespace EXCYiXing
             mutex = new Mutex(true, "ElectronicNeedleTherapySystem", out ret);
             if (!ret)
             {
-                taskbar.Dispose();
                 Environment.Exit(0);
             }
         }
 
         public StartWindow StartWindow;
 
-        public static BackgroundWindow backgroundWindow;
 
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -75,8 +65,6 @@ namespace EXCYiXing
             StartWindow = new StartWindow(MainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = true });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
 
-            backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
         }
 
         private void Application_Initialized(object sender, StartupEventArgs e)
@@ -86,7 +74,7 @@ namespace EXCYiXing
             //CSQLite.Insert.CreatUseTabel();
 
             //获取屏幕数量
-            BackgroundItem.Screens = System.Windows.Forms.Screen.AllScreens.Count()-1;
+            //BackgroundItem.Screens = System.Windows.Forms.Screen.AllScreens.Count()-1;
 
         }
 
@@ -120,28 +108,7 @@ namespace EXCYiXing
             //    Log.WriteException(e.Exception);
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            MenuItem menuitem = sender as MenuItem;
-            switch (menuitem.Tag.ToString())
-            {
-                case "MainWindow":
-                    MainWindow MainWindow = new MainWindow();
-                    MainWindow.Show();
-                    break;
-                case "SQLWindow":
 
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void AboutMsg_Click(object sender, RoutedEventArgs e)
-        {
-            AboutMsg AboutMsg = new AboutMsg();
-            AboutMsg.Show();
-        }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
@@ -150,7 +117,6 @@ namespace EXCYiXing
 
         public void Application_Exit(object sender, ExitEventArgs e)
         {
-            taskbar.Dispose();
             Environment.Exit(0);
         }
     }

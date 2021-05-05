@@ -1,14 +1,8 @@
-﻿using Background;
-using BaseUtil;
+﻿using BaseUtil;
 using Startup;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -59,21 +53,17 @@ namespace XinHua
 
         public MainWindow mainWindow;
         public StartWindow StartWindow;
-        public static BackgroundWindow backgroundWindow;
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             mainWindow = new MainWindow();
             StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = false, VarbTest = false });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
-            backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
         }
         private void Application_Initialized(object sender, StartupEventArgs e)
         {
             Global.Initialized();
             //获取屏幕数量
-            BackgroundItem.Screens = System.Windows.Forms.Screen.AllScreens.Count()-1;
         }
 
         private Mutex mutex;

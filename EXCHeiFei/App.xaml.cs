@@ -5,10 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using BaseUtil;
-using Org.BouncyCastle.Asn1.X500;
 using System.IO;
-using Background;
-using System.Linq;
 
 namespace EXC
 {
@@ -49,7 +46,7 @@ namespace EXC
         }
         MainWindow mainWindow;
         StartWindow StartWindow;
-        public static BackgroundWindow backgroundWindow;
+        //public static BackgroundWindow backgroundWindow;
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -59,15 +56,15 @@ namespace EXC
             StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = false });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
 
-            backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
+            //backgroundWindow = new BackgroundWindow();
+            //backgroundWindow.Show();
         }
 
         private void Application_Initialized(object sender, StartupEventArgs e)
         {
             Global.Initialized();
 
-            BackgroundItem.Screens = Global.Config.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.Config.BackgroundWindow;
+            //BackgroundItem.Screens = Global.Config.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.Config.BackgroundWindow;
         }
 
 

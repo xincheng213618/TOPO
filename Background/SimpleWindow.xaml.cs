@@ -1,37 +1,66 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms.VisualStyles;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace Background
+namespace SimpleWindow
 {
-    //Designed By Mr.Xin 2020.7.10
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// SimpleWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class BackgroundWindow : Window
+    public partial class SimpleWindows : Window
     {
-
-        public IntPtr winHandle;// 当前窗体指针
-
-        Timer timer;
-        public BackgroundWindow()
+        public SimpleWindows()
         {
-            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.AllScreens[BackgroundItem.Screens];
+            InitializeComponent();
+        }
+
+        Timer TimerUpdate;
+        Timer timer;
+        /// <summary>
+        /// 刷新时间 /毫秒
+        /// </summary>
+        public int RefreshTimer = 1000;
+
+        public SimpleWindows(int Screens)
+        {
+            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.AllScreens[Screens];
             InitializeComponent();
             Left = screen.WorkingArea.Left;
             Top = screen.WorkingArea.Top;
             Height = screen.WorkingArea.Height;
             Width = screen.WorkingArea.Width;
         }
+        public SimpleWindows(int Screens, int RefreshTimer)
+        {
+            this.RefreshTimer = RefreshTimer;
+            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.AllScreens[Screens];
+            InitializeComponent();
+            Left = screen.WorkingArea.Left;
+            Top = screen.WorkingArea.Top;
+            Height = screen.WorkingArea.Height;
+            Width = screen.WorkingArea.Width;
+        }
+
+
+
         private void Window_Initialized(object sender, EventArgs e)
         {
-            string FileName = "BackGround";
-            if (!Directory.Exists(FileName))
-                Directory.CreateDirectory(FileName);
+            if (!Directory.Exists("BackGround"))
+                Directory.CreateDirectory("BackGround");
+            TimerUpdate = new Timer(_ => Dispatcher.BeginInvoke(new Action(() => Updated())), null, 0, RefreshTimer);//本来是60，不过没必要刷新这么快，就1s1次就好
         }
 
         public string VideoFileName;
@@ -40,9 +69,6 @@ namespace Background
         private BitmapImage bmImg;
         public void Updated()
         {
-            VideoGrid.Visibility = BackgroundItem.Kind ? Visibility.Visible : Visibility.Hidden;
-            PictureGrid.Visibility = BackgroundItem.Kind ? Visibility.Hidden : Visibility.Visible;
-
             if (timer != null)
                 timer.Dispose();
             if (!BackgroundItem.Video.IsPlayer)
@@ -110,7 +136,7 @@ namespace Background
 
 
 
-        }
+    }
 
     public static class BackgroundItem
     {
@@ -118,7 +144,7 @@ namespace Background
         /// <summary>
         /// true 为视频，false 为图片
         /// </summary>
-        public static bool Kind = true; 
+        public static bool Kind = true;
 
         public static class Video
         {
@@ -136,4 +162,5 @@ namespace Background
             public static int Intervaltime = 1000;
         }
     }
+
 }

@@ -5,8 +5,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using BaseUtil;
-using Background;
-using System.Linq;
 
 namespace PEC
 {
@@ -29,7 +27,6 @@ namespace PEC
 
 
         }
-        public static BackgroundWindow backgroundWindow;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -56,13 +53,11 @@ namespace PEC
             MainWindow mainWindow = new MainWindow();
             StartWindow StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true , VarbTest=true });
             StartWindow.Show();
-            backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
+
         }
         private void Application_Initialized(object sender, StartupEventArgs e)
         {
             Global.Initialized();
-            BackgroundItem.Screens = Global.Config.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.Config.BackgroundWindow;
 
         }
 

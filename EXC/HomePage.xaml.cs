@@ -6,9 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Windows.Documents;
 using System.IO;
-using Background;
 using BaseDLL;
-using static Background.BackgroundWindow;
 using BaseUtil;
 
 namespace EXC
@@ -35,12 +33,11 @@ namespace EXC
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-            BackgroundItem.Kind = true;
-            BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            //BackgroundItem.Kind = true;
+            //BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
 
             //BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
             //BackgroundItem.Picture.Auto = true;
-            App.backgroundWindow.Updated();
 
             Global.Related.Initialized();
             Stamp.Close();

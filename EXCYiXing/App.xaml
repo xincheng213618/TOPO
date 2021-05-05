@@ -9,17 +9,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Dictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <tb:TaskbarIcon x:Key="Taskbar" ToolTipText="江苏同袍" IconSource="Tonpo.ico" >
-                <tb:TaskbarIcon.ContextMenu >
-                    <ContextMenu >
-                        <MenuItem  Header="显示" ToolTip="显示主界面"  Click="MenuItem_Click" Tag="MainWindow"/>
-                        <MenuItem  Header="数据库" ToolTip="打开数据库"  Click="MenuItem_Click" Tag="SQLWindow"/>
-                        <MenuItem x:Name="Exit" Header="退出" ToolTip="退出程序" Click="Exit_Click" />
-                        <MenuItem x:Name="AboutMsg" Header="关于软件" Click="AboutMsg_Click" />
-                    </ContextMenu>
-                </tb:TaskbarIcon.ContextMenu>
-            </tb:TaskbarIcon>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

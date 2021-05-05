@@ -1,4 +1,4 @@
-﻿using Background;
+﻿
 using BaseDLL;
 using BaseUtil;
 using System;
@@ -7,7 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using static Background.BackgroundWindow;
+
 
 namespace RECSuzhou
 {
@@ -33,14 +33,6 @@ namespace RECSuzhou
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-
-            BackgroundItem.Kind = false;
-            //BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-
-            BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-            BackgroundItem.Picture.Auto = true;
-            BackgroundItem.Picture.Intervaltime = 5000;// 千分秒
-            App.backgroundWindow.Updated();
             Stamp.Close();
 
         }

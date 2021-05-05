@@ -10,47 +10,95 @@
         <Border.Effect>
             <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
         </Border.Effect>
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
-            <Border Grid.Row="0" Background="#67b8dd" BorderBrush="Azure" BorderThickness="0,0,0,1">
+            <Button   HorizontalAlignment="Right" Height="18" VerticalAlignment="Top"  Click="Button_Close_Click" ToolTip="关闭" Panel.ZIndex="999">
+                <Button.Template>
+                    <ControlTemplate>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Border.Background" TargetName="PART_Background"  Value="red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="PART_Background" Background="Transparent" CornerRadius="2"  >
+                            <Image Source="Images/close.png" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button  Height="18" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Min_Click" ToolTip="最小化" Margin="0,0,20,0" Panel.ZIndex="999">
+                <Button.Template>
+                    <ControlTemplate>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Border.Background" TargetName="PART_Background"  Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="PART_Background" Background="Transparent" CornerRadius="2" >
+                            <Image Source="Images/min.png" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+
+            <Border Grid.Row="0" Background="#67b8dd" BorderBrush="Azure" BorderThickness="0,0,0,1" CornerRadius="2,2,0,0">
                 <Grid>
-                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="江苏同袍终端机注册机" FontSize="25"/>
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="TOPO注册机" FontSize="40" FontWeight="Bold" />
                 </Grid>
             </Border>
             <Border x:Name="ActivationBorder" Grid.Row="1" Visibility="Visible">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
                     <DockPanel LastChildFill="True" Grid.Row="0" Margin="15,0,10,0">
-                        <Label   Content="机器码："  FontSize="15" Foreground="#3269ba" />
-                        <TextBox x:Name="MachineCode" Foreground="#3269ba"  VerticalAlignment="Center" FontSize="15" TextChanged="MachineCode_TextChanged" Margin="0,6,0,6.667" Width="280"   />
-                        <Button  Content="粘贴" HorizontalAlignment="Right"  Width="50" Height="25"  Click="Button_Click" Tag="Paste" />
+                        <Label   Content="机器码："  FontSize="15" Foreground="#3269ba" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                        <TextBox x:Name="MachineCode" Foreground="#3269ba"  VerticalAlignment="Center" FontSize="20" BorderThickness="0" TextChanged="MachineCode_TextChanged" Width="230"   />
+                        <Button  Content="粘贴"  Margin="10,5,0,5" Click="Button_Click" Tag="Paste"  >
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border Background="AliceBlue" CornerRadius="3" BorderThickness="1" BorderBrush="AntiqueWhite">
+                                        <Label Content="粘  贴" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                     </DockPanel>
                     <DockPanel LastChildFill="True" Grid.Row="1"  VerticalAlignment="Top" Margin="15,0,10,0">
-                        <StackPanel  VerticalAlignment="Top" Height="140" >
-                            <Label  Content="激活码："  FontSize="15" Foreground="#3269ba"  />
-                            <Button  VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="50" Content="复制" Margin="5" Click="Button_Click" Tag="Copy" />
+                        <StackPanel  VerticalAlignment="Top"  >
+                            <Label  Content="激活码："  FontSize="15" Foreground="#3269ba" FontWeight="Bold"  />
+                            <Button Margin="3,10,10,0"  Click="Button_Click" Tag="Copy" >
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Background="AliceBlue" CornerRadius="3" BorderThickness="1" BorderBrush="AntiqueWhite">
+                                            <StackPanel>
+                                                <Label Content="复  制" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"/>
+                                                <Label Content="激活码" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                         </StackPanel>
-                        <TextBox x:Name="ActivationCode"  FontSize="12"  Foreground="DarkBlue" TextWrapping="Wrap"  Height="140"/>
+                        <TextBox x:Name="ActivationCode"  FontSize="12"  Foreground="DarkBlue" TextWrapping="Wrap" BorderThickness="0" Margin="0,10,0,0"  Height="101"/>
                     </DockPanel>
-                    <Button  Content="激活" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="85,10" Grid.Row="1" Click="Button_Click"  Width="50" Height="20"  Tag="Activation"/>
+                    <Button  HorizontalAlignment="Center" VerticalAlignment="Bottom"  Margin="15,0,15,10" Grid.Row="1" Click="Button_Click"  Width="400"   Tag="Activation">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Background="AliceBlue" CornerRadius="10" BorderThickness="3" BorderBrush="AntiqueWhite">
+                                    <Label Content="点    击    激      活" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
                 </Grid>
             </Border>
-
-            <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Close_Click" ToolTip="关闭">
-                <Image Source="Images/close.png" Height="20"/>
-            </Button>
-            <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Min_Click" ToolTip="最小化" Margin="0,1,26,0">
-                <Image Source="Images/min.png" Height="18"/>
-            </Button>
-            
         </Grid>
     </Border>
 </Window>
