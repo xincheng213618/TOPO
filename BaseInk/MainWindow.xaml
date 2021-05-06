@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BaseInk"
         mc:Ignorable="d"
         Height="400 " Activated="Window_Activated"  Width="844.638" Focusable="False" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Initialized="Window_Initialized">
+
     <Border Background="#DADADA" Margin="2,0,2,2" Focusable="False" >
         <Border.Effect>
             <DropShadowEffect BlurRadius="5" ShadowDepth="0" Opacity="0.3"/>
@@ -124,46 +125,40 @@
                 </Border>
             </Grid>
 
+            <local:FuncButtonControl  Height="Auto" Content="q"  Tag="81" Margin="60,40,631,248" Grid.Row="1"/>
 
 
 
 
 
-            <Grid   Grid.Row="1" Name="key" Background="#f5f6f7"  Visibility="Visible">
+
+
+            <Grid   Grid.Row="1" Name="key" Background="#f5f6f7"  Visibility="Hidden" HorizontalAlignment="Left" Width="791">
+
                 <TextBox TextChanged="tx_TextChanged" TabIndex="0" x:Name="tx" Width="0" Height="0" VerticalAlignment="Top" Margin="0,-30,100,0"></TextBox>
 
-                <Button Name="list" Template="{StaticResource  imageButtonTemplate}" Visibility="Collapsed" Focusable="False" BorderThickness="0" HorizontalContentAlignment="Center" BorderBrush="Transparent" Width="50" Content="A" FontSize="2" Height="50" Click="Button_Click"/>
-
-                <WrapPanel Name="sk4"  Panel.ZIndex="8" Margin="40,0,0,285"  Focusable="False" >
-                </WrapPanel>
-                <Label Name="l4"  Panel.ZIndex="9" Margin="40,0,0,285" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
-
-                <!--数字-->
-
-
-                <Label  Name="l1"  Panel.ZIndex="9" Margin="40,67,0,218" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
-                <WrapPanel Name="sk" Panel.ZIndex="8"   Margin="40,67,0,218" Focusable="False" RenderTransformOrigin="0.5,0.5" />
-                <!--第一行-->
-
-
-                <WrapPanel  Name="sk2"   Panel.ZIndex="8" Focusable="False"  Margin="40,135,0,150"  >
-                </WrapPanel>
-                <Label Name="l2"  Panel.ZIndex="9" Margin="40,135,0,150" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
-                <!--第二行-->
+                <Button Name="list" Template="{StaticResource  imageButtonTemplate}" Visibility="Collapsed" Focusable="False" BorderThickness="0" HorizontalContentAlignment="Center" BorderBrush="Transparent" Width="50"  FontSize="2" Height="50" Click="Button_Click"/>
+                <Label Content="A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeave="Label_MouseLeave"   MouseUp="Label_MouseUp"  Focusable="False"   MouseDown="Label_MouseDown" Height="40" Width="45" Margin="35,30,711,278"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="按钮1.png"></ImageBrush>
+                    </Label.Background>
+                </Label>
 
 
 
-                <WrapPanel Name="sk3"  Panel.ZIndex="8" Margin="40,197,0,88"  Focusable="False" >
-                </WrapPanel>
-                <Label Name="l3"  Panel.ZIndex="9" Margin="40,197,0,88" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
 
-                <!--第三行-->
+
 
                 <Button   Content="大写" Focusable="False" HorizontalAlignment="Left" Margin="22,280,0,0" VerticalAlignment="Top" x:Name="btn1" Width="165" Click="Button_Click_1" Height="42" RenderTransformOrigin="0.5,0.5"/>
                 <Button   
                              Content="英" x:Name="y" Focusable="False" HorizontalAlignment="Left"
                              Margin="597,280,0,0" VerticalAlignment="Top" Width="165"
                              Click="Button_Click_2"  Height="42"/>
+                <Label Content="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseLeave="Label_MouseLeave"   MouseUp="Label_MouseUp"  Focusable="False"   MouseDown="Label_MouseDown" Height="40" Width="45" Margin="90,30,656,278"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="按钮1.png"/>
+                    </Label.Background>
+                </Label>
 
             </Grid>
 

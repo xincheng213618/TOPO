@@ -57,10 +57,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FuncButtonControl.xaml.cs">
+      <DependentUpon>FuncButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User32dll.cs" />
     <Page Include="Dictionary1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FuncButtonControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -102,17 +109,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\按钮1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Resource Include="images\按钮1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\按下1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Resource Include="images\按下1.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="按钮1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Backspace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\按下.png" />
+    <Resource Include="images\按下2.5.png" />
+    <Resource Include="images\按下2.png" />
+    <Resource Include="images\按下5.5.png" />
+    <Resource Include="images\按钮2.5.png" />
+    <Resource Include="images\按钮2.png" />
+    <Resource Include="images\按钮5.5.png" />
+    <Resource Include="images\按钮间距.png" />
+    <Resource Include="images\数字按钮.png" />
+    <Resource Include="images\确认按钮.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
