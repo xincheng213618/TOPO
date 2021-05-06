@@ -42,7 +42,7 @@ namespace RECSuzhou
                 SuZhouHQAllNoDegree.Visibility = Visibility.Visible;
             }
             Stamp.Close();
-            App.simpleWindow.Update(@"D:\BaiduNetdiskDownload\JJHJ\镜酱 - 玛修 [9P 47.1MB]", "pictures", 10000);
+            //App.simpleWindow.Update(@"D:\BaiduNetdiskDownload\JJHJ\镜酱 - 玛修 [9P 47.1MB]", "pictures", 10000);
         }
 
 
