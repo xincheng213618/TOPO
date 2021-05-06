@@ -1,5 +1,4 @@
-﻿using Background;
-using BaseUtil;
+﻿using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,13 +50,13 @@ namespace XinHua
                 List[i].Visibility = Visibility.Hidden;
 
 
-            BackgroundItem.Kind = false;
-            BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            //BackgroundItem.Kind = false;
+            //BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
 
-            BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-            BackgroundItem.Picture.Auto = true;
-            BackgroundItem.Picture.Intervaltime = 5000;// 千分秒
-            App.backgroundWindow.Updated();
+            //BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            //BackgroundItem.Picture.Auto = true;
+            //BackgroundItem.Picture.Intervaltime = 5000;// 千分秒
+            //App.backgroundWindow.Updated();
 
             CompanyInfo.Initialized();
         }

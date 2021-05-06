@@ -1,21 +1,11 @@
-﻿using Background;
-using BaseUtil;
+﻿using BaseUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EXCXuanCheng
 {
@@ -69,10 +59,6 @@ namespace EXCXuanCheng
 
             Global.Related.Initialized();
 
-            BackgroundItem.Kind = true;
-            BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-
-            App.backgroundWindow.Updated();
         }
 
         private async void PopAlert(string Msg, int time)

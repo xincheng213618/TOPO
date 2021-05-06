@@ -239,9 +239,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Background\Background.csproj">
+    <ProjectReference Include="..\Background\Simplewindow.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>Background</Name>
+      <Name>Simplewindow</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>

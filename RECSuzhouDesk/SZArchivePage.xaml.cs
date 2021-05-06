@@ -29,7 +29,6 @@ namespace RECSuzhou
     /// </summary>
     public partial class SZArchivePage : Page
     {
-        private IDCardData idcardData;
         private string SZArchiveListPageNo = "1";
         //定义一页有多少条数据
         private string PageSize = "8";
@@ -167,11 +166,11 @@ namespace RECSuzhou
             {
 
                 case "SZHQArchivePages":
-                    string response = Http.SZArchive(idcardData.IDCardNo, Archievcode);
+                    string response = Http.SZArchive(Global.Related.IDCardData.IDCardNo, Archievcode);
                     Dispatcher.BeginInvoke(new Action(() => HQArchiveParse(response, Archievcode)));
                     break;
                 case "SZWZArchivePages":
-                    response = Http.SZArchiveMenu(idcardData.IDCardNo, Archievcode);
+                    response = Http.SZArchiveMenu(Global.Related.IDCardData.IDCardNo, Archievcode);
                     Dispatcher.BeginInvoke(new Action(() => WZArchiveParse(response)));
                     break;
             }
@@ -217,7 +216,7 @@ namespace RECSuzhou
                                 Log.Write("图片转pdf成功");
                                 PDF.PDFMark(FileName, "苏州市不动产登记中心虎丘分中心", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
                                 Log.Write("正在添加图片水印");
-                                Http.AddAction(idcardData.Name, idcardData.IDCardNo, "dayinquanshu");
+                                Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinquanshu");
                                 for (int j = 0; j < fileNameList.ToArray().Length; j++)
                                     File.Delete(@fileNameList.ToArray()[j]);
 

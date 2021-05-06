@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using BaseUtil;
 using BaseDLL;
-using Background;
 
 namespace EXC
 {
@@ -38,10 +37,10 @@ namespace EXC
 
             Global.Related.Initialized();
 
-            BackgroundItem.Kind = true;
-            BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            //BackgroundItem.Kind = true;
+            //BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
 
-            App.backgroundWindow.Updated();
+            //App.backgroundWindow.Updated();
         }
 
         private async void PopAlert(string Msg, int time)
@@ -66,7 +65,6 @@ namespace EXC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
-        private IDCardData IDCardData;
         //Page 跳转 所有的逻辑从这里进行转跳
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {

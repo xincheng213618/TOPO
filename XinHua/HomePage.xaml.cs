@@ -1,5 +1,4 @@
-﻿using Background;
-using BaseInk;
+﻿using BaseInk;
 using BaseUtil;
 using System;
 using System.Collections.Generic;
@@ -17,7 +16,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static Background.BackgroundWindow;
 
 namespace XinHua
 {
@@ -53,14 +51,6 @@ namespace XinHua
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
 
-
-            BackgroundItem.Kind = false;
-            BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-
-            BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-            BackgroundItem.Picture.Auto = true;
-            BackgroundItem.Picture.Intervaltime = 5000;// 千分秒
-            App.backgroundWindow.Updated();
 
         }
 

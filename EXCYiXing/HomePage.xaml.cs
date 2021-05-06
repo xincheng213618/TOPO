@@ -5,10 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Windows.Documents;
-using System.IO;
-using Background;
+
 using BaseDLL;
-using static Background.BackgroundWindow;
+
 using BaseUtil;
 
 namespace EXCYiXing
@@ -36,11 +35,11 @@ namespace EXCYiXing
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
-            BackgroundItem.Kind = true;
-            BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-            //BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
-            //BackgroundItem.Picture.Auto = true;
-            App.backgroundWindow.Updated();
+            //BackgroundItem.Kind = true;
+            //BackgroundItem.Video.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            ////BackgroundItem.Picture.Files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Background\\");
+            ////BackgroundItem.Picture.Auto = true;
+            //App.backgroundWindow.Updated();
 
             Stamp.Close();
         }

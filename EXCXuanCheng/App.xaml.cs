@@ -1,4 +1,4 @@
-﻿using Background;
+﻿
 using BaseUtil;
 using Startup;
 using System;
@@ -52,7 +52,6 @@ namespace EXCXuanCheng
         }
         MainWindow mainWindow;
         StartWindow StartWindow;
-        public static BackgroundWindow backgroundWindow;
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -61,24 +60,16 @@ namespace EXCXuanCheng
             //StartWindow.Show();
             mainWindow.Show();
 
-            backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
         }
 
         private void Application_Initialized(object sender, StartupEventArgs e)
         {
             Global.Initialized();
             string sPath = "Temp";
-            string sBackground = "Background";
             if (!Directory.Exists(sPath))
-            {
                 Directory.CreateDirectory(sPath);
-            }
-            if (!Directory.Exists(sBackground))
-            {
-                Directory.CreateDirectory(sBackground);
-            }
-            BackgroundItem.Screens = Global.Config.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.Config.BackgroundWindow;
+
+
         }
 
 

@@ -6,7 +6,6 @@ using System.Threading;
 using Hardcodet.Wpf.TaskbarNotification;
 using System.Runtime.ExceptionServices;
 using System.Windows.Controls;
-using Background;
 using Startup;
 using System.IO;
 using BaseUtil;
@@ -65,22 +64,15 @@ namespace EXC
 
         public StartWindow StartWindow;
 
-        public static BackgroundWindow backgroundWindow;
-
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             if (!Directory.Exists("Temp"))
-            {
                 Directory.CreateDirectory("Temp");
-            }
+
             mainWindow = new MainWindow();
             StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = true });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
-
-            backgroundWindow = new BackgroundWindow();
-            backgroundWindow.Show();
-
             //InkWindow inkWindow = new InkWindow();
             //inkWindow.Show();
         }
@@ -92,7 +84,7 @@ namespace EXC
             //CSQLite.Insert.CreatUseTabel();
 
             //获取屏幕数量
-            BackgroundItem.Screens = Global.Config.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.Config.BackgroundWindow;
+            //BackgroundItem.Screens = Global.Config.BackgroundWindow > System.Windows.Forms.Screen.AllScreens.Count() - 1 ? System.Windows.Forms.Screen.AllScreens.Count() - 1 : Global.Config.BackgroundWindow;
 
         }
 
@@ -144,8 +136,8 @@ namespace EXC
 
         private void AboutMsg_Click(object sender, RoutedEventArgs e)
         {
-            AboutMsg AboutMsg = new AboutMsg();
-            AboutMsg.Show();
+            //AboutMsg AboutMsg = new AboutMsg();
+            //AboutMsg.Show();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

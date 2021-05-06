@@ -1,18 +1,11 @@
-﻿using Background;
-using BaseUtil;
+﻿using BaseUtil;
 using Startup;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.IO;
-using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using static Background.BackgroundWindow;
 
 namespace RECSuzhou
 {
@@ -53,7 +46,6 @@ namespace RECSuzhou
         }
 
 
-        public static BackgroundWindow backgroundWindow;
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -61,8 +53,7 @@ namespace RECSuzhou
             StartWindow StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = false });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
 
-            backgroundWindow = new BackgroundWindow();
-                backgroundWindow.Show();
+
         }
 
         private void Application_Initialized(object sender, StartupEventArgs e)
@@ -70,7 +61,6 @@ namespace RECSuzhou
             if (!Directory.Exists("Temp"))
                 Directory.CreateDirectory("Temp");
             Global.Initialized();
-            BackgroundItem.Screens = System.Windows.Forms.Screen.AllScreens.Count() - 1;
         }
 
 

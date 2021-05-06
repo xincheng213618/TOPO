@@ -47,10 +47,14 @@ namespace Register
             {
                 case "Copy":
                     Clipboard.SetText(ActivationCode.Text);
+                    MessageBox.Show("复制成功", "TOPO", MessageBoxButton.OK, MessageBoxImage.Information);
                     break;
                 case "Paste":
                     if (Clipboard.ContainsText())
+                    {
                         MachineCode.Text = Clipboard.GetText();
+                        MessageBox.Show("粘贴成功", "TOPO", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                     break;
                 case "Activation":
                     string LicensePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\TOPO";

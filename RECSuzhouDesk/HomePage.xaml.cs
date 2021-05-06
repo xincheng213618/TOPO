@@ -52,7 +52,6 @@ namespace RECSuzhou
         }
 
 
-        private IDCardData IDCardData;
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;

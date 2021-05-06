@@ -37,8 +37,9 @@ namespace BaseUtil
             return null;
         }
 
-        public static string SaveFileDialog(string DefaultFileName = null, string Filter = "", int FilterIndex = 1)
+        public static bool SaveFileDialog(out string FileName,string DefaultFileName = null, string Filter = "", int FilterIndex = 1)
         {
+            FileName = "";
             SaveFileDialog dialog = new SaveFileDialog
             {
                 Filter = Filter,
@@ -53,11 +54,12 @@ namespace BaseUtil
                 if (string.IsNullOrEmpty(dialog.FileName))
                 {
                     MessageBox.Show("文件名称不能为空", "提示");
-                    return null;
+                    return false;
                 }
-                return dialog.FileName;
+                FileName = dialog.FileName;
+                return true;
             }
-            return null;
+            return true;
         }
 
     }
