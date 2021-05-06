@@ -22,12 +22,9 @@ namespace PEC
         {
             InitializeComponent();
         }
-        Thread t;
         private void Page_Initialized(object sender, EventArgs e)
         {
             m_iPort = IDcard.IDcardSet();
-            t = new Thread(new ThreadStart(IDcard_reader));
-             
             timeCount.Countdown = 30;
             Countdown();
         }
@@ -84,7 +81,7 @@ namespace PEC
         }
         private void Pages()
         {
-            t.Abort();
+           
             pageTimer.IsEnabled = false;
             (Application.Current.MainWindow as MainWindow).frame.Navigate(Content);
         }
@@ -129,17 +126,29 @@ namespace PEC
         {
             Button button = sender as Button;
             _user = account.Text;
-            _Password = password.Text;
+            _Password = password.Password;
             switch (button.Tag)
             {
                 case "Login":
                     if (_user.Length > 0 && _Password.Length > 0)
                     {
-                        Thread thread = new Thread(() => RequestLogin(_user, _Password))
+                        try
                         {
-                            IsBackground = true
-                        };
-                        thread.Start();
+                            PopBorder.Visibility = Visibility.Visible;
+
+                            Thread thread = new Thread(() => RequestLogin(_user, _Password))
+                            {
+                                IsBackground = true
+                            };
+                            thread.Start();
+                        }
+                        catch (Exception  ex)
+                        {
+
+                            Content = new HomePage(ex.Message);
+                            Pages();
+                        }
+                       
                     }
                     else
                     {
@@ -209,8 +218,11 @@ namespace PEC
             string response = Http.Provincial.DALogin(user, pass);
             if (response == null)
             {
-                Dispatcher.BeginInvoke(new Action(() => throw new Exception("该接口连接错误")));
-                return;
+                Dispatcher.BeginInvoke(new Action(() => {
+                    Content = new HomePage("该接口连接错误");
+                    Pages();
+                }));
+              
             }
             Dispatcher.BeginInvoke(new Action(() => PhraseLogin(response)));
         }
@@ -363,6 +375,11 @@ namespace PEC
         {
             Content = new HomePage();
             Pages();
+        }
+
+        private void password_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 

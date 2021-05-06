@@ -64,27 +64,11 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
-                        <TextBox  x:Name="password" Text=""  FontSize="30" Height="40" MaxLength="20" Margin="60,100,20,0" VerticalAlignment="Top" BorderThickness="0,0,0,1">
-                            <TextBox.Resources>
-                                <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
-                                    <VisualBrush.Visual>
-                                        <TextBlock Text="请输入密码" FontSize="30"/>
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </TextBox.Resources>
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
-                                    <Style.Triggers>
-                                        <Trigger Property="Text" Value="{x:Null}">
-                                            <Setter Property="Background" Value="{StaticResource HintText}"/>
-                                        </Trigger>
-                                        <Trigger Property="Text" Value="">
-                                            <Setter Property="Background" Value="{StaticResource HintText}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
+                        <TextBox Visibility="Collapsed" x:Name="passwordes"></TextBox>
+                        <PasswordBox BorderThickness="0,0,0,1"  x:Name="password"  FontSize="30" Height="40" MaxLength="20" Margin="60,100,20,0" VerticalAlignment="Top"  >
+                            
+                                 
+                        </PasswordBox>
                         <Border Margin="60,180,20,48" CornerRadius="20">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0.815,0.443" StartPoint="0.24,0.483">

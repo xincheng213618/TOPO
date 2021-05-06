@@ -20,12 +20,6 @@ namespace REC
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// 构造函数1
-        /// </summary>
-       
-
         private Thread DecodeThread = null;
         private bool bIsLoop = true;
 
