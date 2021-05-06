@@ -1,5 +1,6 @@
 ﻿using BaseDLL;
 using BaseUtil;
+using SimpleWindow;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace RECSuzhou
         
         private Timer timer;
         SuZhouDate Time = new SuZhouDate();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -56,6 +58,8 @@ namespace RECSuzhou
                 Stamp.StampPort = Global.Config.StampPort;
                 Stamp.Kind = "StampPrinter";
             }
+           
+
             Stamp.OpenDevice();
             DateLabel.DataContext = Time;
             DataContext = Global.Config;
