@@ -28,7 +28,7 @@ namespace RECSuzhou
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            Global.Related.Initialized();
+            Global.Related.Initialized();  
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
@@ -42,7 +42,7 @@ namespace RECSuzhou
                 SuZhouHQAllNoDegree.Visibility = Visibility.Visible;
             }
             Stamp.Close();
-
+            App.simpleWindow.Update(@"D:\BaiduNetdiskDownload\JJHJ\镜酱 - 玛修 [9P 47.1MB]", "pictures", 10000);
         }
 
 

@@ -313,9 +313,9 @@
       <Project>{fb774343-20d2-4a1a-ae29-70f261d7edbc}</Project>
       <Name>ACE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Background\Simplewindow.csproj">
+    <ProjectReference Include="..\Background\SimpleWindow.csproj">
       <Project>{9ec775e3-d0d3-4f0a-ada2-73ed74c30ee4}</Project>
-      <Name>Simplewindow</Name>
+      <Name>SimpleWindow</Name>
     </ProjectReference>
     <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>

@@ -1,4 +1,5 @@
 ﻿using BaseUtil;
+using SimpleWindow;
 using Startup;
 using System;
 using System.IO;
@@ -45,14 +46,15 @@ namespace RECSuzhou
             }
         }
 
-
+        public static SimpleWindows simpleWindow;
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             StartWindow StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = false });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
-
+            simpleWindow = new SimpleWindows(0);
+            simpleWindow.Show();
 
         }
 
