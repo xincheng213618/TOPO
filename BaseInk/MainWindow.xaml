@@ -5,147 +5,168 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BaseInk"
         mc:Ignorable="d"
-        Height="400 "  Activated="Window_Activated"  Width="844.638" Focusable="False" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Initialized="Window_Initialized">
-    <Border Background="#DADADA" Margin="5,0,5,5" Focusable="False" >
+        Height="400 " Activated="Window_Activated"  Width="844.638" Focusable="False" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Initialized="Window_Initialized">
+    <Border Background="#DADADA" Margin="2,0,2,2" Focusable="False" >
         <Border.Effect>
-            <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.8"/>
+            <DropShadowEffect BlurRadius="5" ShadowDepth="0" Opacity="0.3"/>
         </Border.Effect>
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="53" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="53" />
+                <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="1" Click="Exit" Focusable="False" Margin="4,0,0,4">
+
+            <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Content="" Background="Transparent" MouseLeftButtonDown="Window_MouseDrag"/>
+            <Button  Grid.Row="0" Grid.Column="1" Click="Exit" Focusable="False" Margin="4,0,0,2" Panel.ZIndex="999">
                 <Button.Template>
                     <ControlTemplate>
-                        <Border Background="White">
-                            <Label Content="X" Focusable="False" Foreground="Black" FontSize="20"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Border.Background" TargetName="PART_Background"  Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        <Border x:Name="PART_Background" Background="White" CornerRadius="0,4,0,4" >
+                            <Image Source="images\close.png"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid  Grid.Row="1" Grid.Column="1"  Margin="0,2,0,2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="移动" Focusable="False" Foreground="Black" Background="White" Margin="0,0,0,38"  MouseLeftButtonDown="Window_MouseDrag" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" />
-                <Button Focusable="False"  Click="Fun_Click" Margin="0,50,0,72" Grid.RowSpan="2" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Border Background="White" >
-                                <Label Content="中" Focusable="False" Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button Grid.Row="1" Focusable="False" Click="Clear_Click" Margin="0,16,0,2" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Border Background="White" >
-                                <Label Content="清空" Focusable="False" Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
 
-                </Button>
-                <Button Grid.Row="2" Focusable="False"   Click="Delete_Click" Margin="0,8,0,5" >
+                <Button Grid.Row="1" Focusable="False"  Click="Fun_Click"  >
                     <Button.Template>
                         <ControlTemplate>
-                            <Border Background="White" >
-                                <Label Content="删除" Focusable="False" Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
+                                <Label x:Name="InputKind" Content="中" Focusable="False" Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Grid.Row="3"   Focusable="False"   Click="Button_Click" Margin="0,5,0,8"    >
+                <Button Grid.Row="2" Focusable="False" Click="Clear_Click"  >
                     <Button.Template>
                         <ControlTemplate>
-                            <Border Background="White" >
-                                <Label Content="键盘" Focusable="False" Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
+                                <Label Content="清空" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+            </Grid>
+
+
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0"   Focusable="False"   Click="Button_Click"   >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Background="White" Margin="0,0,2,2" CornerRadius="4">
+                                <Label Content="键盘" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+
+                <ListView  x:Name="ListVierew" Grid.Column="2" Focusable="False"  Background="White" BorderThickness="0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,-20,0,0"  SelectionChanged="ListVierew_SelectionChanged" Visibility="Hidden">
+                    <ListView.ItemContainerStyle >
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Width" Value="50" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel  Orientation="Horizontal" ></VirtualizingStackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate  >
+                                        <Grid >
+                                            <Label Focusable="False" Content="{Binding Path=Content111}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="40"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
 
             </Grid>
-            <ListView  x:Name="ListVierew" Focusable="False"  Background="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,-20,0,0"  SelectionChanged="ListVierew_SelectionChanged">
-                <ListView.ItemContainerStyle >
-                    <Style TargetType="{x:Type ListBoxItem}">
-                        <Setter Property="Width" Value="70" />
-
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel  Orientation="Horizontal" ></VirtualizingStackPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn >
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate  >
-                                    <Grid Width="40">
-                                        <Label Focusable="False" Content="{Binding Path=Content111}" HorizontalAlignment="Center"   FontSize="20"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-
-            </ListView>
-
-
-            <Border Grid.Row="1" Name="ink" Visibility="Collapsed">
-                <InkCanvas x:Name="inkCanvas" Focusable="False"  StrokeCollected="InkCanvas_StrokeCollected" Background="#f5f6f7" Margin="0,0,0,0" />
-            </Border>
-            <Border Grid.Row="1" Name="key"  Visibility="Visible">
-                <Grid  >
-                    <Button Name="list" Template="{StaticResource  imageButtonTemplate}" Visibility="Collapsed" Focusable="False" BorderThickness="0" HorizontalContentAlignment="Center" BorderBrush="Transparent" Width="50" Content="A" FontSize="2" Height="50" Click="Button_Click"/>
-
-                    <WrapPanel Name="sk4"  Panel.ZIndex="8" Margin="40,0,0,285"  Focusable="False" >
-                    </WrapPanel>
-                    <Label Name="l4"  Panel.ZIndex="9" Margin="40,0,0,285" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
-
-                    <!--数字-->
-
-
-                    <Label  Name="l1"  Panel.ZIndex="9" Margin="40,67,0,218" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
-                    <WrapPanel Name="sk" Panel.ZIndex="8"   Margin="40,67,0,218" Focusable="False" RenderTransformOrigin="0.5,0.5" />
-                    <!--第一行-->
-
-
-                    <WrapPanel  Name="sk2"   Panel.ZIndex="8" Focusable="False"  Margin="40,135,0,150"  >
-                    </WrapPanel>
-                    <Label Name="l2"  Panel.ZIndex="9" Margin="40,135,0,150" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
-                    <!--第二行-->
 
 
 
-                    <WrapPanel Name="sk3"  Panel.ZIndex="8" Margin="40,197,0,88"  Focusable="False" >
-                    </WrapPanel>
-                    <Label Name="l3"  Panel.ZIndex="9" Margin="40,197,0,88" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
+            <Grid x:Name="InkGrid"  Grid.Row="1">
+                <Border Grid.Row="1" >
+                    <InkCanvas x:Name="inkCanvas" Focusable="False"  StrokeCollected="InkCanvas_StrokeCollected" Background="#f5f6f7" Margin="0,0,0,0" />
+                </Border>
+            </Grid>
 
-                    <!--第三行-->
 
-                    <TextBox TextChanged="tx_TextChanged"  TabIndex="0" x:Name="tx" Width="0" Height="0"></TextBox>
-                    <Button   Content="大写" Focusable="False" HorizontalAlignment="Left" Margin="22,280,0,0" VerticalAlignment="Top" x:Name="btn1" Width="165" Click="Button_Click_1" Height="42" RenderTransformOrigin="0.5,0.5"/>
-                    <Button   
+
+
+
+
+            <Grid   Grid.Row="1" Name="key" Background="#f5f6f7"  Visibility="Visible">
+                <TextBox TextChanged="tx_TextChanged" TabIndex="0" x:Name="tx" Width="0" Height="0" VerticalAlignment="Top" Margin="0,-30,100,0"></TextBox>
+
+                <Button Name="list" Template="{StaticResource  imageButtonTemplate}" Visibility="Collapsed" Focusable="False" BorderThickness="0" HorizontalContentAlignment="Center" BorderBrush="Transparent" Width="50" Content="A" FontSize="2" Height="50" Click="Button_Click"/>
+
+                <WrapPanel Name="sk4"  Panel.ZIndex="8" Margin="40,0,0,285"  Focusable="False" >
+                </WrapPanel>
+                <Label Name="l4"  Panel.ZIndex="9" Margin="40,0,0,285" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
+
+                <!--数字-->
+
+
+                <Label  Name="l1"  Panel.ZIndex="9" Margin="40,67,0,218" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
+                <WrapPanel Name="sk" Panel.ZIndex="8"   Margin="40,67,0,218" Focusable="False" RenderTransformOrigin="0.5,0.5" />
+                <!--第一行-->
+
+
+                <WrapPanel  Name="sk2"   Panel.ZIndex="8" Focusable="False"  Margin="40,135,0,150"  >
+                </WrapPanel>
+                <Label Name="l2"  Panel.ZIndex="9" Margin="40,135,0,150" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
+                <!--第二行-->
+
+
+
+                <WrapPanel Name="sk3"  Panel.ZIndex="8" Margin="40,197,0,88"  Focusable="False" >
+                </WrapPanel>
+                <Label Name="l3"  Panel.ZIndex="9" Margin="40,197,0,88" MouseDown="key_MouseDown" MouseUp="Label_MouseUp"></Label>
+
+                <!--第三行-->
+
+                <Button   Content="大写" Focusable="False" HorizontalAlignment="Left" Margin="22,280,0,0" VerticalAlignment="Top" x:Name="btn1" Width="165" Click="Button_Click_1" Height="42" RenderTransformOrigin="0.5,0.5"/>
+                <Button   
                              Content="英" x:Name="y" Focusable="False" HorizontalAlignment="Left"
                              Margin="597,280,0,0" VerticalAlignment="Top" Width="165"
                              Click="Button_Click_2"  Height="42"/>
 
-                </Grid>
+            </Grid>
 
-            </Border>
         </Grid>
 
     </Border>
