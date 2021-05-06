@@ -32,9 +32,17 @@ namespace RECSuzhou
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;
-
+            if(Global.Config.DegreeOptimiz=="0")
+            {
+                SuZhouHQAll.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SuZhouHQAll.Visibility = Visibility.Hidden;
+                SuZhouHQAllNoDegree.Visibility = Visibility.Visible;
+            }
             Stamp.Close();
-            App.simpleWindow.Update(@"D:\BaiduNetdiskDownload\JJHJ\镜酱 - 玛修 [9P 47.1MB]", "pictures", 10000);
+            //App.simpleWindow.Update(@"D:\BaiduNetdiskDownload\JJHJ\镜酱 - 玛修 [9P 47.1MB]", "pictures", 10000);
         }
 
 

@@ -469,5 +469,17 @@
   <ItemGroup>
     <Resource Include="Images\SuZhou\invoice.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\ownership.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\achieve.png" />
+    <Resource Include="Images\Button\homecount.png" />
+    <Resource Include="Images\Button\nohomechild.png" />
+    <Resource Include="Images\Button\other.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

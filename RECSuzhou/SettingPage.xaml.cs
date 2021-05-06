@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Xml;
 
 namespace RECSuzhou
 {
@@ -174,7 +175,64 @@ namespace RECSuzhou
                 case "Close":
                     Environment.Exit(0);
                     break;
-              
+                case "CloseDegree":
+                    Global.Config.DegreeOptimiz = "1";
+                    try
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(Environment.CurrentDirectory+"\\Config");
+                        //获得根节点
+                        XmlNode rootNode = doc.DocumentElement;
+                        //在根节点中寻找节点
+                        foreach (XmlNode node in rootNode.ChildNodes)
+                        {
+                            //找到对应的节点
+                            if (node.Name == "DegreeOptimiz")
+                            {
+                                node.InnerText = "1";
+                            }
+                         }
+                           
+                        
+                        doc.Save(Environment.CurrentDirectory + "\\Config");
+                    }
+                    catch 
+                    {
+                        Content = new HomePage("学位查询功能关闭失败");
+                        Pages();
+                    }
+                    Content = new HomePage("学位查询功能已经关闭");
+                    Pages();
+                    break;
+                case "OpenDegree":
+                    Global.Config.DegreeOptimiz = "0";
+                    try
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(Environment.CurrentDirectory + "\\Config");
+                        //获得根节点
+                        XmlNode rootNode = doc.DocumentElement;
+                        //在根节点中寻找节点
+                        foreach (XmlNode node in rootNode.ChildNodes)
+                        {
+                            //找到对应的节点
+                            if (node.Name == "DegreeOptimiz")
+                            {
+                                node.InnerText = "0";
+                            }
+                        }
+
+
+                        doc.Save(Environment.CurrentDirectory + "\\Config");
+                    }
+                    catch
+                    {
+                        Content = new HomePage("学位查询功能开启失败");
+                        Pages();
+                    }
+                    Content = new HomePage("学位查询功能已经开启");
+                    Pages();
+                    break;
                 default:
                     break;
             }
