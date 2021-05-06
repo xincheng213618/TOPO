@@ -45,7 +45,7 @@ namespace REC
             //Global.Related.IDCardData = new IDCardData() { Name = "", IDCardNo = "" };
             //Content = new FunctionPage1();
             //Pages();
-            //Content = new ErrorPage("122222222222");
+            //Content = new FunctionPage4();
             //Pages();
             //return;
 

@@ -75,7 +75,7 @@ namespace XinHua
         public StartWindow StartWindow;
 
         public static BackgroundWindow backgroundWindow;
-        public static InkWindows InkWindows;
+        //public static InkWindows InkWindows;
 
 
         //启动
@@ -88,7 +88,7 @@ namespace XinHua
 
             backgroundWindow = new BackgroundWindow();
             backgroundWindow.Show();
-            InkWindows = new InkWindows();
+            //InkWindows = new InkWindows();
         }
         private void Application_Initialized(object sender, StartupEventArgs e)
         {

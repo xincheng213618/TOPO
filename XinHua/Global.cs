@@ -61,15 +61,22 @@ namespace XinHua
         public string UUID;
         public string PageType;
         public IDCardData IDCardData;
-        public string transtionId;
+        public  CompanyData CompanyData;
 
         public void Initialized()
         {
             UUID = Guid.NewGuid().ToString();
             IDCardData = new IDCardData();
-            transtionId = "";
+            CompanyData = new CompanyData();
             PageType = "";
         }
+    }
+
+    public class CompanyData
+    {
+        public string CompanyID ;
+        public string CompanyName;
+        public string USCI;
     }
 
     [Serializable]

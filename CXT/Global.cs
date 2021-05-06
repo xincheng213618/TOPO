@@ -63,6 +63,7 @@ namespace XinHua
         public IDCardData IDCardData;
         public string transtionId;
 
+
         public void Initialized()
         {
             UUID = Guid.NewGuid().ToString();

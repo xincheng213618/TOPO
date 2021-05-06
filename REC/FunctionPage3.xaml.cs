@@ -161,7 +161,7 @@ namespace REC
             {
                 printDate.StatusCode = "印制号识别中："+i.ToString();
 
-                if (OCRMath("Temp\\ocr_result1.jpg", i, out YinZhihao))
+                if (OCRMath("Temp\\ocr_result.jpg", i, out YinZhihao))
                 {
                     printDate.StatusCode = i.ToString() + "识别成功" + Environment.NewLine + YinZhihao;
                     Global.Related.Fix_OCR_Data = YinZhihao;
@@ -169,7 +169,7 @@ namespace REC
                     break;
                 }
             }
-            Requests.File_Upload("Temp\\ocr_result1.jpg", YinZhihao, true, Global.Related.RECData.QLR, Global.Related.RECData.QLRZJH, Global.Related.RECData.BDCQZH);
+            Requests.File_Upload("Temp\\ocr_result.jpg", YinZhihao, true, Global.Related.RECData.QLR, Global.Related.RECData.QLRZJH, Global.Related.RECData.BDCQZH);
             Dispatcher.BeginInvoke(new Action(() => OCRover(Sucess)));
         }
 
@@ -192,45 +192,55 @@ namespace REC
             Match math = Regex.Match(text, @"(\d{11})");
             Match math1 = Regex.Match(text, @"(\d{10})");
             Match math2 = Regex.Match(text, @"(\d{9})");
-            Match math3 = Regex.Match(text, @"(\d{8})");
 
 
             if (math.Success)
             {
                 YinZhiHao = math.Value;
-                if (YinZhiHao.Substring(0, 3) != "320")
+                if (YinZhiHao.Substring(0, 3) == "320")
                 {
+                    return true;
+                }
+                else if (YinZhiHao.Substring(1, 2) =="20")
+                {
+                    Log.Write("印制号:" + YinZhiHao);
                     YinZhiHao = "320" + YinZhiHao.Substring(3, math.Value.Length - 3);
                     Log.Write("执行印制号修正:" + YinZhiHao);
+                    return true;
                 }
-                return true;
+                else
+                {
+                    return false;
+                }
             }
             else if (math1.Success)
             {
                 YinZhiHao = math1.Value;
-                if (YinZhiHao.Substring(0, 3) != "20")
+                if (YinZhiHao.Substring(0, 2) == "20")
                 {
                     YinZhiHao = "320" + YinZhiHao.Substring(2, math1.Value.Length - 2);
                     Log.Write("执行印制号修正:" + YinZhiHao);
+                    return true;
                 }
-                return true;
+                else
+                {
+                    return false;
+                }
             }
             else if (math2.Success)
             {
                 YinZhiHao = math2.Value;
-                if (YinZhiHao.Substring(0, 3) != "320")
+                if (YinZhiHao.Substring(0, 1) == "0")
                 {
-                    YinZhiHao = "0" + YinZhiHao.Substring(1, math2.Value.Length - 1);
+                    YinZhiHao = "320" + YinZhiHao.Substring(1, math2.Value.Length - 1);
                     Log.Write("执行印制号修正:" + YinZhiHao);
+                    return true;
                 }
-                return true;
-            }
-            else if (math3.Success)
-            {
-                YinZhiHao = math3.Value;
-                YinZhiHao = "0" + YinZhiHao.Substring(0, math3.Value.Length - 0);
-                Log.Write("执行印制号修正:" + YinZhiHao);
-                return true;
+                else
+                {
+                    return false;
+                }
+
             }
             else
             {

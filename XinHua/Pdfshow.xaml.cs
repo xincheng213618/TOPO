@@ -234,7 +234,7 @@ namespace XinHua
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            Content = new HomePage();
+            Content = new XinHuaCompanyDetailPage(Global.Related.CompanyData.CompanyID);
             Pages();
         }
 
