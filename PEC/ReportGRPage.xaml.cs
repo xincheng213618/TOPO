@@ -36,6 +36,7 @@ namespace PEC
             Acrobat.pdfControl.BeginInit();
             formsHost.Child = Acrobat.pdfControl;
             Acrobat.pdfControl.EndInit();
+
             switch (Global.Related.PageType)
             {
                 case "ProvincialLYG":

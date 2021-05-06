@@ -65,7 +65,7 @@
             </Border>
         </Grid>
 
-        <Grid x:Name="SuZhouGuSu" Grid.Row="1"  Visibility="Visible">
+        <Grid x:Name="SuZhouGuSu" Grid.Row="1"  Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -111,7 +111,7 @@
 
         </Grid>
 
-        <Grid x:Name="SuZhouHQAll" Grid.Row="1"   Visibility="Hidden" Margin="50,50,50,60">
+        <Grid x:Name="SuZhouHQAll" Grid.Row="1"   Visibility="Visible" Margin="50,50,50,60">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
@@ -161,7 +161,7 @@
                     <Image Source="images/archive.png"/>
                 </Button>
             </Border>
-            <Border   Grid.Row="3" Grid.Column="1" Margin="20" Opacity="0.9" Visibility="Visible"  >
+            <Border   Grid.Row="3" Grid.Column="1" Margin="20" Opacity="0.9" Visibility="Hidden"  >
                 <Button  Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="DegreePages">
                     <Image Source="images/SuZhou/degree.png"/>
                 </Button>

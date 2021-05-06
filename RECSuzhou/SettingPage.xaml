@@ -95,7 +95,7 @@
                             </Border>
                         </Grid>
                     </Grid>
-                    <Grid x:Name="TestScrollViewer" Grid.Column="1" Visibility="Visible" >
+                    <Grid x:Name="TestScrollViewer" Grid.Column="1" Visibility="Hidden" >
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>

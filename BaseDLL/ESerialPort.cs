@@ -240,6 +240,9 @@ namespace BaseDLL
             }
         }
 
+        /// <summary>
+        /// 错误代码
+        /// </summary>
         public static Dictionary<int, string> CheckDeviceCode = new Dictionary<int, string>()
         {
             { 0,"正常" },
