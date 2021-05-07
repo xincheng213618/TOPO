@@ -32,10 +32,10 @@ namespace RECSuzhou
             switch (Global.Related.PageType)
             {
              
-                case "SZHQMoney":
+                case "SZMoneyPages":
                     SearchTitleLabel.Content = "请输入要查询资金的编号";
                     break;
-                case "SZHQProgress":
+                case "SZProgress":
                     SearchTitleLabel.Content = "请输入要查询进程的编号";
                     break;
               

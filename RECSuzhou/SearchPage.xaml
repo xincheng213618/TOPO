@@ -13,44 +13,49 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button  Style="{StaticResource  hiddenButton}"  Click="Home_Click"  Margin="20">
+                    <Image Source="Images/return.png" Stretch="Uniform"/>
+                </Button>
 
-        <Grid Grid.Row="1" Background="Transparent">
+                <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"/>
+                <Button Grid.Column="1" Style="{StaticResource  hiddenButton}" Margin="16"  Click="Home_Click" >
+                    <Image Source="Images/home.png"></Image>
+                </Button>
+                <Label x:Name="CoutLabel" Grid.Column="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
+                    <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
+                </Label>
+
+            </Grid>
+
+
+        </Grid>
+        <Grid Grid.Row="1" Background="Transparent" Margin="0,0,0,200">
             <Grid.RowDefinitions>
                 <RowDefinition Height="73*"/>
                 <RowDefinition Height="650"/>
-                <RowDefinition Height="158*"/>
+                <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="85*"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Row="2" Grid.Column="1" Background="#4d3fc3" Opacity="0.9" Margin="320,50,320,0" CornerRadius="15,15,0,0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" Margin="20"  BorderThickness="0,0,0,0" BorderBrush="White">
-                        <Button   Style="{StaticResource  hiddenButton}"   Click="Home_Click" >
-                            <Image Source="Images/return.png"></Image>
-                        </Button>
-                    </Border>
-                    <Border Grid.Column="1" BorderThickness="2,0,2,0" BorderBrush="White" Margin="0,20,0,20"></Border>
-                    <Border Grid.Column="1" Margin="20">
-                        <Button   Style="{StaticResource  hiddenButton}"   Click="Home_Click" >
-                            <Image Source="Images/home.png"></Image>
-                        </Button>
-                    </Border>
-                    <Border Grid.Column="2" Margin="20">
-                        <Label Grid.Row="1"  Foreground="White" FontSize="50" >
-                            <TextBlock Text="{Binding Countdown,StringFormat=0s}"/>
-                        </Label>
-                    </Border>
-                </Grid>
-            </Border>
-            <Border Grid.Row="1" Grid.Column="1" CornerRadius="20,20,20,20" Background="#4d3fc3" Opacity="0.9" BorderBrush="Transparent" BorderThickness="1" >
+           
+            <Grid Grid.Row="1" Height="80" VerticalAlignment="Bottom" Margin="300,20">
+            <Border Background="#7994e2" Opacity="0.8" CornerRadius="30"/>
+    
+
+
+        </Grid>
+            <Border Grid.Row="1" Grid.Column="1" CornerRadius="20,20,20,20" Background="#90acfd" Opacity="0.9" BorderBrush="Transparent" BorderThickness="1" >
                 <Grid>
                     <Grid.ColumnDefinitions>
 

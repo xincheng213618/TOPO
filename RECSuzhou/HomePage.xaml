@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="130" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -194,7 +194,7 @@
                             <Border CornerRadius="20" Background="#a872f4" BorderBrush="#4368CE" BorderThickness="3"  Opacity="0.95" />
 
                             <Image Source="images/Button/homecount.png" Stretch="Uniform" Margin="40,30,40,70"  />
-                            <Label  Content="房屋套数证明(唯一)" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
+                            <Label  Content="套数证明(唯一)" Foreground="White" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
                                 <Label.Effect>
                                     <DropShadowEffect BlurRadius="0" ShadowDepth="3" Opacity="0.8"/>
                                 </Label.Effect>
@@ -220,7 +220,7 @@
                             <Border CornerRadius="20" Background="#49ebdd" BorderBrush="#4368CE" BorderThickness="3"  Opacity="0.95" />
 
                             <Image Source="images/Button/nohomechild.png" Stretch="Uniform" Margin="40,30,40,70"  />
-                            <Label  Content="无房证明（未成年）" Foreground="White" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
+                            <Label  Content="无房证明(未成年)" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
                                 <Label.Effect>
                                     <DropShadowEffect BlurRadius="0" ShadowDepth="3" Opacity="0.8"/>
                                 </Label.Effect>
@@ -235,7 +235,7 @@
                     <Image Source="images/other.png"/>
                 </Button>
             </Border>-->
-            <Button Grid.Row="1" Grid.Column="1"  Click="PageButton_Click" Tag="SZMoneyPages">
+            <Button Grid.Row="1" Grid.Column="2"  Click="PageButton_Click" Tag="SZMoneyPages">
                 <Button.Template>
                     <ControlTemplate>
                         <Grid Height="230" Width="240" Opacity="0.9"  >
@@ -243,10 +243,10 @@
                                 <DropShadowEffect BlurRadius="0" ShadowDepth="3" Opacity="0.1"/>
                             </Grid.Effect>
 
-                            <Border CornerRadius="20" Background="#627ae8" BorderBrush="#4368CE" BorderThickness="3"  Opacity="0.95" />
+                            <Border CornerRadius="20" Background="PaleVioletRed" BorderBrush="#4368CE" BorderThickness="3"  Opacity="0.95" />
 
                             <Image Source="images/Button/other.png" Stretch="Uniform" Margin="40,30,40,70"  />
-                            <Label  Content="其他查询" Foreground="White" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
+                            <Label  Content="资金查询" Foreground="White" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
                                 <Label.Effect>
                                     <DropShadowEffect BlurRadius="0" ShadowDepth="3" Opacity="0.8"/>
                                 </Label.Effect>
@@ -256,12 +256,34 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            <Button Grid.Row="2" Grid.Column="0"  Click="PageButton_Click" Tag="SZProgress">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid Height="230" Width="240" Opacity="0.9"  >
+                            <Grid.Effect>
+                                <DropShadowEffect BlurRadius="0" ShadowDepth="3" Opacity="0.1"/>
+                            </Grid.Effect>
+
+                            <Border CornerRadius="20" Background="DarkMagenta" BorderBrush="#4368CE" BorderThickness="3"  Opacity="0.95" />
+
+                            <Image Source="images/Button/progress.png" Stretch="Uniform" Margin="40,30,40,70"  />
+                            <Label  Content="进度查询" Foreground="White" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
+                                <Label.Effect>
+                                    <DropShadowEffect BlurRadius="0" ShadowDepth="3" Opacity="0.8"/>
+                                </Label.Effect>
+                            </Label>
+                        </Grid>
+
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
             <!--<Border   Grid.Row="1" Grid.Column="2" Margin="20" Opacity="0.9" Visibility="Visible"  >
                 <Button  Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="SZHQArchivePages">
                     <Image Source="images/archive.png"/>
                 </Button>
             </Border>-->
-            <Button Grid.Row="1" Grid.Column="2"  Click="PageButton_Click" Tag="SZHQArchivePages">
+            <Button Grid.Row="1" Grid.Column="1"  Click="PageButton_Click" Tag="SZHQArchivePages">
                 <Button.Template>
                     <ControlTemplate>
                         <Grid Height="230" Width="240" Opacity="0.9"  >
@@ -287,7 +309,7 @@
                     <Image Source="images/SuZhou/degree.png"/>
                 </Button>
             </Border>-->
-            <Button Grid.Row="2" Grid.Column="0"  Click="PageButton_Click" Tag="DegreePages">
+            <Button x:Name="degreeButton" Grid.Row="2" Grid.Column="1"  Click="PageButton_Click" Tag="DegreePages" Visibility="Hidden">
                 <Button.Template>
                     <ControlTemplate>
                         <Grid Height="230" Width="240" Opacity="0.9"  >
@@ -352,7 +374,7 @@
             </Border>
 
             <Border   Grid.Row="1" Grid.Column="2" Margin="20" Opacity="0.9" Visibility="Visible"  >
-                <Button  Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="SZWZArchivePages">
+                <Button  Grid.RowSpan="3" Style="{StaticResource hiddenButton}" Click="PageButton_Click" Tag="SZHQArchivePages">
                     <Image Source="images/archive.png"/>
                 </Button>
             </Border>
