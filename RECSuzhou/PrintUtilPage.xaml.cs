@@ -58,7 +58,8 @@ namespace RECSuzhou
                 timer.Dispose();
                 Sucess = true;
                 PopTips.Text = "PDF已经发送到打印机";
-                await Task.Delay(int.Parse(Global.Config.PDFJiaZai) * 1000);
+                //await Task.Delay(int.Parse(Global.Config.PDFJiaZai) * 1000);
+                await Task.Delay(3 * 1000);
                 PopTips.Text = "打印机正在打印";
                 await Task.Delay(PageAllNum * 2000);
                 PopTips.Text = "打印完成";

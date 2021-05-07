@@ -34,15 +34,11 @@ namespace RECSuzhou
                 List[i].Visibility = Visibility.Hidden;
             if(Global.Config.DegreeOptimiz=="0")
             {
-                SuZhouHQAll.Visibility = Visibility.Visible;
+                degreeButton.Visibility = Visibility.Visible;
             }
-            else
-            {
-                SuZhouHQAll.Visibility = Visibility.Hidden;
-                SuZhouHQAllNoDegree.Visibility = Visibility.Visible;
-            }
+           
             Stamp.Close();
-            //App.simpleWindow.Update(@"D:\BaiduNetdiskDownload\JJHJ\镜酱 - 玛修 [9P 47.1MB]", "pictures", 10000);
+            App.simpleWindow.Update(Environment.CurrentDirectory+ "\\BackGround", "pictures", 10000);
         }
 
 
@@ -92,8 +88,9 @@ namespace RECSuzhou
                     Content = new IDCardPage();
                     Pages();
                     break;
+                case "SZProgress":
                 case "SZMoneyPages":
-                    Content = new SZMoneyPage();
+                    Content = new SearchPage();
                     Pages();
                     break;
                 case "DegreePages":

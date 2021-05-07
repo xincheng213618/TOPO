@@ -109,7 +109,7 @@ namespace RECSuzhou
         {
             System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex(@"^[A-Za-z0-9]+$");//读卡判断规则
 
-            Text = ShowText.Text;//这里面有一个需要注意的地方
+            Text = ShowText.Text;
             if (reg.IsMatch(Text))
             {
                 return true;
