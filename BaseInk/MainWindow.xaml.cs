@@ -1,5 +1,4 @@
-﻿using BaseUtil;
-using Microsoft.Ink;
+﻿using Microsoft.Ink;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -60,7 +59,7 @@ namespace BaseInk
         //修正不直接对页面负责对窗口负责
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            KeyHelper.OnKeyPress(KeyHelper.KeyCode.BACK);
+            //KeyHelper.OnKeyPress(KeyHelper.KeyCode.BACK);
         }
 
         Timer timer = null;
@@ -140,7 +139,6 @@ namespace BaseInk
         }
         private void Fun_Click(object sender, RoutedEventArgs e)
         {
-            KeyHelper.HotKey(new List<byte>() { KeyHelper.KeyCode.WinL, KeyHelper.KeyCode.SPACE });
         }
 
 
@@ -164,161 +162,215 @@ namespace BaseInk
             ListVierew.Visibility = Visibility.Hidden;
         }
 
-        string[] ss = new string[] { "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P" };
-        string[] sss = new string[] { "A", "S", "D", "F", "G", "H", "J", "K", "L" };
-        string[] ssss = new string[] { "Z", "X", "C", "V", "B", "N", "M" };
-        string[] ss1 = new string[] { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p" };
-        string[] ss2 = new string[] { "a", "s", "d", "f", "g", "h", "j", "k", "l" };
-        string[] ss3 = new string[] { "z", "x", "c", "v", "b", "n", "m" };
-        bool l = true;
-        Button Buttones = null;
-        Border borders = null;
-        KeyHelper.KeyCode B = new KeyHelper.KeyCode();
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-            if (l)
-            {
-
-                if (Console.CapsLock)
-                {
-                    KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
-                    ((System.Windows.Controls.Button)sender).Content = "小写";
-                }
-                l = false;
-            }
-            else
-
-                l = true;
-            if (!Console.CapsLock)
-            {
-                KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
-                ((System.Windows.Controls.Button)sender).Content = "大写";
-
-            }
-        }
      
 
-    private void Button_Click_2(object sender, RoutedEventArgs e)
-    {
-       
-        l = false;
-        if (((System.Windows.Controls.Button)sender).Content.ToString() == "英")
-        {
-            ((System.Windows.Controls.Button)sender).Content = "中";
-            btn1.Content = "小写";
-        }
-        else
-        {
-            ((System.Windows.Controls.Button)sender).Content = "英";
-
-        }
-        if (Console.CapsLock)
-        {
-
-            KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
-        }
-
-        KeyHelper.OnKeyPress(KeyHelper.KeyCode.SHIFT);
-    }
-    private void Button_Clicks(object sender, RoutedEventArgs e)
-    {
-        string indexy = ((System.Windows.Controls.Button)sender).Content.ToString();
-        switch (indexy)
-        {
-
-            case "=":
-                break;
-            default:
-                KeyHelper.OnKeyPress(B[indexy]);
-                break;
-
-        }
-    }
-    bool tkey = true;
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        if (tkey)
-        {
-            if (InkPut.t == null)
-            {
-                InkPut.t = new TextBox();
-            }
-            tx.Text = InkPut.t.Text;
-            key.Visibility = Visibility.Visible;
-
-          
-            tx.Focus();
-            KeyHelper.OnKeyPress(KeyHelper.KeyCode.END);
-
-            KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
-            tkey = false;
-            key.Visibility = Visibility.Visible;
-
-        }
-        else
-        {
-            key.Visibility = Visibility.Hidden;
-
-
-            tkey = true;
-
-        }
+            grid_center.Visibility = Visibility.Hidden;
 
     }
     public void clearText()
     {
-        tx.Text = "";
     }
 
-        ImageBrush a = new ImageBrush(new BitmapImage(
-                new Uri(Directory.GetCurrentDirectory() + "\\images\\按钮1.png", UriKind.Absolute)
-            ));
-        ImageBrush b = new ImageBrush(new BitmapImage(
-                    new Uri(Directory.GetCurrentDirectory() + "\\images\\按下1.png", UriKind.Absolute)
-                ));
-        private void tx_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        InkPut.t.Text = tx.Text;
-    }
+
+
 
     private void Window_Activated(object sender, EventArgs e)
     {
-        tx.Focus();
     }
-    int t1 = 0;
-    int t2 = 0;
 
-    int t3 = 0;
-    WrapPanel InkWindowss = null;
 
-        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+
+        void RefreshCapsText()
         {
-           
+            if (this.btn_caps.IsChecked)
+            {
+                this.btn_caps.Content = "大写";
+            }
+            else
+            {
+                this.btn_caps.Content = "小写";
+            }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Grid_Click(object sender, RoutedEventArgs e)
         {
-            
-          ;
+            Button button = e.OriginalSource as Button;
+
+            if (button == null) return;
+
+            //Debug.WriteLine(button.Content);
+
+            string content = button.Content.ToString();
+
+            if (content == "确定")
+            {
+                this.OnSumitClick();
+            }
+            else if (content == "取消")
+            {
+                this.OnCancelClick();
+            }
+            else
+            {
+
+                //// Do ：打开大写 
+                if (this.btn_shift.IsChecked)
+                {
+                    KeyHelper.OnKeyDown(Convert.ToByte(this.btn_shift.Tag.ToString()));
+                }
+
+                if (this.btn_shift.IsChecked)
+                {
+                    KeyHelper.OnKeyDown(Convert.ToByte(this.btn_shift.Tag.ToString()));
+                }
+
+
+                string tag = button.Tag.ToString();
+
+                byte b = Convert.ToByte(tag);
+
+                KeyHelper.OnKeyPress(b);
+            }
         }
 
-        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        //声明和注册路由事件
+        public static readonly RoutedEvent SumitClickRoutedEvent =
+            EventManager.RegisterRoutedEvent("SumitClick", RoutingStrategy.Bubble, typeof(EventHandler<RoutedEventArgs>), typeof(InkWindows));
+        //CLR事件包装
+        public event RoutedEventHandler SumitClick
         {
-            ((Label)sender).Background = b;
+            add { this.AddHandler(SumitClickRoutedEvent, value); }
+            remove { this.RemoveHandler(SumitClickRoutedEvent, value); }
+        }
+
+        //激发路由事件,借用Click事件的激发方法
+
+        protected void OnSumitClick()
+        {
+            RoutedEventArgs args = new RoutedEventArgs(SumitClickRoutedEvent, this);
+            this.RaiseEvent(args);
+        }
+
+        //声明和注册路由事件
+        public static readonly RoutedEvent CancelClickRoutedEvent =
+            EventManager.RegisterRoutedEvent("CancelClick", RoutingStrategy.Bubble, typeof(EventHandler<RoutedEventArgs>), typeof(InkWindows));
+        //CLR事件包装
+        public event RoutedEventHandler CancelClick
+        {
+            add { this.AddHandler(CancelClickRoutedEvent, value); }
+            remove { this.RemoveHandler(CancelClickRoutedEvent, value); }
+        }
+
+        //激发路由事件,借用Click事件的激发方法
+
+        protected void OnCancelClick()
+        {
+            RoutedEventArgs args = new RoutedEventArgs(CancelClickRoutedEvent, this);
+            this.RaiseEvent(args);
+        }
+
+
+
+        public string InputText
+        {
+            get { return (string)GetValue(InputTextProperty); }
+            set { SetValue(InputTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InputTextProperty =
+            DependencyProperty.Register("InputText", typeof(string), typeof(InkWindows), new PropertyMetadata(default(string), (d, e) =>
+            {
+                InkWindows control = d as InkWindows;
+
+                if (control == null) return;
+
+                string config = e.NewValue as string;
+
+                control.txt_input.Text = config;
+
+            }));
+
+        private void Btn_Click(object sender, RoutedEventArgs e)
+        {
+            FuncButtonControl btn = sender as FuncButtonControl;
+
+            string tag = btn.Tag.ToString();
+
+            byte b = Convert.ToByte(tag);
+
+            if (btn.IsChecked)
+            {
+                KeyHelper.OnKeyUp(b);
+            }
+            else
+            {
+                KeyHelper.OnKeyDown(b);
+            }
+
+            btn.IsChecked = !btn.IsChecked;
 
         }
 
-        private void Label_MouseUp(object sender, MouseButtonEventArgs e)
+        void RefreshCaps()
         {
-            ((Label)sender).Background = a;
+
+
+            var btns = FindVisualChild<FuncButtonControl>(this.grid_center);
+
+            foreach (var btn in btns)
+            {
+                if (btn.Content == null) continue;
+
+                if (btn.Content.ToString().Length != 1) continue;
+
+                btn.Content = this.btn_caps.IsChecked ? btn.Content.ToString().ToUpper() : btn.Content.ToString().ToLower();
+
+            }
+
+            this.RefreshCapsText();
 
         }
 
-        private void Label_MouseLeave(object sender, MouseEventArgs e)
+        List<T> FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
         {
-            ((Label)sender).Background = a;
+            List<T> collecion = new List<T>();
 
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+
+                if (child != null && child is T)
+                    collecion.Add((T)child);
+                else
+                {
+                    collecion.AddRange(FindVisualChild<T>(child));
+                }
+            }
+
+            return collecion;
+        }
+
+        private void btn_caps_Click(object sender, RoutedEventArgs e)
+        {
+            FuncButtonControl btn = sender as FuncButtonControl;
+
+            string tag = btn.Tag.ToString();
+
+            byte b = Convert.ToByte(tag);
+
+            KeyHelper.OnKeyDown(b);
+
+            btn.IsChecked = !btn.IsChecked;
+
+            this.RefreshCaps();
+        }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.OnCancelClick();
         }
     }
             
