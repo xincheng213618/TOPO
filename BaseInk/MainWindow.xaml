@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BaseInk"
         mc:Ignorable="d"
-        Height="500 " Activated="Window_Activated"  Width="1700" Focusable="False" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Initialized="Window_Initialized">
+        Height="300 " Activated="Window_Activated"  Width="800" Focusable="False" AllowsTransparency="True" WindowStyle="None" Background="Transparent" Initialized="Window_Initialized">
 
     <Border Background="#DADADA" Margin="2,0,2,2" Focusable="False" >
         <Border.Effect>
@@ -43,12 +43,9 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="1" Focusable="False"  Click="Fun_Click"  >
+                <Button Grid.Row="0" Focusable="False"  Click="Fun_Click"  >
                     <Button.Template>
                         <ControlTemplate>
                             <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
@@ -57,7 +54,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Grid.Row="2" Focusable="False" Click="Clear_Click"  >
+                <Button Grid.Row="1" Focusable="False" Click="Clear_Click"  >
                     <Button.Template>
                         <ControlTemplate>
                             <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
@@ -76,11 +73,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Row="0" Grid.Column="0"   Focusable="False"   Click="Button_Click"   >
+                <Button x:Name="KeyBorderLabel" Grid.Row="0" Grid.Column="0" Content="键盘"   Focusable="False"   Click="Button_Click"   >
                     <Button.Template>
                         <ControlTemplate>
                             <Border Background="White" Margin="0,0,2,2" CornerRadius="4">
-                                <Label Content="键盘" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                                <Label x:Name="KeyBorderLabel" Content="键盘" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -121,41 +118,16 @@
                     <InkCanvas x:Name="inkCanvas" Focusable="False"  StrokeCollected="InkCanvas_StrokeCollected" Background="#f5f6f7" Margin="0,0,0,0" />
                 </Border>
             </Grid>
-            
-            <Grid  x:Name="grid_center" Grid.Row="1"  ButtonBase.Click="Grid_Click" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="816*"/>
-                </Grid.ColumnDefinitions>
+
+            <Grid  x:Name="grid_center" Grid.Row="1"  Width="600" ButtonBase.Click="Grid_Click"  Visibility="Hidden" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0"/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
-                <Grid Grid.ColumnSpan="2" Margin="0,0,0,90" Grid.RowSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBox HorizontalContentAlignment="Center" x:Name="txt_input" Foreground="Black"
-                             BorderBrush="#1fd800" BorderThickness="1.5" Height="80" FontWeight="Bold" FontSize="30"
-                             CaretBrush="Black" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left"
-                             Text="{Binding ElementName=control,Path=InputText}"
-                             Width="1200" />
-
-                    <local:FuncButtonControl Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Width="200"  Content="确定">
-
-                    </local:FuncButtonControl>
-                    <local:FuncButtonControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Width="200"  Content="取消"/>
-                </Grid>
-
-                <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -167,51 +139,39 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="0"   Content="Esc" Tag="23"/>
+                    <local:FuncButtonControl Grid.Row="1" Grid.Column="0"   Content="1" Tag="49" />
 
-                    <local:FuncButtonControl IsEnabled="False" Grid.Row="1" Grid.Column="1" Content="`"  Tag="96" ShiftValue="~"/>
+                    <local:FuncButtonControl Grid.Row="1" Grid.Column="1"   Content="2" Tag="50" />
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="2"   Content="1" Tag="49" ShiftValue="!"/>
+                    <local:FuncButtonControl Grid.Row="2" Grid.Column="2"   Content="3" Tag="51"  />
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="3"   Content="2" Tag="50"  ShiftValue="@"/>
+                    <local:FuncButtonControl Grid.Row="2" Grid.Column="3"   Content="4"  Tag="52"  />
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="4"   Content="3" Tag="51"  ShiftValue="#"/>
+                    <local:FuncButtonControl Grid.Row="2" Grid.Column="4"   Content="5" Tag="53"  />
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="5"   Content="4"  Tag="52"  ShiftValue="$"/>
+                    <local:FuncButtonControl Grid.Row="3" Grid.Column="5"   Content="6"  Tag="54"  />
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="6"   Content="5" Tag="53"  ShiftValue="%"/>
+                    <local:FuncButtonControl Grid.Row="3" Grid.Column="6"   Content="7" Tag="55" />
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="7"   Content="6"  Tag="54"  ShiftValue="^"/>
+                    <local:FuncButtonControl Grid.Row="3" Grid.Column="7"   Content="8" Tag="56"  />
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="7" Tag="55"  ShiftValue="&amp;"/>
+                    <local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="9"  Tag="57"   />
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="8" Tag="56"  ShiftValue="*"/>
+                    <local:FuncButtonControl Grid.Row="1" Grid.Column="9"   Content="0" Tag="48"  />
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="10"   Content="9"  Tag="57"   ShiftValue="("/>
+                    <!--<local:FuncButtonControl Grid.Row="1" Grid.Column="12"   Content="-" Tag="189"  />
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="11"   Content="0" Tag="48"  ShiftValue=")"/>
+                    <local:FuncButtonControl Grid.Row="1" Grid.Column="13" Content="=" Tag="61"  />-->
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="12"   Content="-" Tag="189"  ShiftValue="_"/>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="13" Content="=" Tag="61"  ShiftValue="+"/>
-
-                    <local:FuncButtonControl Style="{StaticResource Resource.Style.FuncButton.Lenght.2}" Grid.Row="1" Grid.Column="14" HorizontalAlignment="Right" Content="      " Tag="8"/>
-
-                    <local:FuncButtonControl Style="{StaticResource Resource.Style.FuncButton.Lenght.2}" Grid.Row="1" Grid.Column="14" Content="      " HorizontalAlignment="Right" Tag="8" IsHitTestVisible="False">
-                    </local:FuncButtonControl>
 
                 </Grid>
 
-                <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid Grid.Row="1" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="0.5*"/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -222,13 +182,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0.5*"/>
                     </Grid.ColumnDefinitions>
-
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="0" Style="{StaticResource Resource.Style.FuncButton.Lenght.2}" Content="Tab" Tag="9"/>
 
                     <local:FuncButtonControl Grid.Row="1" Grid.Column="1" Content="q"  Tag="81"/>
 
@@ -249,19 +204,10 @@
                     <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="o" Tag="79"/>
 
                     <local:FuncButtonControl Grid.Row="3" Grid.Column="10"   Content="p" Tag="80"/>
-
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="11" Content="[" Tag="219"  ShiftValue=" {"/>
-
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="12"   Content="]" Tag="221"  ShiftValue="}"/>
-
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="13"   Content="\" Tag="226"  ShiftValue="|"/>
-
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="14"   Content="Del" Tag="46"/>
                 </Grid>
 
-                <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                <Grid Grid.Row="2" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2.5*"/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -273,16 +219,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="2.5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <local:FuncButtonControl x:Name="btn_caps" Click="btn_caps_Click" 
-                                         Grid.Row="1" Style="{StaticResource Resource.Style.FuncButton.Lenght.2.5}"
-                                         IsCheckedControl="True" 
-                                         Grid.Column="0" 
-                                         HorizontalAlignment="Left" 
-                                         Content="Caps" Tag="20">
-                    </local:FuncButtonControl>
 
                     <local:FuncButtonControl Grid.Row="1" Grid.Column="1" Content="a"  Tag="65"/>
 
@@ -303,16 +241,13 @@
 
                     <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="l" Tag="76"/>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="10"   Content=";" Tag="59"  ShiftValue=":"/>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="11" Content="&apos;" Tag="8"  ShiftValue="&quot;"/>
 
-                    <local:FuncButtonControl Style="{StaticResource Resource.Style.FuncButton.Lenght.2.5}" Grid.Row="1" Grid.Column="14" HorizontalAlignment="Right" Content="Enter" Tag="13"/>
                 </Grid>
 
-                <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                <Grid Grid.Row="3" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="1.5*"/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -320,19 +255,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <local:FuncButtonControl Style="{StaticResource Resource.Style.FuncButton.Lenght.2.5}" 
-                                         x:Name="btn_shift" Click="Btn_Click" 
-                                         Grid.Row="1" 
-                                         Grid.Column="0" 
-                                         HorizontalAlignment="Left" 
-                                         Content="Shift" Tag="160"/>
+
 
                     <local:FuncButtonControl Grid.Row="1" Grid.Column="1" Content="z"  Tag="90"/>
 
@@ -350,59 +276,46 @@
 
                     <local:FuncButtonControl Grid.Row="3" Grid.Column="7"   Content="m"  Tag="77"/>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="," Tag="219"   ShiftValue="&lt;" />
-                    <!--188-->
+                    <!--<local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="," Tag="219"   />
+                    --><!--188--><!--
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="." Tag="119"  ShiftValue="&gt;" />
+                    <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="." Tag="119"  />-->
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="10"   Content="/" Tag="111"  ShiftValue="?" />
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="11" Content="∧" Tag="38"/>
 
-                    <local:FuncButtonControl Style="{StaticResource Resource.Style.FuncButton.Lenght.2.5}" IsCheckedControl="True" Grid.Row="1" Grid.Column="14" Content="Shift" HorizontalAlignment="Right" Tag="161"/>
                 </Grid>
 
-                <Grid Grid.Row="5 " Grid.ColumnSpan="2">
+                <Grid Grid.Row="4 ">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
                         <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
 
 
-                    <local:FuncButtonControl IsEnabled="False"  IsCheckedControl="True" Grid.Row="1" Grid.Column="0"  Content="Fn" Tag="49"/>
+                    <!--<local:FuncButtonControl IsEnabled="False"  IsCheckedControl="True" Grid.Row="1" Grid.Column="0"  Content="Fn" Tag="49"/>-->
 
-                    <local:FuncButtonControl  Click="Btn_Click"  IsCheckedControl="True" Grid.Row="1" Grid.Column="1" Content="Ctrl"  Tag="162"/>
+                    <!--<local:FuncButtonControl  Click="Btn_Click"  IsCheckedControl="True" Grid.Row="1" Grid.Column="1" Content="Ctrl"  Tag="162"/>-->
 
-                    <local:FuncButtonControl Click="Btn_Click" IsEnabled="False"  IsCheckedControl="True" Grid.Row="1" Grid.Column="2"   Content="Win" Tag="91"/>
+                    <!--<local:FuncButtonControl Click="Btn_Click" IsEnabled="False"  IsCheckedControl="True" Grid.Row="1" Grid.Column="2"   Content="Win" Tag="91"/>-->
 
-                    <local:FuncButtonControl  Click="Btn_Click" IsCheckedControl="True" Grid.Row="1" Grid.Column="3"   Content="Alt" Tag="164" />
+                    <!--<local:FuncButtonControl  Click="Btn_Click" IsCheckedControl="True" Grid.Row="1" Grid.Column="3"   Content="Alt" Tag="164" />-->
 
-                    <local:FuncButtonControl Grid.Row="2" Style="{StaticResource Resource.Style.FuncButton.Lenght.5.5}" Grid.Column="4" Content="Space" Tag="32"/>
-
-
-                    <local:FuncButtonControl Click="Btn_Click"  IsCheckedControl="True" Grid.Row="2" Grid.Column="5"   Content="Alt"  Tag="165"/>
-
-                    <local:FuncButtonControl Click="Btn_Click"  IsCheckedControl="True" Grid.Row="2" Grid.Column="6"   Content="Ctrl" Tag="163" />
+                    <local:FuncButtonControl Grid.Row="2" Style="{StaticResource Resource.Style.FuncButton.Lenght.5.5}" Grid.Column="2" Content="Space" Tag="32"/>
 
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="7"   Content="&lt;"  Tag="37"/>
+                    <!--<local:FuncButtonControl Click="Btn_Click"  IsCheckedControl="True" Grid.Row="2" Grid.Column="5"   Content="Alt"  Tag="165"/>-->
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="∨" Tag="40" />
+                    <!--<local:FuncButtonControl Click="Btn_Click"  IsCheckedControl="True" Grid.Row="2" Grid.Column="6"   Content="Ctrl" Tag="163" />-->
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="&gt;" Tag="39" />
 
-                    <local:FuncButtonControl IsEnabled="False" Style="{StaticResource Resource.Style.FuncButton.Lenght.2}" Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"   Content="右键" Tag="2"/>
+
+
+
+                    <!--<local:FuncButtonControl IsEnabled="False" Style="{StaticResource Resource.Style.FuncButton.Lenght.2}" Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"   Content="右键" Tag="2"/>-->
                 </Grid>
             </Grid>
 

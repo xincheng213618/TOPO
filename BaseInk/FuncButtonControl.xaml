@@ -7,9 +7,9 @@
     </ResourceDictionary.MergedDictionaries>-->
 
     <Style x:Key="DefaultFuctionButtonControl" TargetType="{x:Type local:FuncButtonControl}">
-        <Setter Property="Height" Value="150"/>
-        <Setter Property="Width" Value="400"/>
-        <Setter Property="FontSize" Value="60"/>
+        <Setter Property="Height" Value="75"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="FontSize" Value="30"/>
         <Setter Property="Foreground" Value="{DynamicResource S_GrayLight}"/>
         <Setter Property="Background" Value="{DynamicResource S_GrayLight}"/>
         <Setter Property="PressedBackground" Value="Red"/>

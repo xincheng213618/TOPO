@@ -162,37 +162,19 @@ namespace BaseInk
             ListVierew.Visibility = Visibility.Hidden;
         }
 
-     
-
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-            grid_center.Visibility = Visibility.Hidden;
-
-    }
-    public void clearText()
-    {
-    }
-
-
-
-
-    private void Window_Activated(object sender, EventArgs e)
-    {
-    }
-
-
-
-        void RefreshCapsText()
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (this.btn_caps.IsChecked)
-            {
-                this.btn_caps.Content = "大写";
-            }
-            else
-            {
-                this.btn_caps.Content = "小写";
-            }
+                grid_center.Visibility = Visibility.Hidden;
+
         }
+        public void clearText()
+        {
+        }
+        private void Window_Activated(object sender, EventArgs e)
+        {
+        }
+
+
 
         private void Grid_Click(object sender, RoutedEventArgs e)
         {
@@ -214,19 +196,7 @@ namespace BaseInk
             }
             else
             {
-
-                //// Do ：打开大写 
-                if (this.btn_shift.IsChecked)
-                {
-                    KeyHelper.OnKeyDown(Convert.ToByte(this.btn_shift.Tag.ToString()));
-                }
-
-                if (this.btn_shift.IsChecked)
-                {
-                    KeyHelper.OnKeyDown(Convert.ToByte(this.btn_shift.Tag.ToString()));
-                }
-
-
+ 
                 string tag = button.Tag.ToString();
 
                 byte b = Convert.ToByte(tag);
@@ -289,7 +259,6 @@ namespace BaseInk
 
                 string config = e.NewValue as string;
 
-                control.txt_input.Text = config;
 
             }));
 
@@ -326,11 +295,9 @@ namespace BaseInk
 
                 if (btn.Content.ToString().Length != 1) continue;
 
-                btn.Content = this.btn_caps.IsChecked ? btn.Content.ToString().ToUpper() : btn.Content.ToString().ToLower();
+                //btn.Content = this.btn_caps.IsChecked ? btn.Content.ToString().ToUpper() : btn.Content.ToString().ToLower();
 
             }
-
-            this.RefreshCapsText();
 
         }
 

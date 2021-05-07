@@ -47,9 +47,9 @@
 
         <Style x:Key="Resource.Style.FuncButton.Base" TargetType="{x:Type local:FuncButtonControl}">
             <Setter Property="Template" Value="{StaticResource Resource.Button.InputButton}"/>
-            <Setter Property="Height" Value="80"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="FontSize" Value="15"/>
             <Setter Property="Foreground" Value="#000000"/>
             <Setter Property="Focusable" Value="False" />
             <Setter Property="PressedBackground">
@@ -65,7 +65,7 @@
         </Style>
 
         <Style x:Key="Resource.Style.FuncButton.Lenght.2" TargetType="{x:Type local:FuncButtonControl}" BasedOn="{StaticResource Resource.Style.FuncButton.Base}">
-            <Setter Property="Width" Value="210"/>
+            <Setter Property="Width" Value="115"/>
             <Setter Property="PressedBackground">
                 <Setter.Value>
                     <ImageBrush ImageSource="Images/按下2.png" />
@@ -79,7 +79,7 @@
         </Style>
 
         <Style x:Key="Resource.Style.FuncButton.Lenght.2.5" TargetType="{x:Type local:FuncButtonControl}" BasedOn="{StaticResource Resource.Style.FuncButton.Base}">
-            <Setter Property="Width" Value="270"/>
+            <Setter Property="Width" Value="135"/>
             <Setter Property="PressedBackground">
                 <Setter.Value>
                     <ImageBrush ImageSource="Images/按下2.5.png" />
@@ -93,7 +93,7 @@
         </Style>
 
         <Style x:Key="Resource.Style.FuncButton.Lenght.5.5" TargetType="{x:Type local:FuncButtonControl}" BasedOn="{StaticResource Resource.Style.FuncButton.Base}">
-            <Setter Property="Width" Value="540"/>
+            <Setter Property="Width" Value="270"/>
             <Setter Property="PressedBackground">
                 <Setter.Value>
                     <ImageBrush ImageSource="Images/按下5.5.png" />
@@ -110,44 +110,4 @@
         <Style TargetType="local:FuncButtonControl" BasedOn="{StaticResource Resource.Style.FuncButton.Base}"/>
 
 
-
-    <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
-        <VirtualizingStackPanel Orientation="Horizontal" VerticalAlignment="Top" />
-    </ItemsPanelTemplate>
-    <ControlTemplate x:Key="imageButtonTemplate" TargetType="{x:Type Button}">
-        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" Name="PART_Background" Border.Background="Transparent">
-            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        </Border>
-        <ControlTemplate.Triggers>
-            <Trigger Property="UIElement.IsMouseOver" Value="True">
-                <Setter Property="Border.Background" Value="Transparent" TargetName="PART_Background" />
-            </Trigger>
-            <Trigger Property="ButtonBase.IsPressed" Value="True">
-                <Setter Property="UIElement.Effect">
-                    <Setter.Value>
-                        <DropShadowEffect BlurRadius="0" Color="White" Direction="0" Opacity="0" RenderingBias="Performance" ShadowDepth="0" />
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-
-    <ControlTemplate x:Key="imageButtonTemplateto" TargetType="{x:Type Button}">
-        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" Name="PART_Background"  >
-            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Border.Background>
-                <ImageBrush ImageSource="按钮1.png"/>
-            </Border.Background>
-        </Border>
-        <ControlTemplate.Triggers>
-           
-            <Trigger Property="ButtonBase.IsPressed" Value="True">
-                <Setter Property="UIElement.Effect">
-                    <Setter.Value>
-                        <DropShadowEffect BlurRadius="0" Color="White" Direction="0" Opacity="0" RenderingBias="Performance" ShadowDepth="0" />
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
 </ResourceDictionary>
