@@ -4,19 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace BaseInk
 {
@@ -72,6 +66,7 @@ namespace BaseInk
         Timer timer = null;
         private void InkCanvas_StrokeCollected(object sender, InkCanvasStrokeCollectedEventArgs e)
         {
+            ListVierew.Visibility = Visibility.Visible;
             if (timer != null)
             {
                 timer.Dispose();
@@ -166,7 +161,9 @@ namespace BaseInk
                 selectionsLists.Clear();
                 inkCanvas.Strokes.Clear();
             }
+            ListVierew.Visibility = Visibility.Hidden;
         }
+
         string[] ss = new string[] { "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P" };
         string[] sss = new string[] { "A", "S", "D", "F", "G", "H", "J", "K", "L" };
         string[] ssss = new string[] { "Z", "X", "C", "V", "B", "N", "M" };
@@ -228,9 +225,6 @@ namespace BaseInk
                 KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
             }
 
-
-
-
             KeyHelper.OnKeyPress(KeyHelper.KeyCode.SHIFT);
         }
         private void Button_Clicks(object sender, RoutedEventArgs e)
@@ -249,11 +243,14 @@ namespace BaseInk
         }
         bool tkey = true;
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             if (tkey)
             {
+                if (InkPut.t==null)
+                {
+                    InkPut.t = new TextBox();
+                }
                 tx.Text = InkPut.t.Text;
-                ink.Visibility = Visibility.Collapsed; ;
                 key.Visibility = Visibility.Visible;
                 add(ss, sss, ssss);
                 num();
@@ -262,11 +259,13 @@ namespace BaseInk
 
                 KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
                 tkey = false;
+                key.Visibility = Visibility.Visible;
+
             }
             else
             {
-                ink.Visibility = Visibility.Visible; ;
-                key.Visibility = Visibility.Collapsed;
+                key.Visibility = Visibility.Hidden;
+
                 sk.Children.Clear();
                 sk2.Children.Clear();
                 sk3.Children.Clear();
@@ -429,7 +428,15 @@ namespace BaseInk
 
                 if (70-t1>20)
                 {
-                    ((Button)(InkWindowss.Children[t2 + 1])).Background = b; ;
+                    try
+                    {
+                        ((Button)(InkWindowss.Children[t2 + 1])).Background = b; ;
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
             }
         }
@@ -441,8 +448,16 @@ namespace BaseInk
                 if (tk <= 50)
                 {
                     tk = 0;
-                    ((Button)(InkWindowss.Children[tk + 1])).Background = a; ;
-                    KeyHelper.OnKeyPress(B[((Button)(InkWindowss.Children[t2 + 1])).Content.ToString()]);
+                    try
+                    {
+                        ((Button)(InkWindowss.Children[tk + 1])).Background = a; ;
+                        KeyHelper.OnKeyPress(B[((Button)(InkWindowss.Children[t2 + 1])).Content.ToString()]);
+                    }
+                    catch (Exception)
+                    {
+                     
+                    }
+           
                 }
             }
             else
@@ -452,8 +467,16 @@ namespace BaseInk
 
                 if (70 - t1 > 20)
                 {
-                    ((Button)(InkWindowss.Children[t2 + 1])).Background = a; ;
+                    try
+                    {
+                        ((Button)(InkWindowss.Children[t2 + 1])).Background = a; ;
                     KeyHelper.OnKeyPress(B[((Button)(InkWindowss.Children[t2 + 1])).Content.ToString()]);
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
             }
         }
