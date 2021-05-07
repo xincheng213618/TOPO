@@ -176,12 +176,10 @@ namespace BaseInk
         KeyHelper.KeyCode B = new KeyHelper.KeyCode();
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            sk.Children.Clear();
-            sk2.Children.Clear();
-            sk3.Children.Clear();
+
             if (l)
             {
-                add(ss1, ss2, ss3);
+
                 if (Console.CapsLock)
                 {
                     KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
@@ -190,295 +188,139 @@ namespace BaseInk
                 l = false;
             }
             else
-            {
-                add(ss, sss, ssss);
+
                 l = true;
-                if (!Console.CapsLock)
-                {
-                    KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
-                    ((System.Windows.Controls.Button)sender).Content = "大写";
-
-                }
-            }
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            sk.Children.Clear();
-            sk2.Children.Clear();
-            sk3.Children.Clear();
-            add(ss1, ss2, ss3);
-            l = false;
-            if (((System.Windows.Controls.Button)sender).Content.ToString() == "英")
+            if (!Console.CapsLock)
             {
-                ((System.Windows.Controls.Button)sender).Content = "中";
-                btn1.Content = "小写";
-            }
-            else
-            {
-                ((System.Windows.Controls.Button)sender).Content = "英";
-
-            }
-            if (Console.CapsLock)
-            {
-
                 KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
-            }
+                ((System.Windows.Controls.Button)sender).Content = "大写";
 
-            KeyHelper.OnKeyPress(KeyHelper.KeyCode.SHIFT);
+            }
         }
-        private void Button_Clicks(object sender, RoutedEventArgs e)
+     
+
+    private void Button_Click_2(object sender, RoutedEventArgs e)
+    {
+       
+        l = false;
+        if (((System.Windows.Controls.Button)sender).Content.ToString() == "英")
         {
-            string indexy = ((System.Windows.Controls.Button)sender).Content.ToString();
-            switch (indexy)
-            {
-
-                case "=":
-                    break;
-                default:
-                    KeyHelper.OnKeyPress(B[indexy]);
-                    break;
-
-            }
+            ((System.Windows.Controls.Button)sender).Content = "中";
+            btn1.Content = "小写";
         }
-        bool tkey = true;
-        private void Button_Click(object sender, RoutedEventArgs e)
-        { 
-            if (tkey)
-            {
-                if (InkPut.t==null)
-                {
-                    InkPut.t = new TextBox();
-                }
-                tx.Text = InkPut.t.Text;
-                key.Visibility = Visibility.Visible;
-                add(ss, sss, ssss);
-                num();
-                tx.Focus();
-                KeyHelper.OnKeyPress(KeyHelper.KeyCode.END);
-
-                KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
-                tkey = false;
-                key.Visibility = Visibility.Visible;
-
-            }
-            else
-            {
-                key.Visibility = Visibility.Hidden;
-
-                sk.Children.Clear();
-                sk2.Children.Clear();
-                sk3.Children.Clear();
-                sk4.Children.Clear();
-                tkey = true;
-
-            }
-
-        }
-        public void clearText()
+        else
         {
-            tx.Text = "";
-        }
-        void num()
-        {
-            TextBlock textBlock = new TextBlock();
-            textBlock.Height = list.Height;
-            textBlock.Width = 10;
-            sk4.Children.Add(textBlock);
+            ((System.Windows.Controls.Button)sender).Content = "英";
 
-            for (int i = 0; i < 10; i++)
-            {
-            
-                Buttones = new Button();
-                Buttones.Click += Button_Clicks;
-                Buttones.Background = a; ;
-                Buttones.Width = list.Width+20;
-                Buttones.Height = list.Height;
-                Buttones.BorderBrush = list.BorderBrush;
-                Buttones.Focusable = true;
-                Buttones.BorderThickness = new Thickness(0, 0, 20, 0); ;
-                Buttones.FontSize = 20;
-                Buttones.Name = "aa" + i;
-                Buttones.Content = i.ToString();
-                sk4.Children.Add(Buttones );
-            }
         }
+        if (Console.CapsLock)
+        {
+
+            KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
+        }
+
+        KeyHelper.OnKeyPress(KeyHelper.KeyCode.SHIFT);
+    }
+    private void Button_Clicks(object sender, RoutedEventArgs e)
+    {
+        string indexy = ((System.Windows.Controls.Button)sender).Content.ToString();
+        switch (indexy)
+        {
+
+            case "=":
+                break;
+            default:
+                KeyHelper.OnKeyPress(B[indexy]);
+                break;
+
+        }
+    }
+    bool tkey = true;
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        if (tkey)
+        {
+            if (InkPut.t == null)
+            {
+                InkPut.t = new TextBox();
+            }
+            tx.Text = InkPut.t.Text;
+            key.Visibility = Visibility.Visible;
+
+          
+            tx.Focus();
+            KeyHelper.OnKeyPress(KeyHelper.KeyCode.END);
+
+            KeyHelper.OnKeyPress(KeyHelper.KeyCode.CAPS_LOCK);
+            tkey = false;
+            key.Visibility = Visibility.Visible;
+
+        }
+        else
+        {
+            key.Visibility = Visibility.Hidden;
+
+
+            tkey = true;
+
+        }
+
+    }
+    public void clearText()
+    {
+        tx.Text = "";
+    }
 
         ImageBrush a = new ImageBrush(new BitmapImage(
-                    new Uri(Directory.GetCurrentDirectory() + "\\images\\按钮1.png", UriKind.Absolute)
-                ));
+                new Uri(Directory.GetCurrentDirectory() + "\\images\\按钮1.png", UriKind.Absolute)
+            ));
         ImageBrush b = new ImageBrush(new BitmapImage(
                     new Uri(Directory.GetCurrentDirectory() + "\\images\\按下1.png", UriKind.Absolute)
                 ));
-        void add(string[] str1, string[] str2, string[] str3)
-        {
-
-            int s = 10;
-            for (int j = 0; j < 3; j++)
-            {
-                TextBlock textBlock = new TextBlock();
-                textBlock.Height = list.Height;
-                if (j == 0)
-                {
-                    textBlock.Width = 50;
-                    s = 9;
-                    sk2.Children.Add(textBlock);
-                }
-                else if (j == 1)
-                {
-                    textBlock.Width = 10;
-                    s = 10;
-                    sk.Children.Add(textBlock);
-                }
-                else
-                {
-                    textBlock.Width = 90;
-                    s = 7;
-                    sk3.Children.Add(textBlock);
-                }
-                for (int i = 0; i < s; i++)
-                {
-                    Buttones = new Button();
-                    Buttones.Click += Button_Clicks;
-                    Buttones.Width = list.Width+20;
-                    Buttones.Height = list.Height;
-                    Buttones.Background = a; ;
-                    Buttones.BorderBrush = list.BorderBrush;
-                    Buttones.Focusable = false;
-                    Buttones.BorderThickness = new Thickness(0,0,20,0);
-                    Buttones.FontSize = 20;
-                    Buttones.Name = "a" + i;
-                    if (j == 0)
-                    {
-                        Buttones.Content = str2[i];
-
-                        sk2.Children.Add(Buttones);
-                    }
-                    else if (j == 1)
-                    {
-                        Buttones.Content = str1[i];
-                        sk.Children.Add(Buttones);
-
-                    }
-                    else
-                    {
-                        Buttones.Content = str3[i];
-                        sk3.Children.Add(Buttones);
-
-                    }
-                }
-
-
-            }
-
-
-        }
-
         private void tx_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        InkPut.t.Text = tx.Text;
+    }
+
+    private void Window_Activated(object sender, EventArgs e)
+    {
+        tx.Focus();
+    }
+    int t1 = 0;
+    int t2 = 0;
+
+    int t3 = 0;
+    WrapPanel InkWindowss = null;
+
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            InkPut.t.Text = tx.Text;
+           
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            tx.Focus();
+            
+          ;
         }
-        int t1 = 0;
-        int t2 = 0;
 
-        int t3 = 0;
-        WrapPanel InkWindowss = null;
-
-
-        private void key_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            switch (((Label)sender).Name.ToString())
-            {
-                case "l1":
-                    t3 = 10;
-                    InkWindowss = sk;
-                    break;
-                case "l2":
-                    t3 = 50;
-                    InkWindowss = sk2;
-                    break;
-                case "l3":
-                    t3 = 90;
-                    InkWindowss = sk3;
-                    break;
-                case "l4":
-                    t3 = 10;
-                    InkWindowss = sk4;
-                    break;
-            }
+            ((Label)sender).Background = b;
 
-            int tk =Convert.ToInt32( e.GetPosition((Label)sender).X.ToString())- t3;
-            if (tk<70)
-            {
-                if (tk<=50)
-                {
-                    tk = 0;
-                    ((Button)(InkWindowss.Children[tk + 1])).Background = b; ;
-                }
-            }
-            else
-            {
-                t1 = tk % 70;
-                t2 = tk / 70;
-
-                if (70-t1>20)
-                {
-                    try
-                    {
-                        ((Button)(InkWindowss.Children[t2 + 1])).Background = b; ;
-
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                }
-            }
         }
+
         private void Label_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            int tk = Convert.ToInt32(e.GetPosition((Label)sender).X.ToString()) - t3;
-            if (tk < 70)
-            {
-                if (tk <= 50)
-                {
-                    tk = 0;
-                    try
-                    {
-                        ((Button)(InkWindowss.Children[tk + 1])).Background = a; ;
-                        KeyHelper.OnKeyPress(B[((Button)(InkWindowss.Children[t2 + 1])).Content.ToString()]);
-                    }
-                    catch (Exception)
-                    {
-                     
-                    }
-           
-                }
-            }
-            else
-            {
-                t1 = tk % 70;
-                t2 = tk / 70;
+            ((Label)sender).Background = a;
 
-                if (70 - t1 > 20)
-                {
-                    try
-                    {
-                        ((Button)(InkWindowss.Children[t2 + 1])).Background = a; ;
-                    KeyHelper.OnKeyPress(B[((Button)(InkWindowss.Children[t2 + 1])).Content.ToString()]);
+        }
 
-                    }
-                    catch (Exception)
-                    {
+        private void Label_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Label)sender).Background = a;
 
-                    }
-                }
-            }
         }
     }
+            
+ 
 }
