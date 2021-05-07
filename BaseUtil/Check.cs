@@ -6,11 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace BaseUtil
 {
-    //
+    /// <summary>
+    /// 检测类
+    /// </summary>
     public class Check
     {
         /// <summary>
-        /// 验证字符串是否为手机号码
+        /// 字符串是否为手机号码
         /// </summary>
         /// <param name="phoneNumber"></param>
         /// <returns></returns>
@@ -18,8 +20,11 @@ namespace BaseUtil
         {
             return Regex.IsMatch(phoneNumber, @"^1(3[0-9]|5[0-9]|7[6-8]|8[0-9])[0-9]{8}$");
         }
-
-        /// 检测身份证号是否正确
+        /// <summary>
+        /// 身份证号是否正确
+        /// </summary>
+        /// <param name="IDcardNo"></param>
+        /// <returns></returns>
         public static bool CheckIDCardNo(string IDcardNo)
         {
             bool result;
@@ -73,7 +78,7 @@ namespace BaseUtil
         }
 
         /// <summary>
-        /// 检测文件是否未PDF
+        /// 文件是否未PDF
         /// </summary>
         /// <param name="FilePath"></param>
         /// <returns></returns>

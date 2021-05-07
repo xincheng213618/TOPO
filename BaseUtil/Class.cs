@@ -351,16 +351,5 @@ namespace BaseUtil
 
 
 
-    public class HeiFeiPeopleTypeItem
-    {
-        public int ListNo { get; set; }
-        public string TypeName { get; set; }
-
-        public string TypeConfigId { get; set; }
-
-        public string ImageUrl { get; set; }
-
-    }
-
 
 }

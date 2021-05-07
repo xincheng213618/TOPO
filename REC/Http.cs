@@ -288,7 +288,6 @@ namespace REC
         }
 
 
-
         //Designed By Mr.Xin 2020.4.23
         //Change By Mr.Xin 2020.5.6 解决缓存问题，引入缓存数据库  (只限于GET结构,POST 和其他数据结构另外进行添加)
         //BUG Fix By Mr.Xin 2020.5.7 禁止返回信息未空的数据
@@ -311,7 +310,6 @@ namespace REC
             var list = new List<string>();
             foreach (var item in dic)
                 list.Add(item.Key + "=" + item.Value);
-
             return url += "?"+ string.Join("&", list);
         }
 

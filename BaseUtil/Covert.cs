@@ -15,6 +15,11 @@ namespace BaseUtil
     /// </summary>  
     public class Covert
     {
+        /// <summary>
+        /// BitmapSource To Byte
+        /// </summary>
+        /// <param name="bitmapSource"></param>
+        /// <returns></returns>
         public static byte[] BitmapSourceToByte(BitmapSource bitmapSource)
         {
             byte[] data;
@@ -27,6 +32,11 @@ namespace BaseUtil
             }
             return data;
         }
+        /// <summary>
+        /// BitMap to BitMap
+        /// </summary>
+        /// <param name="BmpBack"></param>
+        /// <returns></returns>
         public static Bitmap BitmapMakeTransparent(Bitmap BmpBack)
         {
             Color TempColor;
@@ -44,6 +54,12 @@ namespace BaseUtil
             }
             return BmpBack;
         }
+
+        /// <summary>
+        /// BitmapMakeTransparent
+        /// </summary>
+        /// <param name="BipBack"></param>
+        /// <returns></returns>
         public static BitmapSource BitmapMakeTransparent(BitmapSource BipBack)
         {
             Bitmap BmpBack = GetBitmap(BipBack);
@@ -61,11 +77,14 @@ namespace BaseUtil
                 }
             }
 
-
             return GetBitmapSource(BmpBack);
         }
 
-
+        /// <summary>
+        /// BitMap
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static Bitmap GetBitmap(BitmapSource source)
         {
             Bitmap bmp = new Bitmap(source.PixelWidth, source.PixelHeight, PixelFormat.Format32bppPArgb);
@@ -74,7 +93,11 @@ namespace BaseUtil
             bmp.UnlockBits(data);
             return bmp;
         }
-
+        /// <summary>
+        /// Bitmap To BitmapSource
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
         public static BitmapSource GetBitmapSource(Bitmap bitmap)
         {
             return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
