@@ -189,7 +189,7 @@ namespace RECSuzhou
                 };
 
             //string response = Requests.Get(url, dic);
-            string response = "{\"result\":\"已到账eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\",\"code\":\"0\",\"Message\":\"查询成功\"}";
+            string response = "{\"result\":\"已到账\",\"code\":\"0\",\"Message\":\"查询成功\"}";
             Log.WriteUrl(url, response);
             return response;
         }
