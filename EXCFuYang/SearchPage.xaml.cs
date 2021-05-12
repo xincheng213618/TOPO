@@ -1,4 +1,5 @@
 ﻿
+using BaseInk;
 using BaseUtil;
 using System;
 using System.Collections.Generic;
@@ -24,16 +25,24 @@ namespace XinHua
         public SearchPage()
         {
             InitializeComponent();
+            BaseInk.InkPut.t = CompanySearchBox;
         }
         public SearchPage(string Msg)
         {
             InitializeComponent();
+            BaseInk.InkPut.t = CompanySearchBox;
             PopAlert(Msg, 3);
         }
-
+        private void Input(string Msg)
+        {
+            CompanySearchBox.Text += Msg;
+            CompanySearchBox.Select(CompanySearchBox.Text.Length, 0);
+        }
         private void Page_Initialized(object sender, EventArgs e)
         {
             FocusManager.SetFocusedElement(this, CompanySearchBox);
+            App.InkWindows.Show();
+            InkPut.delegate_Ink_Msg += Input;
             Countdown_timer();
             switch(Global.Related.PageType)
             {
@@ -85,6 +94,7 @@ namespace XinHua
         //页面转换
         private void Pages()
         {
+            App.InkWindows.Hide();
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
