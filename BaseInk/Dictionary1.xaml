@@ -92,7 +92,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="Resource.Style.FuncButton.Lenght.5.5" TargetType="{x:Type local:FuncButtonControl}" BasedOn="{StaticResource Resource.Style.FuncButton.Base}">
+        <Style x:Key="Resource.Style.FuncButton.Lenght" TargetType="{x:Type local:FuncButtonControl}" BasedOn="{StaticResource Resource.Style.FuncButton.Base}">
             <Setter Property="Width" Value="270"/>
             <Setter Property="PressedBackground">
                 <Setter.Value>

@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseInk;
+using BaseUtil;
 using Startup;
 using System;
 using System.IO;
@@ -48,8 +49,8 @@ namespace XinHua
         private void App_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
             ////修正 winforms 报错不显示
-            //if (e.Exception.Source != "System.Windows.Forms")
-            //    Log.WriteException(e.Exception);
+            if (e.Exception.Source != "System.Windows.Forms")
+              Log.WriteException(e.Exception);
         }
         private Mutex mutex;
         private void App_Startup(object sender, StartupEventArgs e)
@@ -66,7 +67,7 @@ namespace XinHua
 
         public StartWindow StartWindow;
 
-        //public static InkWindows InkWindows;
+        public static InkWindows InkWindows;
 
 
         //启动
@@ -77,7 +78,7 @@ namespace XinHua
             StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = false, VarbTest = false });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
 
-            //InkWindows = new InkWindows();
+            InkWindows = new InkWindows();
         }
         private void Application_Initialized(object sender, StartupEventArgs e)
         {
