@@ -220,14 +220,14 @@ namespace RECSuzhou
             printUtil.Closed += PrintOneOver;
             printUtil.Show();
             //Stamp.Start(1);
-            int run = Stamp.Start(5);
-            Log.Write("启动盖章机：" + run);
-            if (!"0".Equals(run.ToString()))
-            {
-                Content = new HomePage("盖章机启动失败，请重启盖章机");
-                Pages();
-                return;
-            }
+            int run = Stamp.Start(1);
+            //Log.Write("启动盖章机：" + run);
+            //if (!"0".Equals(run.ToString()))
+            //{
+            //    Content = new HomePage("盖章机启动失败，请重启盖章机");
+            //    Pages();
+            //    return;
+            //}
             AcrobatHelper.pdfControl.printPagesFit(PageNum, PageNum, true);
         }
         private void PrintOneOver(object sender, EventArgs e)

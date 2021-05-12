@@ -86,11 +86,11 @@ namespace RECSuzhou
             switch (Global.Related.PageType)
             {
               
-                case "SZHQMoney":
+                case "SZMoneyPages":
                     response = Http.MoneyProgressQuery(SearchContent);
                     Dispatcher.BeginInvoke(new Action(() => SZHQParse(response)));
                     break;
-                case "SZHQProgress":
+                case "SZProgress":
                     response = Http.ProcessProgressQuery(SearchContent);
                     Dispatcher.BeginInvoke(new Action(() => SZHQParse(response)));
                     break;
@@ -117,6 +117,7 @@ namespace RECSuzhou
                         {
                             InfoLabel.Text = "未查询到此数据";
                         }
+                        WaitShow.Visibility = Visibility.Hidden;
                         queryInput.Visibility = Visibility.Hidden;
                         InfoBorder.Visibility = Visibility.Visible;
                     }

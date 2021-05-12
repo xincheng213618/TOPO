@@ -138,7 +138,7 @@ namespace RECSuzhou
                     Pages();
                     break;
                 case "DegreePages":
-                    Global.Related.IDCardData = new IDCardData { Name = "张林", IDCardNo = "320823198102244241" };
+                    Global.Related.IDCardData = new IDCardData { Name = "杨洋", IDCardNo = "140108198708253219" };
                     Content = new DegreePage();
                     Pages();
                     break; 

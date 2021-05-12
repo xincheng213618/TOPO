@@ -494,7 +494,7 @@
 
 
 
-        <Border x:Name="InfoBorder" Grid.RowSpan="1" Margin="200" Visibility="Hidden" Background="#453994" Grid.Row="1" CornerRadius="25">
+        <Border x:Name="InfoBorder" Grid.RowSpan="1" Margin="100,150,100,210" Visibility="Hidden" Background="#90acfd" Grid.Row="1" CornerRadius="0,0,25,25">
             <Grid>
                 <Border Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <TextBox x:Name="InfoLabel" FontSize="40" Width="700" Height="321"  Foreground="#19417A"  TextWrapping="Wrap"  Text="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />

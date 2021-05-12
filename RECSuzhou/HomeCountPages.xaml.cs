@@ -127,13 +127,13 @@ namespace RECSuzhou
             Time.ButtonClor = "#60d0ff";
             AcrobatHelper.pdfControl.LoadFile(FileName);
             int run = Stamp.Start(2);
-            Log.Write("启动盖章机：" + run);
-            if(!"0".Equals(run.ToString()))
-            {
-                Content = new HomePage("盖章机启动失败，请重启盖章机");
-                Pages();
-                return;
-            }
+            //Log.Write("启动盖章机：" + run);
+            //if(!"0".Equals(run.ToString()))
+            //{
+            //    Content = new HomePage("盖章机启动失败，请重启盖章机");
+            //    Pages();
+            //    return;
+            //}
             AcrobatHelper.pdfControl.printAll();
 
             timer = new Timer(_ => Dispatcher.BeginInvoke(new Action(async () => await TimeRunAsync(1))), null, 0, 500);
