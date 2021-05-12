@@ -182,21 +182,22 @@ namespace RECSuzhou
                     {
                         CheckItem item = new CheckItem();
                         item.ListNo = i;
-                        item.CheckVisible = PageAllNum > PrintAllNum ? "Visible" : "Hidden";
+                        //item.CheckVisible = PageAllNum > PrintAllNum ? "Visible" : "Hidden";
+                        item.CheckVisible = Global.Related.PageType == "SZHQArchivePages" ? "Visible" : "Hidden";
                         PDFItem.Add(item);
                     }
 
                     PDFListView.SelectedIndex = 0;
 
                     PDFListView.Visibility =  Visibility.Visible;
-                    Button1.Visibility = AllowPrint && Global.Related.PageType != "SZWZArchivePages" ? Visibility.Visible : Visibility.Hidden;
-                    Button2.Visibility = AllowPrint ? Visibility.Visible : Visibility.Hidden;
+                    Button1.Visibility = AllowPrint && Global.Related.PageType != "SZWZArchivePages" && Global.Related.PageType != "DegreePages" ? Visibility.Visible : Visibility.Hidden;
+                    Button2.Visibility = AllowPrint && Global.Related.PageType != "DegreePages" ? Visibility.Visible : Visibility.Hidden;
                     Button3.Visibility = PageAllNum <= 1 ? Visibility.Hidden : Visibility.Visible;
                     Button7.Visibility = PageAllNum <= 3 ? Visibility.Hidden : Visibility.Visible;
                     Button6.Visibility = PageAllNum <= 2 ? Visibility.Hidden : Visibility.Visible;
                     Button5.Visibility = PageAllNum <= 2 ? Visibility.Hidden : Visibility.Visible;
-                    Button1Label.Content = PageAllNum < PrintAllNum ? "全部打印" : "打印已经选择的页面";
-
+                    //Button1Label.Content = PageAllNum < PrintAllNum ? "全部打印" : "打印已经选择的页面";
+                    Button1Label.Content = Global.Related.PageType != "SZHQArchivePages" ? "全部打印" : "打印已经选择的页面";
                 }
                 else
                 {
@@ -234,21 +235,21 @@ namespace RECSuzhou
         {
             Stamp.Close();
         }
-      //  private AxAcroPDFLib.AxAcroPDF pdfc;
-     //   private int PageAllNumNew = 0;
+        private AxAcroPDFLib.AxAcroPDF pdfc;
+        private int PageAllNumNew = 0;
         private void PrintPDFAll_Click(object sender, RoutedEventArgs e)
         {
             if (!PrintRun)
             {
-                
-                //if (PageAllNum < PrintAllNum)
-                //{
-                    pageTimer.IsEnabled = false;
+                pageTimer.IsEnabled = false;
+                if (Global.Related.PageType != "SZHQArchivePages")
+                {
+                    
                     PrintRun = true;
                     PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
                     printUtil.Closed += PrintOver;
                     printUtil.Show();
-                Stamp.Start(PageAllNum);
+                    Stamp.Start(PageAllNum);
                 //int run = Stamp.Start(PageAllNum);
                 //Log.Write("启动盖章机：" + run);
                 //if (!"0".Equals(run.ToString()))
@@ -259,39 +260,40 @@ namespace RECSuzhou
                 //}
                 AcrobatHelper.pdfControl.printAllFit(true);
                     return;
-                //}
+                }
                 
-                //string Pa = "";
+                string Pa = "";
 
-                //for (int i = 0; i < PDFItem.Count; i++)
-                //    Pa += PDFItem.ElementAt(i).Ischeck ? PDFItem.ElementAt(i).ListNo.ToString() + "," : "";
+                for (int i = 0; i < PDFItem.Count; i++)
+                    Pa += PDFItem.ElementAt(i).Ischeck ? PDFItem.ElementAt(i).ListNo.ToString() + "," : "";
 
-                //if (Pa == "")
-                //    return;
+                if (Pa == "")
+                    return;
+                //只允许一次最多打印5张，怕打印文件过大，打印机吃不消
                 //string[] strArray = Pa.Split(','); //字符串转数组
-               
+
                 //if (strArray.Length > 5)
                 //{
                 //    PopAlert(3);
                 //    return;
                 //}
-                //PdfReader reader = new PdfReader(filePath);
-                //reader.SelectPages(Pa);
+                PdfReader reader = new PdfReader(filePath);
+                reader.SelectPages(Pa);
 
-                //PdfStamper pdfStamper = new PdfStamper(reader, new FileStream(@"Temp\temp.pdf", FileMode.Create));
-                //pdfStamper.Close();
+                PdfStamper pdfStamper = new PdfStamper(reader, new FileStream(@"Temp\temp.pdf", FileMode.Create));
+                pdfStamper.Close();
 
-                //pdfc = new AxAcroPDFLib.AxAcroPDF();
-                //pdfc.BeginInit();
-                //formsHost1.Child = pdfc;
-                //pdfc.EndInit();
-                //pdfc.LoadFile(@"Temp\temp.pdf");
-                //PageAllNumNew = reader.NumberOfPages;
-                //PrintUtilWindow printUtil1 = new PrintUtilWindow(PageAllNumNew);
-                //printUtil1.Closed += PrintOneOver;
-                //printUtil1.Show();
-                //Stamp.Start(PageAllNumNew);
-                //pdfc.printAllFit(true);
+                pdfc = new AxAcroPDFLib.AxAcroPDF();
+                pdfc.BeginInit();
+                formsHost1.Child = pdfc;
+                pdfc.EndInit();
+                pdfc.LoadFile(@"Temp\temp.pdf");
+                PageAllNumNew = reader.NumberOfPages;
+                PrintUtilWindow printUtil1 = new PrintUtilWindow(PageAllNumNew);
+                printUtil1.Closed += PrintOneOver;
+                printUtil1.Show();
+                Stamp.Start(PageAllNumNew);
+                pdfc.printAllFit(true);
 
             }
         }
@@ -353,6 +355,7 @@ namespace RECSuzhou
         {
             CheckBox checkbox = sender as CheckBox;
             PDFItem.ElementAt(int.Parse(checkbox.Tag.ToString()) - 1).Ischeck = checkbox.IsChecked.Value;
+                      
         }
         private async void PopAlert(int time)
         {
