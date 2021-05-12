@@ -50,7 +50,10 @@ namespace BaseInk
         {
             ListVierew.ItemsSource = selectionsLists;
             InkPut.delegates += new Delegate(clearText);
-           
+            a = ax2.Background;
+            b = an.Background;
+
+
 
         }
         public static event Delegate_Ink_Msg delegate_Ink_Msg;
@@ -368,8 +371,8 @@ namespace BaseInk
         {
             InkPut.t.Text = tx.Text;
         }
-        ImageBrush a = new ImageBrush(new BitmapImage(new Uri(Directory.GetCurrentDirectory()+"\\images\\按下1.png")));
-        ImageBrush b = new ImageBrush(new BitmapImage(new Uri(Directory.GetCurrentDirectory()+"\\images\\按钮1.png")));
+        Brush a;
+        Brush b;// new ImageBrush(new BitmapImage(new Uri(Directory.GetCurrentDirectory()+"\\images\\按钮1.png")));
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ((Label)sender).Background = a;

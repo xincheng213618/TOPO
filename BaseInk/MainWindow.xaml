@@ -144,9 +144,14 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="0"   Content="1" Tag="49" >
+                    <Label x:Name="an" MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="0"   Content="1" Tag="49" >
                         <Label.Background>
                             <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
+                    <Label x:Name="ax2" Visibility="Collapsed" MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="0"   Content="1" Tag="49" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按下1.png"></ImageBrush>
                         </Label.Background>
                     </Label>
 
