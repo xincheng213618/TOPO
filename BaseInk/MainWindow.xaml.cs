@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -49,6 +50,8 @@ namespace BaseInk
         {
             ListVierew.ItemsSource = selectionsLists;
             InkPut.delegates += new Delegate(clearText);
+           
+
         }
         public static event Delegate_Ink_Msg delegate_Ink_Msg;
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -139,6 +142,14 @@ namespace BaseInk
         }
         private void Fun_Click(object sender, RoutedEventArgs e)
         {
+           
+            tx.Focus();
+            
+          
+           
+            KeyHelper.OnKeyPress(0x10);
+             
+
         }
 
 
@@ -164,7 +175,19 @@ namespace BaseInk
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (KeyBorderLabel.Content.ToString() == "键盘")
+            {
                 grid_center.Visibility = Visibility.Hidden;
+                InkGrid.Visibility = Visibility.Visible;
+                KeyBorderLabel.Content = "手写";
+            }
+            else
+            {
+                grid_center.Visibility = Visibility.Visible;
+                InkGrid.Visibility = Visibility.Hidden;
+                KeyBorderLabel.Content = "键盘";
+            }
+         
 
         }
         public void clearText()
@@ -198,11 +221,12 @@ namespace BaseInk
             {
  
                 string tag = button.Tag.ToString();
-
+                tx.Focus();
                 byte b = Convert.ToByte(tag);
-
+                
                 KeyHelper.OnKeyPress(b);
             }
+           
         }
 
         //声明和注册路由事件
@@ -338,6 +362,71 @@ namespace BaseInk
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.OnCancelClick();
+        }
+
+        private void tx_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            InkPut.t.Text = tx.Text;
+        }
+        ImageBrush a = new ImageBrush(new BitmapImage(new Uri(Directory.GetCurrentDirectory()+"\\images\\按下1.png")));
+        ImageBrush b = new ImageBrush(new BitmapImage(new Uri(Directory.GetCurrentDirectory()+"\\images\\按钮1.png")));
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ((Label)sender).Background = a;
+        }
+
+        private void Label_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ((Label)sender).Background = b;
+            Label button = ((Label)sender);
+
+            if (button == null) return;
+
+            //Debug.WriteLine(button.Content);
+
+            string content = button.Content.ToString();
+
+            if (content == "确定")
+            {
+                this.OnSumitClick();
+            }
+            else if (content == "取消")
+            {
+                this.OnCancelClick();
+            }
+            else
+            {
+
+                string tag = button.Tag.ToString();
+                tx.Focus();
+                byte b = Convert.ToByte(tag);
+
+                KeyHelper.OnKeyPress(b);
+            }
+
+        }
+
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            ((Label)sender).Opacity = 0.8;
+
+        }
+
+        private void Label_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Label)sender).Opacity = 1;
+            ((Label)sender).Background = b;
+
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            tx.Focus();
+
+
+
+            KeyHelper.OnKeyPress(0x14);
         }
     }
             

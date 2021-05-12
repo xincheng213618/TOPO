@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
-
+            <TextBox Text=""  Name="tx"  Width="0" Height="0" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tx_TextChanged"/>
             <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Content="" Background="Transparent" MouseLeftButtonDown="Window_MouseDrag"/>
             <Button  Grid.Row="0" Grid.Column="1" Click="Exit" Focusable="False" Margin="4,0,0,2" Panel.ZIndex="999">
                 <Button.Template>
@@ -45,7 +45,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Focusable="False"  Click="Fun_Click"  >
+                <Button Grid.Row="0" Tag="10" Focusable="False"  Click="Fun_Click"  >
                     <Button.Template>
                         <ControlTemplate>
                             <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
@@ -63,6 +63,15 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+                <Button Grid.Row="2" Tag="10" Focusable="False"  Click="Button_Click_1"  >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
+                                <Label x:Name="InputKind" Content="大写" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>
 
 
@@ -73,15 +82,9 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="KeyBorderLabel" Grid.Row="0" Grid.Column="0" Content="键盘"   Focusable="False"   Click="Button_Click"   >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Border Background="White" Margin="0,0,2,2" CornerRadius="4">
-                                <Label x:Name="KeyBorderLabel" Content="键盘" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                <Label x:Name="KeyBorderLabel" Background="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Grid.Row="0" Grid.Column="0" Content="键盘"   Focusable="False"   MouseDown="Button_Click"   >
+
+                </Label>
 
 
 
@@ -119,7 +122,7 @@
                 </Border>
             </Grid>
 
-            <Grid  x:Name="grid_center" Grid.Row="1"  Width="600" ButtonBase.Click="Grid_Click"  Visibility="Hidden" >
+            <Grid  x:Name="grid_center"  Grid.Row="1"  Width="600" ButtonBase.Click="Grid_Click"  Visibility="Visible" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -141,25 +144,65 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="0"   Content="1" Tag="49" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="0"   Content="1" Tag="49" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="1"   Content="2" Tag="50" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1"   Content="2" Tag="50"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="2"   Content="3" Tag="51"  />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="2"   Content="3" Tag="51"   >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="3"   Content="4"  Tag="52"  />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="3"   Content="4"  Tag="52"   >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="4"   Content="5" Tag="53"  />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="4"   Content="5" Tag="53"   >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="5"   Content="6"  Tag="54"  />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="5"   Content="6"  Tag="54"   >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="6"   Content="7" Tag="55" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="6"   Content="7" Tag="55"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="7"   Content="8" Tag="56"  />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="7"   Content="8" Tag="56"   >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="9"  Tag="57"   />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="8"   Content="9"  Tag="57"   >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="9"   Content="0" Tag="48"  />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="9"   Content="0" Tag="48"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
                     <!--<local:FuncButtonControl Grid.Row="1" Grid.Column="12"   Content="-" Tag="189"  />
 
@@ -185,25 +228,65 @@
                         <ColumnDefinition Width="0.5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="1" Content="q"  Tag="81"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Content="q"  Tag="81">
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="2"   Content="w" Tag="87"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="2"   Content="w" Tag="87" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="3"   Content="e" Tag="69" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="3"   Content="e" Tag="69"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="4"   Content="r" Tag="82"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="4"   Content="r" Tag="82" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="5"   Content="t"  Tag="84"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="5"   Content="t"  Tag="84" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="6"   Content="y" Tag="89"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="6"   Content="y" Tag="89" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="7"   Content="u"  Tag="85"/>
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="i" Tag="73" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="7"   Content="u"  Tag="85" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="8"   Content="i" Tag="73"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="o" Tag="79"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="9"   Content="o" Tag="79" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="10"   Content="p" Tag="80"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="10"   Content="p" Tag="80" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
                 </Grid>
 
                 <Grid Grid.Row="2" >
@@ -222,24 +305,60 @@
                     </Grid.ColumnDefinitions>
 
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="1" Content="a"  Tag="65"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Content="a"  Tag="65" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="2"   Content="s" Tag="83" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="2"   Content="s" Tag="83"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="3"   Content="d" Tag="68"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="3"   Content="d" Tag="68" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="4"   Content="f" Tag="70" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="4"   Content="f" Tag="70"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="5"   Content="g"  Tag="71"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="5"   Content="g"  Tag="71" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="6"   Content="h" Tag="72"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="6"   Content="h" Tag="72" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="7"   Content="j"  Tag="74"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="7"   Content="j"  Tag="74" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="k" Tag="75"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="8"   Content="k" Tag="75" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="l" Tag="76"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="9"   Content="l" Tag="76" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
 
 
@@ -260,24 +379,54 @@
 
 
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="1" Content="z"  Tag="90"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Content="z"  Tag="90" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="2"   Content="x" Tag="88" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="2"   Content="x" Tag="88"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="1" Grid.Column="3"   Content="c" Tag="67" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="3"   Content="c" Tag="67"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="4"   Content="v" Tag="86" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="4"   Content="v" Tag="86"  >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="5"   Content="b"  Tag="66"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="5"   Content="b"  Tag="66" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
-                    <local:FuncButtonControl Grid.Row="2" Grid.Column="6"   Content="n" Tag="78" />
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="6"   Content="n" Tag="78" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
 
-                    <local:FuncButtonControl Grid.Row="3" Grid.Column="7"   Content="m"  Tag="77"/>
+                    <Label MouseDown="Label_MouseDown" Width="50" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="7"   Content="m"  Tag="77" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
                     <!--<local:FuncButtonControl Grid.Row="3" Grid.Column="8"   Content="," Tag="219"   />
-                    --><!--188--><!--
+                    -->
+                    <!--188-->
+                    <!--
 
                     <local:FuncButtonControl Grid.Row="3" Grid.Column="9"   Content="." Tag="119"  />-->
 
@@ -304,7 +453,17 @@
 
                     <!--<local:FuncButtonControl  Click="Btn_Click" IsCheckedControl="True" Grid.Row="1" Grid.Column="3"   Content="Alt" Tag="164" />-->
 
-                    <local:FuncButtonControl Grid.Row="2" Style="{StaticResource Resource.Style.FuncButton.Lenght.5.5}" Grid.Column="2" Content="Space" Tag="32"/>
+                    <Label MouseDown="Label_MouseDown" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Grid.Column="2" Content="Space" Tag="32" Margin="194,5,10,5" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
+
+                    <Label MouseDown="Label_MouseDown" Height="40" MouseUp="Label_MouseUp" MouseMove="Label_MouseMove" MouseLeave="Label_MouseLeave" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Grid.Column="1" Content="Backspace" Tag="8" Margin="65,5,211,5" Grid.ColumnSpan="2" >
+                        <Label.Background>
+                            <ImageBrush ImageSource="images/按钮1.png"></ImageBrush>
+                        </Label.Background>
+                    </Label>
 
 
                     <!--<local:FuncButtonControl Click="Btn_Click"  IsCheckedControl="True" Grid.Row="2" Grid.Column="5"   Content="Alt"  Tag="165"/>-->

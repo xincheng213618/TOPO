@@ -23,12 +23,12 @@ namespace XinHua
         public SearchPage()
         {
             InitializeComponent();
-            //BaseInk.InkPut.t = CompanySearchBox;
+            BaseInk.InkPut.t = CompanySearchBox;
         }
         public SearchPage(string Msg)
         {
             InitializeComponent();
-            //BaseInk.InkPut.t = CompanySearchBox;
+            BaseInk.InkPut.t = CompanySearchBox;
             PopAlert(Msg, 3);
 
         }
@@ -36,8 +36,8 @@ namespace XinHua
         {
           
             FocusManager.SetFocusedElement(this, CompanySearchBox);
-            //App.InkWindows.Show();
-            //InkPut.delegate_Ink_Msg += Input;
+            App.InkWindows.Show();
+            InkPut.delegate_Ink_Msg += Input;
 
             Countdown_timer();
             switch (Global.Related.PageType)
