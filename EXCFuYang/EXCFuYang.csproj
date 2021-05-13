@@ -321,6 +321,10 @@
       <Project>{73301961-fd42-46c6-b2fe-f95d3f860598}</Project>
       <Name>BaseDLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BaseInk\BaseInk.csproj">
+      <Project>{2677c005-0e6a-4726-8763-ae7c137986e1}</Project>
+      <Name>BaseInk</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BaseUtil\BaseUtil.csproj">
       <Project>{90de3b02-7de2-434c-8028-535d094310c5}</Project>
       <Name>BaseUtil</Name>
