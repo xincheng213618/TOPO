@@ -200,7 +200,6 @@ namespace BaseInk
         }
         public void clearText()
         {
-            tx.Text = "";
         }
         private void Window_Activated(object sender, EventArgs e)
         {
@@ -434,22 +433,6 @@ namespace BaseInk
             tx.Focus();
 
             KeyHelper.OnKeyPress(0x14);
-
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            tx.Text = "";
-        }
-
-        private void Window_ContentRendered(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            tx.Text = "";
 
         }
     }
