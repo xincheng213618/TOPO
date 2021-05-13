@@ -11,16 +11,14 @@ namespace EXC
         public Guid UUID;
         public string PageType = "";
         public IDCardData IDCardData ;
-        public PrintSeve Ps;
+
 
         public void Initialized()
         {
             UUID = Guid.NewGuid();
         }
-         
      
     }
-  
     public static class Global
     {
         public static ConfigData Config = new ConfigData();
@@ -73,48 +71,6 @@ namespace EXC
 
     //http://10.33.1.210:8800/xycx-web/creditSearch/pdfDownloadTUser.do
 
-    public struct PrintSeve{
-        /// <summary>
-        /// 操作时间
-        /// </summary>
-        public string opeartiontime;
-        /// <summary>
-        /// 操作类型
-        /// </summary>
-        public string opeartiontype;
-        /// <summary>
-        /// 设备号
-        /// </summary>
-        public string machinecode;
-        /// <summary>
-        /// 操作code
-        /// </summary>
-        public string authcode;
-        /// <summary>
-        /// 用户名
-        /// </summary>
-        public string usersname;
-        /// <summary>
-        /// 公司名称
-        /// </summary>
-        public string companyname;
-        /// <summary>
-        /// 证件号码
-        /// </summary>
-        public string userscardnum;
-        /// <summary>
-        /// 操作类型
-        /// </summary>
-        public string authtype;
-        /// <summary>
-        /// 操作权
-        /// </summary>
-        public string authuse;
-        /// <summary>
-        /// 公司代码
-        /// </summary>
-        public string companyuniscid;
-    }
 
     [Serializable]
     public class ConfigData
@@ -135,7 +91,7 @@ namespace EXC
         public string HeifeiReportUrl { get; set; } = "http://10.33.1.164:8088/WinHall-HeFei/vxybgbsqrxx/pdfdownloadt";
         public string HeifeiGRReportUrl { get; set; } = "http://10.33.1.210:8800/xycx-web/creditSearch/pdfDownloadTUser.do";
         public string HeifeiPrintSave { get; set; } = "http://10.33.1.164:8088/WinHall-HeFei/server/save";
-        public bool FunctionOpenGR { get; set; } = true;
+        public bool FunctionOpenGR { get; set; } = false;
         public bool FunctionOpenReportHeFei { get; set; } = true;
         public bool FunctionOpenReportHeFei1 { get; set; } = true;
 

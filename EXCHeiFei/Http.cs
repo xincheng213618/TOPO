@@ -6,7 +6,6 @@ using System.Net;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 
 namespace EXC
 {
@@ -47,15 +46,6 @@ namespace EXC
                     {"creditCode",IDCardNo },
                 };
                 string response = Requests.Get(url, dic: dic, timeout: 60000);
-                return response;
-            }
-            public static string UnPrintSeve()
-            {
-                string url = Global.Config.HeifeiPrintSave;
-                string strJson = JsonConvert.SerializeObject(Global.Related.Ps);
-                JObject j = JObject.Parse(strJson);
-               
-                string response = Requests.Post(url, null,j, timeout: 60000);
                 return response;
             }
 
