@@ -28,7 +28,7 @@ namespace EXC
             InitializeComponent();
         }
 
-
+        //public static 
         private void Page_Initialized(object sender, EventArgs e)
         {
             this.idcardData = Global.Related.IDCardData;
@@ -46,16 +46,19 @@ namespace EXC
             worker.IsBackground = true;
             worker.Start();
         }
+        string AuthType;
         private void RequestUrl()
         {
             string response;
             switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
+                    AuthType = "1";
                     response = Http.HeFei.GetReportList(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, "0");
                     Dispatcher.BeginInvoke(new Action(() => ReportHeFei(response)));
                     break;
                 case "ReportHeFei1":
+                    AuthType = "2";
                     response = Http.HeFei.GetReportList(Global.Related.IDCardData.IDCardNo, Global.Related.IDCardData.Name, "1");
                     Dispatcher.BeginInvoke(new Action(() => ReportHeFei(response)));
                     break;
@@ -155,6 +158,8 @@ namespace EXC
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
 
+        string CompanyName;
+        string USCI;
         private void ReportListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             hintLabel.Content = "正在申请报告请稍等";
@@ -165,8 +170,8 @@ namespace EXC
                 {
                     case "ReportHeFei":
                     case "ReportHeFei1":
-                        string CompanyName = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).CompanyName.ToString();
-                        string USCI = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).USCI.ToString();
+                        CompanyName = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).CompanyName.ToString();
+                        USCI = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).USCI.ToString();
                         string filePath = "Temp\\" + USCI + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
 
                         Thread worker11 = new Thread(() => GetReportHeiFei(USCI, filePath))
@@ -205,6 +210,7 @@ namespace EXC
                         bool Sucess = Http.HeFei.ReportDL(url, FilePath);
                         hintLabel.Content = "正在下载报告文件";
                         Log.Write(url);
+                        
                         if (File.Exists(FilePath))
                         {
                             Content = new Pdfshow(FilePath);
@@ -309,6 +315,8 @@ namespace EXC
                             string url = (string)data["data"];
                             bool Sucess = Http.HeFei.ReportDL(url, FilePath);
                             hintLabel.Content = "正在下载报告文件";
+                            //记录打印记录
+                            Http.HeFei.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, CompanyName,AuthType, USCI);
                             if (Sucess)
                             {
                                 Content = new Pdfshow(FilePath);

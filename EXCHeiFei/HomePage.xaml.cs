@@ -30,7 +30,7 @@ namespace EXC
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
-            
+            Http.HeFei.AddAction("111","32032298329482948", "百度","1","5465467");
             List<Border> List = new List<Border>() { };
             for (int i = 0; i < List.Count; i++)
                 List[i].Visibility = Visibility.Hidden;

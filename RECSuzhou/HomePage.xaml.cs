@@ -39,6 +39,8 @@ namespace RECSuzhou
            
             Stamp.Close();
             App.simpleWindow.Update(Environment.CurrentDirectory+ "\\BackGround", "pictures", 10000);
+           
+               
         }
 
 
