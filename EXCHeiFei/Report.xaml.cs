@@ -167,6 +167,8 @@ namespace EXC
                     case "ReportHeFei1":
                         string CompanyName = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).CompanyName.ToString();
                         string USCI = CompanyReportItem.ElementAt(ReportListView.SelectedIndex).USCI.ToString();
+                        Global.Related.Ps.companyuniscid = USCI;
+                        Global.Related.Ps.companyname = CompanyName;
                         string filePath = "Temp\\" + USCI + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
 
                         Thread worker11 = new Thread(() => GetReportHeiFei(USCI, filePath))
@@ -311,7 +313,20 @@ namespace EXC
                             hintLabel.Content = "正在下载报告文件";
                             if (Sucess)
                             {
-                                Content = new Pdfshow(FilePath);
+                                Global.Related.Ps.opeartiontime = DateTime.Now.ToString();
+                                switch (Global.Related.PageType)
+                                {
+                                    case "ReportHeFei":
+                                        Global.Related.Ps.opeartiontype = "企业报告打印";
+                                        break;
+                                    case "ReportHeFei1":
+                                        Global.Related.Ps.opeartiontype = "企业报告查询";
+                                        break;
+                                    case "ReportGRHeFei":
+                                        Global.Related.Ps.opeartiontype = "个人报告打印";
+                                        break;
+                                }
+                                        Content = new Pdfshow(FilePath);
                                 Pages();
                             }
                             else

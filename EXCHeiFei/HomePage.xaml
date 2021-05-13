@@ -13,7 +13,7 @@
             <RowDefinition Height="869*" />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="HeFei" Grid.Row="1"  Visibility="Visible"  Grid.RowSpan="1">
+        <Grid x:Name="HeFei" Grid.Row="1"  Visibility="Hidden"  Grid.RowSpan="1">
             <Border Height="250" Width="250" Margin="0,0,800,550"  >
                 <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportHeFei">
                     <Image Source="images/HeiFei/企业信用报告法人打印.png" Stretch="Uniform" />
@@ -86,7 +86,7 @@
         </Grid>
 
 
-        <Grid x:Name="TongLing" Grid.Row="1"  Visibility="Hidden"  Grid.RowSpan="1">
+        <Grid x:Name="TongLing" Grid.Row="1"  Visibility="Visible"  Grid.RowSpan="1">
             <Border Height="250" Width="250" Margin="0,0,700,0"  >
                 <Button Template="{StaticResource imageButtonTemplate}" Click="PageButton_Click" Tag="ReportHeFei">
                     <Image Source="images/HeiFei/企业信用报告法人打印.png" Stretch="Uniform" />

@@ -115,6 +115,8 @@ namespace EXC
             {
                 default:
                     Global.Related.IDCardData = idcardData;
+                    Global.Related.Ps.userscardnum = idcardData.IDCardNo;
+                    Global.Related.Ps.usersname = idcardData.Name;
                     Content = new CameraPage( );
                     break;
             }
