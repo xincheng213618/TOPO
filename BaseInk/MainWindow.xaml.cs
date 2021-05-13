@@ -52,7 +52,7 @@ namespace BaseInk
             InkPut.delegates += new Delegate(clearText);
             a = ax2.Background;
             b = an.Background;
-
+          
 
 
         }
@@ -147,9 +147,10 @@ namespace BaseInk
         {
            
             tx.Focus();
-            
-          
-           
+            if (Console.CapsLock)
+            {
+                KeyHelper.OnKeyPress(0x14);
+            }
             KeyHelper.OnKeyPress(0x10);
              
 
@@ -180,15 +181,19 @@ namespace BaseInk
         {
             if (KeyBorderLabel.Content.ToString() == "键盘")
             {
-                grid_center.Visibility = Visibility.Hidden;
-                InkGrid.Visibility = Visibility.Visible;
+                tx.Text= InkPut.t.Text;
+                tx.Focus();
+                KeyHelper.OnKeyPress(0x23); 
+                grid_center.Visibility = Visibility.Visible;
+                InkGrid.Visibility = Visibility.Hidden;
                 KeyBorderLabel.Content = "手写";
             }
             else
             {
-                grid_center.Visibility = Visibility.Visible;
-                InkGrid.Visibility = Visibility.Hidden;
+                grid_center.Visibility = Visibility.Hidden;
+                InkGrid.Visibility = Visibility.Visible;
                 KeyBorderLabel.Content = "键盘";
+                
             }
          
 
@@ -427,9 +432,8 @@ namespace BaseInk
         {
             tx.Focus();
 
-
-
             KeyHelper.OnKeyPress(0x14);
+
         }
     }
             
