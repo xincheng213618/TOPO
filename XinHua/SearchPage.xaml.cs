@@ -99,6 +99,7 @@ namespace XinHua
         private void Pages()
         {
             App.InkWindows.Hide();
+            InkPut.delegates();
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
