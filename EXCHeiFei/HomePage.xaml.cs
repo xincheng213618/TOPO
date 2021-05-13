@@ -25,7 +25,6 @@ namespace EXC
 
         public HomePage()
         {
-
             InitializeComponent();
         }
         private void Page_Initialized(object sender, EventArgs e)
@@ -69,16 +68,23 @@ namespace EXC
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-
+            Global.Related.Ps.machinecode = Global.Config.TerminalName;
             Global.Related.PageType = button.Tag.ToString();
             switch (Global.Related.PageType)
             {
                 case "ReportHeFei":
+                    Global.Related.Ps.opeartiontype = "企业报告打印";
+                    Global.Related.Ps.authcode = "企业报告打印";
+                    Content = new IDCardPage();
+                    Pages();
+                    break;
                 case "ReportHeFei1":
+                    Global.Related.Ps.opeartiontype = "企业报告查询";
                     Content = new IDCardPage();
                     Pages();
                     break;
                 case "ReportGRHeFei":
+                    Global.Related.Ps.opeartiontype = "个人报告打印";
                     if (Global.Config.FunctionOpenGR)
                     {
                         Content = new IDCardPage();
