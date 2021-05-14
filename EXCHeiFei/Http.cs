@@ -6,6 +6,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace EXC
 {
@@ -13,6 +14,27 @@ namespace EXC
     {
         public class HeFei
         {
+            public static string AddAction(string Name, string IDCardNo, string CompanyName, string AuthType ,string USIC)
+            {
+                string url = Global.Config.HeifeiPrintSave;
+                //string url = "http://192.200.200.80:8089/WinHall-HeFei/server/save";
+                Dictionary<string, object> dic = new Dictionary<string, object>
+                {
+                    {"opeartiontime",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")},
+                    {"opeartiontype", "打印报告"},
+                    { "machinecode", "M001" },
+                    { "authcode", "009" },
+                    { "usersname", Name },
+                    { "companyname", CompanyName },
+                    { "userscardnum", IDCardNo },
+                    { "authtype", AuthType },
+                    { "authuse", " " },
+                    { "companyuniscid", USIC }
+                };
+                string response = Requests.Get(url, dic, 200);
+                Log.WriteUrl(url, response);
+                return response;
+            }
             public static string GetReportList(string IDCardNo, string Name, string authMethod)
             {
                 string url = Global.Config.HeiFeiListUrl;
