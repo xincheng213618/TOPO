@@ -195,6 +195,7 @@ namespace BaseInk
         }
         public void clearText()
         {
+            tx.Text = "";
         }
         private void Window_Activated(object sender, EventArgs e)
         {
