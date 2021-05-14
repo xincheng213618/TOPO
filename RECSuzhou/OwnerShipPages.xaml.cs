@@ -141,7 +141,7 @@ namespace RECSuzhou
             {
                 if (HouseItem.ElementAt(OwnerShipListView.SelectedIndex).Visible == "Visible")
                 {
-                    Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinquanshu");
+                    Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinquanshu", "");
 
                     string FileName = HouseItem.ElementAt(OwnerShipListView.SelectedIndex).FilePath.ToString();
                     Content = new Pdfshow(FileName);
