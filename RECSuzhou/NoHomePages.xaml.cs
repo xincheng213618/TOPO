@@ -110,6 +110,15 @@ namespace RECSuzhou
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
+            if(Global.Related.PageType == "NoHome")
+            { 
+                Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinwufang","");
+            }
+            else
+            {
+                Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "Childdayinwufang", Global.Related.OprName+"||"+Global.Related.OprCardNo);
+            }
+                
             WaitShow.Visibility = Visibility.Visible;
             PopTips.Text = "正在打印";
             pageTimer.IsEnabled = false;

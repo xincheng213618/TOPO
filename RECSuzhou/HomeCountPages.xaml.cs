@@ -121,6 +121,7 @@ namespace RECSuzhou
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
+            Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayintaoshu", "");
             WaitShow.Visibility = Visibility.Visible;
             PopTips.Text = "正在打印";
             pageTimer.IsEnabled = false;

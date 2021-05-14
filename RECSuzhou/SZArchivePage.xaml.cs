@@ -215,7 +215,7 @@ namespace RECSuzhou
                                 Log.Write("图片转pdf成功");
                                 PDF.PDFMark(FileName, "苏州市不动产登记中心虎丘分中心", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
                                 Log.Write("正在添加图片水印");
-                                Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinquanshu");
+                                Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayindangan", "");
                                 for (int j = 0; j < fileNameList.ToArray().Length; j++)
                                     File.Delete(@fileNameList.ToArray()[j]);
 
@@ -390,6 +390,7 @@ namespace RECSuzhou
         {
             if (SZArchiveMenuListView.SelectedIndex > -1)
             {
+                Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayindangan", "");
                 string FilePath = SZArchiveMenuItems.ElementAt(SZArchiveMenuListView.SelectedIndex).FileName.ToString();
                 if (File.Exists(FilePath))
                 {

@@ -132,7 +132,7 @@
                             <GridViewColumn >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked ="{Binding IsCheck,Mode=TwoWay}"  Click="CheckBox_Click" Tag="{Binding Path=ListNo}" Visibility="{Binding Path=CheckVisible}"/>
+                                        <CheckBox IsChecked ="{Binding IsCheck,Mode=TwoWay}"  Click="CheckBox_Click" Tag="{Binding Path=ListNo}" Visibility="{Binding Path=CheckVisible}" DataContextChanged="CheckBox_DataContextChanged"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

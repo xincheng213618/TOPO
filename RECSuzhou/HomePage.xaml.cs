@@ -82,7 +82,9 @@ namespace RECSuzhou
                     Pages();
                     break;
                 case "NoHomeChild":
-                    Content = new IDcardInputPage();
+                    //Content = new IDcardInputPage();
+                    //未成年无房打印需要记录操作人的身份信息
+                    Content = new IDCardPage();
                     Pages();
                     break;
                 case "SZWZArchivePages":
