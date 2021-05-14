@@ -319,20 +319,7 @@ namespace EXC
                             Http.HeFei.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, CompanyName,AuthType, USCI);
                             if (Sucess)
                             {
-                                Global.Related.Ps.opeartiontime = DateTime.Now.ToString();
-                                switch (Global.Related.PageType)
-                                {
-                                    case "ReportHeFei":
-                                        Global.Related.Ps.opeartiontype = "企业报告打印";
-                                        break;
-                                    case "ReportHeFei1":
-                                        Global.Related.Ps.opeartiontype = "企业报告查询";
-                                        break;
-                                    case "ReportGRHeFei":
-                                        Global.Related.Ps.opeartiontype = "个人报告打印";
-                                        break;
-                                }
-                                        Content = new Pdfshow(FilePath);
+                                Content = new Pdfshow(FilePath);
                                 Pages();
                             }
                             else

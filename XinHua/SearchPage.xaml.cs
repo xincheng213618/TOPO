@@ -34,6 +34,7 @@ namespace XinHua
         }
         private void Page_Initialized(object sender, EventArgs e)
         {
+          
             FocusManager.SetFocusedElement(this, CompanySearchBox);
             App.InkWindows.Show();
             InkPut.delegate_Ink_Msg += Input;
@@ -98,8 +99,11 @@ namespace XinHua
         //页面转换
         private void Pages()
         {
+<<<<<<< HEAD
+=======
             App.InkWindows.Hide();
             InkPut.delegates();
+>>>>>>> origin/develop
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }

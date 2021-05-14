@@ -164,7 +164,7 @@ namespace RECSuzhou
                         {
                             Covert.Base64ToFile(reportcontent, filePath);
                         }
-                        Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinxuewei");
+                        //Http.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "dayinxuewei");
                         Content = new Pdfshow(filePath);
                         Pages();
                     }

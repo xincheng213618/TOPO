@@ -82,6 +82,8 @@ namespace RECSuzhou
                     Pages();
                     break;
                 case "NoHomeChild":
+                    Global.Related.OprName = Global.Related.IDCardData.Name;
+                    Global.Related.OprCardNo = Global.Related.IDCardData.IDCardNo;
                     Content = new IDcardInputPage();
                     Pages();
                     break;

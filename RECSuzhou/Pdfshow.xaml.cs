@@ -28,6 +28,7 @@ namespace RECSuzhou
         private List<Border> list;
         private bool PrintRun = false;
         private bool AllowPrint = true;
+        private bool PrintAll = true;
 
         public Pdfshow(int PrintAllNum = 1000)
         {
@@ -182,7 +183,7 @@ namespace RECSuzhou
                     {
                         CheckItem item = new CheckItem();
                         item.ListNo = i;
-                        //item.CheckVisible = PageAllNum > PrintAllNum ? "Visible" : "Hidden";
+                        //item.CheckVisible = PageAllNum > 3 ? "Visible" : "Hidden";
                         item.CheckVisible = Global.Related.PageType == "SZHQArchivePages" ? "Visible" : "Hidden";
                         PDFItem.Add(item);
                     }
@@ -196,8 +197,8 @@ namespace RECSuzhou
                     Button7.Visibility = PageAllNum <= 3 ? Visibility.Hidden : Visibility.Visible;
                     Button6.Visibility = PageAllNum <= 2 ? Visibility.Hidden : Visibility.Visible;
                     Button5.Visibility = PageAllNum <= 2 ? Visibility.Hidden : Visibility.Visible;
-                    //Button1Label.Content = PageAllNum < PrintAllNum ? "全部打印" : "打印已经选择的页面";
-                    Button1Label.Content = Global.Related.PageType != "SZHQArchivePages" ? "全部打印" : "打印已经选择的页面";
+                    Button1Label.Content = PageAllNum < PrintAllNum ? "全部打印" : "打印已经选择的页面";
+                    //Button1Label.Content = Global.Related.PageType != "SZHQArchivePages" ? "全部打印" : "打印已经选择的页面";
                 }
                 else
                 {
@@ -233,6 +234,7 @@ namespace RECSuzhou
         }
         private void PrintOneOver(object sender, EventArgs e)
         {
+            pageTimer.IsEnabled = true;
             Stamp.Close();
         }
         private AxAcroPDFLib.AxAcroPDF pdfc;
@@ -242,7 +244,7 @@ namespace RECSuzhou
             if (!PrintRun)
             {
                 pageTimer.IsEnabled = false;
-                if (Global.Related.PageType != "SZHQArchivePages")
+                if (PrintAll)
                 {
                     
                     PrintRun = true;
@@ -261,6 +263,7 @@ namespace RECSuzhou
                 AcrobatHelper.pdfControl.printAllFit(true);
                     return;
                 }
+                else { 
                 
                 string Pa = "";
 
@@ -294,6 +297,7 @@ namespace RECSuzhou
                 printUtil1.Show();
                 Stamp.Start(PageAllNumNew);
                 pdfc.printAllFit(true);
+                }
 
             }
         }
@@ -332,11 +336,12 @@ namespace RECSuzhou
         private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (PDFListView.SelectedIndex > 0)
-            {
+            {               
                 AcrobatHelper.pdfControl.setCurrentPage(PDFItem.ElementAt(PDFListView.SelectedIndex).ListNo);
                 PageNumLabel.Content = (PDFListView.SelectedIndex + 1).ToString() + " / " + PageAllNum.ToString();
                 PageNum = PDFListView.SelectedIndex + 1;
                 Time.Countdown = 60;
+                
             }
         }
 
@@ -350,12 +355,32 @@ namespace RECSuzhou
         {
             e.Handled = true;
         }
-
+        string Pa;
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
+            Time.Countdown = 60;
+            string Pa = "";
             CheckBox checkbox = sender as CheckBox;
             PDFItem.ElementAt(int.Parse(checkbox.Tag.ToString()) - 1).Ischeck = checkbox.IsChecked.Value;
-                      
+            for (int i = 0; i < PDFItem.Count; i++)
+                Pa += PDFItem.ElementAt(i).Ischeck ? PDFItem.ElementAt(i).ListNo.ToString() + "," : "";
+
+           
+
+            string[] strArray = Pa.Split(','); //字符串转数组
+
+            if (strArray.Length > 1)
+            {
+                PrintAll = false;
+                Button1Label.Content =  "打印已经选择的页面";
+            }
+            else
+            {
+                PrintAll = true;
+                Button1Label.Content = "全部打印";
+            }
+           
+
         }
         private async void PopAlert(int time)
         {
@@ -369,8 +394,10 @@ namespace RECSuzhou
             POP.Visibility = Visibility.Hidden;
         }
 
-
-        
-
+        private void CheckBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+           
+            
+        }
     }
 }
