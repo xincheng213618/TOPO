@@ -62,6 +62,8 @@ namespace RECSuzhou
         {
             if (!Directory.Exists("Temp"))
                 Directory.CreateDirectory("Temp");
+            if (!Directory.Exists("BackGround"))
+                Directory.CreateDirectory("BackGround");
             Global.Initialized();
         }
 
