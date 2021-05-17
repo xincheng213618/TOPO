@@ -23,10 +23,11 @@ namespace EXCYiXing
             InitializeComponent();
         }    public HomePage( string msg)
         {
-                PopAlert(msg, 3);//吉林 原本为3
             InitializeComponent();
+            PopAlert(msg, 3);//吉林 原本为3
+
         }
-     
+
 
         private void Page_Initialized(object sender, EventArgs e)
         {
@@ -75,7 +76,7 @@ namespace EXCYiXing
                     //Content = new Report();
                     break;
                 case "YiXingNew":
-                    Content = new YiXingNew();
+                    Content = new SMPage();
                     Pages();
 
                     break;

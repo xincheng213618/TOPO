@@ -204,6 +204,9 @@
     <Compile Include="SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SMPage.xaml.cs">
+      <DependentUpon>SMPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValueToProcessConverter.cs" />
     <Page Include="CameraPage.xaml">
       <SubType>Designer</SubType>
@@ -265,6 +268,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SMPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
