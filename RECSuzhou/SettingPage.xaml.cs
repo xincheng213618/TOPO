@@ -173,6 +173,7 @@ namespace RECSuzhou
             {
               
                 case "Close":
+                    (Application.Current.MainWindow as MainWindow).Hide();
                     Environment.Exit(0);
                     break;
                 case "CloseDegree":
