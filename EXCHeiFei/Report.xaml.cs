@@ -214,7 +214,7 @@ namespace EXC
                         
                         if (File.Exists(FilePath))
                         {
-                            Http.HeFei.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, "", AuthType, "");
+                            Http.HeFei.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, " ", AuthType, " ");
                             Content = new Pdfshow(FilePath);
                             Pages();
                         }
