@@ -65,7 +65,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component", "Component", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeBianGu.Product.KeyBoard", "BaseKeyBoard\HeBianGu.Product.KeyBoard.csproj", "{FE7393F0-6487-430C-9E70-133F2C6ABBD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleVerification_HuQiu", "SingleVerification_HuQiu\SingleVerification_HuQiu.csproj", "{EC50F050-6FCF-4974-9DC9-7A76096FCF7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sv", "sv\sv.csproj", "{EC50F050-6FCF-4974-9DC9-7A76096FCF7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
