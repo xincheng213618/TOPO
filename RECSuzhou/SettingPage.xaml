@@ -79,13 +79,13 @@
                                     </Border>
                                     <Border Grid.Row="1"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                                         <Grid Margin="20,0,20,0">
-                                            <Label Content="关闭学位查询功能" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Label Content="关闭学位查询功能（虎丘）" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                             <Button x:Name="CloseDegree" Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="CloseDegree"  Click="Button_Click" HorizontalAlignment="Right" Width="840"/>
                                         </Grid>
                                     </Border>
                                     <Border Grid.Row="2"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                                         <Grid Margin="20,0,20,0">
-                                            <Label Content="开启学位查询功能" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Label Content="开启学位查询功能（虎丘）" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                             <Button x:Name="OpenDegree" Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="OpenDegree"  Click="Button_Click" HorizontalAlignment="Right" Width="840"/>
                                         </Grid>
                                     </Border>
