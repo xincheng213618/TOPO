@@ -100,6 +100,10 @@ namespace XinHua
         private void Pages()
         {
 
+
+            App.InkWindows.Hide();
+            InkPut.delegates();
+
             App.InkWindows.Hide();
             InkPut.delegates();
 

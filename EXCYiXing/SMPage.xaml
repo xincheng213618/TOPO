@@ -33,7 +33,7 @@
                     <Border MouseDown="Border_MouseDown" CornerRadius="20" Background="Blue" Margin="295,242,292,124" RenderTransformOrigin="0.5,0.5">
                         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="确    定" Foreground="White"></Label>
                     </Border>
-                    <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="*请把二维码对准下方扫码区扫码输入" Foreground="red" Margin="242,324,114,48" Width="324"></Label>
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="*请把二维码对准下方扫码区扫码输入,扫码成功后请核对格式是否正确" Foreground="red" Margin="147,324,114,48" Width="419"></Label>
 
                 </Grid>
             </Border>
