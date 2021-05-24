@@ -197,8 +197,8 @@ namespace RECSuzhou
                     Button7.Visibility = PageAllNum <= 3 ? Visibility.Hidden : Visibility.Visible;
                     Button6.Visibility = PageAllNum <= 2 ? Visibility.Hidden : Visibility.Visible;
                     Button5.Visibility = PageAllNum <= 2 ? Visibility.Hidden : Visibility.Visible;
-                    Button1Label.Content = PageAllNum < PrintAllNum ? "全部打印" : "打印已经选择的页面";
-                    //Button1Label.Content = Global.Related.PageType != "SZHQArchivePages" ? "全部打印" : "打印已经选择的页面";
+                    //Button1Label.Content = PageAllNum < PrintAllNum ? "全部打印" : "打印已经选择的页面";
+                    Button1Label.Content = Global.Related.PageType != "SZHQArchivePages" ? "全部打印" : "打印已经选择的页面";
                 }
                 else
                 {
@@ -244,14 +244,31 @@ namespace RECSuzhou
             if (!PrintRun)
             {
                 pageTimer.IsEnabled = false;
-                if (PrintAll)
+                if (PrintAll && Global.Related.PageType == "SZHQArchivePages")
                 {                   
-                    //PopAlert(3);
+                    PopAlert(3);
+                    //PrintRun = true;
+                    //PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
+                    //printUtil.Closed += PrintOver;
+                    //printUtil.Show();
+                    //Stamp.Start(PageAllNum);
+                    //int run = Stamp.Start(PageAllNum);
+                    //Log.Write("启动盖章机：" + run);
+                    ////if (!"0".Equals(run.ToString()))
+                    ////{
+                    ////    Content = new HomePage("盖章机启动失败，请重启盖章机");
+                    ////    Pages();
+                    ////    return;
+                    ////}
+                    //AcrobatHelper.pdfControl.printAllFit(true);
+                    return;
+                }else if(PrintAll && Global.Related.PageType != "SZHQArchivePages")
+                    {
                     PrintRun = true;
                     PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
                     printUtil.Closed += PrintOver;
                     printUtil.Show();
-                    Stamp.Start(PageAllNum);
+                    //Stamp.Start(PageAllNum);
                     int run = Stamp.Start(PageAllNum);
                     Log.Write("启动盖章机：" + run);
                     //if (!"0".Equals(run.ToString()))
@@ -263,7 +280,8 @@ namespace RECSuzhou
                     AcrobatHelper.pdfControl.printAllFit(true);
                     return;
                 }
-                else { 
+                
+                else if(!PrintAll){ 
                 
                 string Pa = "";
 
@@ -375,9 +393,9 @@ namespace RECSuzhou
                 Button1Label.Content =  "打印已经选择的页面";
             }
             else
-            {               
+            {   //虎丘要求关闭档案全部打印功能            
                 PrintAll = true;
-                Button1Label.Content = "全部打印";
+                //Button1Label.Content = "全部打印";
             }
            
 

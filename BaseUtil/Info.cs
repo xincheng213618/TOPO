@@ -60,6 +60,7 @@ namespace BaseUtil
             {
                 IP[i] = List[i].ToString();
             }
+
             return IP;
         }
         public static string[] MACAdress()
@@ -73,6 +74,10 @@ namespace BaseUtil
                 {
                     mac[i] = mo["MacAddress"].ToString().Trim().Replace(':', '-');
                     i++;
+                }
+                else
+                {
+                    mac[i] = "aa:bb:cc:dd";
                 }
             return mac;
 

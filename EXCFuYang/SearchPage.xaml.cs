@@ -1,4 +1,5 @@
 ﻿
+using BaseInk;
 using BaseUtil;
 using System;
 using System.Collections.Generic;
@@ -95,8 +96,13 @@ namespace XinHua
         //页面转换
         private void Pages()
         {
+<<<<<<< HEAD
+
             App.inkWindows.Hide();
-            BaseInk.InkPut.delegates();
+            InkPut.delegates();
+
+=======
+>>>>>>> 730b28d87688c3e43b6d70cc76c62b4bfffd8436
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }
