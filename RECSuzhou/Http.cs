@@ -274,14 +274,14 @@ namespace RECSuzhou
         //BUG Fix By Mr.Xin 2020.5.7 禁止返回信息未空的数据
         public static string Get(string url, Dictionary<string, object> dic = null, int timeout = 30000, string UserAgent = null)
         {
-            url = DicAndUrl(url, dic);
-
-            Log.WriteUrl(url, null);
-            string response = Request("GET", url, dic: dic, Timeout: timeout);
-            Log.WriteUrl(url, response);
-
-
-            return response;
+            
+                url = DicAndUrl(url, dic);
+                Log.WriteUrl(url, null);
+                string response = Request("GET", url, dic: dic, Timeout: timeout);
+                Log.WriteUrl(url, response);
+                return response;
+         
+            
         }
         public static string Gets(string url, Dictionary<string, object> dic = null, int timeout = 10000, string UserAgent = null)
         {
@@ -292,11 +292,14 @@ namespace RECSuzhou
 
         private static string DicAndUrl(string url, Dictionary<string, object> dic)
         {
-            string param = "";
-            if (dic != null)
-                for (int count = 0; count < dic.Count; count++)
-                    param += dic.ElementAt(count).Key + "=" + dic.ElementAt(count).Value.ToString() + "&";
-            return url += "?" + param;
+           
+                string param = "";
+                if (dic != null)
+                    for (int count = 0; count < dic.Count; count++)
+                        param += dic.ElementAt(count).Key + "=" + dic.ElementAt(count).Value.ToString() + "&";
+                return url += "?" + param;
+           
+           
         }
 
 
