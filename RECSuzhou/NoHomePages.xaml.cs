@@ -46,9 +46,10 @@ namespace RECSuzhou
             thread.Start();
         }
         private void NoHomeRequests()
-        {
-            string response = Http.NoHome(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
-            Dispatcher.BeginInvoke(new Action(() => Parse(response)));
+        {          
+                string response = Http.NoHome(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
+                Dispatcher.BeginInvoke(new Action(() => Parse(response)));
+         
         }
 
         private void Parse(string response)
