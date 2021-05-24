@@ -147,7 +147,10 @@ namespace BaseInk
         {
            
             tx.Focus();
-            
+            if (Console.CapsLock)
+            {
+                KeyHelper.OnKeyPress(0x14);
+            }
           
            
             KeyHelper.OnKeyPress(0x10);
@@ -180,18 +183,19 @@ namespace BaseInk
         {
             if (KeyBorderLabel.Content.ToString() == "键盘")
             {
-                grid_center.Visibility = Visibility.Hidden;
-                InkGrid.Visibility = Visibility.Visible;
-                KeyBorderLabel.Content = "手写";
+                grid_center.Visibility = Visibility.Visible;
+                InkGrid.Visibility = Visibility.Hidden;
+           KeyBorderLabel.Content = "手写";
             }
             else
             {
-                grid_center.Visibility = Visibility.Visible;
-                InkGrid.Visibility = Visibility.Hidden;
+                grid_center.Visibility = Visibility.Hidden;
+                InkGrid.Visibility = Visibility.Visible;
                 KeyBorderLabel.Content = "键盘";
-            }
-         
 
+            }
+            selectionsLists.Clear();
+            inkCanvas.Strokes.Clear();
         }
         public void clearText()
         {
@@ -448,6 +452,13 @@ namespace BaseInk
             tx.Text = "";
 
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+      
     }
             
  

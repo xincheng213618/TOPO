@@ -53,6 +53,7 @@ namespace XinHua
 
         public MainWindow mainWindow;
         public StartWindow StartWindow;
+      
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
