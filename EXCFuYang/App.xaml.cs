@@ -1,4 +1,5 @@
-﻿using BaseUtil;
+﻿using BaseInk;
+using BaseUtil;
 using Startup;
 using System;
 using System.Runtime.ExceptionServices;
@@ -53,11 +54,13 @@ namespace XinHua
 
         public MainWindow mainWindow;
         public StartWindow StartWindow;
+        public static InkWindows  inkWindows ;
       
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             mainWindow = new MainWindow();
+            inkWindows = new InkWindows();
             StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = false, VarbTest = false });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
 

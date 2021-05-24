@@ -98,7 +98,7 @@ namespace PEC
                         
                         switch (Global.Related.PageType)
                         {
-                            case "ReportSuZhou":
+                            case "GRReportSuZhou":
                                 string response1 = Http.SuZhou.Upload(filePath);
                                 XmlDocument document = new XmlDocument();
                                 document.LoadXml(response1);

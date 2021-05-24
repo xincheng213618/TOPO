@@ -73,6 +73,7 @@ namespace XinHua
         {
             switch (Global.Related.PageType)
             {
+                case "CreditChina":
                 case "XinHuaPrint":
                     Content = new Report();
                     Pages();
