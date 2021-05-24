@@ -320,7 +320,7 @@
                             <Border CornerRadius="20" Background="#ffc086" BorderBrush="#4368CE" BorderThickness="3"  Opacity="0.95" />
 
                             <Image Source="images/Button/home.png" Stretch="Uniform" Margin="40,30,40,70"  />
-                            <Label  Content="学位证明" Foreground="White" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
+                            <Label  Content="学位查询" Foreground="White" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" >
                                 <Label.Effect>
                                     <DropShadowEffect BlurRadius="0" ShadowDepth="3" Opacity="0.8"/>
                                 </Label.Effect>

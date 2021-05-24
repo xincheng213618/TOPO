@@ -77,6 +77,10 @@ namespace XinHua
                     Content = new Report();
                     Pages();
                     break;
+                case "CreditChina":
+                    Content = new Report();
+                    Pages();
+                    break;
                 default:
                     Content = new HomePage("没有可进入页面,人脸对比成功");
                     Pages();
