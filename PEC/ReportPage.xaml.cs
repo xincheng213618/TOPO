@@ -10,6 +10,7 @@ using BaseUtil;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Xml;
 
 namespace PEC
 {
@@ -266,6 +267,23 @@ namespace PEC
                     Log.Write(filePath);
                     string bs64 = (string)data.GetValue("bgwj");
                     Covert.Base64ToFile(bs64, filePath);
+                  
+                     
+                   
+                        switch (Global.Related.PageType)
+                        {
+                            case "ReportSuZhou":
+                                string response1 = Http.SuZhou.Upload(filePath);
+                                XmlDocument document = new XmlDocument();
+                                document.LoadXml(response1);
+                                string Code = document.SelectSingleNode("//SEAL_DOC_RESPONSE/RET_CODE").InnerText;
+                                if (Code == "1")
+                                {
+                                    string returnmsg = document.SelectSingleNode("//SEAL_DOC_RESPONSE/FILE_LIST/FILE/FILE_URL").InnerText;
+                                    Requests.Downloade(returnmsg, filePath);
+                                }
+                                break;
+                        }
                     PopLabel.Content = "正在打印报告";
                     if (printcount > 1)
                     {

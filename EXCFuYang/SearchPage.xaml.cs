@@ -54,6 +54,10 @@ namespace XinHua
                     searchTitle.Content = "企业名称查询页面";
                     break;
             }
+            BaseInk.InkPut.t = CompanySearchBox;
+            BaseInk.InkPut.delegate_Ink_Msg += Input;
+
+                App.inkWindows.Show();
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
@@ -61,6 +65,12 @@ namespace XinHua
             Content = new HomePage();
             Pages();
         }
+        private void Input(string Msg)
+        {
+            CompanySearchBox.Text += Msg;
+            CompanySearchBox.Select(CompanySearchBox.Text.Length, 0);
+        }
+
         //计时器模块
         private DispatcherTimer pageTimer = null;
         TimeCount Time = new TimeCount();

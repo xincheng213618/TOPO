@@ -36,8 +36,8 @@ namespace XinHua
         {
           
             FocusManager.SetFocusedElement(this, CompanySearchBox);
-            App.InkWindows.Show();
-            InkPut.delegate_Ink_Msg += Input;
+        
+          
 
             Countdown_timer();
             switch (Global.Related.PageType)
