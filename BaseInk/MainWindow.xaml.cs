@@ -39,6 +39,7 @@ namespace BaseInk
         private ObservableCollection<SelectionsList> selectionsLists = new ObservableCollection<SelectionsList>();
         public InkWindows()
         {
+            
             Topmost = true;
             InitializeComponent();
         }
@@ -46,10 +47,14 @@ namespace BaseInk
         {
             DragMove();
         }
+      static  double x1 = SystemParameters.PrimaryScreenWidth;//得到屏幕整体宽度
+        static double y1 = SystemParameters.PrimaryScreenHeight;//得到屏幕整体高度
         private void Window_Initialized(object sender, EventArgs e)
         {
             ListVierew.ItemsSource = selectionsLists;
             InkPut.delegates += new Delegate(clearText);
+            Top = (y1 - this.Height) / 2;
+            Left= (x1 - this.Width) / 2;
             a = ax2.Background;
             b = an.Background;
 
@@ -172,7 +177,7 @@ namespace BaseInk
             ListView listView = sender as ListView;
             if (listView.SelectedIndex > -1)
             {
-                InkPut.Invoke(selectionsLists[listView.SelectedIndex].Content111);
+               tx.Text+= selectionsLists[listView.SelectedIndex].Content111;
                 selectionsLists.Clear();
                 inkCanvas.Strokes.Clear();
             }
@@ -194,6 +199,9 @@ namespace BaseInk
                 KeyBorderLabel.Content = "键盘";
 
             }
+            tx.Focus();
+            KeyHelper.OnKeyPress(0x23);
+
             selectionsLists.Clear();
             inkCanvas.Strokes.Clear();
         }
@@ -458,7 +466,16 @@ namespace BaseInk
 
         }
 
-      
+        private void Label_MouseMove_1(object sender, MouseEventArgs e)
+        {
+            ((Label)sender).Foreground = Brushes.Black;
+        }
+
+        private void Label_MouseLeave_1(object sender, MouseEventArgs e)
+        {
+            ((Label)sender).Foreground = Brushes.White;
+
+        }
     }
             
  

@@ -21,8 +21,12 @@
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
             <TextBox Text=""  Name="tx"  Width="0" Height="0" TextChanged="tx_TextChanged" Margin="57,20,689,30"/>
-            <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Content="" Background="Transparent" MouseLeftButtonDown="Window_MouseDrag"/>
-            <Button  Grid.Row="0" Grid.Column="1" Click="Exit" Focusable="False" Margin="4,0,0,2" Panel.ZIndex="999">
+            <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Content="" MouseLeftButtonDown="Window_MouseDrag">
+                <Label.Background>
+                    <ImageBrush ImageSource="hBackground.png"/>
+                </Label.Background>
+            </Label>
+            <Button  Grid.Row="0" Grid.Column="1" Click="Exit" Focusable="False" Margin="7,-4,-2,242" Panel.ZIndex="999" Grid.RowSpan="2">
                 <Button.Template>
                     <ControlTemplate>
                         <ControlTemplate.Triggers>
@@ -30,8 +34,8 @@
                                 <Setter Property="Border.Background" TargetName="PART_Background"  Value="Red"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
-                        <Border x:Name="PART_Background" Background="White" CornerRadius="0,4,0,4" >
-                            <Image Source="images\close.png"/>
+                        <Border x:Name="PART_Background" Background="Transparent" CornerRadius="0,4,0,4" >
+                            <Label Content="×" Foreground="White" FontSize="50" Margin="-3,-6,0,0"></Label>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
@@ -48,8 +52,8 @@
                 <Button Grid.Row="0" Tag="10" Focusable="False"  Click="Fun_Click"  >
                     <Button.Template>
                         <ControlTemplate>
-                            <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
-                                <Label x:Name="InputKind" Content="中" Focusable="False" Foreground="Black"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Border Background="Transparent" Margin="4,2,0,2" CornerRadius="4">
+                                <Label x:Name="InputKind" Content="中" Focusable="False" Foreground="White"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -57,8 +61,8 @@
                 <Button Grid.Row="1" Focusable="False" Click="Clear_Click"  >
                     <Button.Template>
                         <ControlTemplate>
-                            <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
-                                <Label Content="清空" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Border Background="Transparent" Margin="4,2,0,2" CornerRadius="4">
+                                <Label Content="清空" Focusable="False" Foreground="White"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -66,8 +70,8 @@
                 <Button Grid.Row="2" Tag="10" Focusable="False"  Click="Button_Click_1"  >
                     <Button.Template>
                         <ControlTemplate>
-                            <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
-                                <Label x:Name="InputKind" Content="大写" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Border Background="Transparent" Margin="4,2,0,2" CornerRadius="4">
+                                <Label x:Name="InputKind" Content="大写" Focusable="False" Foreground="White"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -76,8 +80,8 @@
                 <Button Grid.Row="4" Tag="10" Focusable="False"  Click="Button_Click" Margin="-1,2,1,-2"  >
                     <Button.Template>
                         <ControlTemplate>
-                            <Border Background="White" Margin="4,2,0,2" CornerRadius="4">
-                                <Label x:Name="InputKind" Content="切换" Focusable="False" Foreground="Black"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Border Background="Transparent" Margin="4,2,0,2" CornerRadius="4">
+                                <Label x:Name="InputKind" Content="切换" Focusable="False" Foreground="White"  FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -92,13 +96,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="KeyBorderLabel" Background="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Grid.Row="0" Grid.Column="0" Content="键盘"   Focusable="False"   MouseDown="Button_Click"   >
+                <Label x:Name="KeyBorderLabel" Background="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Grid.Row="0" Grid.Column="0" Foreground="White" Content="键盘"   Focusable="False"   MouseDown="Button_Click"   >
 
                 </Label>
 
 
 
-                <ListView  x:Name="ListVierew" Grid.Column="2" Focusable="False"  Background="White" BorderThickness="0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,-20,0,0"  SelectionChanged="ListVierew_SelectionChanged" Visibility="Hidden">
+                <ListView  x:Name="ListVierew" Grid.Column="2" Focusable="False"  Background="Transparent" BorderThickness="0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,-20,0,0"  SelectionChanged="ListVierew_SelectionChanged" Visibility="Hidden">
                     <ListView.ItemContainerStyle >
                         <Style TargetType="{x:Type ListBoxItem}">
                             <Setter Property="Width" Value="50" />
@@ -115,7 +119,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate  >
                                         <Grid >
-                                            <Label Focusable="False" Content="{Binding Path=Content111}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="40"/>
+                                            <Label MouseLeave="Label_MouseLeave_1" MouseMove="Label_MouseMove_1" Foreground="White" Focusable="False" Content="{Binding Path=Content111}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Width="40"/>
                                         </Grid>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -127,8 +131,14 @@
 
             </Grid>
             <Grid x:Name="InkGrid"  Grid.Row="1" >
-                <Border Grid.Row="1" >
-                    <InkCanvas x:Name="inkCanvas" Focusable="False"  StrokeCollected="InkCanvas_StrokeCollected" Background="#f5f6f7" Margin="0,0,0,0" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="190*"/>
+                    <ColumnDefinition Width="105*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="436*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="4" >
+                    <InkCanvas Background="White" Opacity="0.7" x:Name="inkCanvas"  Focusable="False"  StrokeCollected="InkCanvas_StrokeCollected"  Margin="0,0,0,0" />
                 </Border>
             </Grid>
 

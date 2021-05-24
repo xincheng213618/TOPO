@@ -28,7 +28,10 @@ namespace SimpleWindow
         /// </summary>
         public int RefreshTimer = 1000;
         BackGround backGround;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Screens">指定屏幕</param>
         public SimpleWindows(int Screens)
         {
             System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.AllScreens[Screens];
@@ -66,7 +69,12 @@ namespace SimpleWindow
                 };
             }
         }
-
+        /// <summary>
+        /// back
+        /// </summary>
+        /// <param name="Folder">路径</param>
+        /// <param name="Kinds">类型</param>
+        /// <param name="Intervaltime">幻灯片间隔时间</param>
         public void Update(string Folder, string Kinds, int Intervaltime)
         {
             backGround = new BackGround()

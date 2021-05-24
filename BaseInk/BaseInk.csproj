@@ -135,5 +135,11 @@
     <Resource Include="images\数字按钮.png" />
     <Resource Include="images\确认按钮.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\hBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hBackground.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
