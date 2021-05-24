@@ -54,7 +54,11 @@ namespace XinHua
 
         public MainWindow mainWindow;
         public StartWindow StartWindow;
+<<<<<<< HEAD
         public static InkWindows inkWindows;
+=======
+      
+>>>>>>> origin/master
         //启动
         private void Application_Startup(object sender, StartupEventArgs e)
         {
