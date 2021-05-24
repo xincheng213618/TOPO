@@ -99,16 +99,14 @@ namespace XinHua
         //页面转换
         private void Pages()
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- 
->>>>>>> 9306d167d85ec242fcf47bbb84ab479ac951528b
-=======
- 
->>>>>>> ad101a56a506facb36dc94d7f6da41653545b737
+
+
             App.InkWindows.Hide();
             InkPut.delegates();
+
+            App.InkWindows.Hide();
+            InkPut.delegates();
+
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
         }

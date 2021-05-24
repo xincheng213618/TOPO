@@ -1124,10 +1124,10 @@ namespace XinHua
                     Global.Related.CompanyData.CompanyID = CompanyID;
                     Global.Related.CompanyData.CompanyName = companyName;
                     Global.Related.CompanyData.USCI = listItems[0].USCI;
-                    Content = new Report();
-                    Pages();
-                    //Content = new IDCardPage();
+                    //Content = new Report();
                     //Pages();
+                    Content = new IDCardPage();
+                    Pages();
                     break;
                 default:
                     break;
