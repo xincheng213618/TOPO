@@ -139,14 +139,7 @@ namespace EXCYiXing
         private void tb_TextChanged(object sender, TextChangedEventArgs e)
         {
             Time.Countdown = 60;
-            if (tb.Text.Length>0)
-            {
-                bIsLoop = false;
-            }
-            else
-            {
-                bIsLoop = true;
-            }
+      
                        
         }
     }
