@@ -44,7 +44,7 @@ namespace RECSuzhou
        
         public Pdfshow(string filePath, int PrintAllNum = 1000, bool AllowPrint = true)
         {
-            
+           
             this.filePath = filePath;
             this.PrintAllNum = PrintAllNum;
             this.AllowPrint = AllowPrint;
@@ -223,7 +223,7 @@ namespace RECSuzhou
             printUtil.Show();
             //Stamp.Start(1);
             int run = Stamp.Start(1);
-            //Log.Write("启动盖章机：" + run);
+            Log.Write("启动盖章机：" + run);
             //if (!"0".Equals(run.ToString()))
             //{
             //    Content = new HomePage("盖章机启动失败，请重启盖章机");
@@ -245,22 +245,22 @@ namespace RECSuzhou
             {
                 pageTimer.IsEnabled = false;
                 if (PrintAll)
-                {
-                    
+                {                   
+                    //PopAlert(3);
                     PrintRun = true;
                     PrintUtilWindow printUtil = new PrintUtilWindow(PageAllNum);
                     printUtil.Closed += PrintOver;
                     printUtil.Show();
                     Stamp.Start(PageAllNum);
-                //int run = Stamp.Start(PageAllNum);
-                //Log.Write("启动盖章机：" + run);
-                //if (!"0".Equals(run.ToString()))
-                //{
-                //    Content = new HomePage("盖章机启动失败，请重启盖章机");
-                //    Pages();
-                //    return;
-                //}
-                AcrobatHelper.pdfControl.printAllFit(true);
+                    int run = Stamp.Start(PageAllNum);
+                    Log.Write("启动盖章机：" + run);
+                    //if (!"0".Equals(run.ToString()))
+                    //{
+                    //    Content = new HomePage("盖章机启动失败，请重启盖章机");
+                    //    Pages();
+                    //    return;
+                    //}
+                    AcrobatHelper.pdfControl.printAllFit(true);
                     return;
                 }
                 else { 
@@ -375,7 +375,7 @@ namespace RECSuzhou
                 Button1Label.Content =  "打印已经选择的页面";
             }
             else
-            {
+            {               
                 PrintAll = true;
                 Button1Label.Content = "全部打印";
             }
@@ -384,7 +384,7 @@ namespace RECSuzhou
         }
         private async void PopAlert(int time)
         {
-           
+
 
             
             POP.Visibility = Visibility.Visible;
@@ -399,5 +399,7 @@ namespace RECSuzhou
            
             
         }
+
+        
     }
 }

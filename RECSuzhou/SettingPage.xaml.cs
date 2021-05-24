@@ -157,7 +157,7 @@ namespace RECSuzhou
             Button button = sender as Button;
             switch ((string)button.Tag)
             {            
-                case "PDF":
+                case "PDF":               
                     Content = new Pdfshow();
                     break;
                 default:
@@ -173,6 +173,7 @@ namespace RECSuzhou
             {
               
                 case "Close":
+                    (Application.Current.MainWindow as MainWindow).Hide();
                     Environment.Exit(0);
                     break;
                 case "CloseDegree":

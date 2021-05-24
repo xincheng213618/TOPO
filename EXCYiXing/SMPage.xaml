@@ -1,0 +1,62 @@
+﻿<Page x:Class="EXCYiXing.SMPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EXCYiXing" xmlns:myLib="clr-namespace:MyLoadingLib;assembly=MyLoadingLib"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+      Title="SMPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="869*" />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <ProgressBar  Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="60"  Margin="10,20,0,0" Value="{Binding Countdown, Mode=OneWay}"  >
+            <ProgressBar.Template>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Border Background="{TemplateBinding Value, Converter={StaticResource ValueToProcessConverter}, ConverterParameter=90}"/>
+                </ControlTemplate>
+            </ProgressBar.Template>
+        </ProgressBar>
+        <Grid Grid.Row="1">
+            <Border Background="Blue" CornerRadius="30,30,0,0" Height="100" Margin="300,128,300,656">
+                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="请输入房产证号" Foreground="White" FontSize="25"></Label>
+            </Border>
+            <Border Background="White" CornerRadius="0,0,30,30" Margin="300,228,300,258">
+
+                <Grid>
+                    <Label FontStyle="Normal" Content="房产证号:" FontSize="20" Margin="111,90,465,272"/>
+                    <TextBox Name="tb" FontSize="20" Text="" VerticalAlignment="Bottom"  Margin="223,0,102,273" Height="31" TextChanged="tb_TextChanged"></TextBox>
+                    <Border MouseDown="Border_MouseDown" CornerRadius="20" Background="Blue" Margin="295,242,292,124" RenderTransformOrigin="0.5,0.5">
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="确    定" Foreground="White"></Label>
+                    </Border>
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="*请把二维码对准下方扫码区扫码输入,扫码成功后请核对格式是否正确" Foreground="red" Margin="147,324,114,48" Width="419"></Label>
+
+                </Grid>
+            </Border>
+
+
+        </Grid>
+        <Grid Grid.Row="1" Visibility="Collapsed">
+            <Border Background="Blue" CornerRadius="30,30,0,0" Width="800" Height="100" Margin="240,128,240,656">
+
+            </Border>
+            <Border Background="White" CornerRadius="0,0,30,30" Width="800" Height="500" Margin="240,228,240,156">
+
+            </Border>
+        </Grid>
+        <Grid x:Name="WaitShow" Grid.Row="1" Visibility="Hidden">
+            <Border  Background="Black" Opacity="0.13"/>
+            <Border Height="300" Width="300"  Background="White" CornerRadius="20" BorderBrush="AliceBlue" BorderThickness="8">
+                <Grid >
+                    <myLib:CirclePointRingLoading Width="100" Height="100"  IsActive="True" Foreground="#007ACC" Margin="0,0,0,70"/>
+                    <Label x:Name="hintLabel" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Margin="20" FontSize="25" Foreground="Black"  Content="正在查询请耐心等待" />
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Grid>
+</Page>

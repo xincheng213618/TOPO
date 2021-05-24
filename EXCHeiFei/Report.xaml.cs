@@ -63,6 +63,7 @@ namespace EXC
                     Dispatcher.BeginInvoke(new Action(() => ReportHeFei(response)));
                     break;
                 case "ReportGRHeFei":
+                    AuthType = "3";
                     response = Http.HeFei.GetGRReport(idcardData.IDCardNo, idcardData.Name);
                     string filePath = "Temp\\" + idcardData.Name + ".pdf";
                     Dispatcher.BeginInvoke(new Action(() => GetReportGRHeiFei(response, filePath)));
@@ -213,6 +214,7 @@ namespace EXC
                         
                         if (File.Exists(FilePath))
                         {
+                            Http.HeFei.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, " ", AuthType, " ");
                             Content = new Pdfshow(FilePath);
                             Pages();
                         }
@@ -315,10 +317,11 @@ namespace EXC
                             string url = (string)data["data"];
                             bool Sucess = Http.HeFei.ReportDL(url, FilePath);
                             hintLabel.Content = "正在下载报告文件";
-                            //记录打印记录
-                            Http.HeFei.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, CompanyName,AuthType, USCI);
+                           
                             if (Sucess)
                             {
+                                //记录打印记录
+                                Http.HeFei.AddAction(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo, CompanyName, AuthType, USCI);
                                 Content = new Pdfshow(FilePath);
                                 Pages();
                             }
