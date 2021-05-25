@@ -65,10 +65,11 @@
                             </TextBox.Style>
                         </TextBox>
                         <TextBox Visibility="Collapsed" x:Name="passwordes"></TextBox>
-                        <PasswordBox BorderThickness="0,0,0,1"  x:Name="password"  FontSize="30" Height="40" MaxLength="20" Margin="60,100,20,0" VerticalAlignment="Top"  >
+                        <PasswordBox BorderThickness="0,0,0,2"  x:Name="password"  FontSize="30" Height="40" MaxLength="20" Margin="60,100,20,0" VerticalAlignment="Top"  >
                             
                                  
                         </PasswordBox>
+                        
                         <Border Margin="60,180,20,48" CornerRadius="20">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0.815,0.443" StartPoint="0.24,0.483">
@@ -183,7 +184,8 @@
                 </Grid>
             </Border>
         </Grid>
-        <Border x:Name="PopBorder" Grid.Row="1"  Background="White" CornerRadius="20" Margin="557,245,423,309" BorderBrush="#c5c5c5" BorderThickness="2" Visibility="Hidden">
+        <Border Visibility="Hidden"  x:Name="PopBorder1" Grid.Row="1" Background="Black" Opacity="0.3"></Border>
+        <Border Visibility="Hidden" x:Name="PopBorder" Grid.Row="1"  Background="White" CornerRadius="20" Margin="491,248,489,306" BorderBrush="#c5c5c5" BorderThickness="2">
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="193*" />

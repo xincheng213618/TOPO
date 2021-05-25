@@ -135,6 +135,7 @@ namespace PEC
                         try
                         {
                             PopBorder.Visibility = Visibility.Visible;
+                            PopBorder1.Visibility = Visibility.Visible;
 
                             Thread thread = new Thread(() => RequestLogin(_user, _Password))
                             {

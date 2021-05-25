@@ -202,6 +202,7 @@ namespace PEC
                 Button b = new Button()
                 {
                     Content = item.TemplateName,
+                    FontSize = 20,
                     Background = Brushes.Transparent,
                     Tag = item.TemplateID,
                     BorderThickness = new Thickness(0),
@@ -263,7 +264,7 @@ namespace PEC
                         return;
                     }
                     JObject data = (JObject)JsonConvert.DeserializeObject(JsonData["data"].ToString());
-                    string filePath =  Environment.CurrentDirectory+"Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
+                    string filePath =  Environment.CurrentDirectory+"\\Cache\\" + (string)data.GetValue("bgbh") + ".pdf";
                     Log.Write(filePath);
                     string bs64 = (string)data.GetValue("bgwj");
                     Covert.Base64ToFile(bs64, filePath);
@@ -284,13 +285,16 @@ namespace PEC
                                 }
                                 break;
                         }
-                    PopLabel.Content = "正在打印报告";
+
+                    Dispatcher.BeginInvoke(new Action(() => { PopLabel.Content = "正在打印报告"; })); 
                     if (printcount > 1)
                     {
                         Printover = true;
                         printcount = 0;
                     }
-                    PrintStart(filePath);
+                    Dispatcher.BeginInvoke(new Action(() => { PrintStart(filePath); }));
+
+                    
                 }
                 else
                 {
@@ -307,11 +311,10 @@ namespace PEC
             WaitShow.Visibility = Visibility.Visible;
             MoBanList.Visibility = Visibility.Hidden;
             alert(null, 11);
-
             mobanId = ((Button)sender).Tag.ToString();
-
             PopBorder.Visibility = Visibility.Visible;
-            Dispatcher.BeginInvoke(new Action(ProvincialPrintPdf1));
+            Thread thread=new Thread(new ThreadStart( ProvincialPrintPdf1));
+            thread.Start();
             PopLabel.Content = "打印完毕";
         }
     }
