@@ -73,15 +73,14 @@ namespace XinHua
         {
             switch (Global.Related.PageType)
             {
-                case "CreditChina":
-                case "XinHuaPrint":
+                case "XinHuaQiYeXinXi":
+                case "CreditChinaQiYeXinXi":
+                case "NaShuiXinYongA":
+                case "ShuiShouWeiFa":
+                case "ShiXinRen":
                     Content = new Report();
                     Pages();
-                    break;
-                case "CreditChina":
-                    Content = new Report();
-                    Pages();
-                    break;
+                    break;              
                 default:
                     Content = new HomePage("没有可进入页面,人脸对比成功");
                     Pages();

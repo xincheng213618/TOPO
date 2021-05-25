@@ -42,8 +42,11 @@ namespace XinHua
             Countdown_timer();
             switch (Global.Related.PageType)
             {
-                case ("QiYeXinXi"):
-                    searchTitle.Content = "企业信息查询";
+                case ("XinHuaQiYeXinXi"):
+                    searchTitle.Content = "新华信用企业信息查询";
+                    break;
+                case ("CreditChinaQiYeXinXi"):
+                    searchTitle.Content = "信用中国企业信息查询";
                     break;
                 case ("NaShuiXinYongA"):
                     searchTitle.Content = "纳税信用A级企业列表搜索";
@@ -101,11 +104,6 @@ namespace XinHua
         {
 
 
-            App.InkWindows.Hide();
-            InkPut.delegates();
-
-            App.InkWindows.Hide();
-            InkPut.delegates();
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));
