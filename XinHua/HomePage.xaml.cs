@@ -61,7 +61,8 @@ namespace XinHua
             Log.Write(Global.Related.PageType);
             switch (Global.Related.PageType)
             {
-                case "QiYeXinXi":
+                case "XinHuaQiYeXinXi":
+                case "CreditChinaQiYeXinXi":
                 case "NaShuiXinYongA":
                 case "ShuiShouWeiFa":
                 case "ShiXinRen":

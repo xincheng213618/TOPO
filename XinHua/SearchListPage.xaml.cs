@@ -76,7 +76,11 @@ namespace XinHua
             string companyName = SearchContent;
             switch (Global.Related.PageType)
             {
-                case "QiYeXinXi":
+                case "XinHuaQiYeXinXi":
+                    response = Http.XinHuaSearch(companyName, pageNo);
+                    Dispatcher.BeginInvoke(new Action(() => SearchPharse(response)));
+                    break;
+                case "CreditChinaQiYeXinXi":
                     response = Http.XinHuaSearch(companyName, pageNo);
                     Dispatcher.BeginInvoke(new Action(() => SearchPharse(response)));
                     break;
@@ -353,7 +357,11 @@ namespace XinHua
                 string CompanyID = CompayQueryListItem.ElementAt(listView.SelectedIndex).CompanyID.ToString();
                 switch (Global.Related.PageType)
                 {
-                    case "QiYeXinXi":
+                    case "XinHuaQiYeXinXi":
+                        Content = new XinHuaCompanyDetailPage(CompanyID);
+                        Pages();
+                        break;
+                    case "CreditChinaQiYeXinXi":
                         Content = new XinHuaCompanyDetailPage(CompanyID);
                         Pages();
                         break;

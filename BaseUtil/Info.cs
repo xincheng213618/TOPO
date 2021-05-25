@@ -77,7 +77,7 @@ namespace BaseUtil
                 }
                 else
                 {
-                    mac[i] = "aa:bb:cc:dd";
+                    mac[i] = "00-00-00-00-00-00";
                 }
             return mac;
 

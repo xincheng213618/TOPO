@@ -35,10 +35,13 @@ namespace XinHua
             WaitShow.Visibility = Visibility.Visible;
             switch (Global.Related.PageType)
             {
-                case "XinHuaPrint":
+                case "XinHuaQiYeXinXi":
+                case "NaShuiXinYongA":
+                case "ShuiShouWeiFa":
+                case "ShiXinRen":
                     hintLabel.Content = "正在生成报告";        
                     break;
-                case "CreditChina":
+                case "CreditChinaQiYeXinXi":
                     hintLabel.Content = "下载信用报告中";
                     break;
                 default:
@@ -53,11 +56,14 @@ namespace XinHua
             string response;
             switch(Global.Related.PageType)
             {
-                case "XinHuaPrint":
+                case "XinHuaQiYeXinXi":
+                case "NaShuiXinYongA":
+                case "ShuiShouWeiFa":
+                case "ShiXinRen":
                     response = Http.XinHuaReport(Global.Related.CompanyData.CompanyName, Global.Related.CompanyData.CompanyID);
                     Dispatcher.BeginInvoke(new Action(() => ReportXinHua(response)));
                     break;
-                case "CreditChina":
+                case "CreditChinaQiYeXinXi":
                     bool Success = Http.GetCreditchinaReport(Global.Related.CompanyData.CompanyName, Global.Related.CompanyData.USCI, "Temp//" + Global.Related.CompanyData.CompanyName + ".pdf");
                     Dispatcher.BeginInvoke(new Action(() => ReportCreditChina(Success)));
                     break;
@@ -125,7 +131,10 @@ namespace XinHua
             
             switch (Global.Related.PageType)
             {
-                case "XinHuaPrint":
+                case "XinHuaQiYeXinXi":
+                case "NaShuiXinYongA":
+                case "ShuiShouWeiFa":
+                case "ShiXinRen":
                     bool Sucess = Http.GetXinHuaReport(FileName, filePath);
                     Dispatcher.BeginInvoke(new Action(() => ReportToPDFShow(Sucess, filePath)));
                     break;
