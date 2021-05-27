@@ -90,6 +90,8 @@ namespace RECSuzhou
         public string SettingOptimiz { get; set; } = "0";
         //degree功能开启(0 开，其他关)
         public string DegreeOptimiz { get; set; } = "0";
+        //degree打印功能开启(0 开，其他关)
+        public string DegreePrintOptimiz { get; set; } = "0";
 
         //设置查询地区
         public string SuZhouGuSu { get; set; }

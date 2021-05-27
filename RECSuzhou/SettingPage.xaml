@@ -89,6 +89,18 @@
                                             <Button x:Name="OpenDegree" Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="OpenDegree"  Click="Button_Click" HorizontalAlignment="Right" Width="840"/>
                                         </Grid>
                                     </Border>
+                                    <Border Grid.Row="3"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                                        <Grid Margin="20,0,20,0">
+                                            <Label Content="关闭学位打印功能（虎丘）" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Button x:Name="CloseDegreePrint" Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="CloseDegreePrint"  Click="Button_Click" HorizontalAlignment="Right" Width="840"/>
+                                        </Grid>
+                                    </Border>
+                                    <Border Grid.Row="4"  BorderBrush="#f8f8f8" BorderThickness="0,0,0,1" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                                        <Grid Margin="20,0,20,0">
+                                            <Label Content="开启学位打印功能（虎丘）" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            <Button x:Name="OpenDegreePrint" Style="{StaticResource TransparentButtonLeft}" Content=">" Tag="OpenDegreePrint"  Click="Button_Click" HorizontalAlignment="Right" Width="840"/>
+                                        </Grid>
+                                    </Border>
 
 
 
