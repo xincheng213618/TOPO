@@ -73,11 +73,16 @@ namespace XinHua
         {
             switch (Global.Related.PageType)
             {
+<<<<<<< HEAD
                 case "XinHuaQiYeXinXi":
                 case "CreditChinaQiYeXinXi":
                 case "NaShuiXinYongA":
                 case "ShuiShouWeiFa":
                 case "ShiXinRen":
+=======
+                //case "CreditChina":
+                case "XinHuaPrint":
+>>>>>>> 17cd2ec3d2cabb65abb0dc69a3fa004ff48ae012
                     Content = new Report();
                     Pages();
                     break;              

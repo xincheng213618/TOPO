@@ -104,6 +104,14 @@ namespace XinHua
         {
 
 
+<<<<<<< HEAD
+=======
+            //App.InkWindows.Hide();
+            InkPut.delegates();
+
+            //App.InkWindows.Hide();
+            InkPut.delegates();     
+>>>>>>> 17cd2ec3d2cabb65abb0dc69a3fa004ff48ae012
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));

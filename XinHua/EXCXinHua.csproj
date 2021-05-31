@@ -55,9 +55,6 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Startup">
-      <HintPath>..\Startup\bin\Debug\Startup.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -321,6 +318,10 @@
     <ProjectReference Include="..\Register\Register.csproj">
       <Project>{acd7acd3-8241-4f45-9761-baf5c9bf50b2}</Project>
       <Name>Register</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Startup\Startup.csproj">
+      <Project>{0d3f1343-afda-45a6-a166-fdf54e77f273}</Project>
+      <Name>Startup</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

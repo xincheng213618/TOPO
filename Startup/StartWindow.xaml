@@ -5,7 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              MouseLeftButtonDown="Window_MouseDrag"
-        Title="StartWindow" Height="350" Width="450" WindowStyle="None" ResizeMode="NoResize"  Background="#00FFFFFF" AllowsTransparency="True" Initialized="Window_Initialized" >
+        Title="StartWindow" Height="350" Width="450"  WindowStyle="None" BorderThickness="0"  BorderBrush ="#67b8dd" Initialized="Window_Initialized" >
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="1 64 1 1"  UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+    <Window.Template>
+        <ControlTemplate TargetType="Window">
+            <Border Padding="0 29 0 0"   BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="{TemplateBinding BorderThickness}"  >
+                <Grid x:Name="RootGrid"  Background="{TemplateBinding Background}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Background="{TemplateBinding BorderBrush}" VerticalAlignment="Top" Height="30" Margin="0 -29 0 0" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="45" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{TemplateBinding Icon}"   Height="{x:Static SystemParameters.SmallIconHeight}" Width="{x:Static SystemParameters.SmallIconWidth}" WindowChrome.IsHitTestVisibleInChrome="True" >
+                            </Image>
+                            <ContentControl Foreground="Black"  FontSize="{DynamicResource {x:Static SystemFonts.CaptionFontSize}}"  Content="{TemplateBinding Title}"  VerticalAlignment="Center" Margin="2,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel x:Name="WindowCommandButtonsPanel" Grid.Column="1"  HorizontalAlignment="Center" Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True" Margin="0,0,-5,0">
+                            <Button x:Name="CloseButton" Style="{DynamicResource CloseButtonStyle}" Width="45"  Click="SystemCommands_Click" />
+                        </StackPanel>
+                    </Grid>
+
+                    <ContentPresenter Content="{TemplateBinding Content}" Grid.Column="0" Grid.ColumnSpan="1" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="WindowState" Value="Maximized">
+                    <Setter TargetName="RootGrid" Property="Margin" Value="6" />
+                </Trigger>
+
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
+                        <Condition Property="WindowState" Value="Normal" />
+                    </MultiTrigger.Conditions>
+                </MultiTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Template>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,41 +58,12 @@
     </Window.Resources>
     
 
-    <Border Style="{StaticResource ProgramShadow }">
+    <Border >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
-            <Button   HorizontalAlignment="Right" Height="18" VerticalAlignment="Top"  Click="Button_Close_Click" ToolTip="关闭" Panel.ZIndex="999">
-                <Button.Template>
-                    <ControlTemplate>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Border.Background" TargetName="PART_Background"  Value="red"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                        <Border x:Name="PART_Background" Background="Transparent" CornerRadius="2"  >
-                            <Image Source="Images/close.png" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button  Height="18" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Min_Click" ToolTip="最小化" Margin="0,0,20,0" Panel.ZIndex="999">
-                <Button.Template>
-                    <ControlTemplate>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Border.Background" TargetName="PART_Background"  Value="Red"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                        <Border x:Name="PART_Background" Background="Transparent" CornerRadius="2" >
-                            <Image Source="Images/min.png" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-
 
             <Border Grid.Row="0" Background="#67b8dd" BorderBrush="Azure" BorderThickness="0,0,0,1">
                 <Grid>
