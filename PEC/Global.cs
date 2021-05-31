@@ -86,7 +86,7 @@ namespace PEC
         public string AdminPassword { get; set; } = "admin";
         public string LoadAnimation { get; set; } = "true";
         public string PrintTipWindows { get; set; } = "B13";
-        public string ZzjCode { get; set; } 
+        public string ZzjCode { get; set; } = "32000001";
         //大华登录
         public string DALoginUrl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/authlocal/getfrdata";
         public string DAListUrl { get; set; } = "http://172.24.128.20:19090/WinHall-JSSCredit/authlocal/getfrcompany";

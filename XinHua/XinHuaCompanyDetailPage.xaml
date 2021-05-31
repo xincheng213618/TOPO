@@ -45,7 +45,7 @@
                 </Grid>
             </Button>
 
-            <Button  Template="{StaticResource imageButtonTemplate}"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="300,0" Height="50"  Click="Button_Click" Tag="XinHuaPrint">
+            <Button  Template="{StaticResource imageButtonTemplate}"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="300,0" Height="50"  Click="Button_Click" Tag="Print">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -77,7 +77,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                       
                     </Grid.RowDefinitions>
                     <Label x:Name="FontWeightBoldLabel" FontWeight="Bold" Visibility="Hidden"/>
                     <Label x:Name="FontWeightNormalLabel" FontWeight="Normal" Visibility="Hidden"/>
@@ -96,7 +96,7 @@
                     <Border x:Name="TrademarkBorder" Grid.Row="4"  Background="#eeeeef"   CornerRadius="10" Margin="0,3,10,20">
                         <Button x:Name="TrademarkButton" Style="{StaticResource hiddenButton}" Content="商标信息" FontSize="25"  Click="PageChange_Click" Tag ="Trademark"/>
                     </Border>
-                    <Border Grid.Row="5"  Background="#eeeeef"   CornerRadius="10" Margin="0,3,10,20">
+                    <Border Grid.Row="5"  Background="#eeeeef"   CornerRadius="10" Margin="0,3,10,20" Visibility="Hidden">
                         <Button  Style="{StaticResource hiddenButton}" Content="信用中国" FontSize="25"  Click="Button_Click" Tag ="CreditChina"/>
                     </Border>
 

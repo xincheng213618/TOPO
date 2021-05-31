@@ -49,6 +49,7 @@ namespace REC
             //Pages();
             //return;
 
+           
             if (MainWindow.WindowsData.Status1 == "翻页：正常" && MainWindow.WindowsData.Status2 == "盖章：正常")
             {
                 Content = new IDCardPage();
@@ -56,7 +57,7 @@ namespace REC
             }
             else if (MainWindow.WindowsData.Status1 == "翻页：缺证")
             {
-                PopAlert("请联系工作人员放置证书", 3); 
+                PopAlert("请联系工作人员放置证书", 3);
             }
             else
             {

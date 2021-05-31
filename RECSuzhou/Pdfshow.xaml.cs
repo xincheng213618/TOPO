@@ -191,7 +191,7 @@ namespace RECSuzhou
                     PDFListView.SelectedIndex = 0;
 
                     PDFListView.Visibility =  Visibility.Visible;
-                    Button1.Visibility = AllowPrint && Global.Related.PageType != "SZWZArchivePages" && Global.Related.PageType != "DegreePages" ? Visibility.Visible : Visibility.Hidden;
+                    Button1.Visibility = AllowPrint && Global.Related.PageType != "SZWZArchivePages" && (Global.Config.DegreePrintOptimiz == "0"  || Global.Related.PageType != "DegreePages") ? Visibility.Visible : Visibility.Hidden;
                     Button2.Visibility = AllowPrint && Global.Related.PageType != "DegreePages" ? Visibility.Visible : Visibility.Hidden;
                     Button3.Visibility = PageAllNum <= 1 ? Visibility.Hidden : Visibility.Visible;
                     Button7.Visibility = PageAllNum <= 3 ? Visibility.Hidden : Visibility.Visible;
@@ -269,8 +269,13 @@ namespace RECSuzhou
                     printUtil.Closed += PrintOver;
                     printUtil.Show();
                     //Stamp.Start(PageAllNum);
-                    int run = Stamp.Start(PageAllNum);
-                    Log.Write("启动盖章机：" + run);
+                    if (Global.Related.PageType != "DegreePages") 
+                    {
+                        int run = Stamp.Start(PageAllNum);
+                        Log.Write("启动盖章机：" + run);
+                    }
+                   
+                   
                     //if (!"0".Equals(run.ToString()))
                     //{
                     //    Content = new HomePage("盖章机启动失败，请重启盖章机");

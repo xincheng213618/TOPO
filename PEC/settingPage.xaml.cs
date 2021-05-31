@@ -58,6 +58,7 @@ namespace PEC
  
                     break;
                 case "Close":
+                    (Application.Current.MainWindow as MainWindow).Hide();
                     (Application.Current.MainWindow as MainWindow).Close();
                     break;
                 case "Back":

@@ -21,17 +21,17 @@
                     </Border>
 
                     <Border   CornerRadius="20"   Background="#FFF3A352"  Name="TestZireanren" BorderThickness="5"    MouseDown="Border_MouseDown" Margin="0,195,0,220">
-                        <Label Content="测试个人" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25" Height="38" Margin="200,27,185,20" Width="115"></Label>
+                        <Label Content="测试个人" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25" Height="42" Margin="200,16,185,13" Width="115"></Label>
                     </Border>
                     <Border   CornerRadius="20"   Background="#FFF3A352"   Name="Close" BorderThickness="5"  MouseDown="Border_MouseDown" Margin="100,435,100,5">
                         <Label Content="关闭程序" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"></Label>
                     </Border>
-                    <Border CornerRadius="20"  Name="up" MouseDown="Border_MouseDown"  BorderThickness="5" Background="#FFF3A352" Margin="0,0,0,415" Height="95" VerticalAlignment="Bottom"  >
+                    <Border CornerRadius="20"  Name="up" MouseDown="Border_MouseDown"  BorderThickness="5" Background="#FFF3A352" Margin="0,-6,0,407" Height="95" VerticalAlignment="Bottom"  >
                         <Label Content="开机自启" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"></Label>
                     </Border>
                 </Grid>
             </Border>
-      
+
             <Border Background="#FFF3A352" Name="Back" MouseDown="Border_MouseDown" CornerRadius="20" Margin="70,65,1024,656">
                 <Image Source="images/返回.png"></Image>
             </Border>

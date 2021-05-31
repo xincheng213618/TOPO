@@ -351,7 +351,9 @@
   <ItemGroup>
     <Resource Include="Images\TaxA3.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\creditchina.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Base\Media\00.camera-shutter-click.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -436,6 +438,9 @@
     <None Include="Base\Media\16.请将收件单上的二维码放在扫码器上方扫描.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

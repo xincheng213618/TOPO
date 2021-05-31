@@ -142,14 +142,14 @@ namespace RECSuzhou
                     Content = new DegreePage();
                     Pages();
                     break; 
-                case "SZInvoiceyPages":
-                   
+                case "SZInvoiceyPages":                  
                     Content = new QRPage();
                     Pages();
                     break;
                 default:
                     break;
             }
+            Log.Write(Global.Related.PageType);
         }
 
         private void PageButton_Click(object sender, RoutedEventArgs e)
@@ -233,6 +233,76 @@ namespace RECSuzhou
                     }
                     Content = new HomePage("学位查询功能已经开启");
                     Pages();
+                    break;
+                case "CloseDegreePrint":
+                    if(Global.Config.DegreeOptimiz == "0")
+                    {
+                        Global.Config.DegreePrintOptimiz = "1";
+                        try
+                        {
+                            XmlDocument doc = new XmlDocument();
+                            doc.Load(Environment.CurrentDirectory + "\\Config");
+                            //获得根节点
+                            XmlNode rootNode = doc.DocumentElement;
+                            //在根节点中寻找节点
+                            foreach (XmlNode node in rootNode.ChildNodes)
+                            {
+                                //找到对应的节点
+                                if (node.Name == "DegreePrintOptimiz")
+                                {
+                                    node.InnerText = "1";
+                                }
+                            }
+                            doc.Save(Environment.CurrentDirectory + "\\Config");
+                        }
+                        catch
+                        {
+                            Content = new HomePage("学位打印功能关闭失败");
+                            Pages();
+                        }
+                        Content = new HomePage("学位打印功能已经关闭");
+                        Pages();
+                    }else
+                    {
+                        Content = new HomePage("请先开启学位查询功能");
+                        Pages();
+                    }
+                   
+                    break;
+                case "OpenDegreePrint":
+                    if (Global.Config.DegreeOptimiz == "0")
+                    {
+                        Global.Config.DegreePrintOptimiz = "0";
+                        try
+                        {
+                            XmlDocument doc = new XmlDocument();
+                            doc.Load(Environment.CurrentDirectory + "\\Config");
+                            //获得根节点
+                            XmlNode rootNode = doc.DocumentElement;
+                            //在根节点中寻找节点
+                            foreach (XmlNode node in rootNode.ChildNodes)
+                            {
+                                //找到对应的节点
+                                if (node.Name == "DegreePrintOptimiz")
+                                {
+                                    node.InnerText = "0";
+                                }
+                            }
+                            doc.Save(Environment.CurrentDirectory + "\\Config");
+                        }
+                        catch
+                        {
+                            Content = new HomePage("学位打印功能开启失败");
+                            Pages();
+                        }
+                        Content = new HomePage("学位打印功能已经开启");
+                        Pages();
+                    }else
+                    {
+                        Content = new HomePage("请先开启学位查询功能");
+                        Pages();
+                    }
+                   
                     break;
                 default:
                     break;

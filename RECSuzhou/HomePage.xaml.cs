@@ -108,6 +108,7 @@ namespace RECSuzhou
                 default:
                     break;
             }
+            Log.Write(Global.Related.PageType);
         }
 
         private void TestButton_click(object sender, RoutedEventArgs e)

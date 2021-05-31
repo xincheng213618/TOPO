@@ -150,7 +150,7 @@
 
         </Grid>
 
-        <Grid x:Name="NingYang" Grid.Row="1" Visibility="Visible">
+        <Grid x:Name="NingYang" Grid.Row="1" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="76*" />
@@ -216,7 +216,7 @@
             </Button>
         </Grid>
 
-        <Grid x:Name="WeiFang" Grid.Row="1"   Visibility="Hidden">
+        <Grid x:Name="WeiFang" Grid.Row="1"   Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="144" />
                 <ColumnDefinition Width="171*" />

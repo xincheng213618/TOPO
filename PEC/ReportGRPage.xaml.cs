@@ -55,7 +55,8 @@ namespace PEC
         }
         private void Requests1()
         {
-            string response = Http.Provincial.GetGRReport(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
+           string response = Http.Provincial.GetGRReport(Global.Related.IDCardData.Name, Global.Related.IDCardData.IDCardNo);
+            // string response = Http.Provincial.GetGRReport("孙永杰", "320811198708270553");
             Dispatcher.BeginInvoke(new Action(() => ProvincialPeoplePhrase(response)));
         }
 
@@ -78,12 +79,12 @@ namespace PEC
                                 Acrobat.pdfControl.LoadFile("sample.pdf");
                                 PrintUtilWindow printUtil = new PrintUtilWindow(3);
                                 printUtil.Closed += PrintOver;
-                                printUtil.Show();
+                                
                                 Acrobat.pdfControl.printAll();
 
                                 break;
                             case "ProvincialPeople":
-                                Content = "查询不到个人报告数据";
+                                Content =new HomePage( "查询不到个人报告数据");
                                 Pages();
                                 break;
                         }
@@ -114,8 +115,8 @@ namespace PEC
                         Acrobat.pdfControl.LoadFile(filePath);
                         PrintUtilWindow printUtil = new PrintUtilWindow(10);
                         printUtil.Closed += PrintOver;
-                        WaitShow.Visibility = Visibility.Hidden;
-                        printUtil.Show();
+                       // WaitShow.Visibility = Visibility.Hidden;
+                       
                         Acrobat.pdfControl.printAll();
                     }
                 }

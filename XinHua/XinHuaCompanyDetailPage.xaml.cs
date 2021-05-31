@@ -1118,9 +1118,8 @@ namespace XinHua
                     Content = new SearchListPage(companyName);
                     Pages();
                     break;
-                case "XinHuaPrint":
-                case "CreditChina":
-                    Global.Related.PageType =button.Tag.ToString();
+                case "Print":              
+                    //Global.Related.PageType =button.Tag.ToString();
                     Global.Related.CompanyData.CompanyID = CompanyID;
                     Global.Related.CompanyData.CompanyName = companyName;
                     Global.Related.CompanyData.USCI = listItems[0].USCI;
