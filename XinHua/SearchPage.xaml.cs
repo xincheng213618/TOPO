@@ -105,6 +105,7 @@ namespace XinHua
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             //App.InkWindows.Hide();
             InkPut.delegates();
@@ -112,6 +113,8 @@ namespace XinHua
             //App.InkWindows.Hide();
             InkPut.delegates();     
 >>>>>>> 17cd2ec3d2cabb65abb0dc69a3fa004ff48ae012
+=======
+>>>>>>> TOPO_仓库/develop
 
             pageTimer.IsEnabled = false;
             Dispatcher.BeginInvoke(new Action(() => (Application.Current.MainWindow as MainWindow).frame.Navigate(Content)));

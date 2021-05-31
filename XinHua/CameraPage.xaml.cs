@@ -74,15 +74,21 @@ namespace XinHua
             switch (Global.Related.PageType)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> TOPO_仓库/develop
                 case "XinHuaQiYeXinXi":
                 case "CreditChinaQiYeXinXi":
                 case "NaShuiXinYongA":
                 case "ShuiShouWeiFa":
                 case "ShiXinRen":
+<<<<<<< HEAD
 =======
                 //case "CreditChina":
                 case "XinHuaPrint":
 >>>>>>> 17cd2ec3d2cabb65abb0dc69a3fa004ff48ae012
+=======
+>>>>>>> TOPO_仓库/develop
                     Content = new Report();
                     Pages();
                     break;              
