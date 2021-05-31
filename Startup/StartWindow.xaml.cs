@@ -157,6 +157,30 @@ namespace Startup
             ActivationCode.Foreground = ACEcheck ? Brushes.DarkBlue : Brushes.Red;
         }
 
+        private void SystemCommands_Click(object sender, RoutedEventArgs e)
+        {
+
+            Button button = sender as Button;
+            switch (button.Name)
+            {
+                case "CloseButton":
+                    Environment.Exit(0);
+                    break;
+                case "MinimizeButton":
+                    WindowState = WindowState.Minimized;
+                    break;
+                case "MaximizeButton":
+                    WindowState = WindowState.Maximized;
+                    break;
+                case "RestoreButton":
+                    WindowState = WindowState.Normal;
+                    break;
+                case "TopMostButton":
+                    this.Topmost = !Topmost;
+                    button.FontWeight = Topmost ? FontWeights.Bold : FontWeights.Normal;
+                    break;
+            }
+        }
     }
 
     public class StartupGlobal
