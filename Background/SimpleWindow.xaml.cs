@@ -32,9 +32,9 @@ namespace SimpleWindow
         /// 
         /// </summary>
         /// <param name="Screens">指定屏幕</param>
-        public SimpleWindows(int Screens)
+        public SimpleWindows()
         {
-            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.AllScreens[Screens];
+            System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.AllScreens[System.Windows.Forms.Screen.AllScreens.Count()-1];
             InitializeComponent();
             //工作区域
             //Left = screen.WorkingArea.Left;

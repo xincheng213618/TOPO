@@ -102,7 +102,8 @@ namespace EXCXuanCheng
         public string Technicamail { get; set; } = "联系方式：400-889-8805";
 
         public string AdminPassword { get; set; } = "admin";
-
+        public string PrinterIP { get; set; } = "192.200.200.13";
+        public string PrintCheckOptimizat { get; set; } = "false";
 
         public string XuanChengZCXXUrl { get; set; } = "http://127.0.0.1:8083/restful-data/rest/ytjCompany/getFrjbInfo";
         public string XuanChengXKXXUrl { get; set; } = "http://127.0.0.1:8083/restful-data/rest/ytjCompany/getFrxkInfo";

@@ -53,7 +53,7 @@ namespace RECSuzhou
             MainWindow mainWindow = new MainWindow();
             StartWindow StartWindow = new StartWindow(mainWindow, new StartupGlobal { IDcardTest = true, CameraTest = true, StampTest = true, VarbTest = false });//启动逻辑照旧，从启动窗口启动
             StartWindow.Show();
-            simpleWindow = new SimpleWindows(0);
+            simpleWindow = new SimpleWindows();
             simpleWindow.Show();
 
         }
